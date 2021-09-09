@@ -1,0 +1,24 @@
+{
+  "name": "new-chat-app",
+  "version": "1.0.0",
+  "description": "Chat app.",
+  "main": "server.js",
+  "dependencies": {
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelWDev/new-chat-app.git"
+  },
+  "author": "Michael Woodyard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelWDev/new-chat-app/issues"
+  },
+  "homepage": "https://github.com/MichaelWDev/new-chat-app#readme"
+}
