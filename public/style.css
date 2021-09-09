@@ -15,6 +15,7 @@
 	/* NOTE: Text Colors */
 	--text-color-1: rgb(255, 255, 255);
 	--text-color-2: rgba(255, 255, 255, 0.5);
+	--text-color-3: rgb(0, 44, 82);
 
 	/* NOTE: Background Colors */
 	--background-color-1: rgb(0, 0, 0);
@@ -23,6 +24,7 @@
 	/* NOTE: Borders */
 	--border-1: 0.25em solid rgb(0, 44, 82);
 	--border-2: 0.1em solid rgb(255, 255, 255);
+	--border-3: 0.1em solid rgb(0, 44, 82);
 }
 
 /*———————————————————————————————————————*/
@@ -80,17 +82,8 @@ html, body {
 	transform: translate(-50%, -50%);
 }
 
-#entry-page h1 {
-	color: var(--text-color-1);
-	text-align: center;
-	font-family: var(--font-family-1);
-	font-weight: 400;
-	border-bottom: var(--border-1);
-	padding-bottom: 0.5em;
-}
-
-/* NOTE: Login */
-#login-inputs {
+/* NOTE: Login Page, Register Page */
+#login-page, #register-page {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -98,7 +91,7 @@ html, body {
 	width: 25em;
 }
 
-#login-inputs h2 {
+#login-page h2, #register-page h2 {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 400;
@@ -108,7 +101,7 @@ html, body {
 	top: 0.5em;
 }
 
-#username-input {
+#entry-page input {
 	position: relative;
 	bottom: 2.25em;
 	left: 6em;
@@ -123,37 +116,44 @@ html, body {
 	font-weight: 600;
 }
 
-#password-input {
-	position: relative;
-	bottom: 2.25em;
-	left: 6em;
-	height: 1.5em;
-	font-size: 1.25em;
-	border: none;
+#login-button, #register-button {
+	width: 6em;
+	height: 2.5em;
+	position: absolute;
+	top: 11em;
+	font-size: 1.5em;
 	background: none;
-	border-bottom: var(--border-2);
-	outline: none;
 	color: var(--text-color-1);
-	font-family: var(--font-family-1);
-	font-weight: 600;
-}
-
-#entry-page h3 {
-	color: var(--text-color-1);
-	text-align: center;
-	font-family: var(--font-family-1);
-	font-weight: 600;
-	position: relative;
-	top: 15em;
-}
-
-#entry-page h3 a {
-	color: var(--text-color-1);
+	border: var(--border-2);
 	transition: 0.25s;
 }
 
-#entry-page h3 a:hover {
-	color: var(--text-color-2);
+#entry-page button:hover {
+	color: var(--text-color-3);
+	border: var(--border-3);
+}
+
+#login-button {
+	left: 1em;
+}
+
+#register-button {
+	right: 2em;
+}
+
+#account-register-button {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 15em;
+	height: 2.5em;
+	position: absolute;
+	top: 11em;
+	font-size: 1.5em;
+	background: none;
+	color: var(--text-color-1);
+	border: var(--border-2);
+	transition: 0.25s;
 }
 
 /* SECTION: Chat Page */

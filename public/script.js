@@ -2,16 +2,36 @@
 // SECTION Variables                     //
 //———————————————————————————————————————//
 
-const socket            = io();
-const messageContainer  = document.getElementById('chatted-words');
-const messageInput      = document.getElementById('message-bar');
-const usernameContainer = document.getElementById('usernames');
-let username            = prompt('What is your name?');
+// const socket            = io();
+// const messageContainer  = document.getElementById('chatted-words');
+// const messageInput      = document.getElementById('message-bar');
+// const usernameContainer = document.getElementById('usernames');
+// let username            = prompt('What is your name?');
 // const profile          = document.getElementById('myImg');
 
 //———————————————————————————————————————//
 // SECTION Functions                     //
 //———————————————————————————————————————//
+
+function button(btn) {
+	let loginPage = document.getElementById("login-page");
+	let registerPage = document.getElementById("register-page");
+
+	switch(btn) {
+		case 1: // Login
+			getAccount();
+		break;
+
+		case 2: // Register
+			loginPage.classList.add("hide");
+			registerPage.classList.remove("hide");
+		break;
+
+		case 3: // Register Account
+			registerAccount();
+		break;
+	}
+}
 
 // Enters the message upon hitting the enter key.
 function enterKey(e) {

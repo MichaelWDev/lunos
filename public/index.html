@@ -14,20 +14,33 @@
 		<h1>Lunos</h1>
 	</div>
 
-	<div id="entry-page" class="hide">
-		<h1>Log In</h1>
-		<div id="login-inputs">
+	<div id="entry-page" class="">
+		<div id="login-page" class="">
 			<h2>Username:</h2>
 			<input id="username-input" type="text" placeholder="Username">
 
 			<h2>Password:</h2>
 			<input id="password-input" type="text" placeholder="Password">
+
+			<button id="login-button" onclick="button(1)">Log In</button>
+			<button id="register-button" onclick="button(2)">Register</button>
 		</div>
 
-		<h3>Don't have an account? <a href="">Sign up here!</a></h3>
+		<div id="register-page" class="hide">
+			<h2>Username:</h2>
+			<input id="register-username-input" type="text" placeholder="Username">
+
+			<h2>Password:</h2>
+			<input id="register-password-input" type="text" placeholder="Password">
+			<h3>Note: Make sure your password includes at least 1 uppercase, symbol, and number.</h3>
+
+			<button id="account-register-button" onclick="button(3)">Create Account</button>
+
+		</div>
+
 	</div>
 
-	<div id="chat-app" class="">
+	<div id="chat-app" class="hide">
 		<div id="channel-container">
 			<h1>Channels</h1>
 
