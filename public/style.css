@@ -98,13 +98,12 @@ html, body {
 	font-size: 2em;
 	position: relative;
 	right: 1em;
-	top: 0.5em;
 	user-select: none;
 }
 
 #entry-page input {
 	position: relative;
-	bottom: 2.25em;
+	bottom: 3em;
 	left: 6em;
 	height: 1.5em;
 	font-size: 1.25em;
@@ -150,7 +149,7 @@ html, body {
 	width: 15em;
 	height: 2.5em;
 	position: absolute;
-	top: 11em;
+	top: 7em;
 	font-size: 1.5em;
 	background: none;
 	color: var(--text-color-1);
@@ -161,7 +160,7 @@ html, body {
 #register-page h3 {
 	color: var(--text-color-2);
 	position: relative;
-	bottom: 3em;
+	top: 7em;
 	width: 30em;
 	font-family: var(--font-family-1);
 	text-align: center;
@@ -178,7 +177,7 @@ html, body {
 	top: 0;
 	cursor: pointer;
 	left: -12em;
-	top: -5em;
+	top: -13em;
 }
 
 /* SECTION: Chat Page */

@@ -14,7 +14,8 @@ const socket = io();
 //———————————————————————————————————————//
 
 function button(btn) {
-	let loginPage = document.getElementById("login-page");
+	let loginButton = document.getElementById("login-button");
+	let registerButton = document.getElementById("register-button");
 	let registerPage = document.getElementById("register-page");
 
 	switch(btn) {
@@ -23,7 +24,8 @@ function button(btn) {
 		break;
 
 		case 2: // Register
-			loginPage.classList.add("hide");
+			loginButton.classList.add("hide");
+			registerButton.classList.add("hide");
 			registerPage.classList.remove("hide");
 		break;
 
@@ -32,7 +34,8 @@ function button(btn) {
 		break;
 
 		case 4: // Back
-			loginPage.classList.remove("hide");
+			loginButton.classList.remove("hide");
+			registerButton.classList.remove("hide");
 			registerPage.classList.add("hide");
 		break;
 	}
@@ -40,18 +43,16 @@ function button(btn) {
 
 // Handles account login and registration.
 function account(num) {
-	let usernameLogin    = document.getElementById("username-input");
-	let passwordLogin    = document.getElementById("password-input");
-	let usernameRegister = document.getElementById("register-username-input");
-	let passwordRegister = document.getElementById("register-password-input");
+	let username = document.getElementById("username-input");
+	let password = document.getElementById("password-input");
 
 	switch(num) {
 		case 1: // Login
-			socket.emit("login-username", usernameLogin, "login-password", passwordLogin);
+			socket.emit("login-username", username, "login-password", password);
 		break
 
 		case 2: // Register
-			socket.emit("register-username", usernameRegister, "register-password", passwordRegister);
+			socket.emit("register-username", username, "register-password", password);
 		break;
 	}
 }

@@ -15,32 +15,27 @@
 		<h1>Lunos</h1>
 	</div>
 
-	<div id="entry-page" class="">
-		<div id="login-page" class="">
-			<h2>Username:</h2>
-			<input id="username-input" type="text" placeholder="Username">
+	<div id="entry-page">
+		<form>
+			<div id="login-page" class="">
+				<h2>Username:</h2>
+				<input id="username-input" type="text" placeholder="Username">
 
-			<h2>Password:</h2>
-			<input id="password-input" type="text" placeholder="Password">
+				<h2>Password:</h2>
+				<input id="password-input" type="text" placeholder="Password">
 
-			<button id="login-button" onclick="button(1)">Log In</button>
-			<button id="register-button" onclick="button(2)">Register</button>
-		</div>
+				<button id="login-button" onclick="button(1)">Log In</button>
+				<button id="register-button" onclick="button(2)">Register</button>
+			</div>
 
-		<div id="register-page" class="hide">
-			<img src="images/swipe-left.png" onclick="button(4)">
-
-			<h2>Username:</h2>
-			<input id="register-username-input" type="text" placeholder="Username">
-
-			<h2>Password:</h2>
-			<input id="register-password-input" type="text" placeholder="Password">
-			<h3>Your password must include at least 1 uppercase, symbol, and number.</h3>
-
-			<button id="account-register-button" onclick="button(3)">Create Account</button>
-
-		</div>
-
+			<div id="register-page" class="hide">
+				<img src="images/swipe-left.png" onclick="button(4)">
+		
+				<h3>Your password must include at least 1 uppercase, symbol, and number.</h3>
+		
+				<button id="account-register-button" type="submit" onclick="button(3)">Create Account</button>	
+			</div>
+		</form>
 	</div>
 
 	<div id="chat-app" class="hide">
