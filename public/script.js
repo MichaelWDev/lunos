@@ -43,16 +43,16 @@ function button(btn) {
 
 // Handles account login and registration.
 function account(num) {
-	let username = document.getElementById("username-input");
-	let password = document.getElementById("password-input");
+	let username = document.getElementById("username-input").value;
+	let password = document.getElementById("password-input").value;
 
 	switch(num) {
 		case 1: // Login
-			socket.emit("login-username", username, "login-password", password);
+			socket.emit("login", username, password);
 		break
 
 		case 2: // Register
-			socket.emit("register-username", username, "register-password", password);
+			socket.emit("register", username, password);
 		break;
 	}
 }
@@ -99,6 +99,7 @@ function appendUsername(username) {
 // SECTION Sockets                       //
 //———————————————————————————————————————//
 
+/*
 // TODO
 socket.on('chat-message', data => {
 	appendMessage(`${data.name}: ${data.message}`);
@@ -123,3 +124,4 @@ socket.on('user-list', users => {
 		appendUsername(users[socketId]);
 	}
 });
+*/

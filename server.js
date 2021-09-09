@@ -10,6 +10,8 @@ const io      = require('socket.io')(server);
 const fs      = require('fs');
 const users   = {};
 let userList  = [];
+let accounts  = fs.readFileSync('accounts.json');
+
 
 /*———————————————————————————————————————*/
 /* SECTION: IO's & Sockets               */
@@ -44,7 +46,17 @@ io.on('connection', function(socket){
 		});
 	});
 
-	socket.on("")
+	// Account Login
+	socket.on("login", function(username, password) {
+		console.log("username: " + username + "\n" + "password: " + password);
+	});
+
+	// Account Register
+	socket.on("register", function(username, password) {
+		
+
+		console.log("username: " + username + "\n" + "password: " + password);
+	});
 	
 	socket.on('disconnect', () => {
 		socket.broadcast.emit('user-disconnected', users[socket.id]); // Emits username to client successfully.

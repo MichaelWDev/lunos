@@ -75,7 +75,6 @@ html, body {
 #entry-page {
 	width: 50em;
 	height: 30em;
-	border: var(--border-1);
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -91,20 +90,15 @@ html, body {
 	width: 25em;
 }
 
-#login-page h2, #register-page h2 {
+#login-page label {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 400;
 	font-size: 2em;
-	position: relative;
-	right: 1em;
 	user-select: none;
 }
 
 #entry-page input {
-	position: relative;
-	bottom: 3em;
-	left: 6em;
 	height: 1.5em;
 	font-size: 1.25em;
 	border: none;
@@ -114,13 +108,14 @@ html, body {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 600;
+	margin: 0.5em;
 }
 
 #login-button, #register-button {
 	width: 6em;
 	height: 2.5em;
 	position: absolute;
-	top: 11em;
+	top: 5.5em;
 	font-size: 1.5em;
 	background: none;
 	color: var(--text-color-1);

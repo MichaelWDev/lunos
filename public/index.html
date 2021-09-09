@@ -18,14 +18,14 @@
 	<div id="entry-page">
 		<form>
 			<div id="login-page" class="">
-				<h2>Username:</h2>
-				<input id="username-input" type="text" placeholder="Username">
+				<label for="username">Username:</label>
+				<input id="username-input" type="username" placeholder="Username">
 
-				<h2>Password:</h2>
-				<input id="password-input" type="text" placeholder="Password">
+				<label for="password">Password:</label>
+				<input id="password-input" type="password" placeholder="Password">
 
-				<button id="login-button" onclick="button(1)">Log In</button>
-				<button id="register-button" onclick="button(2)">Register</button>
+				<button id="login-button" type="button" onclick="button(1)">Log In</button>
+				<button id="register-button" type="button" onclick="button(2)">Register</button>
 			</div>
 
 			<div id="register-page" class="hide">
@@ -33,7 +33,7 @@
 		
 				<h3>Your password must include at least 1 uppercase, symbol, and number.</h3>
 		
-				<button id="account-register-button" type="submit" onclick="button(3)">Create Account</button>	
+				<button id="account-register-button" type="button" onclick="button(3)">Create Account</button>	
 			</div>
 		</form>
 	</div>
