@@ -9,9 +9,43 @@
 	<script src="script.js"></script>
 </head>
 <body>
-	<div id="chat-app">
-		<div id="title">
-			<h1>Lunos</h1>
+
+	<div id="title">
+		<h1>Lunos</h1>
+	</div>
+
+	<div id="entry-page" class="">
+		<h1>Log In</h1>
+		<div id="login-inputs">
+			<h2>Username:</h2>
+			<input id="username-input" type="text" placeholder="Username">
+
+			<h2>Password:</h2>
+			<input id="password-input" type="text" placeholder="Password">
+		</div>
+
+		<h3>Don't have an account? <a href="">Sign up here!</a></h3>
+	</div>
+
+	<div id="chat-app" class="hide">
+		<div id="channel-container">
+			<h1>Channels</h1>
+
+			<img src="images/swipe-left.png" onclick="">
+
+			<div id="channel-list">
+				
+			</div>
+		</div>
+
+		<div id="member-container">
+			<h1>Users</h1>
+
+			<img src="images/swipe-right.png" onclick="">
+
+			<div id="user-list">
+
+			</div>
 		</div>
 
 		<div id="chat-container">
@@ -23,5 +57,31 @@
 			<input type="text" placeholder="Begin typing...">
 		</div>
 	</div>
+
+	<!--
+		<div id="chat">
+		<div id="chatted-words"></div>
+		<input id="message-bar" placeholder="Begin typing!" onkeypress="enterKey(event)" autofocus></input>
+		
+		TODO: Emoji display.
+		<input type="radio" name="emoji" value="emoji" id="emoji-button">
+		<label id="emoji-button-label" for="#emoji-button">Emoji</label>
+		
+	</div>
+
+	<div id="left-sidebar">
+		<div id="channels">
+			<ul id="channel-list">
+				<button class="channel-select" onclick="channelButton(1)"># Channel 1</button>
+				<button class="channel-select" onclick="channelButton(2)"># Channel 2</button>
+				<button class="channel-select" onclick="channelButton(3)"># Channel 3</button>
+			  </ul>
+		</div>
+	</div>
+
+	<div id="right-sidebar">
+		<div id="usernames"></div>
+	</div>
+	-->
 </body>
 </html>

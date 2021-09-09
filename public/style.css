@@ -14,13 +14,15 @@
 
 	/* NOTE: Text Colors */
 	--text-color-1: rgb(255, 255, 255);
+	--text-color-2: rgba(255, 255, 255, 0.5);
 
 	/* NOTE: Background Colors */
 	--background-color-1: rgb(0, 0, 0);
+	--background-color-2: rgba(0, 44, 82, 0.1);
 
 	/* NOTE: Borders */
 	--border-1: 0.25em solid rgb(0, 44, 82);
-
+	--border-2: 0.1em solid rgb(255, 255, 255);
 }
 
 /*———————————————————————————————————————*/
@@ -42,9 +44,9 @@ html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+	overflow: hidden;
 }
 
-/* NOTE: Title */
 #title {
 	width: 50em;
 	height: 8em;
@@ -61,8 +63,159 @@ html, body {
 	position: relative;
 	top: 0.25em;
 	font-family: var(--font-family-1);
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 3em;
+	user-select: none;
+}
+
+/* SECTION: Entry Page */
+
+#entry-page {
+	width: 50em;
+	height: 30em;
+	border: var(--border-1);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#entry-page h1 {
+	color: var(--text-color-1);
+	text-align: center;
+	font-family: var(--font-family-1);
+	font-weight: 400;
+	border-bottom: var(--border-1);
+	padding-bottom: 0.5em;
+}
+
+/* NOTE: Login */
+#login-inputs {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 25em;
+}
+
+#login-inputs h2 {
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 400;
+	font-size: 2em;
+	position: relative;
+	right: 1em;
+	top: 0.5em;
+}
+
+#username-input {
+	position: relative;
+	bottom: 2.25em;
+	left: 6em;
+	height: 1.5em;
+	font-size: 1.25em;
+	border: none;
+	background: none;
+	border-bottom: var(--border-2);
+	outline: none;
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 600;
+}
+
+#password-input {
+	position: relative;
+	bottom: 2.25em;
+	left: 6em;
+	height: 1.5em;
+	font-size: 1.25em;
+	border: none;
+	background: none;
+	border-bottom: var(--border-2);
+	outline: none;
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 600;
+}
+
+#entry-page h3 {
+	color: var(--text-color-1);
+	text-align: center;
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	position: relative;
+	top: 15em;
+}
+
+#entry-page h3 a {
+	color: var(--text-color-1);
+	transition: 0.25s;
+}
+
+#entry-page h3 a:hover {
+	color: var(--text-color-2);
+}
+
+/* SECTION: Chat Page */
+
+
+
+/* NOTE: Channels */
+#channel-container {
+	width: 17em;
+	height: 45em;
+	position: absolute;
+	left: 4em;
+	top: 6em;
+	background-color: var(--background-color-2);
+}
+
+#channel-container h1 {
+	text-align: center;
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	padding-bottom: 0.5em;
+	border-bottom: var(--border-2);
+	user-select: none;
+}
+
+#channel-container img {
+	width: 2em;
+	height: 2em;
+	position: absolute;
+	top: 1.5em;
+	left: 1em;
+	cursor: pointer;
+}
+
+/* NOTE: Members */
+#member-container {
+	width: 17em;
+	height: 45em;
+	position: absolute;
+	right: 4em;
+	top: 6em;
+	background-color: var(--background-color-2);
+}
+
+#member-container h1 {
+	text-align: center;
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	padding-bottom: 0.5em;
+	border-bottom: var(--border-2);
+	user-select: none;
+}
+
+#member-container img {
+	width: 2em;
+	height: 2em;
+	position: absolute;
+	top: 1.5em;
+	right: 1em;
+	cursor: pointer;
 }
 
 /* NOTE: Chat Bar */
@@ -107,3 +260,10 @@ html, body {
 /* SECTION Classes                       */
 /*———————————————————————————————————————*/
 
+.hide {
+	display: none;
+}
+
+/*———————————————————————————————————————*/
+/* SECTION Keyframes                     */
+/*———————————————————————————————————————*/
