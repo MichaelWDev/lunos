@@ -99,6 +99,7 @@ html, body {
 	position: relative;
 	right: 1em;
 	top: 0.5em;
+	user-select: none;
 }
 
 #entry-page input {
@@ -131,6 +132,7 @@ html, body {
 #entry-page button:hover {
 	color: var(--text-color-3);
 	border: var(--border-3);
+	cursor: pointer;
 }
 
 #login-button {
@@ -156,9 +158,30 @@ html, body {
 	transition: 0.25s;
 }
 
+#register-page h3 {
+	color: var(--text-color-2);
+	position: relative;
+	bottom: 3em;
+	width: 30em;
+	font-family: var(--font-family-1);
+	text-align: center;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 1em;
+	user-select: none;
+}
+
+#register-page img {
+	width: 2em;
+	height: 2em;
+	position: absolute;
+	top: 0;
+	cursor: pointer;
+	left: -12em;
+	top: -5em;
+}
+
 /* SECTION: Chat Page */
-
-
 
 /* NOTE: Channels */
 #channel-container {

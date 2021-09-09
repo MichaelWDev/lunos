@@ -4,6 +4,7 @@
   "description": "Chat app.",
   "main": "server.js",
   "dependencies": {
+    "express": "^4.17.1",
     "socket.io": "^4.2.0"
   },
   "devDependencies": {},

@@ -2,7 +2,7 @@
 // SECTION Variables                     //
 //———————————————————————————————————————//
 
-// const socket            = io();
+const socket = io();
 // const messageContainer  = document.getElementById('chatted-words');
 // const messageInput      = document.getElementById('message-bar');
 // const usernameContainer = document.getElementById('usernames');
@@ -19,7 +19,7 @@ function button(btn) {
 
 	switch(btn) {
 		case 1: // Login
-			getAccount();
+			account(1);
 		break;
 
 		case 2: // Register
@@ -28,12 +28,40 @@ function button(btn) {
 		break;
 
 		case 3: // Register Account
-			registerAccount();
+			account(2);
+		break;
+
+		case 4: // Back
+			loginPage.classList.remove("hide");
+			registerPage.classList.add("hide");
 		break;
 	}
 }
 
-// Enters the message upon hitting the enter key.
+// Handles account login and registration.
+function account(num) {
+	let usernameLogin    = document.getElementById("username-input");
+	let passwordLogin    = document.getElementById("password-input");
+	let usernameRegister = document.getElementById("register-username-input");
+	let passwordRegister = document.getElementById("register-password-input");
+
+	switch(num) {
+		case 1: // Login
+			socket.emit("login-username", usernameLogin, "login-password", passwordLogin);
+		break
+
+		case 2: // Register
+			socket.emit("register-username", usernameRegister, "register-password", passwordRegister);
+		break;
+	}
+}
+
+
+
+// NOTE: Copied Code
+
+// TODO
+// Enters the message with enter key.
 function enterKey(e) {
 	if (e.keyCode === 13) {
 		const message = messageInput.value;
@@ -43,6 +71,8 @@ function enterKey(e) {
 	}
 }
 
+
+// TODO
 // Chat
 function appendMessage(message) {
 	const messageElement         = document.createElement('p');
@@ -52,6 +82,8 @@ function appendMessage(message) {
 	messageContainer.insertBefore(messageElement, messageContainer.firstChild);
 }
 
+
+// TODO
 // Assigns all usernames to the right.
 function appendUsername(username) {
 	const userElement         = document.createElement('p');
@@ -62,66 +94,31 @@ function appendUsername(username) {
 	usernameContainer.insertBefore(userElement, usernameContainer.firstChild);
 }
 
-// Loop-Prompts the user until they provide a username.
-function promptUser() {
-	if (username === "" || !username || username.length < 3) {
-		username = prompt('What is your name?');
-		appendMessage('Please create a username with more than 3 characters.');
-	} else {
-		socket.emit('new-user', username);
-		clearInterval(promptInterval); // Clears the interval, so it stops looping.
-
-		// These used to just run on their own. Now waits for you to enter a proper username.
-		appendMessage('You joined');
-		appendUsername(username);
-	}
-}
-
-// Sends whichever channel is clicked to the back-end.
-function channelButton(button) {
-
-	switch(button) {
-		case 1:
-			socket.emit('channel-1');
-		break;
-
-		case 2:
-			socket.emit('channel-2');
-		break;
-
-		case 3:
-			socket.emit('channel-3');
-		break;
-
-		default:
-			socket.emit('channel-1');
-			// The default is the first channel.
-	}
-}
-
 //———————————————————————————————————————//
 // SECTION Sockets                       //
 //———————————————————————————————————————//
 
+// TODO
 socket.on('chat-message', data => {
 	appendMessage(`${data.name}: ${data.message}`);
 });
 
+// TODO
 socket.on('user-connected', username => {
 	appendMessage(`${username} connected.`);
 	console.log(username);
 	appendUsername(`${username}`);
 });
 
+// TODO
 socket.on('user-disconnected', username => {
 	appendMessage(`${username} disconnected.`);
 	document.getElementById("userlist-" + username).remove();
 });
 
+// TODO
 socket.on('user-list', users => {
 	for (socketId in users) {
 		appendUsername(users[socketId]);
 	}
 });
-
-let promptInterval = setInterval(promptUser, 5);
