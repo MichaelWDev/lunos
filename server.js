@@ -48,14 +48,16 @@ io.on('connection', function(socket){
 
 	// Account Login
 	socket.on("login", function(username, password) {
-		console.log("username: " + username + "\n" + "password: " + password);
+
+
+		console.log("Login:" + "\n" + "username: " + username + "\n" + "password: " + password);
 	});
 
 	// Account Register
 	socket.on("register", function(username, password) {
-		
 
-		console.log("username: " + username + "\n" + "password: " + password);
+
+		console.log("Register:" + "\n" + "username: " + username + "\n" + "password: " + password);
 	});
 	
 	socket.on('disconnect', () => {

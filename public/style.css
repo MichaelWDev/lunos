@@ -155,8 +155,8 @@ html, body {
 #register-page h3 {
 	color: var(--text-color-2);
 	position: relative;
-	top: 7em;
-	width: 30em;
+	top: 5em;
+	width: 40em;
 	font-family: var(--font-family-1);
 	text-align: center;
 	left: 50%;
@@ -169,7 +169,6 @@ html, body {
 	width: 2em;
 	height: 2em;
 	position: absolute;
-	top: 0;
 	cursor: pointer;
 	left: -12em;
 	top: -13em;
