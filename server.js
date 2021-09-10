@@ -10,7 +10,7 @@ const io      = require('socket.io')(server);
 const fs      = require('fs');
 const users   = {};
 let userList  = [];
-let accounts  = fs.readFileSync('accounts.json');
+let accounts  = fs.readFileSync('./accounts.json');
 
 
 /*———————————————————————————————————————*/
@@ -55,9 +55,17 @@ io.on('connection', function(socket){
 
 	// Account Register
 	socket.on("register", function(username, password) {
+		let username = JSON.stringify(username);
+		let password = JSON.stringify(password);
 
+		fs.writeFile('./accounts.json', data, (err) => {
+			if (err) throw err;
+			console.log('Data written to file' + data);
+		});
 
-		console.log("Register:" + "\n" + "username: " + username + "\n" + "password: " + password);
+		console.log('This is after the write call');
+
+		// console.log("Register:" + "\n" + "username: " + username + "\n" + "password: " + password);
 	});
 	
 	socket.on('disconnect', () => {
