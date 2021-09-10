@@ -70,6 +70,22 @@ html, body {
 	user-select: none;
 }
 
+#title h3 {
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 400;
+	text-align: center;
+	position: relative;
+	top: 0.5em;
+	left: 50%;
+	transform: translateX(-50%);
+	border-bottom: var(--border-1);
+	border-left: var(--border-1);
+	border-right: var(--border-1);
+	padding: 1em;
+	width: 20em;
+}
+
 /* SECTION: Entry Page */
 
 #entry-page {
