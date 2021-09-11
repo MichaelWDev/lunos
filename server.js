@@ -7,10 +7,53 @@ const app     = express();
 const server  = require("http").Server(app);
 const port    = 3000;
 const io      = require('socket.io')(server);
-const fs      = require('fs');
 const users   = {};
 let userList  = [];
-let accounts  = fs.readFileSync('./accounts.json');
+
+const fs = require('fs');
+
+/*
+fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
+	if (err) {
+		console.log(err);
+	} else {
+		try {
+			const data = JSON.parse(jsonString);
+			console.log(data.password);
+	
+		} catch (err) {
+			console.log("Error parsing JSON: ", err)
+		}
+	}
+});
+
+const accountObject = {
+	username: username,
+	password: password
+};
+
+fs.writeFile('./accounts.json', JSON.stringify(accountObject, null, 2), err => {
+	if (err) {
+		console.log(err)
+	} else {
+		console.log('File successfully written!');
+	}
+});
+
+jsonReader('./accounts.json', (err, data) => {
+	if (err) {
+		console.log(err);
+	} else {
+		data.username = username;
+		data.password = password; 
+		fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
+			if (err) {
+				console.log(err);
+			}
+		});
+	}
+});
+*/
 
 
 /*———————————————————————————————————————*/
@@ -55,17 +98,21 @@ io.on('connection', function(socket){
 
 	// Account Register
 	socket.on("register", function(username, password) {
-		let username = JSON.stringify(username);
-		let password = JSON.stringify(password);
 
-		fs.writeFile('./accounts.json', data, (err) => {
-			if (err) throw err;
-			console.log('Data written to file' + data);
+		const accountObject = {
+			username: username,
+			password: password
+		};
+		
+		fs.writeFile('./accounts.json', JSON.stringify(accountObject, null, 2), err => {
+			if (err) {
+				console.log(err)
+			} else {
+				console.log('File successfully written!');
+			}
 		});
 
-		console.log('This is after the write call');
-
-		// console.log("Register:" + "\n" + "username: " + username + "\n" + "password: " + password);
+		console.log("Register:" + "\n" + "username: " + username + "\n" + "password: " + password);
 	});
 	
 	socket.on('disconnect', () => {
