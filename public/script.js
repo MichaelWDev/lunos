@@ -3,6 +3,8 @@
 //———————————————————————————————————————//
 
 const socket = io();
+const entryPage = document.getElementById("entry-page");
+const chatApp = document.getElementById("chat-app");
 // const messageContainer  = document.getElementById('chatted-words');
 // const messageInput      = document.getElementById('message-bar');
 // const usernameContainer = document.getElementById('usernames');
@@ -98,6 +100,13 @@ function appendUsername(username) {
 //———————————————————————————————————————//
 // SECTION Sockets                       //
 //———————————————————————————————————————//
+
+socket.on('login-sucessful', () => {
+	console.log("front-end login successful");
+	
+	entryPage.classList.add("hide");
+	chatApp.classList.remove("hide");
+});
 
 /*
 // TODO

@@ -110,12 +110,12 @@ io.on('connection', function(socket){
 					const data = JSON.parse(jsonString);
 					console.log(data);
 
-					if (data[username] != username || data[password] != password ) {
-						socket.emit("login-unsuccessful");
-						console.log("login-unsuccessful");
-					} else {
-						socket.emit("login-successful");
+					if (data[username] && data[username].password === password) {
+						socket.broadcast.emit("login-successful");
 						console.log("login-successful");
+					} else {
+						socket.broadcast.emit("login-unsuccessful");
+						console.log("login-unsuccessful");
 					}
 
 				} catch (err) {
@@ -123,8 +123,6 @@ io.on('connection', function(socket){
 				}
 			}
 		});
-
-		console.log("Login:" + "\n" + "username: " + username + "\n" + "password: " + password);
 	});
 
 	// Account Register
