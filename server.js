@@ -91,28 +91,69 @@ io.on('connection', function(socket){
 
 	// Account Login
 	socket.on("login", function(username, password) {
+		/*
+		TODO: Go through every account.
 
+		TODO: Verify that entered account matches a saved username.
+
+		TODO: Verify the entered password matches the saved password.
+
+		TODO: If name does not exist, display: "Username or password is incorrect."
+		
+		TODO: If password is entered incorrectly, display: "Username or password is incorrect."
+		*/
+		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
+			if (err) {
+				console.log(err);
+			} else {
+				try {
+					const data = JSON.parse(jsonString);
+					console.log(data);
+
+					if (data[username] != username || data[password] != password ) {
+						socket.emit("login-unsuccessful");
+						console.log("login-unsuccessful");
+					} else {
+						socket.emit("login-successful");
+						console.log("login-successful");
+					}
+
+				} catch (err) {
+					console.log("Error parsing JSON: ", err)
+				}
+			}
+		});
 
 		console.log("Login:" + "\n" + "username: " + username + "\n" + "password: " + password);
 	});
 
 	// Account Register
 	socket.on("register", function(username, password) {
-
-		const accountObject = {
-			username: username,
-			password: password
-		};
 		
-		fs.writeFile('./accounts.json', JSON.stringify(accountObject, null, 2), err => {
+		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
-				console.log(err)
+				console.log(err);
 			} else {
-				console.log('File successfully written!');
+				try {
+					const data = JSON.parse(jsonString);
+					console.log(data);
+					data[username] = {username: username, password: password};
+
+					fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
+						if (err) {
+							console.log(err)
+						} else {
+							console.log('File successfully written!');
+						}
+					});
+
+				} catch (err) {
+					console.log("Error parsing JSON: ", err)
+				}
 			}
 		});
 
-		console.log("Register:" + "\n" + "username: " + username + "\n" + "password: " + password);
+
 	});
 	
 	socket.on('disconnect', () => {
