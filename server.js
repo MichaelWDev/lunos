@@ -8,7 +8,8 @@ const server  = require("http").Server(app);
 const port    = 3000;
 const io      = require('socket.io')(server);
 const users   = {};
-let userList  = [];
+const bcrypt  = require('bcrypt');
+const users   = [];
 
 const fs = require('fs');
 
