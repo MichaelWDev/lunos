@@ -19,6 +19,7 @@ function button(btn) {
 	let loginButton = document.getElementById("login-button");
 	let registerButton = document.getElementById("register-button");
 	let registerPage = document.getElementById("register-page");
+	let emailInput
 
 	switch(btn) {
 		case 1: // Login

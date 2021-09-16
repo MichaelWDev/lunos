@@ -7,60 +7,15 @@ const app     = express();
 const server  = require("http").Server(app);
 const port    = 3000;
 const io      = require('socket.io')(server);
-const users   = {};
-const bcrypt  = require('bcrypt');
-const users   = [];
+
+// NOTE: Password Encryption
+const bcrypt = require('bcrypt');
 
 const fs = require('fs');
-
-/*
-fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
-	if (err) {
-		console.log(err);
-	} else {
-		try {
-			const data = JSON.parse(jsonString);
-			console.log(data.password);
-	
-		} catch (err) {
-			console.log("Error parsing JSON: ", err)
-		}
-	}
-});
-
-const accountObject = {
-	username: username,
-	password: password
-};
-
-fs.writeFile('./accounts.json', JSON.stringify(accountObject, null, 2), err => {
-	if (err) {
-		console.log(err)
-	} else {
-		console.log('File successfully written!');
-	}
-});
-
-jsonReader('./accounts.json', (err, data) => {
-	if (err) {
-		console.log(err);
-	} else {
-		data.username = username;
-		data.password = password; 
-		fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
-			if (err) {
-				console.log(err);
-			}
-		});
-	}
-});
-*/
-
 
 /*———————————————————————————————————————*/
 /* SECTION: IO's & Sockets               */
 /*———————————————————————————————————————*/
-
 
 // Serve the static website files.
 app.use(express.static("public"));
@@ -76,9 +31,8 @@ io.on('connection', function(socket){
 
 	socket.on('new-user', username => {
 		socket.emit('user-list', users); // Sends a full list of current users to the client when they join. (Minus their own.)
-		users[socket.id] = username; // users[socket.id] <<<< this is the username for a user.
 		socket.broadcast.emit('user-connected', username);
-		console.log(username); // this one does.
+		console.log(username);
 	});
 
 	socket.on('send-chat-message', message => {
@@ -90,7 +44,7 @@ io.on('connection', function(socket){
 		});
 	});
 
-	// Account Login
+	// NOTE: Account Login
 	socket.on("login", function(username, password) {
 		/*
 		TODO: Go through every account.
@@ -126,9 +80,10 @@ io.on('connection', function(socket){
 		});
 	});
 
-	// Account Register
-	socket.on("register", function(username, password) {
-		
+	// NOTE: Account Register
+	socket.on("register", async (username, password) => {
+		const hashedPassword = await bcrypt.hash(password, 10);
+
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
 				console.log(err);
@@ -136,7 +91,7 @@ io.on('connection', function(socket){
 				try {
 					const data = JSON.parse(jsonString);
 					console.log(data);
-					data[username] = {username: username, password: password};
+					data[username] = {username: username, password: hashedPassword};
 
 					fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
 						if (err) {
@@ -147,18 +102,11 @@ io.on('connection', function(socket){
 					});
 
 				} catch (err) {
-					console.log("Error parsing JSON: ", err)
+					console.log("Error parsing JSON: ", err);
 				}
 			}
 		});
 
 
 	});
-	
-	socket.on('disconnect', () => {
-		socket.broadcast.emit('user-disconnected', users[socket.id]); // Emits username to client successfully.
-		console.log('user ' + users[socket.id] + ' disconnected');
-		userList.splice(userList.indexOf(socket.id), userList.indexOf(socket.id)); // Removes username from the right.
-		delete users[socket.id];
-  });
 });

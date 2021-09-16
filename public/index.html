@@ -19,14 +19,19 @@
 	<div id="entry-page">
 		<form>
 			<div id="login-page" class="">
-				<label for="username">Username:</label>
+				<!--<label for="email">Email:</label>-->
+				<input id="email-input" type="email" placeholder="Email">
+
+				<!--<label for="username">Username:</label>-->
 				<input id="username-input" type="username" placeholder="Username">
 
-				<label for="password">Password:</label>
+				<!--<label for="password">Password:</label>-->
 				<input id="password-input" type="password" placeholder="Password">
-
-				<button id="login-button" type="button" onclick="button(1)">Log In</button>
-				<button id="register-button" type="button" onclick="button(2)">Register</button>
+				
+				<div id="button-box">
+					<button id="login-button" type="button" onclick="button(1)">Log In</button>
+					<button id="register-button" type="button" onclick="button(2)">Register</button>	
+				</div>
 			</div>
 
 			<div id="register-page" class="hide">
