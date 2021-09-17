@@ -70,7 +70,7 @@ io.on('connection', function(socket){
 	});
 
 	// NOTE: Account Register
-	socket.on("register", async (username, password) => {
+	socket.on("register", async (email, username, password) => {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
@@ -80,7 +80,7 @@ io.on('connection', function(socket){
 				try {
 					const data = JSON.parse(jsonString);
 					console.log(data);
-					data[username] = {username: username, password: hashedPassword};
+					data[username] = {email: email, username: username, password: hashedPassword};
 
 					fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
 						if (err) {

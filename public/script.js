@@ -64,25 +64,26 @@ function account(num) {
 	}
 }
 
-let username = document.getElementById("username-input");
 
 
 function xyz () {
+	let email         = document.getElementById("email-input");
+	let username      = document.getElementById("username-input");
 	let password      = document.getElementById("password-input");
+
 	let upperCase     = /[A-Z]/g;
 	let lowerCase     = /[a-z]/g;
 	let symbols       = /\W|_/g;
 	let numbers       = /[0-9]/g;
 	let passwordMatch = 0;
 
-	const securitySpan = document.getElementById("security-span");
-	const characterSpan = document.getElementById("character-span");
-	const uppercaseSpan = document.getElementById("uppercase-span");
-	const lowercaseSpan = document.getElementById("lowercase-span");
-	const symbolSpan = document.getElementById("symbol-span");
-	const numberSpan = document.getElementById("number-span");
-
-	console.log("onkeyup");
+	const registerButton = document.getElementById("account-register-button")
+	const securitySpan   = document.getElementById("security-span");
+	const characterSpan  = document.getElementById("character-span");
+	const uppercaseSpan  = document.getElementById("uppercase-span");
+	const lowercaseSpan  = document.getElementById("lowercase-span");
+	const symbolSpan     = document.getElementById("symbol-span");
+	const numberSpan     = document.getElementById("number-span");
 
 	// NOTE: Validates Character Count
 	if (password.value.length >= 8) {
@@ -149,20 +150,21 @@ function xyz () {
 		passwordMatch = passwordMatch - 1;
 	}
 
-	if (passwordMatch < 0) {
-		passwordMatch = 0;
-	}
-
+	// NOTE: Final Validation
 	if (passwordMatch == 5) {
-		//socket.emit("register", username, password);
 		securitySpan.classList.remove("red");
 		securitySpan.classList.add("green");
 
 		console.log("Password checks out!");
-		passwordMatch = 0;
 	} else {
 		securitySpan.classList.add("red");
 		securitySpan.classList.remove("green");
+	}
+
+	// NOTE: Register Button Clicked
+	if (passwordMatch == 5 && document.getElementById("account-register-button").click == true) {
+		// socket.emit("register", email.value, username.value, password.value);
+		console.log("You have registered your account.\n" + email.value + "\n" + username.value + "\n" + password.value)
 	}
 }
 
