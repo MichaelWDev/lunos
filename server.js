@@ -45,7 +45,9 @@ io.on('connection', function(socket){
 	});
 
 	// NOTE: Account Login
-	socket.on("login", function(username, password) {
+	socket.on("login", async (email, username, password) => {
+		const hashedPassword = await bcrypt.hash(password, 10);
+
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
 				console.log(err);
@@ -54,7 +56,7 @@ io.on('connection', function(socket){
 					const data = JSON.parse(jsonString);
 					console.log(data);
 
-					if (data[username] && data[username].password === password) {
+					if (data[username].email === email && data[username].password === hashedPassword) {
 						socket.broadcast.emit("login-successful");
 						console.log("login-successful");
 					} else {
@@ -63,7 +65,7 @@ io.on('connection', function(socket){
 					}
 
 				} catch (err) {
-					console.log("Error parsing JSON: ", err)
+					console.log("Error parsing JSON: ", err);
 				}
 			}
 		});

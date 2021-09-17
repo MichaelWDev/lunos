@@ -1,26 +1,32 @@
 //———————————————————————————————————————//
-// SECTION Variables                     //
+// SECTION Global Variables              //
 //———————————————————————————————————————//
 
-const socket = io();
-const entryPage = document.getElementById("entry-page");
-const chatApp = document.getElementById("chat-app");
+let emailInput    = document.getElementById("email-input");
+let usernameInput = document.getElementById("username-input");
+let passwordInput = document.getElementById("password-input");
+
+const entryPage    = document.getElementById("entry-page");
+const registerPage = document.getElementById("register-page");
+const chatApp      = document.getElementById("chat-app");
 // const messageContainer  = document.getElementById('chatted-words');
 // const messageInput      = document.getElementById('message-bar');
 // const usernameContainer = document.getElementById('usernames');
 // let username            = prompt('What is your name?');
 // const profile          = document.getElementById('myImg');
 
+const loginButton    = document.getElementById("login-button");
+const registerButton = document.getElementById("register-button");
+const accountRegisterButton = document.getElementById("account-register-button");
+
+// Keep this at the bottom apparently. It breaks the code.
+const socket = io();
+
 //———————————————————————————————————————//
 // SECTION Functions                     //
 //———————————————————————————————————————//
 
 function button(btn) {
-	const registerPage   = document.getElementById("register-page");
-	const loginButton    = document.getElementById("login-button");
-	const registerButton = document.getElementById("register-button");
-	const usernameInput  = document.getElementById("username-input");
-
 	switch(btn) {
 		case 1: // Login
 			account(1);
@@ -49,35 +55,26 @@ function button(btn) {
 }
 
 // Handles account login and registration.
-
 function account(num) {
 	switch(num) {
 		case 1: // Login
-			socket.emit("login", username.value, password.value);
+			socket.emit("login", usernameInput.value, passwordInput.value);
 		break
 
 		case 2: // Register
-
-
-
+			validatePassword("register-account");
 		break;
 	}
 }
 
-
-// TODO: Whenever you want to, switch this to a switch case instead of a bunch of if statements.
-function validatePassword () {
-	let email         = document.getElementById("email-input");
-	let username      = document.getElementById("username-input");
-	let password      = document.getElementById("password-input");
-
+// TODO: Whenever you want to, change this to switch cases.
+function validatePassword (registerAccount) {
 	let upperCase     = /[A-Z]/g;
 	let lowerCase     = /[a-z]/g;
 	let symbols       = /\W|_/g;
 	let numbers       = /[0-9]/g;
 	let passwordMatch = 0;
 
-	const registerButton = document.getElementById("account-register-button")
 	const securitySpan   = document.getElementById("security-span");
 	const characterSpan  = document.getElementById("character-span");
 	const uppercaseSpan  = document.getElementById("uppercase-span");
@@ -86,7 +83,7 @@ function validatePassword () {
 	const numberSpan     = document.getElementById("number-span");
 
 	// NOTE: Validates Character Count
-	if (password.value.length >= 8) {
+	if (passwordInput.value.length >= 8) {
 		characterSpan.classList.remove("red");
 		characterSpan.classList.add("green");
 		
@@ -99,7 +96,7 @@ function validatePassword () {
 	}
 
 	// NOTE: Validates Capital Letters
-	if (password.value.match(upperCase)) {
+	if (passwordInput.value.match(upperCase)) {
 		uppercaseSpan.classList.remove("red");
 		uppercaseSpan.classList.add("green");
 		
@@ -112,7 +109,7 @@ function validatePassword () {
 	}
 
 	// NOTE: Validates Lowercase Letters
-	if (password.value.match(lowerCase)) {
+	if (passwordInput.value.match(lowerCase)) {
 		lowercaseSpan.classList.remove("red");
 		lowercaseSpan.classList.add("green");
 		
@@ -125,7 +122,7 @@ function validatePassword () {
 	}
 
 	// NOTE: Validates Symbols
-	if (password.value.match(symbols)) {
+	if (passwordInput.value.match(symbols)) {
 		symbolSpan.classList.remove("red");
 		symbolSpan.classList.add("green");
 		
@@ -138,7 +135,7 @@ function validatePassword () {
 	}
 
 	// NOTE: Validates Numbers
-	if (password.value.match(numbers)) {
+	if (passwordInput.value.match(numbers)) {
 		numberSpan.classList.remove("red");
 		numberSpan.classList.add("green");
 		
@@ -162,15 +159,11 @@ function validatePassword () {
 	}
 
 	// NOTE: Register Button Clicked
-	if (passwordMatch == 5 && registerButton.clicked == true) {
-		// socket.emit("register", email.value, username.value, password.value);
-		console.log("You have registered your account.\n" + email.value + "\n" + username.value + "\n" + password.value)
+	if (passwordMatch == 5 && registerAccount) {
+		socket.emit("register", emailInput.value, usernameInput.value, passwordInput.value);
+		console.log("You have registered your account.\n" + emailInput.value + "\n" + usernameInput.value + "\n" + passwordInput.value)
 	}
 }
-
-
-
-
 
 // NOTE: Copied Code
 // TODO
