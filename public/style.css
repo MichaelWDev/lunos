@@ -151,6 +151,16 @@ html, body {
 	transform: translateX(-50%);
 }
 
+#toggle-password-button {
+	position: relative;
+	width: 1.5em;
+	height: 1.5em;
+	left: 3em;
+	top: 1em;
+	z-index: 1;
+	cursor: pointer;
+}
+
 #login-button, #register-button {
 	width: 6em;
 	height: 2.5em;

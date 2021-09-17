@@ -28,7 +28,8 @@
 
 				<!--<label for="password">Password:</label>-->
 				<input id="password-input" type="password" placeholder="Password" onkeyup="validatePassword()">
-				
+				<img id="toggle-password-button" title="Show Password" src="images/sight-disabled.png" onclick="showPassword()">
+
 				<div id="button-box">
 					<button id="login-button" type="button" onclick="button(1)">Log In</button>
 					<button id="register-button" type="button" onclick="button(2)">Register</button>	
@@ -36,7 +37,7 @@
 			</div>
 
 			<div id="register-page" class="hide">
-				<img src="images/swipe-left.png" onclick="button(4)">
+				<img src="images/swipe-left.png" title="Back" onclick="button(4)">
 		
 				<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
 

@@ -165,6 +165,16 @@ function validatePassword (registerAccount) {
 	}
 }
 
+// TODO: Show password function, try incorporating it into an already-made function.
+function myFunction() {
+	var x = document.getElementById("myInput");
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password";
+	}
+}
+
 // NOTE: Copied Code
 // TODO
 // Enters the message with enter key.
