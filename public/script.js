@@ -66,7 +66,7 @@ function account(num) {
 
 
 
-function xyz () {
+function validatePassword () {
 	let email         = document.getElementById("email-input");
 	let username      = document.getElementById("username-input");
 	let password      = document.getElementById("password-input");
