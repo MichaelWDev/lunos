@@ -17,14 +17,19 @@
 	--text-color-2: rgba(255, 255, 255, 0.5);
 	--text-color-3: rgb(0, 44, 82);
 
+	--text-span-color-1: rgb(0, 170, 0);
+	--text-span-color-2: rgb(170, 0, 0);
+
 	/* NOTE: Background Colors */
 	--background-color-1: rgb(0, 0, 0);
 	--background-color-2: rgba(0, 44, 82, 0.1);
+	--background-color-3: rgb(0, 44, 82);
 
 	/* NOTE: Borders */
 	--border-1: 0.25em solid rgb(0, 44, 82);
-	--border-2: 0.1em solid rgb(255, 255, 255);
-	--border-3: 0.1em solid rgb(0, 44, 82);
+	--border-2:  0.1em solid rgb(255, 255, 255);
+	--border-3:  0.1em solid rgb(0, 44, 82);
+	--border-4: 0.25em solid rgb(255, 255, 255);
 }
 
 /*———————————————————————————————————————*/
@@ -128,12 +133,15 @@ html, body {
 	width: 12em;
 	text-align: center;
 	padding: 0.5em;
-
 	position: relative;
-	display: block;
 	left: 50%;
 	transform: translateX(-50%);
+	transition: 0.25s;
+	z-index: 1;
+}
 
+#entry-page input:focus {
+	border-bottom: var(--border-3);
 }
 
 #button-box {
@@ -152,6 +160,7 @@ html, body {
 	border: var(--border-2);
 	transition: 0.25s;
 	margin: 1em;
+	transition: 0.25s;
 }
 
 #entry-page button:hover {
@@ -167,7 +176,7 @@ html, body {
 	width: 15em;
 	height: 2.5em;
 	position: absolute;
-	top: 7em;
+	top: 12em;
 	font-size: 1.5em;
 	background: none;
 	color: var(--text-color-1);
@@ -175,17 +184,22 @@ html, body {
 	transition: 0.25s;
 }
 
+#register-page {
+	z-index: -1;
+}
+
 #register-page h3 {
 	color: var(--text-color-2);
 	position: relative;
-	top: 5em;
-	width: 40em;
+	top: 8em;
+	width: 20em;
 	font-family: var(--font-family-1);
 	text-align: center;
 	left: 50%;
 	transform: translateX(-50%);
-	font-size: 1em;
+	font-size: 1.25em;
 	user-select: none;
+	line-height: 1.5em;
 }
 
 #register-page img {
@@ -194,7 +208,15 @@ html, body {
 	position: absolute;
 	cursor: pointer;
 	left: -12em;
-	top: -13em;
+	top: -10em;
+	padding: 0.5em;
+	border: var(--border-3);
+	transition: 0.25s;
+}
+
+#register-page img:hover {
+	background-color: var(--background-color-3);
+	border: var(--border-2);
 }
 
 /* SECTION: Chat Page */
@@ -301,6 +323,18 @@ html, body {
 
 .hide {
 	display: none;
+}
+
+.green {
+	color: var(--text-span-color-1);
+}
+
+.red {
+	color: var(--text-span-color-2);
+}
+
+.register-spans {
+	transition: 0.25s;
 }
 
 /*———————————————————————————————————————*/

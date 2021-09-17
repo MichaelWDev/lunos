@@ -16,10 +16,10 @@ const chatApp = document.getElementById("chat-app");
 //———————————————————————————————————————//
 
 function button(btn) {
-	let loginButton = document.getElementById("login-button");
-	let registerButton = document.getElementById("register-button");
-	let registerPage = document.getElementById("register-page");
-	let emailInput
+	const registerPage   = document.getElementById("register-page");
+	const loginButton    = document.getElementById("login-button");
+	const registerButton = document.getElementById("register-button");
+	const usernameInput  = document.getElementById("username-input");
 
 	switch(btn) {
 		case 1: // Login
@@ -30,6 +30,9 @@ function button(btn) {
 			loginButton.classList.add("hide");
 			registerButton.classList.add("hide");
 			registerPage.classList.remove("hide");
+			usernameInput.classList.remove("hide");
+
+			//registerPage.style = "top: 30em;"
 		break;
 
 		case 3: // Register Account
@@ -40,26 +43,128 @@ function button(btn) {
 			loginButton.classList.remove("hide");
 			registerButton.classList.remove("hide");
 			registerPage.classList.add("hide");
+			usernameInput.classList.add("hide");
 		break;
 	}
 }
 
 // Handles account login and registration.
-function account(num) {
-	let username = document.getElementById("username-input").value;
-	let password = document.getElementById("password-input").value;
 
+function account(num) {
 	switch(num) {
 		case 1: // Login
-			socket.emit("login", username, password);
+			socket.emit("login", username.value, password.value);
 		break
 
 		case 2: // Register
-			socket.emit("register", username, password);
+
+
+
 		break;
 	}
 }
 
+let username = document.getElementById("username-input");
+
+
+function xyz () {
+	let password      = document.getElementById("password-input");
+	let upperCase     = /[A-Z]/g;
+	let lowerCase     = /[a-z]/g;
+	let symbols       = /\W|_/g;
+	let numbers       = /[0-9]/g;
+	let passwordMatch = 0;
+
+	const securitySpan = document.getElementById("security-span");
+	const characterSpan = document.getElementById("character-span");
+	const uppercaseSpan = document.getElementById("uppercase-span");
+	const lowercaseSpan = document.getElementById("lowercase-span");
+	const symbolSpan = document.getElementById("symbol-span");
+	const numberSpan = document.getElementById("number-span");
+
+	console.log("onkeyup");
+
+	// NOTE: Validates Character Count
+	if (password.value.length >= 8) {
+		characterSpan.classList.remove("red");
+		characterSpan.classList.add("green");
+		
+		passwordMatch = passwordMatch + 1;
+	} else {
+		characterSpan.classList.add("red");
+		characterSpan.classList.remove("green");
+
+		passwordMatch = passwordMatch - 1;
+	}
+
+	// NOTE: Validates Capital Letters
+	if (password.value.match(upperCase)) {
+		uppercaseSpan.classList.remove("red");
+		uppercaseSpan.classList.add("green");
+		
+		passwordMatch = passwordMatch + 1;
+	} else {
+		uppercaseSpan.classList.add("red");
+		uppercaseSpan.classList.remove("green");
+
+		passwordMatch = passwordMatch - 1;
+	}
+
+	// NOTE: Validates Lowercase Letters
+	if (password.value.match(lowerCase)) {
+		lowercaseSpan.classList.remove("red");
+		lowercaseSpan.classList.add("green");
+		
+		passwordMatch = passwordMatch + 1;
+	} else {
+		lowercaseSpan.classList.add("red");
+		lowercaseSpan.classList.remove("green");
+
+		passwordMatch = passwordMatch - 1;
+	}
+
+	// NOTE: Validates Symbols
+	if (password.value.match(symbols)) {
+		symbolSpan.classList.remove("red");
+		symbolSpan.classList.add("green");
+		
+		passwordMatch = passwordMatch + 1;
+	} else {
+		symbolSpan.classList.add("red");
+		symbolSpan.classList.remove("green");
+
+		passwordMatch = passwordMatch - 1;
+	}
+
+	// NOTE: Validates Numbers
+	if (password.value.match(numbers)) {
+		numberSpan.classList.remove("red");
+		numberSpan.classList.add("green");
+		
+		passwordMatch = passwordMatch + 1;
+	} else {
+		numberSpan.classList.add("red");
+		numberSpan.classList.remove("green");
+
+		passwordMatch = passwordMatch - 1;
+	}
+
+	if (passwordMatch < 0) {
+		passwordMatch = 0;
+	}
+
+	if (passwordMatch == 5) {
+		//socket.emit("register", username, password);
+		securitySpan.classList.remove("red");
+		securitySpan.classList.add("green");
+
+		console.log("Password checks out!");
+		passwordMatch = 0;
+	} else {
+		securitySpan.classList.add("red");
+		securitySpan.classList.remove("green");
+	}
+}
 
 
 // NOTE: Copied Code

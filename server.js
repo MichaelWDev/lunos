@@ -46,17 +46,6 @@ io.on('connection', function(socket){
 
 	// NOTE: Account Login
 	socket.on("login", function(username, password) {
-		/*
-		TODO: Go through every account.
-
-		TODO: Verify that entered account matches a saved username.
-
-		TODO: Verify the entered password matches the saved password.
-
-		TODO: If name does not exist, display: "Username or password is incorrect."
-		
-		TODO: If password is entered incorrectly, display: "Username or password is incorrect."
-		*/
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
 				console.log(err);
@@ -106,7 +95,5 @@ io.on('connection', function(socket){
 				}
 			}
 		});
-
-
 	});
 });
