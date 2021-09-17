@@ -58,7 +58,7 @@ function button(btn) {
 function account(num) {
 	switch(num) {
 		case 1: // Login
-			socket.emit("login", usernameInput.value, passwordInput.value);
+			socket.emit("login", emailInput.value, passwordInput.value);
 		break
 
 		case 2: // Register
