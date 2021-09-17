@@ -65,7 +65,7 @@ function account(num) {
 }
 
 
-
+// TODO: Whenever you want to, switch this to a switch case instead of a bunch of if statements.
 function validatePassword () {
 	let email         = document.getElementById("email-input");
 	let username      = document.getElementById("username-input");
@@ -162,15 +162,17 @@ function validatePassword () {
 	}
 
 	// NOTE: Register Button Clicked
-	if (passwordMatch == 5 && document.getElementById("account-register-button").click == true) {
+	if (passwordMatch == 5 && registerButton.clicked == true) {
 		// socket.emit("register", email.value, username.value, password.value);
 		console.log("You have registered your account.\n" + email.value + "\n" + username.value + "\n" + password.value)
 	}
 }
 
 
-// NOTE: Copied Code
 
+
+
+// NOTE: Copied Code
 // TODO
 // Enters the message with enter key.
 function enterKey(e) {
@@ -182,7 +184,6 @@ function enterKey(e) {
 	}
 }
 
-
 // TODO
 // Chat
 function appendMessage(message) {
@@ -192,7 +193,6 @@ function appendMessage(message) {
 
 	messageContainer.insertBefore(messageElement, messageContainer.firstChild);
 }
-
 
 // TODO
 // Assigns all usernames to the right.
