@@ -55,7 +55,18 @@ io.on('connection', function(socket){
 				try {
 					const data = JSON.parse(jsonString);
 					console.log(data);
+					
+					bcrypt.compare(password, hashedPassword, function(err, result) {
+						if (result) {
+							socket.broadcast.emit("login-successful");
+							console.log("login-successful");
+						} else {
+							socket.broadcast.emit("login-unsuccessful");
+							console.log("login-unsuccessful");
+						}
+					});
 
+					/*
 					if (data[email] === email && data[email].password === hashedPassword) {
 						socket.broadcast.emit("login-successful");
 						console.log("login-successful");
@@ -63,6 +74,7 @@ io.on('connection', function(socket){
 						socket.broadcast.emit("login-unsuccessful");
 						console.log("login-unsuccessful");
 					}
+					*/
 
 				} catch (err) {
 					console.log("Error parsing JSON: ", err);
