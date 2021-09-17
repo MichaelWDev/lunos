@@ -51,6 +51,14 @@ function button(btn) {
 			registerPage.classList.add("hide");
 			usernameInput.classList.add("hide");
 		break;
+
+		case 5: // Show Password
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+			} else {
+				passwordInput.type = "password";
+			}
+		break;
 	}
 }
 
@@ -167,12 +175,7 @@ function validatePassword (registerAccount) {
 
 // TODO: Show password function, try incorporating it into an already-made function.
 function myFunction() {
-	var x = document.getElementById("myInput");
-	if (x.type === "password") {
-		x.type = "text";
-	} else {
-		x.type = "password";
-	}
+
 }
 
 // NOTE: Copied Code

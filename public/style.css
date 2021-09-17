@@ -159,6 +159,14 @@ html, body {
 	top: 1em;
 	z-index: 1;
 	cursor: pointer;
+	padding: 0.5em;
+	transition: 0.5s;
+	border: var(--border-3);
+}
+
+#toggle-password-button:hover {
+	border: var(--border-2);
+	background-color: var(--background-color-3);
 }
 
 #login-button, #register-button {
