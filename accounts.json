@@ -3,5 +3,10 @@
     "email": "mbwoodyard@hotmail.com",
     "username": "MichaelW108",
     "password": "$2b$10$pNvtTBFb005yyq.Yz6y0GemWyok26kvXzfXvC02jhID2puKZdJxYq"
+  },
+  "admin": {
+    "email": "admin@admin",
+    "username": "admin",
+    "password": "$2b$10$EKQW4px3kPeVUJsUNzzcVOnwCNPW7zrKo8P4Cpj8T.hdg.KxQ3s/C"
   }
 }
