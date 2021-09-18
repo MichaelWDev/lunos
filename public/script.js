@@ -37,8 +37,6 @@ function button(btn) {
 			registerButton.classList.add('hide');
 			registerPage.classList.remove('hide');
 			usernameInput.classList.remove('hide');
-
-			//registerPage.style = 'top: 30em;'
 		break;
 
 		case 3: // Register Account
@@ -170,15 +168,11 @@ function validatePassword (registerAccount) {
 	if (passwordMatch == 5 && registerAccount) {
 		registerPage.classList.add('hide');
 		loginButton.classList.remove('hide');
-		registerButton.classList.remove('hide')
-		
+		registerButton.classList.remove('hide');
+		usernameInput.classList.add('hide');
+
 		socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value);
 	}
-}
-
-// TODO: Show password function, try incorporating it into an already-made function.
-function myFunction() {
-
 }
 
 // NOTE: Copied Code

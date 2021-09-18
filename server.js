@@ -54,10 +54,9 @@ io.on('connection', function(socket){
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
-					console.log(data[username].email);
-					// (Admin1)
+
 					bcrypt.compare(password, hashedPassword, function(err, result) {
-						if (result && data.email === email) {
+						if (result && data[email].email === email) {
 							socket.broadcast.emit("login-successful");
 							console.log("login-successful");
 						} else {
@@ -82,7 +81,7 @@ io.on('connection', function(socket){
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
-					data[username] = {email: email, username: username, password: hashedPassword};
+					data[email] = {email: email, username: username, password: hashedPassword};
 
 					fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
 						if (err) {
