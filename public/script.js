@@ -157,8 +157,6 @@ function validatePassword (registerAccount) {
 	if (passwordMatch == 5) {
 		securitySpan.classList.remove('red');
 		securitySpan.classList.add('green');
-
-		console.log('Password checks out!');
 	} else {
 		securitySpan.classList.add('red');
 		securitySpan.classList.remove('green');
@@ -170,6 +168,7 @@ function validatePassword (registerAccount) {
 		loginButton.classList.remove('hide');
 		registerButton.classList.remove('hide');
 		usernameInput.classList.add('hide');
+		chatApp.classList.remove('hide');
 
 		socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value);
 	}
@@ -212,18 +211,22 @@ function appendUsername(username) {
 // SECTION Sockets                       //
 //———————————————————————————————————————//
 
-socket.on('login-sucessful', () => {
+socket.on("connect_error", (err) => {
+	console.log(`connect_error due to ${err.message}`);
+});
+
+socket.on('login-successful', () => {
 	console.log('front-end login successful');
 	
 	entryPage.classList.add('hide');
 	chatApp.classList.remove('hide');
 });
 
-socket.on('login-unsucessful', () => {
+socket.on('login-unsuccessful', () => {
 	console.log('front-end login unsuccessful');
-	
-
 });
+
+
 
 /*
 // TODO
