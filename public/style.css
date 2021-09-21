@@ -16,6 +16,7 @@
 	--text-color-1: rgb(255, 255, 255);
 	--text-color-2: rgba(255, 255, 255, 0.5);
 	--text-color-3: rgb(0, 44, 82);
+	--text-color-4: rgb(0, 0, 0);
 
 	--text-span-color-1: rgb(0, 170, 0);
 	--text-span-color-2: rgb(170, 0, 0);
@@ -250,7 +251,6 @@ html, body {
 	position: absolute;
 	left: 4em;
 	top: 6em;
-	background-color: var(--background-color-2);
 }
 
 #channel-container h1 {
@@ -272,6 +272,62 @@ html, body {
 	cursor: pointer;
 }
 
+/* NOTE: Profile */
+#profile-container {
+	position: absolute;
+	top: 51em;
+	left: 4em;
+	width: 17em;
+	height: 5em;
+	background-color: var(--background-color-3);
+}
+
+#profile {
+	position: absolute;
+	height: 5em;
+	width: 17em;
+}
+
+#profile-image {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 1em;
+	width: 2.5em;
+	height: 2.5em;
+	border-radius: 50%;
+	border: var(--border-2);
+	padding: 0.25em;
+	cursor: pointer;
+	transition: 0.25s;
+}
+
+#profile-image:hover {
+	background-color: var(--background-color-1);
+}
+
+#profile-username {
+	position: relative;
+	top: 0.5em;
+	left: 3.5em;
+	width: 6em;
+	max-height: 1em;
+	color: var(--text-color-1);
+	text-align: left;
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	font-size: 1.5em;
+	overflow-y: hidden;
+	overflow: hidden;
+	cursor: pointer;
+	transition: 0.25s;
+}
+
+#profile-username:hover {
+	color: var(--text-color-4);
+}
+
+
 /* NOTE: Members */
 #member-container {
 	width: 17em;
@@ -279,7 +335,6 @@ html, body {
 	position: absolute;
 	right: 4em;
 	top: 6em;
-	background-color: var(--background-color-2);
 }
 
 #member-container h1 {
@@ -303,12 +358,12 @@ html, body {
 
 /* NOTE: Chat Bar */
 #chat-bar {
-	width: 50em;
+	max-width: 50em;
 	height: 3em;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
-	top: 52em;
+	top: 55em;
 	border-bottom: var(--border-1);
 	border-left: var(--border-1);
 }
@@ -361,4 +416,11 @@ html, body {
 
 /*———————————————————————————————————————*/
 /* SECTION Keyframes                     */
+/*———————————————————————————————————————*/
+
+
+
+
+/*———————————————————————————————————————*/
+/* SECTION Media Queries                 */
 /*———————————————————————————————————————*/

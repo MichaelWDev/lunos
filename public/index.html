@@ -14,10 +14,10 @@
 
 	<div id="title">
 		<h1>Lunos</h1>
-		<h3>This is a WIP and constantly being updated.</h3>
+		<h3 id="WIP">This is a WIP and constantly being updated.</h3>
 	</div>
 
-	<div id="entry-page">
+	<div id="entry-page" class="hide">
 		<form>
 			<div id="login-page">
 				<!--<label for="email">Email:</label>-->
@@ -48,21 +48,29 @@
 		</form>
 	</div>
 
-	<div id="chat-app" class="hide">
+	<div id="chat-app" class="">
 		<div id="channel-container">
 			<h1>Channels</h1>
 
-			<img src="images/swipe-left.png" onclick="">
+			<img src="images/swipe-left.png" onclick="button(6)">
 
 			<div id="channel-list">
 				
 			</div>
 		</div>
 
+		<div id="profile-container">
+			<div id="profile">
+				<img id="profile-image" src="images/open-folder.png" onclick="9">
+				<h1 id="profile-username" onclick="button(8)">Username Here</h1>
+				<img id="profile-settings" src="" onclick="button(10)">
+			</div>
+		</div>
+
 		<div id="member-container">
 			<h1>Users</h1>
 
-			<img src="images/swipe-right.png" onclick="">
+			<img src="images/swipe-right.png" onclick="button(7)">
 
 			<div id="user-list">
 

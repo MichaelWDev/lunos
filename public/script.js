@@ -7,25 +7,28 @@ let usernameInput = document.getElementById('username-input');
 let passwordInput = document.getElementById('password-input');
 
 const entryPage    = document.getElementById('entry-page');
-const registerPage = document.getElementById('register-page');
 const chatApp      = document.getElementById('chat-app');
-// const messageContainer  = document.getElementById('chatted-words');
-// const messageInput      = document.getElementById('message-bar');
-// const usernameContainer = document.getElementById('usernames');
-// let username            = prompt('What is your name?');
-// const profile          = document.getElementById('myImg');
+// const channelsContainer = document.getElementById('channels-container');
+// const memberContainer = document.getElementById('members-container');
+
+const messageContainer  = document.getElementById('chatted-words');
+const messageInput      = document.getElementById('message-bar');
+const usernameContainer = document.getElementById('usernames');
+
+let profileImage = document.getElementById('profile-image');
+let profileUsername = document.getElementById('profile-username');
 
 const loginButton    = document.getElementById('login-button');
 const registerButton = document.getElementById('register-button');
 const accountRegisterButton = document.getElementById('account-register-button');
 
-// Keep this at the bottom apparently. It breaks the code.
 const socket = io();
 
 //———————————————————————————————————————//
 // SECTION Functions                     //
 //———————————————————————————————————————//
 
+// Handles every button.
 function button(btn) {
 	switch(btn) {
 		case 1: // Login
@@ -57,6 +60,26 @@ function button(btn) {
 				passwordInput.type = 'password';
 			}
 		break;
+
+		case 6: // TODO: Hide Channels
+			channelsContainer.classList.add('idk');
+		break;
+
+		case 7: // TODO: Hide Users
+
+		break;
+
+		case 8: // TODO: Copy Username
+
+		break;
+
+		case 9: // TODO: Change Profile Image
+
+		break;
+
+		case 10: // TODO: Profile Settings
+
+		break;
 	}
 }
 
@@ -81,12 +104,12 @@ function validatePassword (registerAccount) {
 	let numbers       = /[0-9]/g;
 	let passwordMatch = 0;
 
-	const securitySpan   = document.getElementById('security-span');
-	const characterSpan  = document.getElementById('character-span');
-	const uppercaseSpan  = document.getElementById('uppercase-span');
-	const lowercaseSpan  = document.getElementById('lowercase-span');
-	const symbolSpan     = document.getElementById('symbol-span');
-	const numberSpan     = document.getElementById('number-span');
+	const securitySpan  = document.getElementById('security-span');
+	const characterSpan = document.getElementById('character-span');
+	const uppercaseSpan = document.getElementById('uppercase-span');
+	const lowercaseSpan = document.getElementById('lowercase-span');
+	const symbolSpan    = document.getElementById('symbol-span');
+	const numberSpan    = document.getElementById('number-span');
 
 	// NOTE: Validates Character Count
 	if (passwordInput.value.length >= 8) {
@@ -215,20 +238,20 @@ socket.on("connect_error", (err) => {
 	console.log(`connect_error due to ${err.message}`);
 });
 
-socket.on('login-successful', () => {
-	console.log('front-end login successful');
-	
+socket.on('login-successful', (username) => {
 	entryPage.classList.add('hide');
 	chatApp.classList.remove('hide');
+	console.log("test")
+	profileUsername.innerText = username;
 });
 
 socket.on('login-unsuccessful', () => {
-	console.log('front-end login unsuccessful');
+
 });
 
 
 
-/*
+
 // TODO
 socket.on('chat-message', data => {
 	appendMessage(`${data.name}: ${data.message}`);
@@ -249,8 +272,5 @@ socket.on('user-disconnected', username => {
 
 // TODO
 socket.on('user-list', users => {
-	for (socketId in users) {
-		appendUsername(users[socketId]);
-	}
+	// appendUsername(users[socketId]);
 });
-*/

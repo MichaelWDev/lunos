@@ -54,10 +54,11 @@ io.on('connection', function(socket) {
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
+					let username = data[email].username;
 
 					bcrypt.compare(password, hashedPassword, function(err, result) {
 						if (result && data[email].email === email) {
-							socket.emit('login-successful');
+							socket.emit('login-successful', username);
 							console.log('success');
 						} else {
 							socket.emit('login-unsuccessful');
