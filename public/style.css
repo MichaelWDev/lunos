@@ -424,3 +424,138 @@ html, body {
 /*———————————————————————————————————————*/
 /* SECTION Media Queries                 */
 /*———————————————————————————————————————*/
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	#title {
+		width: 100%;
+		height: 6em;
+		border-left: none;
+		border-right: none;
+		border-bottom: var(--border-1);
+	}
+	
+	#title h1 {
+		top: 0.5em;
+		font-size: 3em;
+		font-size: 2em;
+	}
+	
+	#title h3 {
+		top: 1em;
+		padding: 0.5em;
+		width: 20em;
+		font-size: 1em;
+	}
+
+	#entry-page {
+
+	}
+
+	/* SECTION: Chat Page */
+
+	/* NOTE: Channels */
+	#channel-container {
+		width: 8em;
+		height: 30em;
+		left: 1em;
+		top: 8em;
+	}
+
+	#channel-container h1 {
+		padding-bottom: 0.5em;
+		font-size: 1.5em;
+	}
+
+	#channel-container img {
+		display: none;
+	}
+		
+	/* NOTE: Profile */
+	#profile-container {
+		top: 51em;
+		left: 4em;
+		width: 17em;
+		height: 5em;
+	}
+
+	#profile {
+		height: 5em;
+		width: 17em;
+	}
+
+	#profile-image {
+		left: 1em;
+		width: 2.5em;
+		height: 2.5em;
+		padding: 0.25em;
+	}
+
+	#profile-username {
+		top: 0.5em;
+		left: 3.5em;
+		width: 6em;
+		max-height: 1em;
+		font-size: 1.5em;
+	}
+
+	/* NOTE: Members */
+	#member-container {
+		width: 8em;
+		height: 30em;
+		right: 1em;
+		top: 8em;
+	}
+
+	#member-container h1 {
+		padding-bottom: 0.5em;
+		font-size: 1.5em;
+	}
+
+	#member-container img {
+		display: none;
+	}
+
+	/* NOTE: Chat Bar */
+	#chat-bar {
+		max-width: 50em;
+		height: 3em;
+		top: 55em;
+		border-bottom: var(--border-1);
+		border-left: var(--border-1);
+	}
+
+	#chat-bar input {
+		width: 34em;
+		height: 2em;
+		left: 3em;
+		font-size: 1.25em;
+	}
+
+	#chat-bar img {
+		width: 2em;
+		height: 2em;
+		left: 1em;
+		top: 0.5em;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
