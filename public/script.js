@@ -2,23 +2,21 @@
 // SECTION Global Variables              //
 //———————————————————————————————————————//
 
-let emailInput    = document.getElementById('email-input');
+let emailInput = document.getElementById('email-input');
 let usernameInput = document.getElementById('username-input');
 let passwordInput = document.getElementById('password-input');
 
-const entryPage    = document.getElementById('entry-page');
-const chatApp      = document.getElementById('chat-app');
-// const channelsContainer = document.getElementById('channels-container');
-// const memberContainer = document.getElementById('members-container');
+const entryPage = document.getElementById('entry-page');
+const chatApp = document.getElementById('chat-app');
 
-const messageContainer  = document.getElementById('chatted-words');
-const messageInput      = document.getElementById('message-bar');
-const usernameContainer = document.getElementById('usernames');
+const chatContainer = document.getElementById('chat-container');
+const chatBar = document.getElementById('chat-bar-input');
+const userList = document.getElementById('user-list');
 
 let profileImage = document.getElementById('profile-image');
 let profileUsername = document.getElementById('profile-username');
 
-const loginButton    = document.getElementById('login-button');
+const loginButton = document.getElementById('login-button');
 const registerButton = document.getElementById('register-button');
 const accountRegisterButton = document.getElementById('account-register-button');
 
@@ -197,12 +195,11 @@ function validatePassword (registerAccount) {
 	}
 }
 
-// NOTE: Copied Code
 // TODO
 // Enters the message with enter key.
 function enterKey(e) {
 	if (e.keyCode === 13) {
-		const message = messageInput.value;
+		const message = chatBar.value;
 		appendMessage(`You: ${message}`);
 		socket.emit('send-chat-message', message);
 		messageInput.value = '';
@@ -212,11 +209,11 @@ function enterKey(e) {
 // TODO
 // Chat
 function appendMessage(message) {
-	const messageElement         = document.createElement('p');
+	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
-	messageElement.innerText     = message;
+	messageElement.innerText = message;
 
-	messageContainer.insertBefore(messageElement, messageContainer.firstChild);
+	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 }
 
 // TODO
@@ -227,7 +224,7 @@ function appendUsername(username) {
 	userElement.classList.add('user-list');
 	userElement.innerText     = username;
 
-	usernameContainer.insertBefore(userElement, usernameContainer.firstChild);
+	userList.insertBefore(userElement, usernameContainer.firstChild);
 }
 
 //———————————————————————————————————————//
@@ -241,7 +238,6 @@ socket.on("connect_error", (err) => {
 socket.on('login-successful', (username) => {
 	entryPage.classList.add('hide');
 	chatApp.classList.remove('hide');
-	console.log("test")
 	profileUsername.innerText = username;
 });
 
