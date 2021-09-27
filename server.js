@@ -102,4 +102,13 @@ io.on('connection', function(socket) {
 			}
 		});
 	});
+
+	socket.on('send-chat-message', message => {
+		socket.broadcast.emit('chat-message', {message: message, name: users[socket.id]});
+
+		fs.appendFile('message.txt', users[socket.id] + ": "+ message + "\n", function (err) {
+			if (err) throw err;
+			console.log('Saved!');
+		});
+	});
 });

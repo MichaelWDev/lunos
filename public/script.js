@@ -230,7 +230,7 @@ function appendMessage(message) {
 	messageElement.classList.add('text');
 	messageElement.innerText = message;
 
-	messageContainer.insertBefore(messageElement, messageContainer.firstChild);
+	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 }
 
 // TODO
