@@ -3,5 +3,10 @@
     "email": "admin@admin",
     "username": "admin",
     "password": "$2b$10$ZCVu736sgiVv39Tc3XAojuVXkMrtklJGbQOorMd/9K3NZbkwek9v6"
+  },
+  "admin@admin.com": {
+    "email": "admin@admin.com",
+    "username": "admin",
+    "password": "$2b$10$JRH/mo0WmDEQgH./LSoC5OdD.33wuEZ.uedlAGC8/OB1eOO3bvS.q"
   }
 }

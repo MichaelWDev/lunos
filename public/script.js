@@ -2,25 +2,25 @@
 // SECTION Global Variables              //
 //———————————————————————————————————————//
 
-let emailInput    = document.getElementById('email-input');
-let usernameInput = document.getElementById('username-input');
-let passwordInput = document.getElementById('password-input');
+let emailInput              = document.getElementById('email-input');
+let usernameInput           = document.getElementById('username-input');
+let passwordInput           = document.getElementById('password-input');
+let profileImage            = document.getElementById('profile-image');
+let profileUsername         = document.getElementById('profile-username');
 
-const entryPage    = document.getElementById('entry-page');
-const chatApp      = document.getElementById('chat-app');
-// const channelsContainer = document.getElementById('channels-container');
-// const memberContainer = document.getElementById('members-container');
-
-const messageContainer  = document.getElementById('chatted-words');
-const messageInput      = document.getElementById('message-bar');
-const usernameContainer = document.getElementById('usernames');
-
-let profileImage = document.getElementById('profile-image');
-let profileUsername = document.getElementById('profile-username');
-
-const loginButton    = document.getElementById('login-button');
-const registerButton = document.getElementById('register-button');
+const titleContainer        = document.getElementById('title');
+const entryPage             = document.getElementById('entry-page');
+const registerPage          = document.getElementById('register-page');
+const chatApp               = document.getElementById('chat-app');
+const chatContainer         = document.getElementById('chat-container');
+const chatBarInput          = document.getElementById('chat-bar-input');
+const channelList           = document.getElementById('channel-list');
+const userList              = document.getElementById('user-list');
+const loginButton           = document.getElementById('login-button');
+const registerButton        = document.getElementById('register-button');
 const accountRegisterButton = document.getElementById('account-register-button');
+const incorrectText         = document.getElementById('incorrect-text');
+const emailRegex 			= /^\S+@\S+\.\S+$/;
 
 const socket = io();
 
@@ -87,7 +87,12 @@ function button(btn) {
 function account(num) {
 	switch(num) {
 		case 1: // Login
-			socket.emit('login', emailInput.value, passwordInput.value);
+			if (emailInput.value.match(emailRegex)) {
+				incorrectText.classList.add('hide');
+				socket.emit('login', emailInput.value, passwordInput.value);
+			} else {
+				incorrectText.classList.remove('hide');
+			}
 		break
 
 		case 2: // Register
@@ -96,12 +101,13 @@ function account(num) {
 	}
 }
 
-// TODO: Whenever you want to, change this to switch cases.
+// Password Validation
 function validatePassword (registerAccount) {
 	let upperCase     = /[A-Z]/g;
 	let lowerCase     = /[a-z]/g;
 	let symbols       = /\W|_/g;
 	let numbers       = /[0-9]/g;
+	let emailMatch    = 0
 	let passwordMatch = 0;
 
 	const securitySpan  = document.getElementById('security-span');
@@ -176,7 +182,16 @@ function validatePassword (registerAccount) {
 		passwordMatch = passwordMatch - 1;
 	}
 
-	// NOTE: Final Validation
+	// NOTE: Validates Email
+	if (emailInput.value.match(emailRegex)) {
+		emailMatch = emailMatch + 1;
+	} else {
+		emailMatch = emailMatch - 1;
+	}
+
+	// TODO: Username validation: Make sure accounts don't have the same username.
+
+	// NOTE: Validation Confirmation
 	if (passwordMatch == 5) {
 		securitySpan.classList.remove('red');
 		securitySpan.classList.add('green');
@@ -185,8 +200,8 @@ function validatePassword (registerAccount) {
 		securitySpan.classList.remove('green');
 	}
 
-	// NOTE: Register Button Clicked
-	if (passwordMatch == 5 && registerAccount) {
+	// NOTE: Create Account!
+	if (passwordMatch == 5 && emailMatch == 1 && registerAccount) {
 		registerPage.classList.add('hide');
 		loginButton.classList.remove('hide');
 		registerButton.classList.remove('hide');
@@ -197,38 +212,30 @@ function validatePassword (registerAccount) {
 	}
 }
 
-// NOTE: Copied Code
 // TODO
 // Enters the message with enter key.
 function enterKey(e) {
 	if (e.keyCode === 13) {
 		const message = messageInput.value;
-		appendMessage(`You: ${message}`);
+		appendMessage(message);
 		socket.emit('send-chat-message', message);
 		messageInput.value = '';
 	}
 }
 
 // TODO
-// Chat
+// Appends the entered message to the chat.
 function appendMessage(message) {
-	const messageElement         = document.createElement('p');
+	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
-	messageElement.innerText     = message;
+	messageElement.innerText = message;
 
 	messageContainer.insertBefore(messageElement, messageContainer.firstChild);
 }
 
 // TODO
 // Assigns all usernames to the right.
-function appendUsername(username) {
-	const userElement         = document.createElement('p');
-	userElement.id            = 'userlist-' + username;
-	userElement.classList.add('user-list');
-	userElement.innerText     = username;
-
-	usernameContainer.insertBefore(userElement, usernameContainer.firstChild);
-}
+function appendUsername(username) {}
 
 //———————————————————————————————————————//
 // SECTION Sockets                       //
@@ -241,27 +248,27 @@ socket.on("connect_error", (err) => {
 socket.on('login-successful', (username) => {
 	entryPage.classList.add('hide');
 	chatApp.classList.remove('hide');
-	console.log("test")
+	incorrectText.classList.add('hide');
+
+	// Adds the user to the userlist.
+	const userElement         = document.createElement('p');
+	userElement.id            = 'userlist-' + username;
+	userElement.classList.add('user-list');
+	userElement.innerText     = username;
+
+	usernameContainer.insertBefore(userElement, usernameContainer.firstChild);
+
 	profileUsername.innerText = username;
+	appendMessage(username + ' has connected connected.');
 });
 
 socket.on('login-unsuccessful', () => {
-
-});
-
-
-
-
-// TODO
-socket.on('chat-message', data => {
-	appendMessage(`${data.name}: ${data.message}`);
+	incorrectText.classList.remove('hide');
 });
 
 // TODO
-socket.on('user-connected', username => {
-	appendMessage(`${username} connected.`);
-	console.log(username);
-	appendUsername(`${username}`);
+socket.on('chat-message', text => {
+	appendMessage(text);
 });
 
 // TODO

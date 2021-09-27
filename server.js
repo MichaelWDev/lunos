@@ -35,10 +35,10 @@ io.on('connection', function(socket) {
 		console.log(username);
 	});
 
-	socket.on('send-chat-message', message => {
+	socket.on('send-chat-message', (username, message) => {
 		socket.broadcast.emit('chat-message', {message: message, name: users[socket.id]});
 
-		fs.appendFile('message.txt', users[socket.id] + ': '+ message + '\n', function (err) {
+		fs.appendFile('message.txt', username + ': '+ message + '\n', function (err) {
 			if (err) throw err;
 			console.log('Saved!');
 		});
@@ -55,14 +55,18 @@ io.on('connection', function(socket) {
 				try {
 					const data = JSON.parse(jsonString);
 					let username = data[email].username;
+					let accountPassword = data[email].password;
 
-					bcrypt.compare(password, hashedPassword, function(err, result) {
-						if (result && data[email].email === email) {
+					bcrypt.compare(accountPassword, hashedPassword, function(err, result) {
+						if (err) {
+							console.log("Error: " + error);
+						}
+
+						if (result == true && data[email].email == email) {
 							socket.emit('login-successful', username);
-							console.log('success');
+							console.log(result);
 						} else {
 							socket.emit('login-unsuccessful');
-							console.log('unsuccessful');
 						}
 					});
 				} catch (err) {

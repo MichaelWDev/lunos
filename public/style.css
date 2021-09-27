@@ -57,7 +57,7 @@ html, body {
 }
 
 #title {
-	width: 100%;
+	width: 25em;
 	height: 8em;
 	position: absolute;
 	left: 50%;
@@ -83,6 +83,7 @@ html, body {
 	left: 50%;
 	transform: translateX(-50%);
 	width: 20em;
+	bottom: 1em;
 }
 
 /* SECTION: Entry Page */
@@ -165,6 +166,14 @@ html, body {
 	background-color: var(--background-color-3);
 }
 
+#incorrect-text {
+	position: absolute;
+	top: 8em;
+	font-size: 1.25em;
+	width: 100%;
+	text-align: center;
+}
+
 #login-button, #register-button {
 	width: 6em;
 	height: 2.5em;
@@ -243,8 +252,6 @@ html, body {
 	height: 48.5em;
 	position: absolute;
 	top: 6em;
-	border-top: var(--border-1);
-	border-right: var(--border-1);
 }
 
 #channel-container h1 {
@@ -252,17 +259,13 @@ html, body {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 600;
-	padding-bottom: 0.5em;
-	border-bottom: var(--border-3);
 	user-select: none;
+	font-size: 1.5em;
+	transition: 0.25s;
 }
 
-#channel-container img {
-	width: 2em;
-	height: 2em;
-	position: absolute;
-	top: 1.5em;
-	left: 1em;
+#channel-container h1:hover {
+	color: var(--text-color-3);
 	cursor: pointer;
 }
 
@@ -272,7 +275,6 @@ html, body {
 	bottom: 0;
 	width: 17em;
 	height: 5em;
-	border-right: var(--border-1);
 }
 
 #profile {
@@ -320,7 +322,6 @@ html, body {
 	color: var(--text-color-3);
 }
 
-
 /* NOTE: Members */
 #member-container {
 	width: 17em;
@@ -328,8 +329,6 @@ html, body {
 	position: absolute;
 	top: 6em;
 	right: 0;
-	border-top: var(--border-1);
-	border-left: var(--border-1);
 }
 
 #member-container h1 {
@@ -337,33 +336,37 @@ html, body {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 600;
-	padding-bottom: 0.5em;
-	border-bottom: var(--border-3);
 	user-select: none;
+	font-size: 1.5em;
+	transition: 0.25s;
 }
 
-#member-container img {
-	width: 2em;
-	height: 2em;
-	position: absolute;
-	top: 1.5em;
-	right: 1em;
+#member-container h1:hover {
+	color: var(--text-color-3);
 	cursor: pointer;
+}
+
+/* NOTE: Chat Container */
+#chat-container {
+	width: 70em;
+	height: 44em;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 10em;
 }
 
 /* NOTE: Chat Bar */
 #chat-bar {
-	max-width: 50em;
+	width: 50em;
 	height: 3em;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
 	top: 55em;
-	border-bottom: var(--border-1);
-	border-left: var(--border-1);
 }
 
-#chat-bar input {
+#chat-bar-input {
 	width: 34em;
 	height: 2em;
 	position: absolute;
@@ -375,13 +378,17 @@ html, body {
 	outline: none;
 }
 
+#chat-bar-input:focus {
+	border-bottom: var(--border-1);
+}
+
 #chat-bar img {
 	width: 2em;
 	height: 2em;
 	z-index: 4;
 	position: relative;
 	left: 1em;
-	top: 0.5em;
+	top: 0.25em;
 	transition: 0.25s;
 }
 

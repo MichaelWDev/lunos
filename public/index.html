@@ -17,20 +17,20 @@
 		<h3 id="WIP">This is a WIP and constantly being updated.</h3>
 	</div>
 
-	<div id="entry-page" class="hide">
+	<div id="entry-page" class="">
 		<form>
 			<div id="login-page">
 				<!--<label for="email">Email:</label>-->
-				<input id="email-input" type="email" placeholder="Email" autofocus>
+				<input id="email-input" type="email" placeholder="Email" required autofocus>
 
 				<!--<label for="username">Username:</label>-->
-				<input id="username-input" class="hide" type="username" placeholder="Username">
+				<input id="username-input" class="hide" type="username" placeholder="Username" required>
 
 				<!--<label for="password">Password:</label>-->
 				<input id="password-input" type="password" placeholder="Password" onkeyup="validatePassword()">
 				<img id="toggle-password-button" title="Show Password" src="images/sight-disabled.png" onclick="button(5)">
 
-				<p id="incorrect-text" class="hide">The email or password is <span class="red">incorrect</span>, please try again.</p>
+				<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 
 				<div id="button-box">
 					<button id="login-button" type="button" onclick="button(1)">Log In</button>
@@ -48,11 +48,9 @@
 		</form>
 	</div>
 
-	<div id="chat-app" class="">
+	<div id="chat-app" class="hide">
 		<div id="channel-container">
-			<h1>Channels</h1>
-
-			<img src="images/swipe-left.png" onclick="button(6)">
+			<h1 onclick="button(6)">Channels</h1>
 
 			<div id="channel-list">
 				
@@ -68,18 +66,12 @@
 		</div>
 
 		<div id="member-container">
-			<h1>Users</h1>
+			<h1 onclick="button(7)">Users</h1>
 
-			<img src="images/swipe-right.png" onclick="button(7)">
-
-			<div id="user-list">
-
-			</div>
+			<div id="user-list"></div>
 		</div>
 
-		<div id="chat-container">
-			
-		</div>
+		<div id="chat-container"></div>
 
 		<div id="chat-bar">
 			<img src="images/open-folder.svg" onclick="" id="add-file-icon">
