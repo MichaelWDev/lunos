@@ -92,23 +92,37 @@ io.on('connection', function(socket) {
 						if (err) {
 							console.log(err)
 						} else {
-							console.log('File successfully written!');
+							console.log('Account successfully added.');
 						}
 					});
 
 				} catch (err) {
-					console.log('Error parsing JSON: ', err);
+					console.log('[REGISTER] Error parsing JSON: ', err);
 				}
 			}
 		});
 	});
 
-	socket.on('send-chat-message', message => {
-		socket.broadcast.emit('chat-message', {message: message, name: users[socket.id]});
+	socket.on('send-chat-message', (message) => {
+		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
+			if (err) {
+				console.log(err);
+			} else {
+				try {
+					const data = JSON.parse(jsonString);
+					let email = data;
+					let username = data[email].username;
 
-		fs.appendFile('message.txt', users[socket.id] + ": "+ message + "\n", function (err) {
-			if (err) throw err;
-			console.log('Saved!');
+					socket.broadcast.emit('chat-message', {message: message, name: username});
+
+					fs.appendFile('message.txt', username + ": "+ message + "\n", err => {
+						if (err) throw err;
+						console.log('Text added to message file.');
+					});
+				} catch (err) {
+					console.log("[SEND-CHAT] Error parsing JSON", err);
+				}
+			}
 		});
 	});
 });

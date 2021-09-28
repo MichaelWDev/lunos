@@ -213,6 +213,7 @@ function validatePassword (registerAccount) {
 }
 
 // TODO
+// TODO: Find a way to get a username in here to send it to the back-end.
 // Enters the message with enter key.
 function enterKey(e) {
 	if (e.keyCode === 13) {
@@ -235,7 +236,13 @@ function appendMessage(message) {
 
 // TODO
 // Assigns all usernames to the right.
-function appendUsername(username) {}
+function appendUsername(username) {
+	const usernameElement = document.createElement('p');
+	usernameElement.classList.add('text');
+	usernameElement.innerText = username;
+
+	usernameContainer.insertBefore(usernameElement, usernameContainer.firstChild);
+}
 
 //———————————————————————————————————————//
 // SECTION Sockets                       //
@@ -279,5 +286,5 @@ socket.on('user-disconnected', username => {
 
 // TODO
 socket.on('user-list', users => {
-	// appendUsername(users[socketId]);
+	appendUsername(users);
 });
