@@ -219,6 +219,33 @@ function enterKey(e) {
 	}
 }
 
+chatBarInput.addEventListener('submit', e => {
+	e.preventDefault();
+
+	// TODO: Enter key pressed for logging in.
+
+	// TODO: Enter key pressed for submitting messages.
+	if (e && chatBarInput.value) {
+		appendMessage(message);
+		socket.emit('send-chat-message', message);
+		chatBarInput.value = '';
+		console.log("ENTER KEY!");
+	}
+	
+	// Enter key pressed for register account.
+	else if (e && emailInput.value && usernameInput	&& passwordInput) {
+
+	}
+
+});
+
+messageForm.addEventListener('submit', e => {
+	e.preventDefault();
+	const message = messageInput.value;
+	socket.emit('send-chat-message', profile, message);
+	messageInput.value = '';
+});
+
 // TODO
 // Appends entered messages to the chat.
 function appendMessage(message) {

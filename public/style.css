@@ -45,6 +45,26 @@ html, body {
 	overflow: hidden;
 }
 
+/* width */
+::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(253, 0, 0);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(26, 161, 214);
+}
+
 /*———————————————————————————————————————*/
 /* SECTION Id's                          */
 /*———————————————————————————————————————*/
@@ -374,16 +394,16 @@ html, body {
 
 /* NOTE: Chat Bar */
 #chat-bar {
-	width: 50em;
+	width: 70em;
 	height: 3em;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
-	top: 55em;
+	top: 54em;
 }
 
 #chat-bar-input {
-	width: 34em;
+	width: 52.75em;
 	height: 2em;
 	position: absolute;
 	left: 3em;
