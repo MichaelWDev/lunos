@@ -84,18 +84,13 @@ function button(btn) {
 }
 
 // Handles account login and registration.
-function account(num) {
-	switch(num) {
+function account(btn) {
+	switch(btn) {
 		case 1: // Login
-			if (emailInput.value.match(emailRegex)) {
-				incorrectText.classList.add('hide');
-				socket.emit('login', emailInput.value, passwordInput.value);
-			} else {
-				incorrectText.classList.remove('hide');
-			}
+			socket.emit('login', emailInput.value, passwordInput.value);
 		break
 
-		case 2: // Register
+		case 2: // Create Account
 			validatePassword('register-account');
 		break;
 	}
@@ -213,20 +208,24 @@ function validatePassword (registerAccount) {
 }
 
 // TODO
-// TODO: Find a way to get a username in here to send it to the back-end.
 // Enters the message with enter key.
 function enterKey(e) {
-	if (e.keyCode === 13) {
-		const message = messageInput.value;
+	if (e.keyCode === 13 && chatBarInput.value) {
+		const message = chatBarInput.value;
 		appendMessage(message);
 		socket.emit('send-chat-message', message);
-		messageInput.value = '';
+		chatBarInput.value = '';
+		console.log("ENTER KEY!");
 	}
 }
 
 // TODO
-// Appends the entered message to the chat.
+// Appends entered messages to the chat.
 function appendMessage(message) {
+	// TODO: When a message is sent, it also appends their profile picture (like discord).
+	// const chatMessage = document.createElement('div');
+	// chatMessage.classList.add('chat-message');
+
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
 	messageElement.innerText = message;
@@ -241,7 +240,7 @@ function appendUsername(username) {
 	usernameElement.classList.add('text');
 	usernameElement.innerText = username;
 
-	usernameContainer.insertBefore(usernameElement, usernameContainer.firstChild);
+	userList.insertBefore(usernameElement, userList.firstChild);
 }
 
 //———————————————————————————————————————//
@@ -257,34 +256,27 @@ socket.on('login-successful', (username) => {
 	chatApp.classList.remove('hide');
 	incorrectText.classList.add('hide');
 
-	// Adds the user to the userlist.
-	const userElement         = document.createElement('p');
-	userElement.id            = 'userlist-' + username;
-	userElement.classList.add('user-list');
-	userElement.innerText     = username;
-
-	usernameContainer.insertBefore(userElement, usernameContainer.firstChild);
-
 	profileUsername.innerText = username;
-	appendMessage(username + ' has connected connected.');
+	appendUsername(username);
+	appendMessage(username + ' has connected.');
 });
 
 socket.on('login-unsuccessful', () => {
 	incorrectText.classList.remove('hide');
 });
 
-// TODO
+// Adds the text to the chat container.
 socket.on('chat-message', text => {
 	appendMessage(text);
 });
 
-// TODO
+// Displays who leaves and removes their name from the user-list.
 socket.on('user-disconnected', username => {
-	appendMessage(`${username} disconnected.`);
-	document.getElementById('userlist-' + username).remove();
+	appendMessage(username + ' has disconnected.');
+	document.getElementById('user-list-' + username).remove();
 });
 
-// TODO
+// Adds whoever joins to the user-list.
 socket.on('user-list', users => {
 	appendUsername(users);
 });

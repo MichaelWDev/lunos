@@ -1,5 +1,5 @@
 /*———————————————————————————————————————*/
-/* SECTION: Variables	                 */
+/* SECTION: Global Variables	         */
 /*———————————————————————————————————————*/
 
 const express = require('express');
@@ -27,44 +27,34 @@ server.listen(port, function () {
 
 // Server
 io.on('connection', function(socket) {
+	let username;
 	console.log('user connected');
 
+	// TODO
+	// NOTE: User Connection
 	socket.on('new-user', username => {
 		socket.emit('user-list', users); // Sends a full list of current users to the client when they join. (Minus their own.)
 		socket.broadcast.emit('user-connected', username);
-		console.log(username);
-	});
-
-	socket.on('send-chat-message', (username, message) => {
-		socket.broadcast.emit('chat-message', {message: message, name: users[socket.id]});
-
-		fs.appendFile('message.txt', username + ': '+ message + '\n', function (err) {
-			if (err) throw err;
-			console.log('Saved!');
-		});
 	});
 
 	// NOTE: Account Login
 	socket.on('login', async (email, password) => {
-		const hashedPassword = await bcrypt.hash(password, 10);
-
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
 				console.log(err);
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
-					let username = data[email].username;
+					username = data[email].username;
 					let accountPassword = data[email].password;
 
-					bcrypt.compare(accountPassword, hashedPassword, function(err, result) {
+					bcrypt.compare(password, accountPassword, function(err, result) {
 						if (err) {
 							console.log("Error: " + error);
 						}
 
-						if (result == true && data[email].email == email) {
+						if (result && data[email]) {
 							socket.emit('login-successful', username);
-							console.log(result);
 						} else {
 							socket.emit('login-unsuccessful');
 						}
@@ -95,7 +85,6 @@ io.on('connection', function(socket) {
 							console.log('Account successfully added.');
 						}
 					});
-
 				} catch (err) {
 					console.log('[REGISTER] Error parsing JSON: ', err);
 				}
@@ -103,26 +92,22 @@ io.on('connection', function(socket) {
 		});
 	});
 
+	// Sends the message back to front with username and adds it to the log.
 	socket.on('send-chat-message', (message) => {
-		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
+		socket.broadcast.emit('chat-message', message, username);
+
+		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {
-				console.log(err);
+				console.log(err)
 			} else {
-				try {
-					const data = JSON.parse(jsonString);
-					let email = data;
-					let username = data[email].username;
-
-					socket.broadcast.emit('chat-message', {message: message, name: username});
-
-					fs.appendFile('message.txt', username + ": "+ message + "\n", err => {
-						if (err) throw err;
-						console.log('Text added to message file.');
-					});
-				} catch (err) {
-					console.log("[SEND-CHAT] Error parsing JSON", err);
-				}
+				console.log('Text added to log.');
 			}
 		});
+	});
+
+	// User disconnects
+	socket.on('disconnect', () => {
+		console.log('user disconnected');
+		socket.broadcast.emit('user-disconnected', username);
 	});
 });

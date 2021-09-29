@@ -347,6 +347,7 @@ html, body {
 }
 
 /* NOTE: Chat Container */
+/* TODO: Text from bottom to top */
 #chat-container {
 	width: 70em;
 	height: 44em;
@@ -354,11 +355,17 @@ html, body {
 	left: 50%;
 	transform: translateX(-50%);
 	top: 10em;
+	font-family: var(--font-family-1);
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
 }
 
 #user-list {
 	position: relative;
-	background-color: blue;
 	width: 100%;
 	height: 100%;
 }
@@ -429,13 +436,17 @@ html, body {
 	display: flex;
 	width: 100%;
 	height: auto;
-	color: rgb(204, 204, 204);
+	color: var(--text-color-1);
 	padding: 10px;
 }
 
 .text {
 	width: 100%;
+	color: var(--text-color-1);
+	margin-left: 5em;
 }
+
+/* TODO: .chat-message {} */
 
 /*———————————————————————————————————————*/
 /* SECTION Keyframes                     */
