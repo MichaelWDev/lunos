@@ -31,6 +31,7 @@
 	--border-2:  0.1em solid rgb(255, 255, 255);
 	--border-3:  0.1em solid rgb(0, 44, 82);
 	--border-4: 0.25em solid rgb(255, 255, 255);
+	--border-5:  0.25em solid rgb(0, 0, 0);
 }
 
 /*———————————————————————————————————————*/
@@ -168,22 +169,17 @@ html, body {
 }
 
 #toggle-password-button {
-	position: relative;
+	position: absolute;
 	width: 1.5em;
 	height: 1.5em;
-	left: 3em;
-	top: 1em;
-	z-index: 1;
-	cursor: pointer;
+	right: -0.5em;
+	top: 6em;
 	padding: 0.5em;
-	transition: 0.5s;
-	border: var(--border-3);
-	outline: none;
+	border: var(--border-2);
 }
 
 #toggle-password-button:hover {
-	border: var(--border-2);
-	background-color: var(--background-color-3);
+	border: var(--border-3);
 }
 
 #incorrect-text {
@@ -198,13 +194,8 @@ html, body {
 	width: 6em;
 	height: 2.5em;
 	font-size: 1.5em;
-	background: none;
-	color: var(--text-color-1);
 	border: var(--border-2);
-	transition: 0.25s;
 	margin: 1em;
-	transition: 0.25s;
-	outline: none;
 }
 
 #entry-page button:hover {
@@ -222,11 +213,7 @@ html, body {
 	position: absolute;
 	top: 12em;
 	font-size: 1.5em;
-	background: none;
-	color: var(--text-color-1);
 	border: var(--border-2);
-	transition: 0.25s;
-	outline: none;
 }
 
 #register-page {
@@ -403,7 +390,7 @@ html, body {
 }
 
 #chat-bar-input {
-	width: 52.75em;
+	width: 46em;
 	height: 2em;
 	position: absolute;
 	left: 3em;
@@ -412,6 +399,8 @@ html, body {
 	font-size: 1.25em;
 	color: var(--text-color-1);
 	outline: none;
+	transition: 0.25s;
+	border-bottom: var(--border-5);
 }
 
 #chat-bar-input:focus {
@@ -432,12 +421,38 @@ html, body {
 	cursor: pointer;
 }
 
+#chat-bar-button {
+	position: absolute;
+	right: 2em;
+	border: var(--border-2);
+	padding: 0.5em;
+	width: 5em;
+	height: 3em;
+	font-size: 1em;
+}
+
+#chat-bar-button:hover {
+	border: var(--border-3);
+	color: var(--text-color-3);
+}
+
 /*———————————————————————————————————————*/
 /* SECTION Classes                       */
 /*———————————————————————————————————————*/
 
 .hide {
 	display: none;
+}
+
+.buttons {
+	z-index: 1;
+	cursor: pointer;
+	transition: 0.25s;
+	outline: none;
+	background: none;
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 600;
 }
 
 .green {
@@ -466,7 +481,7 @@ html, body {
 	margin-left: 5em;
 }
 
-/* TODO: .chat-message {} */
+/* TODO: div .chat-message {} */
 
 /*———————————————————————————————————————*/
 /* SECTION Keyframes                     */

@@ -9,17 +9,19 @@ let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
 
 const titleContainer        = document.getElementById('title');
+
 const entryPage             = document.getElementById('entry-page');
 const registerPage          = document.getElementById('register-page');
+const loginButton           = document.getElementById('login-button');
+const registerButton        = document.getElementById('register-button');
+const accountRegisterButton = document.getElementById('account-register-button');
+const incorrectText         = document.getElementById('incorrect-text');
 const chatApp               = document.getElementById('chat-app');
 const chatContainer         = document.getElementById('chat-container');
 const chatBarInput          = document.getElementById('chat-bar-input');
 const channelList           = document.getElementById('channel-list');
 const userList              = document.getElementById('user-list');
-const loginButton           = document.getElementById('login-button');
-const registerButton        = document.getElementById('register-button');
-const accountRegisterButton = document.getElementById('account-register-button');
-const incorrectText         = document.getElementById('incorrect-text');
+const sendChatForm          = document.getElementById('send-chat-form');
 const emailRegex 			= /^\S+@\S+\.\S+$/;
 
 const socket = io();
@@ -28,11 +30,13 @@ const socket = io();
 // SECTION Functions                     //
 //———————————————————————————————————————//
 
+// TODO: Admin commands.
+
 // Handles every button.
 function button(btn) {
 	switch(btn) {
 		case 1: // Login
-			account(1);
+			socket.emit('login', emailInput.value, passwordInput.value);
 		break;
 
 		case 2: // Register
@@ -43,7 +47,7 @@ function button(btn) {
 		break;
 
 		case 3: // Register Account
-			account(2);
+			validatePassword('register-account');
 		break;
 
 		case 4: // Back
@@ -66,7 +70,7 @@ function button(btn) {
 		break;
 
 		case 7: // TODO: Hide Users
-
+			userList.classList.add('idk');
 		break;
 
 		case 8: // TODO: Copy Username
@@ -80,18 +84,14 @@ function button(btn) {
 		case 10: // TODO: Profile Settings
 
 		break;
-	}
-}
 
-// Handles account login and registration.
-function account(btn) {
-	switch(btn) {
-		case 1: // Login
-			socket.emit('login', emailInput.value, passwordInput.value);
-		break
-
-		case 2: // Create Account
-			validatePassword('register-account');
+		case 11: // TODO: Send Message
+			if (chatBarInput.value != '') { // TODO: Also have submitting via enter key. e.keycode = 13
+				console.log(chatBarInput.value);
+				appendMessage(chatBarInput.value); // NOTE: Remove this when done testing.
+				socket.emit('send-chat-message', chatBarInput.value);
+				chatBarInput.value = '';
+			}
 		break;
 	}
 }
@@ -208,7 +208,7 @@ function validatePassword (registerAccount) {
 }
 
 // TODO
-// Enters the message with enter key.
+/* Enters the message with enter key.
 function enterKey(e) {
 	if (e.keyCode === 13 && chatBarInput.value) {
 		const message = chatBarInput.value;
@@ -218,33 +218,23 @@ function enterKey(e) {
 		console.log("ENTER KEY!");
 	}
 }
+*/
 
-chatBarInput.addEventListener('submit', e => {
-	e.preventDefault();
-
-	// TODO: Enter key pressed for logging in.
-
-	// TODO: Enter key pressed for submitting messages.
-	if (e && chatBarInput.value) {
-		appendMessage(message);
-		socket.emit('send-chat-message', message);
-		chatBarInput.value = '';
-		console.log("ENTER KEY!");
-	}
+sendChatForm.addEventListener('submit', e => {
 	
-	// Enter key pressed for register account.
-	else if (e && emailInput.value && usernameInput	&& passwordInput) {
-
-	}
-
 });
 
-messageForm.addEventListener('submit', e => {
-	e.preventDefault();
-	const message = messageInput.value;
-	socket.emit('send-chat-message', profile, message);
-	messageInput.value = '';
+/* TODO: Enter key pressed for logging in.
+loginAccount.addEventListener('submit', e => {
+	if (e && emailInput.value && passwordInput.value) {}
 });
+*/
+
+/* TODO: Enter key pressed for register account.
+createAccount.addEventListener('submit', e => {
+	if (e && emailInput.value && usernameInput	&& passwordInput) {}
+});
+*/
 
 // TODO
 // Appends entered messages to the chat.
