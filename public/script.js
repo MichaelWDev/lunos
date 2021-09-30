@@ -9,7 +9,6 @@ let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
 
 const titleContainer        = document.getElementById('title');
-
 const entryPage             = document.getElementById('entry-page');
 const registerPage          = document.getElementById('register-page');
 const loginButton           = document.getElementById('login-button');
@@ -207,8 +206,7 @@ function validatePassword (registerAccount) {
 	}
 }
 
-// TODO
-/* Enters the message with enter key.
+/* TODO: Enters the message with enter key.
 function enterKey(e) {
 	if (e.keyCode === 13 && chatBarInput.value) {
 		const message = chatBarInput.value;
@@ -219,10 +217,6 @@ function enterKey(e) {
 	}
 }
 */
-
-sendChatForm.addEventListener('submit', e => {
-	
-});
 
 /* TODO: Enter key pressed for logging in.
 loginAccount.addEventListener('submit', e => {
@@ -242,6 +236,8 @@ function appendMessage(message) {
 	// TODO: When a message is sent, it also appends their profile picture (like discord).
 	// const chatMessage = document.createElement('div');
 	// chatMessage.classList.add('chat-message');
+
+	// TODO: Username needs to be next to every message sent!
 
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
