@@ -86,8 +86,6 @@ function button(btn) {
 
 		case 11: // TODO: Send Message
 			if (chatBarInput.value != '') { // TODO: Also have submitting via enter key. e.keycode = 13
-				console.log(chatBarInput.value);
-				appendMessage(chatBarInput.value); // NOTE: Remove this when done testing.
 				socket.emit('send-chat-message', chatBarInput.value);
 				chatBarInput.value = '';
 			}
@@ -230,9 +228,9 @@ createAccount.addEventListener('submit', e => {
 });
 */
 
-// TODO
+// TODO: Change this into a switch case function, to receive different types of message appends.
 // Appends entered messages to the chat.
-function appendMessage(message) {
+function appendMessage(username, message) {
 	// TODO: When a message is sent, it also appends their profile picture (like discord).
 	// const chatMessage = document.createElement('div');
 	// chatMessage.classList.add('chat-message');
@@ -241,7 +239,7 @@ function appendMessage(message) {
 
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
-	messageElement.innerText = message;
+	messageElement.innerText = `${username}: ${message}`;
 
 	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 }
@@ -279,8 +277,8 @@ socket.on('login-unsuccessful', () => {
 });
 
 // Adds the text to the chat container.
-socket.on('chat-message', text => {
-	appendMessage(text);
+socket.on('chat-message', (username, message) => {
+	appendMessage(username, message);
 });
 
 // Displays who leaves and removes their name from the user-list.

@@ -94,7 +94,7 @@ io.on('connection', function(socket) {
 
 	// Sends the message back to front with username and adds it to the log.
 	socket.on('send-chat-message', (message) => {
-		socket.broadcast.emit('chat-message', message, username);
+		socket.broadcast.emit('chat-message', username, message);
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {
