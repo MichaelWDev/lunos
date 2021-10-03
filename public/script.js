@@ -269,6 +269,7 @@ socket.on('login-successful', (username) => {
 	chatApp.classList.remove('hide');
 	incorrectText.classList.add('hide');
 
+	titleContainer.style = "left: 0; text-align: left;"
 	profileUsername.innerText = username;
 	appendUsername(username);
 	appendMessage(username + ' has connected.');

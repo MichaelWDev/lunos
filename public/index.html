@@ -71,7 +71,7 @@
 
 		<div id="chat-container"></div>
 
-		<form id="send-chat-form">
+		<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
 			<div id="chat-bar">
 				<img src="images/open-folder.svg" onclick="" id="add-file-icon">
 				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">

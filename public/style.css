@@ -83,11 +83,11 @@ html, body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
+	text-align: center;
 }
 
 #title h1 {
 	color: var(--text-color-1);
-	text-align: center;
 	position: relative;
 	font-family: var(--font-family-1);
 	font-weight: 600;
@@ -99,11 +99,8 @@ html, body {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 400;
-	text-align: center;
 	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 20em;
+	width: 100%;
 	bottom: 1em;
 }
 
