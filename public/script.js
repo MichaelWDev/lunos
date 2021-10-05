@@ -9,11 +9,13 @@ let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
 
 const titleContainer        = document.getElementById('title');
-const entryPage             = document.getElementById('entry-page');
+const loginRegisterBtn      = document.getElementById('login-register-btns');
+const loginRegisterPage     = document.getElementById('login-register-page');
 const registerPage          = document.getElementById('register-page');
-const loginButton           = document.getElementById('login-button');
-const registerButton        = document.getElementById('register-button');
-const accountRegisterButton = document.getElementById('account-register-button');
+const btnBox                = document.getElementById('btn-box');
+const loginBtn              = document.getElementById('login-btn');
+const registerBtn           = document.getElementById('register-btn');
+const accountRegisterBtn    = document.getElementById('account-register-btn');
 const incorrectText         = document.getElementById('incorrect-text');
 const chatApp               = document.getElementById('chat-app');
 const chatContainer         = document.getElementById('chat-container');
@@ -32,17 +34,19 @@ const socket = io();
 // TODO: Admin commands.
 
 // Handles every button.
-function button(btn) {
+function button(btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 	switch(btn) {
 		case 1: // Login
 			socket.emit('login', emailInput.value, passwordInput.value);
 		break;
 
 		case 2: // Register
-			loginButton.classList.add('hide');
-			registerButton.classList.add('hide');
+			loginRegisterBtn.classList.add('hide');
+			btnBox.classList.add('hide');
+			loginRegisterPage.classList.remove('hide');
 			registerPage.classList.remove('hide');
 			usernameInput.classList.remove('hide');
+			console.log("test")
 		break;
 
 		case 3: // Register Account
@@ -50,8 +54,8 @@ function button(btn) {
 		break;
 
 		case 4: // Back
-			loginButton.classList.remove('hide');
-			registerButton.classList.remove('hide');
+			loginBtn.classList.remove('hide');
+			registerBtn.classList.remove('hide');
 			registerPage.classList.add('hide');
 			usernameInput.classList.add('hide');
 		break;
@@ -89,6 +93,10 @@ function button(btn) {
 				socket.emit('send-chat-message', chatBarInput.value);
 				chatBarInput.value = '';
 			}
+		break;
+
+		case 12: // Login/Register
+			loginRegisterPage.classList.remove('hide');
 		break;
 	}
 }
@@ -195,8 +203,8 @@ function validatePassword (registerAccount) {
 	// NOTE: Create Account!
 	if (passwordMatch == 5 && emailMatch == 1 && registerAccount) {
 		registerPage.classList.add('hide');
-		loginButton.classList.remove('hide');
-		registerButton.classList.remove('hide');
+		loginBtn.classList.remove('hide');
+		registerBtn.classList.remove('hide');
 		usernameInput.classList.add('hide');
 		chatApp.classList.remove('hide');
 

@@ -17,7 +17,27 @@
 		<h3 id="WIP">This is a WIP and constantly being updated.</h3>
 	</div>
 
-	<div id="entry-page" class="">
+	<button id="log-reg-btn" class="btns" onclick="button(12)">Login/Register</button>
+
+	<div id="top-nav">
+		<button id="home-btn" class="nav-btns btns" onclick="">Home</button>
+		<button id="about-btn" class="nav-btns btns">About</button>
+		<button id="contact-btn" class="nav-btns btns">Contact</button>
+	</div>
+
+	<div id="home-page" class="">
+
+	</div>
+
+	<div id="about-page" class="">
+
+	</div>
+
+	<div id="contact-page" class="">
+
+	</div>
+
+	<div id="login-register-page" class="hide">
 		<form>
 			<div id="login-page">
 				<!--<label for="email">Email:</label>-->
@@ -28,13 +48,13 @@
 
 				<!--<label for="password">Password:</label>-->
 				<input id="password-input" type="password" placeholder="Password" onkeyup="validatePassword()">
-				<img id="toggle-password-button" class="buttons" title="Show Password" src="images/sight-disabled.png" onclick="button(5)">
+				<img id="toggle-password-btn" class="btns" title="Show Password" src="images/sight-disabled.png" onclick="button(5)">
 
 				<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 
-				<div id="button-box">
-					<button id="login-button" class="buttons" type="button" onclick="button(1)">Log In</button>
-					<button id="register-button" class="buttons" type="button" onclick="button(2)">Register</button>	
+				<div id="btn-box">
+					<button id="login-btn" class="btns" type="button" onclick="button(1)">Log In</button>
+					<button id="register-btn" class="btns" type="button" onclick="button(2)">Register</button>	
 				</div>
 			</div>
 
@@ -43,7 +63,7 @@
 		
 				<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
 
-				<button id="account-register-button" class="buttons" type="button" onclick="button(3)">Create Account</button>	
+				<button id="account-register-btn" class="btns" type="button" onclick="button(3)">Create Account</button>	
 			</div>
 		</form>
 	</div>
@@ -75,7 +95,7 @@
 			<div id="chat-bar">
 				<img src="images/open-folder.svg" onclick="" id="add-file-icon">
 				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
-				<button id="chat-bar-button" class="buttons" type="button" onclick="button(11)">Send</button>
+				<button id="chat-bar-btn" class="btns" type="button" onclick="button(11)">Send</button>
 			</div>
 		</form>
 		
@@ -87,8 +107,8 @@
 		<input id="message-bar" placeholder="Begin typing!" onkeypress="enterKey(event)" autofocus></input>
 		
 		TODO: Emoji display.
-		<input type="radio" name="emoji" value="emoji" id="emoji-button">
-		<label id="emoji-button-label" for="#emoji-button">Emoji</label>
+		<input type="radio" name="emoji" value="emoji" id="emoji-btn">
+		<label id="emoji-btn-label" for="#emoji-btn">Emoji</label>
 		
 	</div>
 
