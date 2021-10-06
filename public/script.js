@@ -9,6 +9,7 @@ let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
 
 const titleContainer        = document.getElementById('title');
+const topNav                = document.getElementById('top-nav');
 const loginRegisterBtn      = document.getElementById('login-register-btns');
 const loginRegisterPage     = document.getElementById('login-register-page');
 const registerPage          = document.getElementById('register-page');
@@ -239,17 +240,21 @@ createAccount.addEventListener('submit', e => {
 // TODO: Change this into a switch case function, to receive different types of message appends.
 // Appends entered messages to the chat.
 function appendMessage(username, message) {
-	// TODO: When a message is sent, it also appends their profile picture (like discord).
+	// TODO: When a message is sent it appends their profile picture to their text.
 	// const chatMessage = document.createElement('div');
 	// chatMessage.classList.add('chat-message');
 
-	// TODO: Username needs to be next to every message sent!
-
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
-	messageElement.innerText = `${username}: ${message}`;
 
-	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+	if (message == ' has connected.') {
+		messageElement.innerText = `${username} ${message}`
+		chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+	} else {
+		messageElement.innerText = `${username}: ${message}`;
+		chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+	}
+
 }
 
 // TODO
@@ -271,14 +276,17 @@ socket.on("connect_error", (err) => {
 });
 
 socket.on('login-successful', (username) => {
-	entryPage.classList.add('hide');
+	loginRegisterPage.classList.add('hide');
 	chatApp.classList.remove('hide');
 	incorrectText.classList.add('hide');
+	topNav.classList.add('hide');
+	titleContainer.classList.add('hide');
+	loginRegisterBtn.classList.add('hide');
 
-	titleContainer.style = "left: 0; text-align: left;"
+	// titleContainer.style = "left: 2em; text-align: left;"
 	profileUsername.innerText = username;
 	appendUsername(username);
-	appendMessage(username + ' has connected.');
+	appendMessage(username, ' has connected.');
 });
 
 socket.on('login-unsuccessful', () => {
