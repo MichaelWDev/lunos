@@ -76,15 +76,6 @@ html, body {
 /* SECTION Id's                          */
 /*———————————————————————————————————————*/
 
-#satellite-img {
-	position: absolute;
-	width: 3em;
-	height: 3em;
-	right: 12em;
-	top: 10em;
-	transform: rotate(95deg);
-}
-
 #title {
 	position: absolute;
 	left: 15em;
@@ -92,7 +83,7 @@ html, body {
 	height: 5em;
 	top: 1em;
 	text-align: left;
-	/* animation: 3s appear; */
+	/* animation: 3s fadeIn; */
 	cursor: pointer;
 	border-left: var(--border-5);
 	border-right: var(--border-5);
@@ -141,8 +132,11 @@ html, body {
 
 /* SECTION: Home Page */
 #home-page {
-	border-top: var(--border-2);
+	height: 80em;
+	top: 46em;
+	/*border-top: var(--border-2);*/
 	border-radius: 50%;
+	box-shadow: 0px 25px 25px rgba(255, 255, 255, 0.25);
 }
 
 /* SECTION: About Page */
@@ -173,6 +167,8 @@ html, body {
 	top: 25em;
 	width: 100%;
 	text-align: center;
+	padding: 1em;
+	border: var(--border-2);
 }
 
 /* SECTION: Support Page */
@@ -194,15 +190,12 @@ html, body {
 	right: 10em;
 }
 
-
-
-
 /* SECTION: Login/Register Page */
 #log-reg-btn-container {
 	position: absolute;
 	right: 2em;
 	top: 1em;
-	/* animation: 4s appear; */
+	/* animation: 4s fadeIn; */
 }
 
 #log-btn, #reg-btn {
@@ -306,11 +299,6 @@ html, body {
 	margin: 1em;
 }
 
-#login-register-page button:hover {
-	color: var(--hover-color-1);
-	border: var(--hover-border-color-1);
-}
-
 #account-register-btn {
 	position: relative;
 	left: 50%;
@@ -321,6 +309,16 @@ html, body {
 	top: 12em;
 	font-size: 1.5em;
 	border: var(--border-2);
+}
+
+#account-register-btn:hover {
+	color: var(--hover-color-1);
+	border: var(--hover-border-color-1);
+}
+
+#account-register-btn:active {
+	background-color: var(--active-background-color-1);
+	color: var(--active-text-color-1);
 }
 
 #register-page {
@@ -652,7 +650,7 @@ html, body {
 /* SECTION Keyframes                     */
 /*———————————————————————————————————————*/
 
-@keyframes appear {
+@keyframes fadeIn {
 	0% {opacity: 0;}
 	100% {opacity: 1;}
 }

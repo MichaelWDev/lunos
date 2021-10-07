@@ -2,6 +2,7 @@
 // SECTION Global Variables              //
 //———————————————————————————————————————//
 
+const satelliteImg          = document.getElementById('satellite-img');
 const titleContainer        = document.getElementById('title');
 const topNav                = document.getElementById('top-nav');
 
@@ -33,6 +34,7 @@ const chatBarInput          = document.getElementById('chat-bar-input');
 const channelList           = document.getElementById('channel-list');
 const userList              = document.getElementById('user-list');
 const sendChatForm          = document.getElementById('send-chat-form');
+
 const emailRegex 			= /^\S+@\S+\.\S+$/;
 
 const socket = io();
