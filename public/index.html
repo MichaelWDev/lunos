@@ -11,46 +11,86 @@
 	<link defer rel="stylesheet" href="style.css">
 </head>
 <body>
+	<img id="satellite-img" src="images/sattelite.png">
 
-	<div id="title">
+	<div id="title" onclick="button(13)">
 		<h1>Lunos</h1>
-		<h3 id="WIP">This is a WIP and constantly being updated.</h3>
+		<img src="images/ringed-planet.png">
 	</div>
 
 	<div id="log-reg-btn-container">
 		<button id="log-btn" class="btns" onclick="button(12)">Login</button>
 		<button id="reg-btn" class="btns" onclick="button(2)">Register</button>
 	</div>
-	
 
 	<div id="top-nav">
-		<button id="home-btn" class="nav-btns btns" onclick="">Home</button>
-		<button id="about-btn" class="nav-btns btns">About</button>
-		<button id="contact-btn" class="nav-btns btns">Contact</button>
+		<button id="home-btn" class="nav-btns btns" onclick="button(13)">Home</button>
+		<button id="about-btn" class="nav-btns btns" onclick="button(14)">About</button>
+		<button id="contact-btn" class="nav-btns btns" onclick="button(15)">Support</button>
 	</div>
 
-	<div id="home-page" class="">
-
+	<div id="home-page" class="pages">
+		<div id="home-title" class="titles">
+			<h1>Welcome to Lunos</h1>
+			<h3>A communication platform for like-minds.</h3>
+		</div>
 	</div>
 
-	<div id="about-page" class="">
+	<div id="about-page" class="pages hide">
+		<div id="about-title" class="titles">
+			<h3>Our mission is to provide a <span class="green">safe</span> communication space.</h3>
+			<h3>Enjoy our high-end list of accessories to ensure your safety.</h3>
+			<div id="about-card-container">
+				<div id="encryption-about-card" class="cards">
+					<h1>Full Encryption</h1>
+					<p>contact info here</p>
+				</div>
 
+				<div id="privacy-about-card" class="cards">
+					<h1>Full Privacy</h1>
+					<p>contact info here</p>
+				</div>
+
+				<div id="safety-about-card" class="cards">
+					<h1>Full Safety</h1>
+					<p>contact info here</p>
+				</div>
+				<h3>Your information will <span class="green">never</span> be sold, used, or leaked.</h3>
+			</div>
+		</div>
 	</div>
 
-	<div id="contact-page" class="">
+	<div id="support-page" class="pages hide">
+		<div id="support-title" class="titles">
+			<h1>Support</h1>
+			<p>Have a question? Feel free to contact us any time at the address below.</p>
+			<p>We will do our best to reach your every concern.</p>
+			<div id="contact-card-container">
+				<div id="email-contact-card" class="cards">
+					<h1>Email</h1>
+					<a>contact info here</a>
+				</div>
 
+				<div id="social-contact-card" class="cards">
+					<h1>Social Media</h1>
+					<a>contact info here</a>
+				</div>
+
+				<div id="phone-contact-card" class="cards">
+					<h1>Phone</h1>
+					<a>contact info here</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div id="login-register-page" class="hide">
+	<div id="login-register-page" class="hide pages">
 		<form>
 			<div id="login-page">
-				<!--<label for="email">Email:</label>-->
 				<input id="email-input" type="email" placeholder="Email" required autofocus>
 
-				<!--<label for="username">Username:</label>-->
 				<input id="username-input" class="hide" type="username" placeholder="Username" required>
 
-				<!--<label for="password">Password:</label>-->
 				<input id="password-input" type="password" placeholder="Password" onkeyup="validatePassword()">
 				<img id="toggle-password-btn" class="btns" title="Show Password" src="images/sight-disabled.png" onclick="button(5)">
 

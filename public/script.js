@@ -2,23 +2,32 @@
 // SECTION Global Variables              //
 //———————————————————————————————————————//
 
+const titleContainer        = document.getElementById('title');
+const topNav                = document.getElementById('top-nav');
+
 let emailInput              = document.getElementById('email-input');
 let usernameInput           = document.getElementById('username-input');
 let passwordInput           = document.getElementById('password-input');
 let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
 
-const titleContainer        = document.getElementById('title');
-const topNav                = document.getElementById('top-nav');
+// Buttons
 const loginRegisterBtn      = document.getElementById('log-reg-btn');
-const loginRegisterPage     = document.getElementById('login-register-page');
-const registerPage          = document.getElementById('register-page');
 const btnBox                = document.getElementById('btn-box');
 const loginBtn              = document.getElementById('login-btn');
 const registerBtn           = document.getElementById('register-btn');
 const accountRegisterBtn    = document.getElementById('account-register-btn');
-const incorrectText         = document.getElementById('incorrect-text');
+
+// Pages
+const homePage              = document.getElementById('home-page');
+const aboutPage             = document.getElementById('about-page');
+const supportPage           = document.getElementById('support-page');
+const loginRegisterPage     = document.getElementById('login-register-page');
+const registerPage          = document.getElementById('register-page');
 const chatApp               = document.getElementById('chat-app');
+
+// Chat
+const incorrectText         = document.getElementById('incorrect-text');
 const chatContainer         = document.getElementById('chat-container');
 const chatBarInput          = document.getElementById('chat-bar-input');
 const channelList           = document.getElementById('channel-list');
@@ -42,6 +51,9 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 2: // Register
+			homePage.classList.add('hide');
+			aboutPage.classList.add('hide');
+			supportPage.classList.add('hide');
 			btnBox.classList.add('hide');
 			loginRegisterPage.classList.remove('hide');
 			registerPage.classList.remove('hide');
@@ -93,11 +105,35 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 			}
 		break;
 
-		case 12:
+		case 12: // log-btn
+			homePage.classList.add('hide');
+			aboutPage.classList.add('hide');
+			supportPage.classList.add('hide');
 			loginRegisterPage.classList.remove('hide');
 			btnBox.classList.remove('hide');
 			registerPage.classList.add('hide');
 			usernameInput.classList.add('hide');
+		break;
+
+		case 13: // Nav: Home
+			homePage.classList.remove('hide');
+			aboutPage.classList.add('hide');
+			supportPage.classList.add('hide');
+			loginRegisterPage.classList.add('hide');
+		break;
+
+		case 14: // Nav: About
+			homePage.classList.add('hide');
+			aboutPage.classList.remove('hide');
+			supportPage.classList.add('hide');
+			loginRegisterPage.classList.add('hide');
+		break;
+
+		case 15: // Nav: Contact
+			homePage.classList.add('hide');
+			aboutPage.classList.add('hide');
+			supportPage.classList.remove('hide');
+			loginRegisterPage.classList.add('hide');
 		break;
 	}
 }

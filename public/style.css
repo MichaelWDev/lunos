@@ -21,6 +21,12 @@
 	--text-span-color-1: rgb(0, 170, 0);
 	--text-span-color-2: rgb(170, 0, 0);
 
+	--hover-color-1: rgb(0, 170, 0);
+	--hover-border-color-1: 0.1em solid rgb(0, 170, 0);
+	
+	--active-text-color-1: rgb(0, 170, 0);
+	--active-background-color-1: rgb(0, 0, 0);
+
 	/* NOTE: Background Colors */
 	--background-color-1: rgb(0, 0, 0);
 	--background-color-2: rgba(0, 44, 82, 0.1);
@@ -31,7 +37,7 @@
 	--border-2:  0.1em solid rgb(255, 255, 255);
 	--border-3:  0.1em solid rgb(0, 44, 82);
 	--border-4: 0.25em solid rgb(255, 255, 255);
-	--border-5:  0.25em solid rgb(0, 0, 0);
+	--border-5:  0.1em solid rgb(0, 0, 0);
 }
 
 /*———————————————————————————————————————*/
@@ -70,56 +76,133 @@ html, body {
 /* SECTION Id's                          */
 /*———————————————————————————————————————*/
 
-#title {
-	width: 25em;
-	height: 8em;
+#satellite-img {
 	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	text-align: center;
+	width: 3em;
+	height: 3em;
+	right: 12em;
+	top: 10em;
+	transform: rotate(95deg);
+}
+
+#title {
+	position: absolute;
+	left: 15em;
+	width: 15em;
+	height: 5em;
+	top: 1em;
+	text-align: left;
+	/* animation: 3s appear; */
+	cursor: pointer;
+	border-left: var(--border-5);
+	border-right: var(--border-5);
+	transition: 0.25s;
+}
+
+#title:hover {
+	border-left: var(--hover-border-color-1);
+	border-right: var(--hover-border-color-1);
+}
+
+#title:active {
+	background-color: var(--active-text-color-1);
+	color: var(--active-background-color-1);
 }
 
 #title h1 {
 	color: var(--text-color-1);
-	position: relative;
+	position: absolute;
 	font-family: var(--font-family-1);
 	font-weight: 600;
 	font-size: 3em;
+	top: -0.5em;
 	user-select: none;
+	left: 2em;
 }
 
-#title h3 {
-	color: var(--text-color-1);
-	font-family: var(--font-family-1);
-	font-weight: 400;
-	position: relative;
-	width: 100%;
-	bottom: 1em;
+#title img {
+	position: absolute;
+	left: 1em;
+	top: 0.5em;
+	width: 4em;
+	height: 4em;
 }
 
 /* SECTION: Top Nav */
 #top-nav {
 	position: absolute;
-	top: 10em;
+	top: 1.5em;
 	left: 50%;
 	transform: translate(-50%);
 	width: 30.5em;
+	height: 4em;
+	/* animation: 2s top-to-bottom; */
 }
+
+/* SECTION: Home Page */
+#home-page {
+	border-top: var(--border-2);
+	border-radius: 50%;
+}
+
+/* SECTION: About Page */
+#about-card-container {
+	position: relative;
+	top: 5em;
+}
+
+#about-card-container h1 {
+	color: var(--text-span-color-1);
+}
+
+#encryption-about-card {
+	left: 10em;
+}
+
+#privacy-about-card {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#safety-about-card {
+	right: 10em;
+}
+
+#about-card-container h3 {
+	position: absolute;
+	top: 25em;
+	width: 100%;
+	text-align: center;
+}
+
+/* SECTION: Support Page */
+#contact-card-container {
+	position: relative;
+	top: 5em;
+}
+
+#email-contact-card {
+	left: 10em;
+}
+
+#social-contact-card {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#phone-contact-card {
+	right: 10em;
+}
+
+
+
 
 /* SECTION: Login/Register Page */
-#login-register-page {
-	width: 50em;
-	height: 30em;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
-
 #log-reg-btn-container {
 	position: absolute;
 	right: 2em;
 	top: 1em;
+	/* animation: 4s appear; */
 }
 
 #log-btn, #reg-btn {
@@ -133,16 +216,29 @@ html, body {
 }
 
 #log-btn:hover, #reg-btn:hover {
-	border-bottom: var(--border-3);
-	color: var(--text-color-3);
+	border-bottom: var(--hover-border-color-1);
+	color: var(--hover-color-1);
+}
+
+#log-btn:active, #reg-btn:active {
+	background-color: var(--active-text-color-1);
+	color: var(--active-background-color-1);
 }
 
 /* NOTE: Login Page, Register Page */
-#login-page, #register-page {
+#login-page {
 	position: absolute;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	top: 5em;
+	transform: translateX(-50%);
+	width: 25em;
+}
+
+#register-page {
+	position: absolute;
+	left: 50%;
+	top: 9em;
+	transform: translateX(-50%);
 	width: 25em;
 }
 
@@ -172,7 +268,7 @@ html, body {
 }
 
 #btn-box {
-	top: 2em;
+	top: 1em;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
@@ -189,15 +285,17 @@ html, body {
 }
 
 #toggle-password-btn:hover {
-	border: var(--border-3);
+	border: var(--hover-border-color-1);
 }
 
 #incorrect-text {
 	position: absolute;
-	top: 8em;
+	top: 7.5em;
 	font-size: 1.25em;
 	width: 100%;
 	text-align: center;
+	font-weight: 600;
+	font-family: var(--font-family-1);
 }
 
 #login-btn, #register-btn {
@@ -209,8 +307,8 @@ html, body {
 }
 
 #login-register-page button:hover {
-	color: var(--text-color-3);
-	border: var(--border-3);
+	color: var(--hover-color-1);
+	border: var(--hover-border-color-1);
 }
 
 #account-register-btn {
@@ -256,7 +354,7 @@ html, body {
 }
 
 #register-page img:hover {
-	border: var(--border-3);
+	border: var(--hover-border-color-1);
 }
 
 /* SECTION: Chat Page */
@@ -280,7 +378,7 @@ html, body {
 }
 
 #channel-container h1:hover {
-	color: var(--text-color-3);
+	color: var(--hover-color-1);
 	cursor: pointer;
 }
 
@@ -295,8 +393,8 @@ html, body {
 }
 
 #create-channel-btn:hover {
-	color: var(--text-color-3);
-	border-bottom: var(--border-3);
+	color: var(--hover-color-1);
+	border-bottom: var(--hover-border-color-1);
 	cursor: pointer;
 }
 
@@ -329,7 +427,7 @@ html, body {
 }
 
 #profile-image:hover {
-	background-color: var(--background-color-3);
+	border: var(--hover-border-color-1);
 }
 
 #profile-username {
@@ -349,7 +447,7 @@ html, body {
 }
 
 #profile-username:hover {
-	color: var(--text-color-3);
+	color: var(--hover-color-1);
 }
 
 /* NOTE: Members */
@@ -372,7 +470,7 @@ html, body {
 }
 
 #member-container h1:hover {
-	color: var(--text-color-3);
+	color: var(--hover-color-1);
 	cursor: pointer;
 }
 
@@ -454,7 +552,7 @@ html, body {
 
 #chat-bar-btn:hover {
 	border: var(--border-3);
-	color: var(--text-color-3);
+	color: var(--hover-color-1);
 }
 
 /*———————————————————————————————————————*/
@@ -463,6 +561,28 @@ html, body {
 
 .hide {
 	display: none;
+}
+
+.pages {
+	position: absolute;
+	width: 75%;
+	height: 50em;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+}
+
+.titles {
+	font-family: var(--font-family-1);
+	color: var(--text-color-1);
+	text-align: center;
+}
+
+.cards {
+	position: absolute;
+	width: 20em;
+	height: 25em;
+	border: var(--border-2);
 }
 
 .btns {
@@ -474,6 +594,11 @@ html, body {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 600;
+}
+
+.active-btn-1 {
+	color: 1;
+	border: 1;
 }
 
 .green {
@@ -514,17 +639,28 @@ html, body {
 }
 
 .nav-btns:hover {
-	border-bottom: var(--border-3);
-	color: var(--text-color-3);
+	border-bottom: var(--hover-border-color-1);
+	color: var(--hover-color-1);
 }
 
+.nav-btns:active {
+	background-color: var(--active-text-color-1);
+	color: var(--active-background-color-1);
+}
 
 /*———————————————————————————————————————*/
 /* SECTION Keyframes                     */
 /*———————————————————————————————————————*/
 
+@keyframes appear {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
 
-
+@keyframes top-to-bottom {
+	0% {top: -10em}
+	100% {top: 1.5em}
+}
 
 /*———————————————————————————————————————*/
 /* SECTION Media Queries                 */
