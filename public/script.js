@@ -10,7 +10,7 @@ let profileUsername         = document.getElementById('profile-username');
 
 const titleContainer        = document.getElementById('title');
 const topNav                = document.getElementById('top-nav');
-const loginRegisterBtn      = document.getElementById('login-register-btns');
+const loginRegisterBtn      = document.getElementById('log-reg-btn');
 const loginRegisterPage     = document.getElementById('login-register-page');
 const registerPage          = document.getElementById('register-page');
 const btnBox                = document.getElementById('btn-box');
@@ -42,12 +42,10 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 2: // Register
-			loginRegisterBtn.classList.add('hide');
 			btnBox.classList.add('hide');
 			loginRegisterPage.classList.remove('hide');
 			registerPage.classList.remove('hide');
 			usernameInput.classList.remove('hide');
-			console.log("test")
 		break;
 
 		case 3: // Register Account
@@ -55,8 +53,7 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 4: // Back
-			loginBtn.classList.remove('hide');
-			registerBtn.classList.remove('hide');
+			btnBox.classList.remove('hide');
 			registerPage.classList.add('hide');
 			usernameInput.classList.add('hide');
 		break;
@@ -92,12 +89,15 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		case 11: // TODO: Send Message
 			if (chatBarInput.value != '') { // TODO: Also have submitting via enter key. e.keycode = 13
 				socket.emit('send-chat-message', chatBarInput.value);
-				chatBarInput.value = '';
+				chatBarInput.value = null;
 			}
 		break;
 
-		case 12: // Login/Register
+		case 12:
 			loginRegisterPage.classList.remove('hide');
+			btnBox.classList.remove('hide');
+			registerPage.classList.add('hide');
+			usernameInput.classList.add('hide');
 		break;
 	}
 }
@@ -108,7 +108,7 @@ function validatePassword (registerAccount) {
 	let lowerCase     = /[a-z]/g;
 	let symbols       = /\W|_/g;
 	let numbers       = /[0-9]/g;
-	let emailMatch    = 0
+	let emailMatch    = 0;
 	let passwordMatch = 0;
 
 	const securitySpan  = document.getElementById('security-span');
@@ -213,30 +213,6 @@ function validatePassword (registerAccount) {
 	}
 }
 
-/* TODO: Enters the message with enter key.
-function enterKey(e) {
-	if (e.keyCode === 13 && chatBarInput.value) {
-		const message = chatBarInput.value;
-		appendMessage(message);
-		socket.emit('send-chat-message', message);
-		chatBarInput.value = '';
-		console.log("ENTER KEY!");
-	}
-}
-*/
-
-/* TODO: Enter key pressed for logging in.
-loginAccount.addEventListener('submit', e => {
-	if (e && emailInput.value && passwordInput.value) {}
-});
-*/
-
-/* TODO: Enter key pressed for register account.
-createAccount.addEventListener('submit', e => {
-	if (e && emailInput.value && usernameInput	&& passwordInput) {}
-});
-*/
-
 // TODO: Change this into a switch case function, to receive different types of message appends.
 // Appends entered messages to the chat.
 function appendMessage(username, message) {
@@ -247,14 +223,13 @@ function appendMessage(username, message) {
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
 
-	if (message == ' has connected.') {
-		messageElement.innerText = `${username} ${message}`
-		chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+	if (message == false) {
+		messageElement.innerText = `${username} has connected.`
 	} else {
 		messageElement.innerText = `${username}: ${message}`;
-		chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 	}
 
+	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 }
 
 // TODO
@@ -277,16 +252,15 @@ socket.on("connect_error", (err) => {
 
 socket.on('login-successful', (username) => {
 	loginRegisterPage.classList.add('hide');
-	chatApp.classList.remove('hide');
 	incorrectText.classList.add('hide');
 	topNav.classList.add('hide');
 	titleContainer.classList.add('hide');
-	loginRegisterBtn.classList.add('hide');
+	loginRegisterPage.classList.add('hide');
+	chatApp.classList.remove('hide');
 
-	// titleContainer.style = "left: 2em; text-align: left;"
 	profileUsername.innerText = username;
 	appendUsername(username);
-	appendMessage(username, ' has connected.');
+	appendMessage(username, false);
 });
 
 socket.on('login-unsuccessful', () => {
@@ -300,7 +274,7 @@ socket.on('chat-message', (username, message) => {
 
 // Displays who leaves and removes their name from the user-list.
 socket.on('user-disconnected', username => {
-	appendMessage(username + ' has disconnected.');
+	// appendMessage(username + ' has disconnected.');
 	document.getElementById('user-list-' + username).remove();
 });
 
