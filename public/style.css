@@ -132,11 +132,12 @@ html, body {
 
 /* SECTION: Home Page */
 #home-page {
-	height: 80em;
-	top: 46em;
+	height: 100em;
+	width: 100em;
+	top: 58em;
 	/*border-top: var(--border-2);*/
 	border-radius: 50%;
-	box-shadow: 0px 25px 25px rgba(255, 255, 255, 0.25);
+	box-shadow: 0px -15px 25px rgba(255, 255, 255, 0.25);
 }
 
 /* SECTION: About Page */
