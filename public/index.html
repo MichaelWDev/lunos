@@ -6,6 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Lunos</title>
 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" href="images/ringed-planet.png" />
+
 	<script defer src="/socket.io/socket.io.js"></script>
 	<script defer src="script.js"></script>
 	<link defer rel="stylesheet" href="style.css">
@@ -28,6 +33,7 @@
 	</div>
 
 	<div id="home-page" class="pages">
+		<div id="home-page-background"></div>
 		<div id="home-title" class="titles">
 			<h1>Welcome to Lunos</h1>
 			<h3>A universal communication platform for like-minds.</h3>
@@ -42,16 +48,31 @@
 				<div id="encryption-about-card" class="cards">
 					<h1>Full Encryption</h1>
 					<p>contact info here</p>
+
+					<div class="card-images">
+						<img class="white-image" src="images/computing.png">
+						<img class="black-image" src="images/computing-black.png">	
+					</div>
 				</div>
 
 				<div id="privacy-about-card" class="cards">
 					<h1>Full Privacy</h1>
 					<p>contact info here</p>
+
+					<div class="card-images">
+						<img class="white-image" src="images/locked-door.png">
+						<img class="black-image" src="images/locked-door-black.png">	
+					</div>
 				</div>
 
 				<div id="safety-about-card" class="cards">
 					<h1>Full Safety</h1>
 					<p>contact info here</p>
+
+					<div class="card-images">
+						<img class="white-image" src="images/shield-reflect.png">
+						<img class="black-image" src="images/shield-reflect-black.png">	
+					</div>
 				</div>
 				<h3>Your information will <span class="green">never</span> be sold, used, or leaked.</h3>
 			</div>

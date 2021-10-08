@@ -8,6 +8,8 @@
 /* SECTION Variables                     */
 /*———————————————————————————————————————*/
 
+/* NOTE: Don't forget to uncomment the animations when the website is released. */
+
 :root {
 	/* NOTE: Font Families */
 	--font-family-1: 'Poiret One', cursive;;
@@ -21,7 +23,9 @@
 	--text-span-color-1: rgb(0, 170, 0);
 	--text-span-color-2: rgb(170, 0, 0);
 
-	--hover-color-1: rgb(0, 170, 0);
+	--hover-text-color-1: rgb(0, 170, 0);
+	--hover-text-color-2: rgb(0, 0, 0);
+	--hover-background-color-1: rgb(0, 170, 0);
 	--hover-border-color-1: 0.1em solid rgb(0, 170, 0);
 	
 	--active-text-color-1: rgb(0, 170, 0);
@@ -78,7 +82,7 @@ html, body {
 
 #title {
 	position: absolute;
-	left: 15em;
+	left: 1em;
 	width: 15em;
 	height: 5em;
 	top: 1em;
@@ -131,13 +135,23 @@ html, body {
 }
 
 /* SECTION: Home Page */
-#home-page {
+#home-page-background {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 	height: 100em;
 	width: 100em;
-	top: 58em;
 	/*border-top: var(--border-2);*/
 	border-radius: 50%;
 	box-shadow: 0px -15px 25px rgba(255, 255, 255, 0.25);
+	animation: 8s fadeIn;
+}
+
+#home-title {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 2em;
 }
 
 /* SECTION: About Page */
@@ -211,7 +225,7 @@ html, body {
 
 #log-btn:hover, #reg-btn:hover {
 	border-bottom: var(--hover-border-color-1);
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 }
 
 #log-btn:active, #reg-btn:active {
@@ -313,7 +327,7 @@ html, body {
 }
 
 #account-register-btn:hover {
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 	border: var(--hover-border-color-1);
 }
 
@@ -377,7 +391,7 @@ html, body {
 }
 
 #channel-container h1:hover {
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 	cursor: pointer;
 }
 
@@ -392,7 +406,7 @@ html, body {
 }
 
 #create-channel-btn:hover {
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 	border-bottom: var(--hover-border-color-1);
 	cursor: pointer;
 }
@@ -446,7 +460,7 @@ html, body {
 }
 
 #profile-username:hover {
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 }
 
 /* NOTE: Members */
@@ -469,7 +483,7 @@ html, body {
 }
 
 #member-container h1:hover {
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 	cursor: pointer;
 }
 
@@ -551,7 +565,7 @@ html, body {
 
 #chat-bar-btn:hover {
 	border: var(--border-3);
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 }
 
 /*———————————————————————————————————————*/
@@ -581,7 +595,47 @@ html, body {
 	position: absolute;
 	width: 20em;
 	height: 25em;
-	border: var(--border-2);
+	border-bottom: var(--border-2);
+	transition: 0.25s;
+}
+
+.cards:hover {
+	background-color: var(--hover-background-color-1);
+	color: var(--hover-text-color-2);
+	border: none;
+}
+
+.cards:hover h1 {
+	color: black;
+}
+
+.card-images {
+	position: relative;
+	width: 12em;
+	height: 12em;
+	top: 2em;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.white-image {
+	position: absolute;
+	left: 0;
+	width: 12em;
+	height: 12em;
+	z-index: 1;
+	transition: 0.25s;
+}
+
+.black-image {
+	position: absolute;
+	left: 0;
+	width: 12em;
+	height: 12em;
+}
+
+.cards:hover .white-image {
+	opacity: 0;
 }
 
 .btns {
@@ -639,7 +693,7 @@ html, body {
 
 .nav-btns:hover {
 	border-bottom: var(--hover-border-color-1);
-	color: var(--hover-color-1);
+	color: var(--hover-text-color-1);
 }
 
 .nav-btns:active {
