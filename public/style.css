@@ -139,21 +139,21 @@ html, body {
 #home-page-background {
 	position: absolute;
 	left: 50%;
-	top: 20%;
+	top: 1em;
 	transform: translateX(-50%);
 	height: 100em;
 	width: 100em;
 	/*border-top: var(--border-2);*/
 	border-radius: 50%;
 	box-shadow: 0px -15px 25px rgba(255, 255, 255, 0.25);
-	animation: 8s fadeIn;
+	/*animation: 8s fadeIn;*/
 }
 
 #home-title {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	top: 25%;
+	top: 2em;
 }
 
 /* SECTION: About Page */
@@ -694,6 +694,7 @@ html, body {
 	padding: 1em;
 	transition: 0.25s;
 	border-bottom: var(--border-5);
+	text-align: center;
 }
 
 .nav-btns:hover {
@@ -727,21 +728,52 @@ html, body {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+	#title {
+		top: -0.5em;
+		left: 0.5em;
+		width: 7em;
+		height: 4em;
+	}
 
-}
+	#title h1 {
+		top: 0;
+		left: 1.25em;
+		font-size: 1.5em;
+	}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+	#title img {
+		left: 0;
+		top: 1em;
+		width: 1.75em;
+		height: 1.75em;
+	}
 
-}
+	#log-reg-btn-container {
+		top: 0;
+		right: 0;
+		font-size: 0.75em;
+	}
+	
+	#top-nav {
+		width: 19.25em !important;
+		top: 5em;
+	}
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+	#home-title {
+		width: 100%;
+	}
 
-}
+	#home-page-background {
+		position: absolute;
+		top: 7em !important;
+		width: 50em;
+		height: 50em;
+	}
+	
+	#home-title {
+		top: 9em !important;
+	}
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
 	#encryption-about-card {
 		left: 0;
 	}
@@ -757,6 +789,131 @@ html, body {
 
 	#about-card-container h3 {
 		top: 22em;
+	}
+
+	.pages {
+		height: 45em;
+	}
+
+	.nav-btns {
+		width: 5em;
+	}
+
+	.cards {
+		width: 16em;
+		height: 24em;
+	}
+
+	.card-images-container {
+		position: relative;
+		width: 10em;
+		height: 10em;
+		top: 2em;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.card-image {
+		position: absolute;
+		left: 0;
+		width: 10em;
+		height: 10em;
+	}
+
+	#home-page-background {
+		top: 4em;
+	}
+	
+	#home-title {
+		top: 5em;
+	}
+
+	#encryption-about-card {
+		left: 0;
+	}
+	
+	#privacy-about-card {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	#safety-about-card {
+		right: 0;
+	}
+
+	#about-card-container h3 {
+		top: 22em;
+	}
+
+	.nav-btns {
+		height: 1em;
+	}
+
+	.cards {
+		width: 16em;
+		height: 24em;
+	}
+
+	.card-images-container {
+		position: relative;
+		width: 10em;
+		height: 10em;
+		top: 2em;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.card-image {
+		position: absolute;
+		left: 0;
+		width: 10em;
+		height: 10em;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+	#top-nav {
+		width: 15em;
+	}
+
+	#home-page-background {
+		top: 4em;
+	}
+	
+	#home-title {
+		top: 5em;
+	}
+
+	#encryption-about-card {
+		left: 0;
+	}
+	
+	#privacy-about-card {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	#safety-about-card {
+		right: 0;
+	}
+
+	#about-card-container h3 {
+		top: 22em;
+	}
+
+	.nav-btns {
+		height: 1em;
 	}
 
 	.cards {
