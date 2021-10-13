@@ -7,13 +7,13 @@
 	<title>Lunos</title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<link rel="shortcut icon" href="images/ringed-planet.png" />
 
 	<script defer src="/socket.io/socket.io.js"></script>
 	<script defer src="script.js"></script>
 	<link defer rel="stylesheet" href="style.css">
+	<link defer rel="stylesheet" href="mobilestyle.css">
 </head>
 <body>
 	<div id="title" onclick="button(13)">
@@ -41,7 +41,8 @@
 	</div>
 
 	<div id="about-page" class="pages hide">
-		<h3 id="about-title" class="titles">Our mission is to provide a <span class="green">safe</span> communication space.</h3>
+		<h3 id="about-title">Our mission is to provide a <span class="green">safe</span> communication space.</h3>
+		
 		<div id="about-card-container">
 			<div id="encryption-about-card" class="cards">
 				<h1 class="cards-title">Full Encryption</h1>
@@ -76,26 +77,23 @@
 		</div>
 	</div>
 
-	<!--TODO: Fix support title. The DIV is not closed correctly.-->
 	<div id="support-page" class="pages hide">
-		<div id="support-title" class="titles">
-			<h3><span class="green">Have a question?</span> Feel free to contact us any time!</h3>
-			<h3>We will do our best to reach your every concern.</h3>
-		</div>
+		<h3 class="titles"><span class="green">Have a question?</span> Feel free to contact us any time!</h3>
+		<h3 class="titles">We will do our best to reach your every concern.</h3>
 		
 		<div id="contact-card-container">
 			<div id="email-contact-card" class="cards">
-				<h1>Email</h1>
-				<a>info here</a>
+				<h1 class="cards-title">Email</h1>
+				<a href="mailto:help@lunos.chat">help@lunos.chat</a>
 			</div>
 
 			<div id="social-contact-card" class="cards">
-				<h1>Social Media</h1>
+				<h1 class="cards-title">Social Media</h1>
 				<a>info here</a>
 			</div>
 
 			<div id="phone-contact-card" class="cards">
-				<h1>Phone</h1>
+				<h1 class="cards-title">Phone</h1>
 				<a>info here</a>
 			</div>
 		</div>

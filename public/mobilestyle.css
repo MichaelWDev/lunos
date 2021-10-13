@@ -1,0 +1,295 @@
+/*———————————————————————————————————————*/
+/* SECTION Imports                       */
+/*———————————————————————————————————————*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+/*———————————————————————————————————————*/
+/* SECTION Variables                     */
+/*———————————————————————————————————————*/
+
+/* NOTE: Don't forget to uncomment the animations when the website is released. */
+
+:root {
+	/* NOTE: Font Families */
+	--font-family-1: 'Poiret One', cursive;;
+
+	/* NOTE: Text Colors */
+	--text-color-1: rgb(255, 255, 255);
+	--text-color-2: rgba(255, 255, 255, 0.5);
+	--text-color-3: rgb(0, 44, 82);
+	--text-color-4: rgb(0, 0, 0);
+
+	--text-span-color-1: rgb(0, 170, 0);
+	--text-span-color-2: rgb(170, 0, 0);
+
+	--hover-text-color-1: rgb(0, 170, 0);
+	--hover-text-color-2: rgb(0, 0, 0);
+	--hover-background-color-1: rgb(0, 170, 0);
+	--hover-border-color-1: 0.1em solid rgb(0, 170, 0);
+	
+	--active-text-color-1: rgb(0, 170, 0);
+	--active-background-color-1: rgb(0, 0, 0);
+
+	/* NOTE: Background Colors */
+	--background-color-1: rgb(0, 0, 0);
+	--background-color-2: rgba(0, 44, 82, 0.1);
+	--background-color-3: rgb(0, 44, 82);
+
+	/* NOTE: Borders */
+	--border-1: 0.25em solid rgb(0, 44, 82);
+	--border-2:  0.1em solid rgb(255, 255, 255);
+	--border-3:  0.1em solid rgb(0, 44, 82);
+	--border-4: 0.25em solid rgb(255, 255, 255);
+	--border-5:  0.1em solid rgb(0, 0, 0);
+}
+
+/*———————————————————————————————————————*/
+/* SECTION Media Queries                 */
+/*———————————————————————————————————————*/
+
+/* Extra small devices (phones, 600px and down) */
+@media screen and (max-width: 600px) {
+	html, body {
+		overflow-x: hidden;
+		overflow-y: scroll;
+		position: fixed;
+	}
+
+	#title {
+		top: -0.5em;
+		left: 0.5em;
+		width: 6em;
+		height: 3em;
+	}
+
+	#title h1 {
+		top: 0;
+		left: 1.25em;
+		font-size: 1.5em;
+	}
+
+	#title img {
+		left: 0;
+		top: 1em;
+		width: 1.75em;
+		height: 1.75em;
+	}
+
+	#log-reg-btn-container {
+		top: 0;
+		right: 1em;
+		font-size: 0.75em;
+	}
+	
+	#top-nav {
+		width: 19.25em;
+		height: auto;
+		top: 5em;
+	}
+
+	/* SECTION Home Page */
+	#home-page {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	#home-title {
+		width: 100%;
+	}
+
+	#home-page-background {
+		top: 8em;
+		width: 50em;
+		height: 50em;
+	}
+	
+	#home-title {
+		top: 9em;
+	}
+
+	/* SECTION About Page */
+	#about-page {
+		width: 80%;
+	}
+
+	#about-title {
+		top: 4em;
+	}
+
+	#about-card-container {
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+		top: 10em;
+		height: 85em;
+	}
+	
+	#privacy-about-card {
+		top: 25em;
+	}
+	
+	#safety-about-card {
+		top: 50em;
+	}
+
+	#about-card-container h3 {
+		top: 65em;
+		width: auto;
+	}
+
+	/* SECTION: Support Page */
+	#support-page h3 {
+		top: 4em;
+	}
+
+	#social-contact-card {
+		top: 25em;
+	}
+
+	#phone-contact-card {
+		top: 50em;
+	}
+
+	/* SECTION: 600px Classes */
+	.pages {
+		height: 45em;
+	}
+
+	.nav-btns {
+		width: 5em;
+		font-size: 1.25em;
+	}
+
+	.cards, #encryption-about-card, #email-contact-card {
+		left: 50%;
+		transform: translateX(-50%);
+		width: 15em;
+		height: 25em;
+		text-align: center;
+	}
+
+	.cards a {
+		color: var(--text-color-1);
+	}
+
+	.card-images-container {
+		width: 10em;
+		height: 10em;
+	}
+
+	.card-image {
+		width: 10em;
+		height: 10em;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/*
+/* Large devices (laptops/desktops, 992px and up)
+@media only screen and (max-width: 992px) {
+
+	#home-page-background {
+		top: 4em;
+	}
+	
+	#home-title {
+		top: 5em;
+	}
+
+	#encryption-about-card {
+		left: 0;
+	}
+	
+	#privacy-about-card {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	#safety-about-card {
+		right: 0;
+	}
+
+	#about-card-container h3 {
+		top: 22em;
+	}
+
+	.nav-btns {
+		height: 1em;
+	}
+
+	.cards {
+		width: 16em;
+		height: 24em;
+	}
+
+	.card-images-container {
+		position: relative;
+		width: 10em;
+		height: 10em;
+		top: 2em;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.card-image {
+		position: absolute;
+		left: 0;
+		width: 10em;
+		height: 10em;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up)
+@media only screen and (max-width: 1200px) {
+	#home-title {
+		top: 11em;
+	}
+
+	#home-page-background {
+		top: 10em;
+	}
+
+	#about-title {
+		top: 6em;
+	}
+
+	#about-card-container {
+		top: 10em;
+	}
+	
+	#encryption-about-card {
+		left: 0;
+	}
+	
+	#privacy-about-card {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	#safety-about-card {
+		right: 0;
+	}
+
+	#about-card-container h3 {
+		top: 21em;
+	}
+
+	.cards {
+		width: 16em;
+		height: 24em;
+	}
+
+	.card-image {
+		position: absolute;
+		left: 0;
+		width: 10em;
+		height: 10em;
+	}
+}
+*/
