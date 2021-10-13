@@ -89,7 +89,7 @@ html, body {
 	height: 5em;
 	top: 1em;
 	text-align: left;
-	/* animation: 3s fadeIn; */
+	animation: 3s fadeIn;
 	cursor: pointer;
 	border-bottom: var(--border-5);
 	transition: 0.25s;
@@ -132,7 +132,7 @@ html, body {
 	width: 30.5em;
 	height: 4em;
 	z-index: 1;
-	/* animation: 2s top-to-bottom; */
+	animation: 2s top-to-bottom;
 	user-select: none;
 }
 
@@ -147,7 +147,7 @@ html, body {
 	/*border-top: var(--border-2);*/
 	border-radius: 50%;
 	box-shadow: 0px -15px 25px rgba(255, 255, 255, 0.25);
-	/*animation: 8s fadeIn;*/
+	animation: 8s fadeIn;
 }
 
 #home-title {
@@ -155,6 +155,7 @@ html, body {
 	left: 50%;
 	transform: translateX(-50%);
 	top: 5em;
+	animation: 2s fadeIn;
 }
 
 /* SECTION: About Page */
@@ -226,7 +227,7 @@ html, body {
 	position: absolute;
 	right: 2em;
 	top: 1em;
-	/* animation: 4s fadeIn; */
+	animation: 4s fadeIn;
 	user-select: none;
 }
 
@@ -602,6 +603,7 @@ html, body {
 	transform: translate(-50%, -50%);
 	font-family: var(--font-family-1);
 	color: var(--text-color-1);
+	animation: 1s fadeIn;
 }
 
 .titles {
