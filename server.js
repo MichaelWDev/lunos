@@ -5,7 +5,7 @@
 const express = require('express');
 const app     = express();
 const server  = require('http').Server(app);
-const port    = 3000;
+const port    = 80;
 const io      = require('socket.io')(server);
 
 // NOTE: Password Encryption
