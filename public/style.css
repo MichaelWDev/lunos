@@ -30,6 +30,7 @@
 	
 	--active-text-color-1: rgb(0, 170, 0);
 	--active-background-color-1: rgb(0, 0, 0);
+	--active-border-color-1: 0.1em solid rgb(0, 170, 0);
 
 	/* NOTE: Background Colors */
 	--background-color-1: rgb(0, 0, 0);
@@ -83,25 +84,20 @@ html, body {
 /*———————————————————————————————————————*/
 
 #title {
-	position: absolute;
-	left: 1em;
-	width: 15em;
-	height: 5em;
-	top: 1em;
-	text-align: left;
-	animation: 3s fadeIn;
-	cursor: pointer;
+	position:      absolute;
+	left:          1em;
+	width:         15em;
+	height:        5em;
+	top:           1em;
+	text-align:    left;
+	animation:     3s fadeIn;
+	cursor:        pointer;
 	border-bottom: var(--border-5);
-	transition: 0.25s;
-}
-
-#title:hover {
-	border-bottom: var(--hover-border-color-1);
+	transition:    0.25s;
 }
 
 #title:active {
-	background-color: var(--active-text-color-1);
-	color: var(--active-background-color-1);
+	border-bottom: var(--active-border-color-1);
 }
 
 #title h1 {
@@ -188,16 +184,6 @@ html, body {
 	right: 5em;
 }
 
-#about-card-container h3 {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 22em;
-	top: 28em;
-	text-align: center;
-	padding: 1em;
-}
-
 /* SECTION: Support Page */
 #support-page h3 {
 	position: relative;
@@ -236,20 +222,9 @@ html, body {
 	font-size: 1.5em;
 	width: auto;
 	padding: 0.5em;
-	border: none;
 	transition: 0.25s;
-	border-bottom: var(--border-5);
 }
 
-#log-btn:hover, #reg-btn:hover {
-	border-bottom: var(--hover-border-color-1);
-	color: var(--hover-text-color-1);
-}
-
-#log-btn:active, #reg-btn:active {
-	background-color: var(--active-text-color-1);
-	color: var(--active-background-color-1);
-}
 
 /* NOTE: Login Page, Register Page */
 #login-page {
@@ -328,7 +303,7 @@ html, body {
 	width: 6em;
 	height: 2.5em;
 	font-size: 1.5em;
-	border: var(--border-2);
+	border: var(--border-5);
 	margin: 1em;
 }
 
@@ -387,6 +362,68 @@ html, body {
 #register-page img:hover {
 	border: var(--hover-border-color-1);
 }
+
+/* SECTION: Create/Join Server Page */
+#create-join-btn-container {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 10em;
+}
+
+#join-server-btn, #create-server-btn {
+	font-size: 1.5em;
+	margin: 1em;
+	padding-bottom: 0.5em;
+}
+
+#create-join-input-container {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 18em;
+	width: 24em;
+	height: 4.75em;
+}
+
+#join-server-input {
+	position: absolute;
+}
+
+#join-server-input, #create-server-input {
+	width: 15em;
+	height: 3em;
+	background: none;
+	border: none;
+	border-bottom: var(--border-2);
+	color: var(--text-color-1);
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	font-size: 1.5em;
+	padding-left: 1em;
+	outline: none;
+}
+
+#create-join-container {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 24em;
+	width: 15em;
+	height: 5em;
+}
+
+#join-btn, #create-btn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.75em;
+	width: 5em;
+	padding-bottom: 0.5em;
+	border-bottom: var(--border-5);
+}
+
 
 /* SECTION: Chat Page */
 
@@ -680,12 +717,8 @@ html, body {
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
 	font-weight: 600;
-}
-
-/* TODO: When Home/About/Support is clicked, it stays highlighted. */
-.active-btn-1 {
-	color: 1;
-	border: 1;
+	border: none;
+	border-bottom: var(--border-5);
 }
 
 .green {
@@ -719,22 +752,18 @@ html, body {
 .nav-btns {
 	width: 8em;
 	font-size: 1.25em;
-	border: none;
 	padding: 1em;
 	transition: 0.25s;
-	border-bottom: var(--border-5);
 	text-align: center;
 }
 
-.nav-btns:hover {
-	border-bottom: var(--hover-border-color-1);
+.btns:hover {
 	color: var(--hover-text-color-1);
 }
 
-.nav-btns:active {
-	background-color: var(--active-text-color-1);
-	color: var(--active-background-color-1);
-	border: none;
+.active-btn {
+	color: var(--active-text-color-1);
+	border-bottom: var(--active-border-color-1);
 }
 
 /*———————————————————————————————————————*/

@@ -6,18 +6,24 @@ const satelliteImg          = document.getElementById('satellite-img');
 const titleContainer        = document.getElementById('title');
 const topNav                = document.getElementById('top-nav');
 
-let emailInput              = document.getElementById('email-input');
-let usernameInput           = document.getElementById('username-input');
-let passwordInput           = document.getElementById('password-input');
 let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
+let createTitleH1           = document.getElementById('create-title-h1');
+let createTitleH2           = document.getElementById('create-title-h2');
 
 // Buttons
-const loginRegisterBtn      = document.getElementById('log-reg-btn');
-const btnBox                = document.getElementById('btn-box');
+const logBtn                = document.getElementById('log-btn');
+const regBtn                = document.getElementById('reg-btn');
+const homeBtn               = document.getElementById('home-btn');
+const aboutBtn              = document.getElementById('about-btn');
+const contactBtn            = document.getElementById('contact-btn');
 const loginBtn              = document.getElementById('login-btn');
 const registerBtn           = document.getElementById('register-btn');
 const accountRegisterBtn    = document.getElementById('account-register-btn');
+const joinServerBtn         = document.getElementById('join-server-btn');
+const createServerBtn       = document.getElementById('create-server-btn');
+const joinBtn               = document.getElementById('join-btn');
+const createBtn             = document.getElementById('create-btn');
 
 // Pages
 const homePage              = document.getElementById('home-page');
@@ -26,11 +32,19 @@ const supportPage           = document.getElementById('support-page');
 const loginRegisterPage     = document.getElementById('login-register-page');
 const registerPage          = document.getElementById('register-page');
 const chatApp               = document.getElementById('chat-app');
+const btnBox                = document.getElementById('btn-box');
 
-// Chat
+// Inputs
+let chatBarInput            = document.getElementById('chat-bar-input');
+let emailInput              = document.getElementById('email-input');
+let usernameInput           = document.getElementById('username-input');
+let passwordInput           = document.getElementById('password-input');
+let joinServerInput         = document.getElementById('join-server-input');
+let createServerInput       = document.getElementById('create-server-input');
+
+// Containers
 const incorrectText         = document.getElementById('incorrect-text');
 const chatContainer         = document.getElementById('chat-container');
-const chatBarInput          = document.getElementById('chat-bar-input');
 const channelList           = document.getElementById('channel-list');
 const userList              = document.getElementById('user-list');
 const sendChatForm          = document.getElementById('send-chat-form');
@@ -53,6 +67,14 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 2: // Register
+			// Active Class
+			logBtn.classList.remove('active-btn');
+			regBtn.classList.add('active-btn');
+			homeBtn.classList.remove('active-btn');
+			aboutBtn.classList.remove('active-btn');
+			contactBtn.classList.remove('active-btn');
+
+			// Hide Pages
 			homePage.classList.add('hide');
 			aboutPage.classList.add('hide');
 			supportPage.classList.add('hide');
@@ -108,6 +130,14 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 12: // log-btn
+			// Active Class
+			logBtn.classList.add('active-btn');
+			regBtn.classList.remove('active-btn');
+			homeBtn.classList.remove('active-btn');
+			aboutBtn.classList.remove('active-btn');
+			contactBtn.classList.remove('active-btn');
+
+			// Hide Pages
 			homePage.classList.add('hide');
 			aboutPage.classList.add('hide');
 			supportPage.classList.add('hide');
@@ -118,6 +148,14 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 13: // Nav: Home
+			// Active Class
+			logBtn.classList.remove('active-btn');
+			regBtn.classList.remove('active-btn');
+			homeBtn.classList.add('active-btn');
+			aboutBtn.classList.remove('active-btn');
+			contactBtn.classList.remove('active-btn');
+
+			// Hide Pages
 			homePage.classList.remove('hide');
 			aboutPage.classList.add('hide');
 			supportPage.classList.add('hide');
@@ -125,6 +163,14 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 14: // Nav: About
+			// Active Class
+			logBtn.classList.remove('active-btn');
+			regBtn.classList.remove('active-btn');
+			homeBtn.classList.remove('active-btn');
+			aboutBtn.classList.add('active-btn');
+			contactBtn.classList.remove('active-btn');
+
+			// Hide Pages
 			homePage.classList.add('hide');
 			aboutPage.classList.remove('hide');
 			supportPage.classList.add('hide');
@@ -132,10 +178,50 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 15: // Nav: Contact
+			// Active Class
+			logBtn.classList.remove('active-btn');
+			regBtn.classList.remove('active-btn');
+			homeBtn.classList.remove('active-btn');
+			aboutBtn.classList.remove('active-btn');
+			contactBtn.classList.add('active-btn');
+
+			// Hide Pages
 			homePage.classList.add('hide');
 			aboutPage.classList.add('hide');
 			supportPage.classList.remove('hide');
 			loginRegisterPage.classList.add('hide');
+		break;
+
+		case 16: // Join Server
+			// Active Class
+			joinServerBtn.classList.add('active-btn');
+			createServerBtn.classList.remove('active-btn');
+
+			// Hide
+			joinServerInput.classList.remove('hide');
+			createServerInput.classList.add('hide');
+			joinBtn.classList.remove('hide');
+			createBtn.classList.add('hide');		
+			
+			// Socket
+			joinCreateServer(1);
+			socket.emit('join-server', joinServerInput.value);
+		break;
+	
+		case 17: // Create Server
+			// Active Class
+			joinServerBtn.classList.remove('active-btn');
+			createServerBtn.classList.add('active-btn');
+
+			// Hide
+			joinServerInput.classList.add('hide');
+			createServerInput.classList.remove('hide');
+			joinBtn.classList.add('hide');
+			createBtn.classList.remove('hide');
+
+			// Socket
+			joinCreateServer(2);
+			socket.emit('create-server', createServerInput.value);
 		break;
 	}
 }
@@ -241,13 +327,19 @@ function validatePassword (registerAccount) {
 
 	// NOTE: Create Account!
 	if (passwordMatch == 5 && emailMatch == 1 && registerAccount) {
-		registerPage.classList.add('hide');
-		loginBtn.classList.remove('hide');
-		registerBtn.classList.remove('hide');
-		usernameInput.classList.add('hide');
-		chatApp.classList.remove('hide');
-
 		socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value);
+	}
+}
+
+function joinCreateServer(btn) {
+	switch(btn) {
+		case 1: // Join Server
+			
+		break;
+
+		case 2: // Create Server
+
+		break;
 	}
 }
 
@@ -289,21 +381,42 @@ socket.on("connect_error", (err) => {
 });
 
 socket.on('login-successful', (username) => {
+	logBtn.classList.add('hide');
+	regBtn.classList.add('hide');
 	loginRegisterPage.classList.add('hide');
 	incorrectText.classList.add('hide');
 	topNav.classList.add('hide');
 	titleContainer.classList.add('hide');
 	loginRegisterPage.classList.add('hide');
-	chatApp.classList.remove('hide');
+	chatApp.classList.add('hide');
+	createTitleH2.classList.add('hide');
 
-	profileUsername.innerText = username;
-	appendUsername(username);
-	appendMessage(username, false);
+	createTitleH1.innerText = `Welcome back, ${username}.`;
 });
 
 socket.on('login-unsuccessful', () => {
 	incorrectText.classList.remove('hide');
 });
+
+socket.on('account-successful', () => {
+	logBtn.classList.add('hide');
+	regBtn.classList.add('hide');
+	loginRegisterPage.classList.add('hide');
+	incorrectText.classList.add('hide');
+	topNav.classList.add('hide');
+	titleContainer.classList.add('hide');
+	loginRegisterPage.classList.add('hide');
+	chatApp.classList.add('hide');
+	createTitleH2.classList.add('hide');
+
+	createTitleH1.innerText = `Welcome to the universe of Lunos, ${username}.`;
+});
+
+/* TODO: When the user joins/creates a server.
+	profileUsername.innerText = username;
+	appendUsername(username);
+	appendMessage(username, false);
+*/
 
 // Adds the text to the chat container.
 socket.on('chat-message', (username, message) => {

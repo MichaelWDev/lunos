@@ -21,18 +21,18 @@
 		<img src="images/ringed-planet.png">
 	</div>
 
-	<div id="log-reg-btn-container">
+	<div id="log-reg-btn-container" class="hide">
 		<button id="log-btn" class="btns" onclick="button(12)">Login</button>
 		<button id="reg-btn" class="btns" onclick="button(2)">Register</button>
 	</div>
 
-	<div id="top-nav">
+	<div id="top-nav" class="hide">
 		<button id="home-btn" class="nav-btns btns" onclick="button(13)">Home</button>
 		<button id="about-btn" class="nav-btns btns" onclick="button(14)">About</button>
 		<button id="contact-btn" class="nav-btns btns" onclick="button(15)">Support</button>
 	</div>
 
-	<div id="home-page" class="pages">
+	<div id="home-page" class="pages hide">
 		<div id="home-page-background"></div>
 		<div id="home-title" class="titles">
 			<h1>Welcome to Lunos</h1>
@@ -45,9 +45,9 @@
 		
 		<div id="about-card-container">
 			<div id="encryption-about-card" class="cards">
-				<h1 class="cards-title">Full Encryption</h1>
-				<p>Advanced Encryption Standard (AES) is used to encrypt your data in our chatlogs.</p>
-
+				<h1 class="cards-title">Encryption</h1>
+				<p>Advanced Encryption Standard (AES) 256 is used to encrypt your data in our chatlogs.</p>
+				<p>AES 256 is used on a government level for security. So we thought: If governments can use it, why can't we?</p>
 				<div class="card-images-container">
 					<img class="white-image card-image" src="images/computing.png">
 					<img class="black-image card-image" src="images/computing-black.png">	
@@ -55,9 +55,9 @@
 			</div>
 
 			<div id="privacy-about-card" class="cards">
-				<h1 class="cards-title">Full Privacy</h1>
-				<p>info here</p>
-
+				<h1 class="cards-title">Privacy</h1>
+				<p>Most applications obtain your information from you and sell it. We will never be doing that.</p>
+				<p>The only thing we obtain and save from our users are bug reports.</p>
 				<div class="card-images-container">
 					<img class="white-image card-image" src="images/locked-door.png">
 					<img class="black-image card-image" src="images/locked-door-black.png">	
@@ -65,15 +65,14 @@
 			</div>
 
 			<div id="safety-about-card" class="cards">
-				<h1 class="cards-title">Full Safety</h1>
-				<p>info here</p>
-
+				<h1 class="cards-title">Safety</h1>
+				<p>Danger resides in many forms: People, links, malware, and more.</p>
+				<p>We are dedicated to scanning all forms of danger and preventing it from reaching you.</p>
 				<div class="card-images-container">
 					<img class="white-image card-image" src="images/shield-reflect.png">
 					<img class="black-image card-image" src="images/shield-reflect-black.png">	
 				</div>
 			</div>
-			<h3>Your information will <span class="green">never</span> be sold, used, or leaked.</h3>
 		</div>
 	</div>
 
@@ -124,6 +123,30 @@
 
 				<button id="account-register-btn" class="btns" type="button" onclick="button(3)">Create Account</button>	
 			</div>
+		</form>
+	</div>
+
+	<div id="create-join-server-page" class="pages">
+		<h1 id="create-title-h1" class="titles">Welcome. You now exist in the universe of <span class="green">Lunos</span>.</h1>
+		<h2 id="create-title-h2" class="titles">You can create or join a server below.</h2>
+
+		<div id="create-join-btn-container">
+			<button id="join-server-btn" class="btns" onclick="button(16)">Join Server</button>
+			<button id="create-server-btn" class="btns" onclick="button(17)">Create Server</button>	
+		</div>
+
+		<form>
+			<div id="create-join-input-container">
+				<input id="join-server-input" placeholder="Server Code" class="hide">
+				<input id="create-server-input" placeholder="Create Server" class="hide">
+			</div>
+
+			<div id="create-join-container">
+				<button id="join-btn" class="btns hide">Join</button>
+				<button id="create-btn" class="btns hide">Create</button>
+			</div>
+
+			<h2 id="incorrect-join-create-text" class="hide">Incorrect invite link.</h2>
 		</form>
 	</div>
 

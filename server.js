@@ -22,7 +22,7 @@ app.use(express.static('public'));
 
 // Starts the server.
 server.listen(port, function () {
-	console.log('Server is running on '+ port +' port');
+	console.log('Server is running on port ' + port);
 });
 
 // Server
@@ -83,6 +83,7 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Account successfully added.');
+							socket.emit('account-succesful');
 						}
 					});
 				} catch (err) {
@@ -90,6 +91,21 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
+	});
+
+	/* NOTE
+			How to generate a server code:
+				
+	*/
+
+	// Joins the user to the correct server they entered.
+	socket.on('join-server', async (serverCode) => {
+
+	});
+
+	// Creates a server for the user.
+	socket.on('join-server', async (serverName) => {
+
 	});
 
 	// Sends the message back to front with username and adds it to the log.
