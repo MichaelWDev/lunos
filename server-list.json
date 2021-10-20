@@ -1,0 +1,8 @@
+{
+	"serverName": {
+		"permissions": "public or private",
+		"password": "ABC123",
+		"inviteCodes": ["ABC123", "XYZ456", "WAS789"],
+		"bannedUsers": []
+	}
+}

@@ -94,17 +94,22 @@ io.on('connection', function(socket) {
 	});
 
 	/* NOTE
-			How to generate a server code:
-				
+			How to generate a server code: UUID
+				Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))
 	*/
 
 	// Joins the user to the correct server they entered.
-	socket.on('join-server', async (serverCode) => {
+	socket.on('join-server', (serverCode) => {
 
 	});
 
 	// Creates a server for the user.
-	socket.on('join-server', async (serverName) => {
+	socket.on('create-server', (serverName) => {
+
+	});
+
+	socket.on('create-server-invite', () => {
+		let inviteCode = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
 
 	});
 
