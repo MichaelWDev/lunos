@@ -31,7 +31,7 @@ const aboutPage             = document.getElementById('about-page');
 const supportPage           = document.getElementById('support-page');
 const loginRegisterPage     = document.getElementById('login-register-page');
 const registerPage          = document.getElementById('register-page');
-const chatApp               = document.getElementById('chat-app');
+const servers                = document.getElementsByClassName('servers');
 const btnBox                = document.getElementById('btn-box');
 
 // Inputs
@@ -202,10 +202,6 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 			createServerInput.classList.add('hide');
 			joinBtn.classList.remove('hide');
 			createBtn.classList.add('hide');		
-			
-			// Socket
-			joinCreateServer(1);
-			socket.emit('join-server', joinServerInput.value);
 		break;
 	
 		case 17: // Create Server
@@ -218,9 +214,13 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 			createServerInput.classList.remove('hide');
 			joinBtn.classList.add('hide');
 			createBtn.classList.remove('hide');
+		break;
 
-			// Socket
-			joinCreateServer(2);
+		case 18: // Join
+			socket.emit('join-server', joinServerInput.value);
+		break;
+
+		case 19: // Create
 			socket.emit('create-server', createServerInput.value);
 		break;
 	}
@@ -331,18 +331,6 @@ function validatePassword (registerAccount) {
 	}
 }
 
-function joinCreateServer(btn) {
-	switch(btn) {
-		case 1: // Join Server
-			
-		break;
-
-		case 2: // Create Server
-
-		break;
-	}
-}
-
 // TODO: Change this into a switch case function, to receive different types of message appends.
 // Appends entered messages to the chat.
 function appendMessage(username, message) {
@@ -370,6 +358,13 @@ function appendUsername(username) {
 	usernameElement.innerText = username;
 
 	userList.insertBefore(usernameElement, userList.firstChild);
+}
+
+function createServer(serverName) {
+	const serverDiv = document.createElement('div');
+	let serverTitle = document.createElement('h1');
+	serverDiv.classList.add('server-' + serverListNum);
+	serverTitle.classList.add('server-' + serverListNum + '-title');
 }
 
 //———————————————————————————————————————//
@@ -410,6 +405,15 @@ socket.on('account-successful', () => {
 	createTitleH2.classList.add('hide');
 
 	createTitleH1.innerText = `Welcome to the universe of Lunos, ${username}.`;
+});
+
+// Server Creation
+socket.on('server-creation-successful', (serverName) => {
+	createServer(serverName);
+});
+
+socket.on('server-code', (serverCode) => {
+
 });
 
 /* TODO: When the user joins/creates a server.

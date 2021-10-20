@@ -1,8 +1,17 @@
 {
 	"serverName": {
-		"permissions": "public or private",
-		"password": "ABC123",
+		"serverID": 12345678901,
+		"community": "true or false",
+		"permissions": "true or false",
+		"password": "ABC123 or false",
 		"inviteCodes": ["ABC123", "XYZ456", "WAS789"],
-		"bannedUsers": []
+		"members": [{
+			"userName1": "email",
+			"userName2": "email"
+		}],
+		"bannedUsers": [{
+			"userName1": "email",
+			"userName2": "email"
+		}]
 	}
 }
