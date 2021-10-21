@@ -126,7 +126,7 @@
 		</form>
 	</div>
 
-	<div id="create-join-server-page" class="pages">
+	<div id="create-join-server-page" class="pages hide">
 		<h1 id="create-title-h1" class="titles">Welcome. You now exist in the universe of <span class="green">Lunos</span>.</h1>
 		<h2 id="create-title-h2" class="titles">You can create or join a server below.</h2>
 
@@ -150,42 +150,75 @@
 		</form>
 	</div>
 
-	<div id="servers-list">
-		<div class="servers-1 servers hide">
-			<h1 class="server-1-title">Server Name Here</h1>
-			
-			<div id="channel-container">
-				<h1 onclick="button(6)">Channels</h1>
-	
-				<div id="channel-list">
-					<button id="create-channel-btn" class="btns" onclick="button()">Create Channel</button>
-				</div>
-			</div>
-	
-			<div id="profile-container">
-				<div id="profile">
-					<img id="profile-image" src="images/open-folder.png" onclick="9">
-					<h1 id="profile-username" onclick="button(8)">Username Here</h1>
-					<img id="profile-settings" src="" onclick="button(10)">
-				</div>
-			</div>
-	
-			<div id="member-container">
-				<h1 onclick="button(7)">Users</h1>
-	
-				<div id="user-list"></div>
-			</div>
-	
-			<div id="chat-container"></div>
-	
-			<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
-				<div id="chat-bar">
-					<img src="images/open-folder.svg" onclick="" id="add-file-icon">
-					<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
-					<button id="chat-bar-btn" class="btns" type="button" onclick="button(11)">Send</button>
-				</div>
-			</form>
+	<div id="user-home-page" class="pages">
+		<h1 id="user-home-title" class="titles">Welcome back, user.</h1>
+		
+		<div id="saved-servers-list">
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
+			<div class="server-1-icon servers-icon"></div>
 		</div>
+
+		<div id="friends-list">
+
+		</div>
+
+		<div id="direct-messages">
+
+		</div>
+	</div>
+
+	<div class="servers-1 servers hide">
+		<h1 class="server-1-title">Server Name Here</h1>
+		
+		<div id="channel-container">
+			<h1 onclick="button(6)">Channels</h1>
+
+			<div id="channel-list">
+				<button id="create-channel-btn" class="btns" onclick="button()">Create Channel</button>
+			</div>
+		</div>
+
+		<div id="profile-container">
+			<div id="profile">
+				<img id="profile-image" src="images/open-folder.png" onclick="9">
+				<h1 id="profile-username" onclick="button(8)">Username Here</h1>
+				<img id="profile-settings" src="" onclick="button(10)">
+			</div>
+		</div>
+
+		<div id="member-container">
+			<h1 onclick="button(7)">Users</h1>
+
+			<div id="user-list"></div>
+		</div>
+
+		<div id="chat-container"></div>
+
+		<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
+			<div id="chat-bar">
+				<img src="images/open-folder.svg" onclick="" id="add-file-icon">
+				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
+				<button id="chat-bar-btn" class="btns" type="button" onclick="button(11)">Send</button>
+			</div>
+		</form>
 	</div>
 	
 

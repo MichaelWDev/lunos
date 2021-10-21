@@ -30,6 +30,11 @@ io.on('connection', function(socket) {
 	let username;
 	console.log('user connected');
 
+	function uniqueID() {
+		let uniqueNumbers = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+		return uniqueNumbers = uniqueNumbers.toString();
+	}
+
 	// TODO
 	// NOTE: User Connection
 	socket.on('new-user', username => {
@@ -98,7 +103,7 @@ io.on('connection', function(socket) {
 		/* TODO: When a user joins, check:
 					server-list for correct invite code.
 					server-list permissions if server is/is not private.
-					server-list bannedUsers to see if they were banned.
+					server-list bannedUsers if they were banned.
 
 		*/
 	});
@@ -106,10 +111,7 @@ io.on('connection', function(socket) {
 	// Creates a server for the user.
 	socket.on('create-server', (serverName) => {
 		// NOTE: Servers can have the same name. Community servers can not.
-
-		let uniqueID = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
-		uniqueID = uniqueID.toString();
-		let serverID = uniqueID.substring(0, 11);
+		let serverID = uniqueID().substring(0, 11);
 		console.log(serverID);
 
 		fs.readFile('./server-list.json', 'utf-8', (err, jsonString) => {
@@ -145,9 +147,7 @@ io.on('connection', function(socket) {
 
 	// Creates the unique invite code for the user to distribute.
 	socket.on('create-server-invite', () => {
-		let uniqueID = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
-		uniqueID = uniqueID.toString();
-		let serverCode = uniqueID.substring(0, 6);
+		let serverCode = uniqueID().substring(0, 6);
 		console.log(serverCode);
 		socket.emit('server-code', serverCode);
 
@@ -169,6 +169,34 @@ io.on('connection', function(socket) {
 					});
 				} catch (err) {
 					console.log('[UUID] Error parsing JSON: ', err);
+				}
+			}
+		});
+	});
+
+	socket.on('saved-servers-list', (username) => {
+		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
+			if (err) {
+				console.log(err);
+			} else {
+				try {
+					const data = JSON.parse(jsonString);
+					let savedServers = data[username].savedServers;
+					let serverList = [];
+
+					for (let i = 0; i < savedServers.length; i++)
+
+
+					fs.writeFile('./server-list.json', JSON.stringify(data, null, 2), err => {
+						if (err) {
+							console.log(err)
+						} else {
+							console.log('Server invite successfully created.');
+							// socket.emit('invite-succesful');
+						}
+					});
+				} catch (err) {
+					console.log('[SAVED SERVERS] Error parsing JSON: ', err);
 				}
 			}
 		});

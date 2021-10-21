@@ -57,27 +57,25 @@ html, body {
 	overflow: hidden;
 }
 
-/*
-/* width
+/* width */
 ::-webkit-scrollbar {
-	width: 0.5em;
+	display: none;
 }
 
-/* Track
+/* Track */
 ::-webkit-scrollbar-track {
 	background: #ffffff;
 }
 
-/* Handle
+/* Handle */
 ::-webkit-scrollbar-thumb {
 	background: rgb(253, 0, 0);
 }
 
-/* Handle on hover
+/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: rgb(26, 161, 214);
 }
-*/
 
 /*———————————————————————————————————————*/
 /* SECTION Id's                          */
@@ -133,6 +131,10 @@ html, body {
 }
 
 /* SECTION: Home Page */
+#home-page {
+	top: 4.5em;
+}
+
 #home-page-background {
 	position: absolute;
 	left: 50%;
@@ -155,6 +157,10 @@ html, body {
 }
 
 /* SECTION: About Page */
+#about-page {
+	top: 6em;
+}
+
 #about-title {
 	position: absolute;
 	top: 1em;
@@ -172,7 +178,7 @@ html, body {
 }
 
 #encryption-about-card {
-	left: 5em;
+	left: 15em;
 }
 
 #privacy-about-card {
@@ -181,10 +187,14 @@ html, body {
 }
 
 #safety-about-card {
-	right: 5em;
+	right: 15em;
 }
 
 /* SECTION: Support Page */
+#support-page {
+	top: 6em;
+}
+
 #support-page h3 {
 	position: relative;
 	top: 1em;
@@ -196,7 +206,7 @@ html, body {
 }
 
 #email-contact-card {
-	left: 5em;
+	left: 15em;
 }
 
 #social-contact-card {
@@ -205,7 +215,7 @@ html, body {
 }
 
 #phone-contact-card {
-	right: 5em;
+	right: 15em;
 }
 
 /* SECTION: Login/Register Page */
@@ -215,6 +225,7 @@ html, body {
 	top: 1em;
 	animation: 4s fadeIn;
 	user-select: none;
+	z-index: 1;
 }
 
 #log-btn, #reg-btn {
@@ -230,8 +241,8 @@ html, body {
 #login-page {
 	position: absolute;
 	left: 50%;
-	top: 5em;
-	transform: translateX(-50%);
+	top: 50%;
+	transform: translate(-50%, -50%);
 	width: 25em;
 }
 
@@ -330,7 +341,8 @@ html, body {
 }
 
 #register-page {
-	z-index: -1;
+	top: 26em;
+	z-index: 1;
 }
 
 #register-page h3 {
@@ -424,6 +436,25 @@ html, body {
 	border-bottom: var(--border-5);
 }
 
+/* SECTION: User Home Page */
+#user-home-title {
+	position: relative;
+	top: 2em;
+	opacity: 0;
+	/*animation: 6s fadeInOut;*/
+	user-select: none;
+}
+
+#saved-servers-list {
+	position: absolute;
+	top: 6em;
+	left: 2em;
+	border: 0.1em solid green;
+	width: 4em;
+	height: 50em;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
 
 /* SECTION: Chat Page */
 
@@ -543,7 +574,6 @@ html, body {
 }
 
 /* NOTE: Chat Container */
-/* TODO: Text from bottom to top */
 #chat-container {
 	width: 70em;
 	height: 54em;
@@ -633,11 +663,8 @@ html, body {
 
 .pages {
 	position: absolute;
-	width: 80em;
-	height: 50em;
-	left: 50%;
-	top: 32em;
-	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
 	font-family: var(--font-family-1);
 	color: var(--text-color-1);
 	animation: 1s fadeIn;
@@ -653,7 +680,7 @@ html, body {
 	position: absolute;
 	width: 20em;
 	height: 30em;
-	border-bottom: var(--border-2);
+	border: var(--border-5);
 	transition: 0.25s;
 	text-align: center;
 }
@@ -674,13 +701,11 @@ html, body {
 }
 
 .cards:hover {
-	background-color: var(--hover-background-color-1);
-	color: var(--hover-text-color-2);
-	border: none;
+	border: var(--active-border-color-1);
 }
 
 .cards:hover .cards-title {
-	color: var(--hover-text-color-2) !important;
+	color: var(--hover-text-color-1);
 }
 
 .card-images-container {
@@ -766,6 +791,23 @@ html, body {
 	border-bottom: var(--active-border-color-1);
 }
 
+.servers-icon {
+	position: relative;
+	left: 50%;
+	top: 1em;
+	transform: translateX(-50%);
+	width: 3.5em;
+	height: 3.5em;
+	margin-bottom: 1em;
+	border-radius: 50%;
+	border: var(--border-2);
+	z-index: 1;
+}
+
+.servers-icon:hover {
+	background-color: var(--hover-background-color-1);
+}
+
 /*———————————————————————————————————————*/
 /* SECTION Keyframes                     */
 /*———————————————————————————————————————*/
@@ -773,6 +815,12 @@ html, body {
 @keyframes fadeIn {
 	0% {opacity: 0;}
 	100% {opacity: 1;}
+}
+
+@keyframes fadeInOut {
+	0% {opacity: 0;}
+	50% {opacity: 1;}
+	100% {opacity: 0;}
 }
 
 @keyframes top-to-bottom {

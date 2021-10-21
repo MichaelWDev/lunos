@@ -10,6 +10,7 @@ let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
 let createTitleH1           = document.getElementById('create-title-h1');
 let createTitleH2           = document.getElementById('create-title-h2');
+let userHomeTitle           = document.getElementById('user-home-title');
 
 // Buttons
 const logBtn                = document.getElementById('log-btn');
@@ -31,8 +32,9 @@ const aboutPage             = document.getElementById('about-page');
 const supportPage           = document.getElementById('support-page');
 const loginRegisterPage     = document.getElementById('login-register-page');
 const registerPage          = document.getElementById('register-page');
-const servers                = document.getElementsByClassName('servers');
+const servers               = document.getElementsByClassName('servers');
 const btnBox                = document.getElementById('btn-box');
+const createJoinServerPage  = document.getElementById('create-join-server-page');
 
 // Inputs
 let chatBarInput            = document.getElementById('chat-bar-input');
@@ -331,7 +333,6 @@ function validatePassword (registerAccount) {
 	}
 }
 
-// TODO: Change this into a switch case function, to receive different types of message appends.
 // Appends entered messages to the chat.
 function appendMessage(username, message) {
 	// TODO: When a message is sent it appends their profile picture to their text.
@@ -376,6 +377,7 @@ socket.on("connect_error", (err) => {
 });
 
 socket.on('login-successful', (username) => {
+	// Hide Pages
 	logBtn.classList.add('hide');
 	regBtn.classList.add('hide');
 	loginRegisterPage.classList.add('hide');
@@ -384,9 +386,15 @@ socket.on('login-successful', (username) => {
 	titleContainer.classList.add('hide');
 	loginRegisterPage.classList.add('hide');
 	chatApp.classList.add('hide');
-	createTitleH2.classList.add('hide');
+	createJoinServerPage.classList.add('hide');
+	userHomePage.classList.remove('hide');
 
-	createTitleH1.innerText = `Welcome back, ${username}.`;
+	// User Home Page
+	userHomeTitle.innerText = `Welcome back, ${username}.`;
+
+	// Sockets
+	socket.emit('saved-servers-list', username);
+	// NOTE: Sends username back to server to grab user information.
 });
 
 socket.on('login-unsuccessful', () => {

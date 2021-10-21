@@ -8,5 +8,20 @@
     "email": "admin2@admin2.com",
     "username": "admin2",
     "password": "$2b$10$a/sljopEHY62Jzc4K4VjFeszhEvMoq5Pr1hVKXoS9KMDmDwfXYsXe"
+  },
+  "NEW username@username.com": {
+    "email": "username@username.com",
+    "username": "username",
+    "password": "ABC123",
+    "savedServers": [{
+			"serverName1": "uniqueServerID1",
+			"serverName2": "uniqueServerID2",
+      "serverName3": "uniqueServerID3"
+		}],
+    "serversBannedFrom": [{
+      "serverName1": "uniqueServerID1",
+			"serverName2": "uniqueServerID2",
+      "serverName3": "uniqueServerID3"
+    }]
   }
 }
