@@ -192,7 +192,7 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Server invite successfully created.');
-							// socket.emit('invite-succesful');
+							socket.emit('saved-servers', testArray);
 						}
 					});
 				} catch (err) {

@@ -30,6 +30,7 @@
 	
 	--active-text-color-1: rgb(0, 170, 0);
 	--active-background-color-1: rgb(0, 0, 0);
+	--active-background-color-2: rgb(0, 170, 0);
 	--active-border-color-1: 0.1em solid rgb(0, 170, 0);
 
 	/* NOTE: Background Colors */
@@ -449,16 +450,17 @@ html, body {
 	position: absolute;
 	top: 6em;
 	left: 2em;
-	border: 0.1em solid green;
+	border-top: var(--border-4);
+	border-bottom: var(--border-4);
+	border-radius: .5em;
 	width: 4em;
-	height: 50em;
+	height: auto;
+	max-height: 50em;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 
 /* SECTION: Chat Page */
-
-/* NOTE: Channels */
 #channel-container {
 	width: 17em;
 	height: 48.5em;
@@ -794,7 +796,7 @@ html, body {
 .servers-icon {
 	position: relative;
 	left: 50%;
-	top: 1em;
+	top: 0.5em;
 	transform: translateX(-50%);
 	width: 3.5em;
 	height: 3.5em;
@@ -806,6 +808,10 @@ html, body {
 
 .servers-icon:hover {
 	background-color: var(--hover-background-color-1);
+}
+
+.active-server {
+	background-color: var(--active-background-color-2);
 }
 
 /*———————————————————————————————————————*/

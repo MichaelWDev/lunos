@@ -2,9 +2,11 @@
 // SECTION Global Variables              //
 //———————————————————————————————————————//
 
+// Other Elements
 const satelliteImg          = document.getElementById('satellite-img');
 const titleContainer        = document.getElementById('title');
 const topNav                = document.getElementById('top-nav');
+const savedServersList      = document.getElementById('saved-servers-list');
 
 let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
@@ -225,6 +227,10 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		case 19: // Create
 			socket.emit('create-server', createServerInput.value);
 		break;
+
+		case 20: // Server Icon
+			let serverIcon = document.getElementsByClassName('servers-icon');
+		break;
 	}
 }
 
@@ -351,8 +357,7 @@ function appendMessage(username, message) {
 	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 }
 
-// TODO
-// Assigns all usernames to the right.
+// TODO: Assigns all usernames to the right.
 function appendUsername(username) {
 	const usernameElement = document.createElement('p');
 	usernameElement.classList.add('text');
@@ -361,21 +366,39 @@ function appendUsername(username) {
 	userList.insertBefore(usernameElement, userList.firstChild);
 }
 
-function createServer(serverName) {
-	const serverDiv = document.createElement('div');
-	let serverTitle = document.createElement('h1');
-	serverDiv.classList.add('server-' + serverListNum);
-	serverTitle.classList.add('server-' + serverListNum + '-title');
+function createServerList(serverListArray) {
+	for (let i = 0; i < serverListArray.length; i++) {
+		let div = document.createElement('div');
+		div.classList.add('server-' + i + "-icon"); // Numbers each class.
+		div.classList.add('servers-icon'); // Adds class for every one.
+		div.setAttribute('onclick', openServer(i));
+
+		savedServersList.appendChild(div);
+	}
+}
+
+// Opens correct chat server that user clicks for.
+function openServer(server) {
+	let serverDiv = document.getElementsByClassName('servers-' + server); // Every div has this class.
+	let serverIcon = document.getElementsByClassName('server-' + server + '-icon'); // Specific class for each server
+	let previousServerIcon = document.getElementsByClassName('servers-icon');
+	let previousServers = document.getElementsByClassName('servers');
+	previousServerIcon.classList.remove('active-server'); // Removes active class from icon.
+	previousServers.classList.add('hide'); // Hides currently opened chat server.
+	serverIcon.classList.add('active-server'); // Adds active class to icon.
+	serverDiv.classList.remove('hide'); // Shows newly opened chat server.
 }
 
 //———————————————————————————————————————//
 // SECTION Sockets                       //
 //———————————————————————————————————————//
 
+// Faulty Connection
 socket.on("connect_error", (err) => {
 	console.log(`connect_error due to ${err.message}`);
 });
 
+// TODO: Login Successful
 socket.on('login-successful', (username) => {
 	// Hide Pages
 	logBtn.classList.add('hide');
@@ -397,10 +420,12 @@ socket.on('login-successful', (username) => {
 	// NOTE: Sends username back to server to grab user information.
 });
 
+// TODO: Login Unsuccessful
 socket.on('login-unsuccessful', () => {
 	incorrectText.classList.remove('hide');
 });
 
+// TODO: Account Creation Unsuccessful
 socket.on('account-successful', () => {
 	logBtn.classList.add('hide');
 	regBtn.classList.add('hide');
@@ -415,13 +440,19 @@ socket.on('account-successful', () => {
 	createTitleH1.innerText = `Welcome to the universe of Lunos, ${username}.`;
 });
 
-// Server Creation
+// TODO: Server Creation
 socket.on('server-creation-successful', (serverName) => {
-	createServer(serverName);
+	// createServerList(serverName);
 });
 
+// TODO: Generate Server Code
 socket.on('server-code', (serverCode) => {
 
+});
+
+// TODO: Users Saved Server List
+socket.on('saved-servers', (serverListArray) => {
+	createServerList(serverListArray);
 });
 
 /* TODO: When the user joins/creates a server.
@@ -430,18 +461,18 @@ socket.on('server-code', (serverCode) => {
 	appendMessage(username, false);
 */
 
-// Adds the text to the chat container.
+// TODO: Adds the text to the chat container.
 socket.on('chat-message', (username, message) => {
 	appendMessage(username, message);
 });
 
-// Displays who leaves and removes their name from the user-list.
+// TODO: Displays who leaves and removes their name from the user-list.
 socket.on('user-disconnected', username => {
 	// appendMessage(username + ' has disconnected.');
 	document.getElementById('user-list-' + username).remove();
 });
 
-// Adds whoever joins to the user-list.
+// TODO: Adds whoever joins to the user-list.
 socket.on('user-list', users => {
 	appendUsername(users);
 });
