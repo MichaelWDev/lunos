@@ -407,24 +407,24 @@ function openServer(server) {
 // TODO: Filtering Friends
 function filterFriends() {
 	let search          = document.getElementById('friends-search').value.toUpperCase();
+	let friend          = document.getElementById('friends-list-grid').getElementsByTagName('H3');
 	let friendsListGrid = document.getElementById("friends-list-grid").innerText;
 	friendsListGrid     = friendsListGrid.toString().toUpperCase();
 	friendsListGrid     = friendsListGrid.split(/\r?\n/);
 	
 	// Loop through all list items, and hide those who don't match the search query
-	for (let i = 0; i < friendsListGrid.length; i++) {
-		let gridElem = document.getElementById('friends-list-grid');
-		let friend = document.getElementsByClassName('friends');
-		let indexGrid = friendsListGrid[i];
-		let result = friendsListGrid[i].localeCompare(search);
+	for (let i = 0; i < friend.length; i++) {
+		console.log("TEST: \n", friend);
+		let result = friend.toString()[i].localeCompare(search);
 		console.log(result)
+
 		if (result == 0) {
 			console.log("Correct name")
-			friend[indexGrid].classList.remove('hide');
+			friend[i].classList.remove('hide');
 			break;
 		} else {
 			console.log("Incorrect name")
-			friend[indexGrid].classList.add('hide');
+			friend.classList.add('hide');
 		}
 	}
 }
