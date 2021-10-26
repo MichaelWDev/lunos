@@ -157,10 +157,13 @@
 			<div class="server-1-icon servers-icon"></div>
 		</div>
 
-		<button id="friends-list-btn" class="btns" onclick="button(21)">Friends List</button>
+		<div id="friends-direct-btn-container">
+			<button id="friends-list-btn" class="btns" onclick="button(21)">Friends List</button>
+			<button id="messages-btn" class="btns" onclick="button(23)">Messages</button>
+		</div>
 
-		<div id="friends-list" class="">
-			<input id="friends-search" placeholder="Friends Name" onkeyup="filterFriends()"></input>
+		<div id="friends-list" class="hide">
+			<input id="friends-search" placeholder="Friends Name" onkeyup="filterFriends(1)"></input>
 
 			<div id="friends-list-grid">
 				<h3 class="friends-1 friends">James</h3>
@@ -172,8 +175,17 @@
 			</div>
 		</div>
 
-		<div id="direct-messages">
+		<div id="direct-messages" class="hide">
+			<input id="direct-messages-input" placeholder="Username" onkeyup="filterFriends(2)">
 
+			<div id="message-friends-list-grid">
+				<h3 class="friends-1 friends">James</h3>
+				<h3 class="friends-2 friends">Adam</h3>
+				<h3 class="friends-3 friends">Scott</h3>
+				<h3 class="friends-4 friends">Michael</h3>
+				<h3 class="friends-5 friends">Jimmy</h3>
+				<h3 class="friends-6 friends">Darlene</h3>
+			</div>
 		</div>
 	</div>
 

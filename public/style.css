@@ -460,11 +460,20 @@ html, body {
 	overflow-y: scroll;
 }
 
-#friends-list-btn {
-	position: relative;
-	left: 4em;
-	top: 1em;
+#friends-direct-btn-container {
+	position: absolute;
+	width: 10em;
+	height: 5em;
+	left: 6em;
+	top: 6em;
+}
+
+#friends-list-btn, #messages-btn {
 	font-size: 1.75em;
+}
+
+#direct-messages-btn {
+	position: relative;
 }
 
 #friends-search {
@@ -485,16 +494,41 @@ html, body {
 	width: 50em;
 	height: 46em;
 	left: 50%;
-	top: 9em;
+	top: 10em;
 	transform: translateX(-50%);
 	overflow-y: scroll;
 }
 
 #friends-list-grid {
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto;
 	position: relative;
 	top: 3em;
+	width: 100%;
+	height: auto;
+}
+
+#direct-messages-input {
+	background: none;
+	border: none;
+	color: var(--text-color-1);
+	font-size: 1.5em;
+}
+
+#direct-messages {
+	position: absolute;
+	left: 15em;
+	top: 9em;
+	width: 15em;
+	height: 15em;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+#message-friends-list-grid {
+	display: grid;
+	grid-template-columns: auto;
+	position: relative;
 	width: 100%;
 	height: auto;
 }
@@ -856,12 +890,13 @@ html, body {
 }
 
 .friends {
-	width: 12em;
+	width: 100%;
 	height: 2em;
 	border-bottom: var(--border-2);
 	margin: 1em;
-	text-align: center;
+	text-align: left;
 	overflow-x: hidden;
+	text-indent: 1em;
 }
 
 /*———————————————————————————————————————*/

@@ -54,9 +54,12 @@ const channelList           = document.getElementById('channel-list');
 const userList              = document.getElementById('user-list');
 const sendChatForm          = document.getElementById('send-chat-form');
 const friendsList           = document.getElementById('friends-list');
+const directMessages        = document.getElementById('direct-messages');
 
+// Regex
 const emailRegex 			= /^\S+@\S+\.\S+$/;
 
+// Socket.io
 const socket = io();
 
 //———————————————————————————————————————//
@@ -230,7 +233,7 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 			socket.emit('create-server', createServerInput.value);
 		break;
 
-		case 20: // Server Icon
+		case 20: // TODO: Server Icon
 			// let serverIcon = document.getElementsByClassName('servers-icon');
 		break;
 
@@ -242,8 +245,16 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 			}
 		break;
 
-		case 22: // Friend
+		case 22: // TODO: Friend
 
+		break;
+
+		case 23: // TODO: Messages
+			if (directMessages.classList == 'hide') {
+				directMessages.classList.remove('hide');
+			} else {
+				directMessages.classList.add('hide');
+			}
 		break;
 	}
 }
