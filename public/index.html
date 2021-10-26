@@ -157,8 +157,19 @@
 			<div class="server-1-icon servers-icon"></div>
 		</div>
 
-		<div id="saved-friends-list" onclick="openFriendsList()">
-			<div id="friends-list"></div>
+		<button id="friends-list-btn" class="btns" onclick="button(21)">Friends List</button>
+
+		<div id="friends-list" class="">
+			<input id="friends-search" placeholder="Friends Name" onkeyup="filterFriends()"></input>
+
+			<div id="friends-list-grid">
+				<h3 class="friends-1 friends">James</h3>
+				<h3 class="friends-2 friends">Adam</h3>
+				<h3 class="friends-3 friends">Scott</h3>
+				<h3 class="friends-4 friends">Michael</h3>
+				<h3 class="friends-5 friends">Jimmy</h3>
+				<h3 class="friends-6 friends">Darlene</h3>
+			</div>
 		</div>
 
 		<div id="direct-messages">
@@ -179,7 +190,7 @@
 
 		<div id="profile-container">
 			<div id="profile">
-				<img id="profile-image" src="images/open-folder.png" onclick="9">
+				<img id="profile-image" src="" onclick="button(9)">
 				<h1 id="profile-username" onclick="button(8)">Username Here</h1>
 				<img id="profile-settings" src="" onclick="button(10)">
 			</div>
@@ -195,7 +206,7 @@
 
 		<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
 			<div id="chat-bar">
-				<img src="images/open-folder.svg" onclick="" id="add-file-icon">
+				<img src="" onclick="" id="add-file-icon">
 				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
 				<button id="chat-bar-btn" class="btns" type="button" onclick="button(11)">Send</button>
 			</div>

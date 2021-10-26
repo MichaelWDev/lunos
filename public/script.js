@@ -7,6 +7,7 @@ const satelliteImg          = document.getElementById('satellite-img');
 const titleContainer        = document.getElementById('title');
 const topNav                = document.getElementById('top-nav');
 const savedServersList      = document.getElementById('saved-servers-list');
+const friends               = document.getElementsByClassName('friends');
 
 let profileImage            = document.getElementById('profile-image');
 let profileUsername         = document.getElementById('profile-username');
@@ -52,6 +53,7 @@ const chatContainer         = document.getElementById('chat-container');
 const channelList           = document.getElementById('channel-list');
 const userList              = document.getElementById('user-list');
 const sendChatForm          = document.getElementById('send-chat-form');
+const friendsList           = document.getElementById('friends-list');
 
 const emailRegex 			= /^\S+@\S+\.\S+$/;
 
@@ -229,7 +231,19 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		break;
 
 		case 20: // Server Icon
-			let serverIcon = document.getElementsByClassName('servers-icon');
+			// let serverIcon = document.getElementsByClassName('servers-icon');
+		break;
+
+		case 21: // Friends List
+			if (friendsList.classList == 'hide') {
+				friendsList.classList.remove('hide');
+			} else {
+				friendsList.classList.add('hide');
+			}
+		break;
+
+		case 22: // Friend
+
 		break;
 	}
 }
@@ -366,6 +380,7 @@ function appendUsername(username) {
 	userList.insertBefore(usernameElement, userList.firstChild);
 }
 
+// TODO: Server Creation
 function createServerList(serverListArray) {
 	for (let i = 0; i < serverListArray.length; i++) {
 		let div = document.createElement('div');
@@ -377,7 +392,7 @@ function createServerList(serverListArray) {
 	}
 }
 
-// Opens correct chat server that user clicks for.
+// TODO: Opens correct chat server that user clicks for.
 function openServer(server) {
 	let serverDiv = document.getElementsByClassName('servers-' + server); // Every div has this class.
 	let serverIcon = document.getElementsByClassName('server-' + server + '-icon'); // Specific class for each server
@@ -389,11 +404,36 @@ function openServer(server) {
 	serverDiv.classList.remove('hide'); // Shows newly opened chat server.
 }
 
+// TODO: Filtering Friends
+function filterFriends() {
+	let search          = document.getElementById('friends-search').value.toUpperCase();
+	let friendsListGrid = document.getElementById("friends-list-grid").innerText;
+	friendsListGrid     = friendsListGrid.toString().toUpperCase();
+	friendsListGrid     = friendsListGrid.split(/\r?\n/);
+	
+	// Loop through all list items, and hide those who don't match the search query
+	for (let i = 0; i < friendsListGrid.length; i++) {
+		let gridElem = document.getElementById('friends-list-grid');
+		let friend = document.getElementsByClassName('friends');
+		let indexGrid = friendsListGrid[i];
+		let result = friendsListGrid[i].localeCompare(search);
+		console.log(result)
+		if (result == 0) {
+			console.log("Correct name")
+			friend[indexGrid].classList.remove('hide');
+			break;
+		} else {
+			console.log("Incorrect name")
+			friend[indexGrid].classList.add('hide');
+		}
+	}
+}
+
 //———————————————————————————————————————//
 // SECTION Sockets                       //
 //———————————————————————————————————————//
 
-// Faulty Connection
+// Connection Error
 socket.on("connect_error", (err) => {
 	console.log(`connect_error due to ${err.message}`);
 });
