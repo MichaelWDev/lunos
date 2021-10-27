@@ -86,13 +86,14 @@ html, body {
 	position:      absolute;
 	left:          1em;
 	width:         15em;
-	height:        5em;
+	height:        4.5em;
 	top:           1em;
 	text-align:    left;
 	animation:     3s fadeIn;
 	cursor:        pointer;
 	border-bottom: var(--border-5);
 	transition:    0.25s;
+	z-index:       1;
 }
 
 #title:active {
@@ -108,6 +109,11 @@ html, body {
 	top: -0.5em;
 	user-select: none;
 	left: 2em;
+	transition: 0.25s;
+}
+
+#title:hover h1 {
+	color: var(--hover-text-color-1);
 }
 
 #title img {
@@ -448,7 +454,7 @@ html, body {
 
 #saved-servers-list {
 	position: absolute;
-	top: 6em;
+	top: 6.5em;
 	left: 2.5em;
 	border-top: var(--border-4);
 	border-bottom: var(--border-4);
@@ -474,6 +480,26 @@ html, body {
 
 #direct-messages-btn {
 	position: relative;
+}
+
+#enter-lunos-btn {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 5em;
+	border-bottom: var(--border-2);
+	padding: 1em;
+	border-radius: 2em;
+	transition: 0.25s;
+}
+
+#enter-lunos-btn:hover {
+	border-bottom: var(--hover-border-color-1);
+}
+
+#enter-lunos-btn:active {
+	font-size: 4.5em;
 }
 
 #friends-search {
@@ -508,21 +534,28 @@ html, body {
 	height: auto;
 }
 
-#direct-messages-input {
+#message-friends-search {
 	background: none;
 	border: none;
 	color: var(--text-color-1);
 	font-size: 1.5em;
+	outline: none;
+	border-bottom: var(--border-5);
+	width: 8em;
 }
 
-#direct-messages {
+#message-friends {
 	position: absolute;
 	left: 15em;
 	top: 9em;
-	width: 15em;
-	height: 15em;
-	overflow: hidden;
-	overflow-y: scroll;
+	width: 12em;
+}
+
+#message-friends .friends {
+	position: relative;
+	margin: 0;
+	top: 1em;
+	margin-bottom: 1em;
 }
 
 #message-friends-list-grid {
@@ -541,27 +574,21 @@ html, body {
 	top: 6em;
 }
 
-#channel-container h1 {
-	text-align:  center;
-	color:       var(--text-color-1);
-	font-family: var(--font-family-1);
-	font-weight: 600;
-	user-select: none;
-	font-size:   1.5em;
+#channels-btn {
+	position: absolute;
+	left: 4em;
+	top: 0.75em;
+	font-size:   1.75em;
 	transition:  0.25s;
 }
 
-#channel-container h1:hover {
-	color: var(--hover-text-color-1);
-	cursor: pointer;
-}
-
 #create-channel-btn {
+	position:  absolute;
 	border: none;
 	border-bottom: var(--border-5);
 	font-size: 1.25em;
-	position:  absolute;
-	left:      50%;
+	top: 3em;
+	left:      9em;
 	padding:   0.5em;
 	transform: translateX(-50%);
 }
@@ -633,7 +660,7 @@ html, body {
 	right: 0;
 }
 
-#member-container h1 {
+#users-btn {
 	text-align: center;
 	color: var(--text-color-1);
 	font-family: var(--font-family-1);
@@ -643,10 +670,6 @@ html, body {
 	transition: 0.25s;
 }
 
-#member-container h1:hover {
-	color: var(--hover-text-color-1);
-	cursor: pointer;
-}
 
 /* NOTE: Chat Container */
 #chat-container {
@@ -663,10 +686,13 @@ html, body {
 	flex-direction: column-reverse;
 }
 
-#user-list {
+#user-list-grid {
+	display: grid;
+	grid-template-columns: auto;
 	position: relative;
+	top: 3em;
 	width: 100%;
-	height: 100%;
+	height: auto;
 }
 
 /* .username:hover {something}
@@ -833,14 +859,6 @@ html, body {
 	transition: 0.25s;
 }
 
-.user-list {
-	display: flex;
-	width: 100%;
-	height: auto;
-	color: var(--text-color-1);
-	padding: 10px;
-}
-
 .text {
 	width: 100%;
 	color: var(--text-color-1);
@@ -893,10 +911,33 @@ html, body {
 	width: 100%;
 	height: 2em;
 	border-bottom: var(--border-2);
-	margin: 1em;
 	text-align: left;
-	overflow-x: hidden;
+	overflow: hidden;
 	text-indent: 1em;
+	border-radius: 2em;
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	font-size: 1.25em;
+	margin: 1em;
+}
+
+.friends h3 {
+	position: relative;
+	top: -1em;
+}
+
+.friends:hover {
+	color: var(--hover-text-color-1);
+	border-bottom: var(--hover-border-color-1);
+	cursor: pointer;
+}
+
+.friend-info {
+	position: absolute;
+	width: 20em;
+	height: 20em;
+	background-color: green;
+	z-index: 1;
 }
 
 /*———————————————————————————————————————*/

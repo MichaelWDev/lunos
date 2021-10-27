@@ -46,6 +46,8 @@ let usernameInput           = document.getElementById('username-input');
 let passwordInput           = document.getElementById('password-input');
 let joinServerInput         = document.getElementById('join-server-input');
 let createServerInput       = document.getElementById('create-server-input');
+let friendSearch            = document.getElementById('friends-search');
+let messageSearch           = document.getElementById('message-friends-search');
 
 // Containers
 const incorrectText         = document.getElementById('incorrect-text');
@@ -53,8 +55,11 @@ const chatContainer         = document.getElementById('chat-container');
 const channelList           = document.getElementById('channel-list');
 const userList              = document.getElementById('user-list');
 const sendChatForm          = document.getElementById('send-chat-form');
+const friendsDirect         = document.getElementById('friends-direct-btn-container');
 const friendsList           = document.getElementById('friends-list');
-const directMessages        = document.getElementById('direct-messages');
+const messageFriends        = document.getElementById('message-friends');
+let friendsListGrid         = document.getElementById('friends-list-grid');
+let messageFriendsListGrid  = document.getElementById('message-friends-list-grid');
 
 // Regex
 const emailRegex 			= /^\S+@\S+\.\S+$/;
@@ -69,7 +74,7 @@ const socket = io();
 // TODO: Admin commands.
 
 // Handles every button.
-function button(btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
+function button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 	switch(btn) {
 		case 1: // Login
 			socket.emit('login', emailInput.value, passwordInput.value);
@@ -240,21 +245,38 @@ function button(btn) { // TODO: Re-arrange the buttons so they are organized top
 		case 21: // Friends List
 			if (friendsList.classList == 'hide') {
 				friendsList.classList.remove('hide');
+				messageFriends.classList.add('hide');
 			} else {
 				friendsList.classList.add('hide');
+				messageFriends.classList.add('hide');
 			}
 		break;
 
-		case 22: // TODO: Friend
+		case 22: // TODO: Friend Information
 
 		break;
 
 		case 23: // TODO: Messages
-			if (directMessages.classList == 'hide') {
-				directMessages.classList.remove('hide');
+			if (messageFriends.classList == 'hide') {
+				messageFriends.classList.remove('hide');
+				friendsList.classList.add('hide');
 			} else {
-				directMessages.classList.add('hide');
+				messageFriends.classList.add('hide');
 			}
+		break;
+
+		case 24: // TODO: Open Friend Messages
+
+		break;
+
+		case 999: // NOTE: Enter Lunos
+			let serverIcon = document.getElementById('temp-server-id');
+			let lunosBtn   = document.getElementById('enter-lunos-btn');
+			let server1    = document.getElementById('temp-server-1-id');
+			lunosBtn.classList.add('hide');
+			friendsDirect.classList.add('hide');
+			serverIcon.classList.add('active-server');
+			server1.classList.remove('hide');
 		break;
 	}
 }
@@ -365,7 +387,7 @@ function validatePassword (registerAccount) {
 }
 
 // Appends entered messages to the chat.
-function appendMessage(username, message) {
+function appendMessage (username, message) {
 	// TODO: When a message is sent it appends their profile picture to their text.
 	// const chatMessage = document.createElement('div');
 	// chatMessage.classList.add('chat-message');
@@ -383,7 +405,7 @@ function appendMessage(username, message) {
 }
 
 // TODO: Assigns all usernames to the right.
-function appendUsername(username) {
+function appendUsername (username) {
 	const usernameElement = document.createElement('p');
 	usernameElement.classList.add('text');
 	usernameElement.innerText = username;
@@ -392,7 +414,7 @@ function appendUsername(username) {
 }
 
 // TODO: Server Creation
-function createServerList(serverListArray) {
+function createServerList (serverListArray) {
 	for (let i = 0; i < serverListArray.length; i++) {
 		let div = document.createElement('div');
 		div.classList.add('server-' + i + "-icon"); // Numbers each class.
@@ -404,7 +426,7 @@ function createServerList(serverListArray) {
 }
 
 // TODO: Opens correct chat server that user clicks for.
-function openServer(server) {
+function openServer (server) {
 	let serverDiv = document.getElementsByClassName('servers-' + server); // Every div has this class.
 	let serverIcon = document.getElementsByClassName('server-' + server + '-icon'); // Specific class for each server
 	let previousServerIcon = document.getElementsByClassName('servers-icon');
@@ -415,28 +437,43 @@ function openServer(server) {
 	serverDiv.classList.remove('hide'); // Shows newly opened chat server.
 }
 
-// TODO: Filtering Friends
-function filterFriends() {
-	let search          = document.getElementById('friends-search').value.toUpperCase();
-	let friend          = document.getElementById('friends-list-grid').getElementsByTagName('H3');
-	let friendsListGrid = document.getElementById("friends-list-grid").innerText;
-	friendsListGrid     = friendsListGrid.toString().toUpperCase();
-	friendsListGrid     = friendsListGrid.split(/\r?\n/);
-	
-	// Loop through all list items, and hide those who don't match the search query
-	for (let i = 0; i < friend.length; i++) {
-		console.log("TEST: \n", friend);
-		let result = friend.toString()[i].localeCompare(search);
-		console.log(result)
+// TODO: Adding, removing, and blocking friends.
+function friend (username) {
 
-		if (result == 0) {
-			console.log("Correct name")
-			friend[i].classList.remove('hide');
-			break;
-		} else {
-			console.log("Incorrect name")
-			friend.classList.add('hide');
-		}
+}
+
+// TODO: Filtering Friends
+function filterFriends (num) {
+	let friendSearchValue         = friendSearch.value.toUpperCase();
+	let friendsListGridText       = friendsListGrid.innerText.toUpperCase();
+	let friendsListDiv            = friendsListGrid.getElementsByTagName('DIV');
+	//console.log(friendsListH3[1].innerText)
+	let messageFriendSearchValue  = messageSearch.value.toUpperCase();
+	let messageFriendListGridText = messageFriendsListGrid.innerText.toUpperCase();
+	friendsListGridText           = friendsListGridText.split(/\r?\n/);
+
+	switch (num) {
+		case 1: // Friend Search
+			// Loop through all list items, and hide those who don't match the search query
+			for (let i = 0; i < friendsListGridText.length; i++) {
+				let result = friendsListGridText[i].localeCompare(friendSearchValue);
+				//console.log("Result: ", result)
+		
+				if (result == 0) {
+
+					console.log("Correct name");
+					friendsListDiv.classList.remove('hide');
+					break;
+				} else {
+					console.log("Incorrect name");
+					//friendsListDiv.classList.add('hide');
+				}
+			}
+		break;
+
+		case 2: // Direct Messages
+
+		break;
 	}
 }
 

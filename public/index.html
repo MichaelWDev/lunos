@@ -154,7 +154,7 @@
 		<h1 id="user-home-title" class="titles">Welcome back, user.</h1>
 		
 		<div id="saved-servers-list">
-			<div class="server-1-icon servers-icon"></div>
+			<div id="temp-server-id" class="server-1-icon servers-icon"></div>
 		</div>
 
 		<div id="friends-direct-btn-container">
@@ -162,56 +162,69 @@
 			<button id="messages-btn" class="btns" onclick="button(23)">Messages</button>
 		</div>
 
+		<button id="enter-lunos-btn" class="btns" onclick="button(999)">Enter Lunos</button>
+
 		<div id="friends-list" class="hide">
-			<input id="friends-search" placeholder="Friends Name" onkeyup="filterFriends(1)"></input>
+			<input id="friends-search" placeholder="Search Name" onkeyup="filterFriends(1)"></input>
 
 			<div id="friends-list-grid">
-				<h3 class="friends-1 friends">James</h3>
-				<h3 class="friends-2 friends">Adam</h3>
-				<h3 class="friends-3 friends">Scott</h3>
-				<h3 class="friends-4 friends">Michael</h3>
-				<h3 class="friends-5 friends">Jimmy</h3>
-				<h3 class="friends-6 friends">Darlene</h3>
+				<div class="friends-1 friends" onclick="button(22)">
+					<h3>James</h3>
+					<div class="friend-1-info friend-info">
+
+					</div>
+				</div>
+				<div class="friends-2 friends"><h3>Adam</h3></div>
+				<div class="friends-3 friends"><h3>Scott</h3></div>
+				<div class="friends-4 friends"><h3>Michael</h3></div>
+				<div class="friends-5 friends"><h3>Amber</h3></div>
+				<div class="friends-6 friends"><h3>Darlene</h3></div>
 			</div>
 		</div>
 
-		<div id="direct-messages" class="hide">
-			<input id="direct-messages-input" placeholder="Username" onkeyup="filterFriends(2)">
+		<div id="message-friends" class="hide">
+			<input id="message-friends-search" placeholder="Search Name" onkeyup="filterFriends(2)">
 
 			<div id="message-friends-list-grid">
-				<h3 class="friends-1 friends">James</h3>
-				<h3 class="friends-2 friends">Adam</h3>
-				<h3 class="friends-3 friends">Scott</h3>
-				<h3 class="friends-4 friends">Michael</h3>
-				<h3 class="friends-5 friends">Jimmy</h3>
-				<h3 class="friends-6 friends">Darlene</h3>
+				<div class="friends-1 friends" onclick="button(24)"><h3>James</h3></div>
+				<div class="friends-2 friends"><h3>Adam</h3></div>
+				<div class="friends-3 friends"><h3>Scott</h3></div>
+				<div class="friends-4 friends"><h3>Michael</h3></div>
+				<div class="friends-5 friends"><h3>Amber</h3></div>
+				<div class="friends-6 friends"><h3>Darlene</h3></div>
 			</div>
 		</div>
 	</div>
 
-	<div class="servers-1 servers hide">
+	<div id="temp-server-1-id" class="servers-1 servers hide">
 		<h1 class="server-1-title">Server Name Here</h1>
 		
 		<div id="channel-container">
-			<h1 onclick="button(6)">Channels</h1>
+			<button id="channels-btn" class="btns" onclick="button(6)">Channels</button>
 
 			<div id="channel-list">
-				<button id="create-channel-btn" class="btns" onclick="button()">Create Channel</button>
+				<button id="create-channel-btn" class="btns hide" onclick="button()">Create Channel</button>
 			</div>
 		</div>
 
 		<div id="profile-container">
 			<div id="profile">
 				<img id="profile-image" src="" onclick="button(9)">
-				<h1 id="profile-username" onclick="button(8)">Username Here</h1>
+				<button id="username-btn" onclick="button(8)">Username Here</button>
 				<img id="profile-settings" src="" onclick="button(10)">
 			</div>
 		</div>
 
 		<div id="member-container">
-			<h1 onclick="button(7)">Users</h1>
+			<button id="users-btn" class="btns" onclick="button(7)">Users</button>
 
-			<div id="user-list"></div>
+			<div id="user-list-grid">
+				<div class="user-1 users"><h3>Adam</h3></div>
+				<div class="user-2 users"><h3>Scott</h3></div>
+				<div class="user-3 users"><h3>Michael</h3></div>
+				<div class="user-4 users"><h3>Amber</h3></div>
+				<div class="user-5 users"><h3>Darlene</h3></div>
+			</div>
 		</div>
 
 		<div id="chat-container"></div>
