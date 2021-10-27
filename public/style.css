@@ -572,6 +572,7 @@ html, body {
 	height: 48.5em;
 	position: absolute;
 	top: 6em;
+	left: 1em;
 }
 
 #channels-btn {
@@ -597,6 +598,27 @@ html, body {
 	color: var(--hover-text-color-1);
 	border-bottom: var(--hover-border-color-1);
 	cursor: pointer;
+}
+
+/* NOTE: Channels */
+#channel-list-grid {
+	position: relative;
+	top: 5em;
+	left: 2em;
+	height: auto;
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: center;
+}
+
+.channels {
+	width: auto;
+	font-size: 1em;
+	margin: 0.5em;
+	max-width: 10em;
+	word-wrap: break-word;
+	max-height: 3em;
+	overflow-y: scroll;
 }
 
 /* NOTE: Profile */
@@ -651,13 +673,13 @@ html, body {
 	color: var(--hover-text-color-1);
 }
 
-/* NOTE: Members */
-#member-container {
-	width: 17em;
-	height: 100%;
+/* NOTE: Users */
+#user-container {
 	position: absolute;
+	width: 16em;
+	height: 100%;
 	top: 6em;
-	right: 0;
+	right: 1em;
 }
 
 #users-btn {
@@ -691,7 +713,7 @@ html, body {
 	grid-template-columns: auto;
 	position: relative;
 	top: 3em;
-	width: 100%;
+	width: 10em;
 	height: auto;
 }
 
@@ -699,9 +721,9 @@ html, body {
 
 /* NOTE: Chat Bar */
 #chat-bar {
+	position: absolute;
 	width: 70em;
 	height: 3em;
-	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
 	top: 54em;
@@ -919,6 +941,8 @@ html, body {
 	font-weight: 600;
 	font-size: 1.25em;
 	margin: 1em;
+	color: var(--text-color-1);
+	user-select: none;
 }
 
 .friends h3 {
@@ -938,6 +962,24 @@ html, body {
 	height: 20em;
 	background-color: green;
 	z-index: 1;
+}
+
+.users {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	overflow: hidden;
+	text-indent: 1em;
+	border-radius: 2em;
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	font-size: 1.25em;
+	user-select: none;
+	color: var(--text-color-1);
+}
+
+.users h3 {
+	position: relative;
 }
 
 /*———————————————————————————————————————*/
