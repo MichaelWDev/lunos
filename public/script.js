@@ -53,7 +53,7 @@ let messageSearch           = document.getElementById('message-friends-search');
 const incorrectText         = document.getElementById('incorrect-text');
 const chatContainer         = document.getElementById('chat-container');
 const channelList           = document.getElementById('channel-list');
-const userList              = document.getElementById('user-list');
+const userListGrid          = document.getElementById('user-list-grid');
 const sendChatForm          = document.getElementById('send-chat-form');
 const friendsDirect         = document.getElementById('friends-direct-btn-container');
 const friendsList           = document.getElementById('friends-list');
@@ -121,7 +121,12 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 		break;
 
 		case 7: // TODO: Hide Users
-			userList.classList.add('idk');
+			if (userListGrid.style.display == 'grid') {
+				console.log('test')
+				userListGrid.display = 'none';
+			} else {
+				userListGrid.style.display = 'grid';
+			}
 		break;
 
 		case 8: // TODO: Copy Username
