@@ -150,7 +150,7 @@
 		</form>
 	</div>
 
-	<div id="user-home-page" class="pages">
+	<div id="user-home-page" class="pages hide">
 		<h1 id="user-home-title" class="titles">Welcome back, user.</h1>
 		
 		<div id="saved-servers-list">
@@ -196,37 +196,65 @@
 		</div>
 	</div>
 
-	<div id="temp-server-1-id" class="servers-1 servers hide">
+	<div id="temp-server-1-id" class="servers-1 servers">
 		<h1 class="server-1-title">Server Name Here</h1>
+
+		<div id="admin-panel">
+			<div id="admin-nav">
+				<button class="admin-nav-btns btns" onclick="button(26)">Dashboard</button>
+				<button class="admin-nav-btns btns" onclick="button(27)">Statistics</button>
+				<button class="admin-nav-btns btns" onclick="button(28)">Ban/Unban User</button>
+				<button class="admin-nav-btns btns" onclick="button(29)">Log</button>
+				<button class="admin-nav-btns btns" onclick="button(30)">Exit</button>
+			</div>
+			<div id="admin-dashboard" class="hide">
+				<h1 class="admin-title">Dashboard</h1>
+
+			</div>
+
+			<div id="admin-statistics" class="hide">
+				<h1 class="admin-title">Statistics</h1>
+
+			</div>
+
+			<div id="admin-ban-unban-user" class="hide">
+				<h1 class="admin-title">Ban/Unban User</h1>
+
+			</div>
+
+			<div id="admin-log" class="hide">
+				<h1 class="admin-title">Log</h1>
+
+			</div>
+		</div>
 		
+		<button id="channels-btn" class="btns" onclick="button(6)">Channels</button>
+
 		<div id="channel-container">
-			<button id="channels-btn" class="btns" onclick="button(6)">Channels</button>
 
 			<button id="create-channel-btn" class="btns hide" onclick="button()">Create Channel</button>
 		
 			<div id="channel-list-grid">
 				<button class="introduction-1-channel channels btns">Introduction</button>
-				<button class="general-1-channel channels btns">General [1]</button>
-				<button class="general-2-channel channels btns">General [2]</button>
-				<button class="general-3-channel channels btns">General [3]</button>
-				<button class="general-4-channel channels btns">General [4]</button>
-				<button class="general-5-channel channels btns">General [5]</button>
-				<button class="general-6-channel channels btns">General [6]</button>
-				<button class="admin-1-channel channels btns">Admin [1]</button>
+				<button class="general-channel-1 channels btns">General [1]</button>
+				<button class="general-channel-2 channels btns">General [2]</button>
+				<button class="general-channel-3 channels btns">General [3]</button>
+				<button class="general-channel-4 channels btns">General [4]</button>
+				<button class="general-channel-5 channels btns">General [5]</button>
+				<button class="general-channel-6 channels btns">General [6]</button>
+				<button class="admin-channel-1 channels btns">Admin [1]</button>
 			</div>
 		</div>
 
 		<div id="profile-container">
-			<div id="profile">
-				<img id="profile-image" src="" onclick="button(9)">
-				<button id="username-btn" onclick="button(8)">Username Here</button>
-				<img id="profile-settings" src="" onclick="button(10)">
-			</div>
+			<img id="profile-image" onclick="button(9)">
+			<h3 id="profile-username" class="btns" onclick="button(8)">Username Here</h3>
+			<img id="profile-settings" src="" onclick="button(10)">
 		</div>
 
-		<div id="user-container">
-			<button id="users-btn" class="btns" onclick="button(7)">Users</button>
+		<button id="users-btn" class="btns" onclick="button(7)">Users</button>
 
+		<div id="user-container" class="">
 			<div id="user-list-grid">
 				<div class="user-1 users"><h3>Adam</h3></div>
 				<div class="user-2 users"><h3>Scott</h3></div>

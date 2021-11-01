@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+
 /*———————————————————————————————————————*/
 /* SECTION Variables                     */
 /*———————————————————————————————————————*/
@@ -12,7 +14,8 @@
 
 :root {
 	/* NOTE: Font Families */
-	--font-family-1: 'Poiret One', cursive;;
+	--font-family-1: 'Poiret One', cursive;
+	--font-family-2: 'Baloo Da 2', cursive;
 
 	/* NOTE: Text Colors */
 	--text-color-1: rgb(255, 255, 255);
@@ -567,10 +570,58 @@ html, body {
 }
 
 /* SECTION: Chat Page */
-#channel-container {
-	width: 17em;
-	height: 48.5em;
+#admin-panel {
 	position: absolute;
+	width: 50em;
+	height: 40em;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	border-radius: 2em;
+	box-shadow: 0 0 2rem var(--background-color-3);
+}
+
+#admin-dashboard {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#admin-nav {
+	position: absolute;
+	width: 10em;
+	height: 40em;
+	border-right: var(--border-1);
+}
+
+.admin-nav-btns {
+	position: relative;
+	width: 100%;
+	height: 3em;
+	font-size: 1.25em;
+}
+
+.admin-nav-btns:nth-child(5) {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 2em;
+}
+
+.admin-title {
+	position: absolute;
+	left: 5.5em;
+	font-family: var(--font-family-1);
+	color: var(--text-color-1);
+	width: 8em;
+}
+
+#channel-container {
+	position: absolute;
+	width: 17em;
+	height: 40em;
 	top: 6em;
 	left: 1em;
 }
@@ -578,19 +629,19 @@ html, body {
 #channels-btn {
 	position: absolute;
 	left: 3em;
-	top: 0.75em;
+	top: 3.5em;
 	font-size: 2em;
 	transition: 0.25s;
 }
 
 #create-channel-btn {
-	position:  absolute;
+	position: absolute;
 	border: none;
 	border-bottom: var(--border-5);
 	font-size: 1.25em;
 	top: 3em;
-	left:      9em;
-	padding:   0.5em;
+	left: 9em;
+	padding: 0.5em;
 	transform: translateX(-50%);
 }
 
@@ -600,102 +651,40 @@ html, body {
 	cursor: pointer;
 }
 
-/* NOTE: Channels */
 #channel-list-grid {
 	position: relative;
 	top: 5em;
-	left: 2em;
+	left: 4em;
+	width: 10em;
 	height: auto;
 	display: grid;
 	grid-template-columns: auto;
 	justify-content: center;
 }
 
-.channels {
-	width: auto;
-	font-size: 1em;
-	margin: 0.5em;
-	max-width: 10em;
-	word-wrap: break-word;
-	max-height: 3em;
-	overflow-y: scroll;
-}
-
-/* NOTE: Profile */
-#profile-container {
-	position: absolute;
-	bottom: 0;
-	width: 17em;
-	height: 5em;
-}
-
-#profile {
-	position: absolute;
-	height: 5em;
-	width: 17em;
-}
-
-#profile-image {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	left: 1em;
-	width: 2.5em;
-	height: 2.5em;
-	border-radius: 50%;
-	border: var(--border-2);
-	padding: 0.25em;
-	cursor: pointer;
-	transition: 0.25s;
-}
-
-#profile-image:hover {
-	border: var(--hover-border-color-1);
-}
-
-#profile-username {
-	position:    relative;
-	top:         0.5em;
-	left:        3.5em;
-	width:       6em;
-	max-height:  1em;
-	color:       var(--text-color-1);
-	text-align:  left;
-	font-family: var(--font-family-1);
-	font-weight: 600;
-	font-size:   1.5em;
-	overflow:    hidden;
-	cursor:      pointer;
-	transition:  0.25s;
-}
-
-#profile-username:hover {
-	color: var(--hover-text-color-1);
-}
-
-/* NOTE: Users */
 #user-container {
 	position: absolute;
 	width: 16em;
-	height: 100%;
-	top: 6em;
+	height: 40em;
+	top: 10em;
 	right: 1em;
+	overflow: hidden;
+	overflow-y: scroll;
 }
 
 #users-btn {
 	position: absolute;
-	left: 50%;
+	right: 2.5em;
+	top: 3.5em;
 	transform: translateX(-50%);
 	font-size: 1.75em;
 	transition: 0.25s;
 }
 
-
-/* NOTE: Chat Container */
 #chat-container {
+	position: absolute;
 	width: 70em;
 	height: 54em;
-	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 	top: 0;
@@ -709,17 +698,10 @@ html, body {
 #user-list-grid {
 	display: grid;
 	grid-template-columns: auto;
-	position: relative;
-	top: 3em;
 	width: 16em;
 	height: auto;
-	overflow-x: hidden;
-	overflow-y: scroll;
 }
 
-/* .username:hover {something}
-
-/* NOTE: Chat Bar */
 #chat-bar {
 	position: absolute;
 	width: 70em;
@@ -773,6 +755,57 @@ html, body {
 
 #chat-bar-btn:hover {
 	border: var(--border-3);
+	color: var(--hover-text-color-1);
+}
+
+#profile-container {
+	position: absolute;
+	bottom: 1em;
+	left: 1em;
+	width: 17em;
+	height: 5em;
+}
+
+#profile-image {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 1em;
+	width: 2.5em;
+	height: 2.5em;
+	border-radius: 50%;
+	border: var(--border-2);
+	padding: 0.25em;
+	cursor: pointer;
+	transition: 0.25s;
+}
+
+#profile-username {
+	position: absolute;
+	width: 5em;
+}
+
+#profile-image:hover {
+	border: var(--hover-border-color-1);
+}
+
+#profile-username {
+	position:    relative;
+	top:         0.5em;
+	left:        3.5em;
+	width:       6em;
+	max-height:  1em;
+	color:       var(--text-color-1);
+	text-align:  left;
+	font-family: var(--font-family-1);
+	font-weight: 600;
+	font-size:   1.5em;
+	overflow:    hidden;
+	cursor:      pointer;
+	transition:  0.25s;
+}
+
+#profile-username:hover {
 	color: var(--hover-text-color-1);
 }
 
@@ -857,7 +890,7 @@ html, body {
 }
 
 .btns {
-	z-index: 1;
+	z-index: 10;
 	cursor: pointer;
 	transition: 0.25s;
 	outline: none;
@@ -867,6 +900,10 @@ html, body {
 	font-weight: 600;
 	border: none;
 	border-bottom: var(--border-5);
+}
+
+.btns:hover {
+	color: var(--hover-text-color-1);
 }
 
 .green {
@@ -887,8 +924,6 @@ html, body {
 	margin-left: 5em;
 }
 
-/* TODO: div .chat-message {} */
-
 .nav-btns {
 	width: 8em;
 	font-size: 1.25em;
@@ -896,10 +931,6 @@ html, body {
 	transition: 0.25s;
 	text-align: center;
 	user-select: none;
-}
-
-.btns:hover {
-	color: var(--hover-text-color-1);
 }
 
 .active-btn {
@@ -965,16 +996,22 @@ html, body {
 	z-index: 1;
 }
 
+.channels {
+	width: auto;
+	font-size: 1em;
+	margin: 0.5em;
+	max-width: 10em;
+	word-wrap: break-word;
+	max-height: 3em;
+	overflow-y: scroll;
+}
+
 .users {
 	width: 100%;
-	height: auto;
 	text-align: center;
-	overflow: hidden;
-	text-indent: 1em;
-	border-radius: 2em;
 	font-family: var(--font-family-1);
 	font-weight: 600;
-	font-size: 1.25em;
+	font-size: 1em;
 	user-select: none;
 	color: var(--text-color-1);
 }
@@ -990,6 +1027,11 @@ html, body {
 @keyframes fadeIn {
 	0% {opacity: 0;}
 	100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
 }
 
 @keyframes fadeInOut {

@@ -3,63 +3,75 @@
 //———————————————————————————————————————//
 
 // Other Elements
-const satelliteImg          = document.getElementById('satellite-img');
-const titleContainer        = document.getElementById('title');
-const topNav                = document.getElementById('top-nav');
-const savedServersList      = document.getElementById('saved-servers-list');
-const friends               = document.getElementsByClassName('friends');
+const satelliteImg           = document.getElementById('satellite-img');
+const titleContainer         = document.getElementById('title');
+const topNav                 = document.getElementById('top-nav');
+const savedServersList       = document.getElementById('saved-servers-list');
+const friends                = document.getElementsByClassName('friends');
 
-let profileImage            = document.getElementById('profile-image');
-let profileUsername         = document.getElementById('profile-username');
-let createTitleH1           = document.getElementById('create-title-h1');
-let createTitleH2           = document.getElementById('create-title-h2');
-let userHomeTitle           = document.getElementById('user-home-title');
+let profileImage             = document.getElementById('profile-image');
+let profileUsername          = document.getElementById('profile-username');
+let createTitleH1            = document.getElementById('create-title-h1');
+let createTitleH2            = document.getElementById('create-title-h2');
+let userHomeTitle            = document.getElementById('user-home-title');
 
 // Buttons
-const logBtn                = document.getElementById('log-btn');
-const regBtn                = document.getElementById('reg-btn');
-const homeBtn               = document.getElementById('home-btn');
-const aboutBtn              = document.getElementById('about-btn');
-const contactBtn            = document.getElementById('contact-btn');
-const loginBtn              = document.getElementById('login-btn');
-const registerBtn           = document.getElementById('register-btn');
-const accountRegisterBtn    = document.getElementById('account-register-btn');
-const joinServerBtn         = document.getElementById('join-server-btn');
-const createServerBtn       = document.getElementById('create-server-btn');
-const joinBtn               = document.getElementById('join-btn');
-const createBtn             = document.getElementById('create-btn');
+const logBtn                 = document.getElementById('log-btn');
+const regBtn                 = document.getElementById('reg-btn');
+const homeBtn                = document.getElementById('home-btn');
+const aboutBtn               = document.getElementById('about-btn');
+const contactBtn             = document.getElementById('contact-btn');
+const loginBtn               = document.getElementById('login-btn');
+const registerBtn            = document.getElementById('register-btn');
+const accountRegisterBtn     = document.getElementById('account-register-btn');
+const joinServerBtn          = document.getElementById('join-server-btn');
+const createServerBtn        = document.getElementById('create-server-btn');
+const joinBtn                = document.getElementById('join-btn');
+const createBtn              = document.getElementById('create-btn');
+
+// Admin Panel
+const adminPanel             = document.getElementById('admin-panel');
+const adminDashboard         = document.getElementById('admin-dashboard');
+const adminStatistics        = document.getElementById('admin-statistics');
+const adminBanUnbanUser      = document.getElementById('admin-ban-unban-user');
+const adminLog               = document.getElementById('admin-log');
 
 // Pages
-const homePage              = document.getElementById('home-page');
-const aboutPage             = document.getElementById('about-page');
-const supportPage           = document.getElementById('support-page');
-const loginRegisterPage     = document.getElementById('login-register-page');
-const registerPage          = document.getElementById('register-page');
-const servers               = document.getElementsByClassName('servers');
-const btnBox                = document.getElementById('btn-box');
-const createJoinServerPage  = document.getElementById('create-join-server-page');
+const homePage               = document.getElementById('home-page');
+const aboutPage              = document.getElementById('about-page');
+const supportPage            = document.getElementById('support-page');
+const loginRegisterPage      = document.getElementById('login-register-page');
+const registerPage           = document.getElementById('register-page');
+const servers                = document.getElementsByClassName('servers');
+const btnBox                 = document.getElementById('btn-box');
+const createJoinServerPage   = document.getElementById('create-join-server-page');
 
 // Inputs
-let chatBarInput            = document.getElementById('chat-bar-input');
-let emailInput              = document.getElementById('email-input');
-let usernameInput           = document.getElementById('username-input');
-let passwordInput           = document.getElementById('password-input');
-let joinServerInput         = document.getElementById('join-server-input');
-let createServerInput       = document.getElementById('create-server-input');
-let friendSearch            = document.getElementById('friends-search');
-let messageSearch           = document.getElementById('message-friends-search');
+let chatBarInput             = document.getElementById('chat-bar-input');
+let emailInput               = document.getElementById('email-input');
+let usernameInput            = document.getElementById('username-input');
+let passwordInput            = document.getElementById('password-input');
+let joinServerInput          = document.getElementById('join-server-input');
+let createServerInput        = document.getElementById('create-server-input');
+let friendSearch             = document.getElementById('friends-search');
+let messageSearch            = document.getElementById('message-friends-search');
 
 // Containers
-const incorrectText         = document.getElementById('incorrect-text');
-const chatContainer         = document.getElementById('chat-container');
-const channelList           = document.getElementById('channel-list');
-const userListGrid          = document.getElementById('user-list-grid');
-const sendChatForm          = document.getElementById('send-chat-form');
-const friendsDirect         = document.getElementById('friends-direct-btn-container');
-const friendsList           = document.getElementById('friends-list');
-const messageFriends        = document.getElementById('message-friends');
-let friendsListGrid         = document.getElementById('friends-list-grid');
-let messageFriendsListGrid  = document.getElementById('message-friends-list-grid');
+const incorrectText          = document.getElementById('incorrect-text');
+const chatContainer          = document.getElementById('chat-container');
+const channelList            = document.getElementById('channel-list');
+const userListGrid           = document.getElementById('user-list-grid');
+const sendChatForm           = document.getElementById('send-chat-form');
+const friendsDirect          = document.getElementById('friends-direct-btn-container');
+const friendsList            = document.getElementById('friends-list');
+const messageFriends         = document.getElementById('message-friends');
+const userContainer          = document.getElementById('user-container');
+const channelContainer       = document.getElementById('channel-container');
+
+// Grids
+let   friendsListGrid        = document.getElementById('friends-list-grid');
+let   messageFriendsListGrid = document.getElementById('message-friends-list-grid');
+
 
 // Regex
 const emailRegex 			= /^\S+@\S+\.\S+$/;
@@ -117,15 +129,18 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 		break;
 
 		case 6: // TODO: Hide Channels
-			channelsContainer.classList.add('idk');
+			if (channelContainer.classList == 'hide') {
+				channelContainer.classList.remove('hide');
+			} else {
+				channelContainer.classList.add('hide');
+			}
 		break;
 
 		case 7: // TODO: Hide Users
-			if (userListGrid.style.display == 'grid') {
-				console.log('test')
-				userListGrid.display = 'none';
+			if (userContainer.classList == 'hide') {
+				userContainer.classList.remove('hide');
 			} else {
-				userListGrid.style.display = 'grid';
+				userContainer.classList.add('hide');
 			}
 		break;
 
@@ -272,6 +287,42 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 
 		case 24: // TODO: Open Friend Messages
 
+		break;
+
+		case 25: // Admin Panel
+
+		break;
+
+		case 26: // Admin Dashboard
+			adminDashboard.classList.remove('hide');
+			adminStatistics.classList.add('hide');
+			adminBanUnbanUser.classList.add('hide');
+			adminLog.classList.add('hide');
+		break;
+
+		case 27: // Admin Statistics
+			adminDashboard.classList.add('hide');
+			adminStatistics.classList.remove('hide');
+			adminBanUnbanUser.classList.add('hide');
+			adminLog.classList.add('hide');
+		break;
+
+		case 28: // Admin Ban/Unban
+			adminDashboard.classList.add('hide');
+			adminStatistics.classList.add('hide');
+			adminBanUnbanUser.classList.remove('hide');
+			adminLog.classList.add('hide');
+		break;
+
+		case 29: // Admin Log
+			adminDashboard.classList.add('hide');
+			adminStatistics.classList.add('hide');
+			adminBanUnbanUser.classList.add('hide');
+			adminLog.classList.remove('hide');
+		break;
+
+		case 30: // Admin Exit
+			adminPanel.classList.add('hide');
 		break;
 
 		case 999: // NOTE: Enter Lunos

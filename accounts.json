@@ -14,14 +14,23 @@
     "username": "username",
     "password": "ABC123",
     "savedServers": [{
-			"serverName1": "uniqueServerID1",
-			"serverName2": "uniqueServerID2",
-      "serverName3": "uniqueServerID3"
+			"uniqueServerID1": {
+        "server": "serverName",
+        "admin": true
+      },
+			"uniqueServerID2": {
+        "server": "serverName",
+        "admin": false
+      },
+      "uniqueServerID3": {
+        "server": "serverName",
+        "admin": false
+      }
 		}],
     "serversBannedFrom": [{
-      "serverName1": "uniqueServerID1",
-			"serverName2": "uniqueServerID2",
-      "serverName3": "uniqueServerID3"
+      "uniqueServerID1": "serverName",
+			"uniqueServerID2": "serverName",
+      "uniqueServerID3": "serverName"
     }]
   }
 }
