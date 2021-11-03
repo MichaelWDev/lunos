@@ -21,18 +21,18 @@
 		<img src="images/ringed-planet.png">
 	</div>
 
-	<div id="log-reg-btn-container" class="hide">
+	<div id="log-reg-btn-container" class="">
 		<button id="log-btn" class="btns" onclick="button(12)">Login</button>
 		<button id="reg-btn" class="btns" onclick="button(2)">Register</button>
 	</div>
 
-	<div id="top-nav" class="hide">
+	<div id="top-nav" class="">
 		<button id="home-btn" class="nav-btns btns" onclick="button(13)">Home</button>
 		<button id="about-btn" class="nav-btns btns" onclick="button(14)">About</button>
 		<button id="contact-btn" class="nav-btns btns" onclick="button(15)">Support</button>
 	</div>
 
-	<div id="home-page" class="pages hide">
+	<div id="home-page" class="pages">
 		<div id="home-page-background"></div>
 		<div id="home-title" class="titles">
 			<h1>Welcome to Lunos</h1>
@@ -46,8 +46,8 @@
 		<div id="about-card-container">
 			<div id="encryption-about-card" class="cards">
 				<h1 class="cards-title">Encryption</h1>
-				<p>Advanced Encryption Standard (AES) 256 is used to encrypt your data in our chatlogs.</p>
-				<p>AES 256 is used on a government level for security. So we thought: If governments can use it, why can't we?</p>
+				<p>Advanced Encryption Standard (AES) 256 is used to encrypt your data.</p>
+				<p>AES 256 is used on a government level for security. <span class="green">So we thought: If governments can use it, why can't we?</span></p>
 				<div class="card-images-container">
 					<img class="white-image card-image" src="images/computing.png">
 					<img class="black-image card-image" src="images/computing-black.png">	
@@ -56,7 +56,7 @@
 
 			<div id="privacy-about-card" class="cards">
 				<h1 class="cards-title">Privacy</h1>
-				<p>Most applications obtain your information from you and sell it. We will never be doing that.</p>
+				<p>Most applications store your information and sell it. We are never be doing that.</p>
 				<p>The only thing we obtain and save from our users are bug reports.</p>
 				<div class="card-images-container">
 					<img class="white-image card-image" src="images/locked-door.png">
@@ -153,7 +153,7 @@
 	<div id="user-home-page" class="pages hide">
 		<h1 id="user-home-title" class="titles">Welcome back, user.</h1>
 		
-		<div id="saved-servers-list">
+		<div id="saved-servers-list" class="hide">
 			<div id="temp-server-id" class="server-1-icon servers-icon"></div>
 		</div>
 
@@ -196,9 +196,7 @@
 		</div>
 	</div>
 
-	<div id="temp-server-1-id" class="servers-1 servers pages">
-		<h1 class="server-title titles">Server Name</h1>
-
+	<div id="temp-server-1-id" class="servers-1 servers pages hide">
 		<div id="admin-panel" class="hide">
 			<div id="admin-nav">
 				<button class="admin-nav-btns btns" onclick="button(26)">Dashboard</button>
@@ -231,6 +229,7 @@
 		<button id="channels-btn" class="btns" onclick="button(6)">Channels</button>
 
 		<div id="channel-container">
+			<h1 class="server-title">Temporary Room</h1>
 
 			<button id="create-channel-btn" class="btns hide" onclick="button()">Create Channel</button>
 		
@@ -246,11 +245,21 @@
 			</div>
 		</div>
 
+		<div id="chat-container"></div>
+
 		<div id="profile-container">
 			<img id="profile-image" onclick="button(9)">
 			<h3 id="profile-username" class="btns" onclick="button(8)">Username Here</h3>
 			<img id="profile-settings" src="" onclick="button(10)">
 		</div>
+
+		<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
+			<div id="chat-bar">
+				<img class="hide" src="" onclick="" id="add-file-icon">
+				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
+				<button id="chat-bar-btn" class="btns" type="button" onclick="button(11)">Send</button>
+			</div>
+		</form>
 
 		<button id="users-btn" class="btns" onclick="button(7)">Users</button>
 
@@ -261,38 +270,8 @@
 				<div class="user-3 users"><h3>Michael</h3></div>
 				<div class="user-4 users"><h3>Amber</h3></div>
 				<div class="user-5 users"><h3>Darlene</h3></div>
-				<div class="user-1 users"><h3>Adam</h3></div>
-				<div class="user-2 users"><h3>Scott</h3></div>
-				<div class="user-3 users"><h3>Michael</h3></div>
-				<div class="user-4 users"><h3>Amber</h3></div>
-				<div class="user-5 users"><h3>Darlene</h3></div>
-				<div class="user-1 users"><h3>Adam</h3></div>
-				<div class="user-2 users"><h3>Scott</h3></div>
-				<div class="user-3 users"><h3>Michael</h3></div>
-				<div class="user-4 users"><h3>Amber</h3></div>
-				<div class="user-5 users"><h3>Darlene</h3></div>
-				<div class="user-1 users"><h3>Adam</h3></div>
-				<div class="user-2 users"><h3>Scott</h3></div>
-				<div class="user-3 users"><h3>Michael</h3></div>
-				<div class="user-4 users"><h3>Amber</h3></div>
-				<div class="user-5 users"><h3>Darlene</h3></div>
-				<div class="user-1 users"><h3>Adam</h3></div>
-				<div class="user-2 users"><h3>Scott</h3></div>
-				<div class="user-3 users"><h3>Michael</h3></div>
-				<div class="user-4 users"><h3>Amber</h3></div>
-				<div class="user-5 users"><h3>Darlene</h3></div>
 			</div>
 		</div>
-
-		<div id="chat-container"></div>
-
-		<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
-			<div id="chat-bar">
-				<img src="" onclick="" id="add-file-icon">
-				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
-				<button id="chat-bar-btn" class="btns" type="button" onclick="button(11)">Send</button>
-			</div>
-		</form>
 	</div>
 	
 

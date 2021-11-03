@@ -45,6 +45,7 @@ const registerPage           = document.getElementById('register-page');
 const servers                = document.getElementsByClassName('servers');
 const btnBox                 = document.getElementById('btn-box');
 const createJoinServerPage   = document.getElementById('create-join-server-page');
+const userHomePage           = document.getElementById('user-home-page');
 
 // Inputs
 let chatBarInput             = document.getElementById('chat-bar-input');
@@ -68,10 +69,13 @@ const messageFriends         = document.getElementById('message-friends');
 const userContainer          = document.getElementById('user-container');
 const channelContainer       = document.getElementById('channel-container');
 
+// NOTE: Testing Purposes
+const server1                = document.getElementById('temp-server-1-id');
+let messageUsername;
+
 // Grids
 let   friendsListGrid        = document.getElementById('friends-list-grid');
 let   messageFriendsListGrid = document.getElementById('message-friends-list-grid');
-
 
 // Regex
 const emailRegex 			= /^\S+@\S+\.\S+$/;
@@ -157,8 +161,10 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 		break;
 
 		case 11: // TODO: Send Message
-			if (chatBarInput.value != '') { // TODO: Also have submitting via enter key. e.keycode = 13
+			if (chatBarInput.value != '') {
+				// TODO: Also have submitting via enter key. (e.keycode = 13)
 				socket.emit('send-chat-message', chatBarInput.value);
+				appendMessage(chatBarInput.value);
 				chatBarInput.value = null;
 			}
 		break;
@@ -328,7 +334,7 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 		case 999: // NOTE: Enter Lunos
 			let serverIcon = document.getElementById('temp-server-id');
 			let lunosBtn   = document.getElementById('enter-lunos-btn');
-			let server1    = document.getElementById('temp-server-1-id');
+
 			lunosBtn.classList.add('hide');
 			friendsDirect.classList.add('hide');
 			serverIcon.classList.add('active-server');
@@ -337,7 +343,7 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 	}
 }
 
-// Password Validation
+// TODO: Password Validation
 function validatePassword (registerAccount) {
 	let upperCase     = /[A-Z]/g;
 	let lowerCase     = /[a-z]/g;
@@ -442,14 +448,15 @@ function validatePassword (registerAccount) {
 	}
 }
 
-// Appends entered messages to the chat.
-function appendMessage (username, message) {
+// Appends messages to the chat.
+function appendMessage (message) {
 	// TODO: When a message is sent it appends their profile picture to their text.
 	// const chatMessage = document.createElement('div');
 	// chatMessage.classList.add('chat-message');
 
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
+	let username = profileUsername.innerText;
 
 	if (message == false) {
 		messageElement.innerText = `${username} has connected.`
@@ -552,9 +559,11 @@ socket.on('login-successful', (username) => {
 	topNav.classList.add('hide');
 	titleContainer.classList.add('hide');
 	loginRegisterPage.classList.add('hide');
-	chatApp.classList.add('hide');
+	
+	server1.classList.add('hide');
 	createJoinServerPage.classList.add('hide');
 	userHomePage.classList.remove('hide');
+	profileUsername.innerText = username;
 
 	// User Home Page
 	userHomeTitle.innerText = `Welcome back, ${username}.`;

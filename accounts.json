@@ -13,24 +13,42 @@
     "email": "username@username.com",
     "username": "username",
     "password": "ABC123",
-    "savedServers": [{
-			"uniqueServerID1": {
-        "server": "serverName",
-        "admin": true
-      },
-			"uniqueServerID2": {
-        "server": "serverName",
-        "admin": false
-      },
-      "uniqueServerID3": {
-        "server": "serverName",
-        "admin": false
+    "savedServers": [
+      {
+        "uniqueServerID1": {
+          "server": "serverName",
+          "admin": true
+        },
+        "uniqueServerID2": {
+          "server": "serverName",
+          "admin": false
+        },
+        "uniqueServerID3": {
+          "server": "serverName",
+          "admin": false
+        }
       }
-		}],
-    "serversBannedFrom": [{
-      "uniqueServerID1": "serverName",
-			"uniqueServerID2": "serverName",
-      "uniqueServerID3": "serverName"
-    }]
+    ],
+    "serversBannedFrom": [
+      {
+        "uniqueServerID1": "serverName",
+        "uniqueServerID2": "serverName",
+        "uniqueServerID3": "serverName"
+      }
+    ]
+  },
+  "michael@test.com": {
+    "email": "michael@test.com",
+    "username": "Michael (DEV)",
+    "password": "$2b$10$/EgKqriJy0nMV3jSHpJVcuh19mj1Z94y4UKcvIXFAHodssDVOB866",
+    "savedServers": null,
+    "serversBannedFrom": null
+  },
+  "james@test.com": {
+    "email": "james@test.com",
+    "username": "James (ALPHA TESTER)",
+    "password": "$2b$10$JQJxaEBt2CJQoSpcP3Xxie24.Ew9gMUgXkOakXyLcDATjbA4Q2dbK",
+    "savedServers": null,
+    "serversBannedFrom": null
   }
 }

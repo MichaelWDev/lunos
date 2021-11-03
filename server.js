@@ -35,14 +35,31 @@ io.on('connection', function(socket) {
 		return uniqueNumbers = uniqueNumbers.toString();
 	}
 
-	// TODO
-	// NOTE: User Connection
+	// TODO: Check if the user is banned from the server they are connecting to.
+	function checkUserData(serversBannedFrom) {
+		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
+			if (err) {
+				console.log(err);
+			} else {
+				try {
+					const data = JSON.parse(jsonString);
+					username = data[email].username;
+					
+
+				} catch (err) {
+					console.log('Error parsing JSON: ', err);
+				}
+			}
+		});
+	}
+
+	// TODO: User Connection
 	socket.on('new-user', username => {
 		socket.emit('user-list', users); // Sends a full list of current users to the client when they join. (Minus their own.)
 		socket.broadcast.emit('user-connected', username);
 	});
 
-	// NOTE: Account Login
+	// TODO: Account Login
 	socket.on('login', async (email, password) => {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
@@ -71,7 +88,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// NOTE: Account Register
+	// TODO: Account Register
 	socket.on('register', async (email, username, password) => {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -81,7 +98,13 @@ io.on('connection', function(socket) {
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
-					data[email] = {email: email, username: username, password: hashedPassword};
+					data[email] = {
+						email: email,
+						username: username,
+						password: hashedPassword,
+						savedServers: null,
+						serversBannedFrom: null
+					};
 
 					fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
 						if (err) {
@@ -98,17 +121,20 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// Joins the user to the correct server they entered.
+	// TODO: Joins user to server.
 	socket.on('join-server', (serverCode) => {
-		/* TODO: When a user joins, check:
-					server-list for correct invite code.
-					server-list permissions if server is/is not private.
-					server-list bannedUsers if they were banned.
+		// let savedServers = null;
+		let serversBannedFrom = data[email].serversBannedFrom;
+		checkUserData(serversBannedFrom);
 
+		/* TODO (LATER): When a user joins, check:
+			Later: server-list for correct invite code.
+			server-list permissions if server is/is not private.
+			server-list bannedUsers if they were banned.
 		*/
 	});
 
-	// Creates a server for the user.
+	// TODO: Creates server for user.
 	socket.on('create-server', (serverName) => {
 		// NOTE: Servers can have the same name. Community servers can not.
 		let serverID = uniqueID().substring(0, 11);
@@ -145,7 +171,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// Creates the unique invite code for the user to distribute.
+	// TODO: Creates unique invite code for user.
 	socket.on('create-server-invite', () => {
 		let serverCode = uniqueID().substring(0, 6);
 		console.log(serverCode);
@@ -174,6 +200,8 @@ io.on('connection', function(socket) {
 		});
 	});
 
+	// TODO: Saved Servers
+	/*
 	socket.on('saved-servers-list', (username) => {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
@@ -181,12 +209,10 @@ io.on('connection', function(socket) {
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
-					let savedServers = data[username].savedServers;
+					// let savedServers = data[username].savedServers;
 					let serverList = [];
 
 					for (let i = 0; i < savedServers.length; i++)
-
-
 					fs.writeFile('./server-list.json', JSON.stringify(data, null, 2), err => {
 						if (err) {
 							console.log(err)
@@ -201,10 +227,11 @@ io.on('connection', function(socket) {
 			}
 		});
 	});
+	*/
 
-	// Sends the message back to front with username and adds it to the log.
+	// TODO: Sends message to front with username and adds it to log.
 	socket.on('send-chat-message', (message) => {
-		socket.broadcast.emit('chat-message', username, message);
+		socket.broadcast.emit('chat-message', message); // Sends to everyone BUT yourself, for lag purposes.
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {
