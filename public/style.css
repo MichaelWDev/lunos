@@ -650,7 +650,7 @@ html, body {
 	width: 8em;
 }
 
-#channel-container {
+#channel-btns {
 	position: absolute;
 	width: 17em;
 	height: 40em;
@@ -711,7 +711,7 @@ html, body {
 	transition: 0.25s;
 }
 
-#chat-container {
+.chat-containers {
 	position: absolute;
 	width: 60%;
 	height: 50em;

@@ -60,7 +60,7 @@ let messageSearch            = document.getElementById('message-friends-search')
 // Containers
 const incorrectText          = document.getElementById('incorrect-text');
 const chatContainer          = document.getElementById('chat-container');
-const channelList            = document.getElementById('channel-list');
+//const channelList            = document.getElementById('channel-list');
 const userListGrid           = document.getElementById('user-list-grid');
 const sendChatForm           = document.getElementById('send-chat-form');
 const friendsDirect          = document.getElementById('friends-direct-btn-container');
@@ -68,6 +68,7 @@ const friendsList            = document.getElementById('friends-list');
 const messageFriends         = document.getElementById('message-friends');
 const userContainer          = document.getElementById('user-container');
 const channelContainer       = document.getElementById('channel-container');
+const channelListGrid        = document.getElementById('channel-list-grid');
 
 // NOTE: Testing Purposes
 const server1                = document.getElementById('temp-server-1-id');
@@ -87,7 +88,7 @@ const socket = io();
 // SECTION Functions                     //
 //———————————————————————————————————————//
 
-// TODO: Admin commands.
+// TODO: Admin panel.
 
 // Handles every button.
 function button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
@@ -343,6 +344,38 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 	}
 }
 
+// TODO: Switching channels
+function switchChannel(room) {
+	//let buttons      = channelListGrid.getElementsByTagName('button');
+	let channelPages = document.getElementsByClassName('chat-containers');
+	console.log(channelPages)
+	channelPages     = channelPages.innerText;
+
+
+	channelPages     = channelPages.split(/\r?\n/);
+
+	for (let x = 0; x < channelPages.length; x++) {
+		console.log(channelPages[x]);
+		if (room != channelPages) {
+
+		}
+	}
+
+	for (let i = 0; i < channelText.length; i++) {
+		if (room != channelText[i]) {
+			// Hides other channels.
+			console.log("False")
+			buttons[i].classList.add('hide');
+			//socket.emit('leave-room', channels[i]);
+		} else {
+			console.log("True")
+			buttons[i].classList.remove('hide');
+			//socket.emit('join-room', room);
+		}
+	}
+}
+
+
 // TODO: Password Validation
 function validatePassword (registerAccount) {
 	let upperCase     = /[A-Z]/g;
@@ -489,7 +522,7 @@ function createServerList (serverListArray) {
 }
 
 // TODO: Opens correct chat server that user clicks for.
-function openServer (server) {
+function switchServer (server) {
 	let serverDiv = document.getElementsByClassName('servers-' + server); // Every div has this class.
 	let serverIcon = document.getElementsByClassName('server-' + server + '-icon'); // Specific class for each server
 	let previousServerIcon = document.getElementsByClassName('servers-icon');

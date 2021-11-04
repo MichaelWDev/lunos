@@ -229,6 +229,18 @@ io.on('connection', function(socket) {
 	});
 	*/
 
+	// TODO: Switches Channel
+	socket.on('join-room', (room) => {
+		socket.join(room);
+		console.log("User joined room.")
+	});
+
+	// TODO: Leaves Channel
+	socket.on('leave-room', (room) => {
+		socket.leave(room);
+		console.log("User left room.")
+	});
+
 	// TODO: Sends message to front with username and adds it to log.
 	socket.on('send-chat-message', (message) => {
 		socket.broadcast.emit('chat-message', message); // Sends to everyone BUT yourself, for lag purposes.
