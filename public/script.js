@@ -344,32 +344,21 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 	}
 }
 
-// TODO: Switching channels
+// Switching Channels
 function switchChannel(room) {
-	//let buttons      = channelListGrid.getElementsByTagName('button');
-	let channelPages = document.getElementsByClassName('chat-containers');
-	console.log(channelPages)
-	channelPages     = channelPages.innerText;
-
-
-	channelPages     = channelPages.split(/\r?\n/);
-
-	for (let x = 0; x < channelPages.length; x++) {
-		console.log(channelPages[x]);
-		if (room != channelPages) {
-
-		}
-	}
+	let channelText  = channelListGrid.innerText;
+	let channelPages = channelContainer.getElementsByClassName('chat-containers');
+	channelText      = channelText.split(/\r?\n/);
 
 	for (let i = 0; i < channelText.length; i++) {
 		if (room != channelText[i]) {
 			// Hides other channels.
 			console.log("False")
-			buttons[i].classList.add('hide');
+			channelPages[i].classList.add('hide');
 			//socket.emit('leave-room', channels[i]);
 		} else {
 			console.log("True")
-			buttons[i].classList.remove('hide');
+			channelPages[i].classList.remove('hide');
 			//socket.emit('join-room', room);
 		}
 	}
