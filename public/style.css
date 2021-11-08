@@ -48,6 +48,7 @@
 	--border-3:  0.1em solid rgb(0, 44, 82);
 	--border-4: 0.25em solid rgb(255, 255, 255);
 	--border-5:  0.1em solid rgb(0, 0, 0);
+	--border-6:  0.1em solid rgb(0, 170, 0);
 }
 
 /*———————————————————————————————————————*/
@@ -268,17 +269,12 @@ html, body {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 25em;
-}
-
-#register-page {
-	position: absolute;
-	left: 50%;
-	top: 9em;
-	transform: translateX(-50%);
-	width: 25em;
+	height: 25em;
+	z-index: 1;
 }
 
 #login-register-page input {
+	position:      relative;
 	height:        1.5em;
 	border:        none;
 	background:    none;
@@ -291,16 +287,15 @@ html, body {
 	width:         12em;
 	text-align:    center;
 	padding:       0.5em;
-	position:      relative;
 	left:          50%;
 	transform:     translateX(-50%);
 	transition:    0.25s;
-	z-index:       1;
 	outline:       none;
+	z-index: 1;
 }
 
 #login-register-page input:focus {
-	border-bottom: var(--border-3);
+	border-bottom: var(--border-6);
 }
 
 #btn-box {
@@ -365,8 +360,11 @@ html, body {
 }
 
 #register-page {
-	top: 26em;
-	z-index: 1;
+	position: absolute;
+	left: 50%;
+	top: 22em;
+	transform: translateX(-50%);
+	z-index: 0;
 }
 
 #register-page h3 {
@@ -929,7 +927,7 @@ html, body {
 }
 
 .btns {
-	z-index: 10;
+	z-index: 100;
 	cursor: pointer;
 	transition: 0.25s;
 	outline: none;

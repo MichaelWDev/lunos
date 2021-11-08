@@ -72,7 +72,6 @@ const channelListGrid        = document.getElementById('channel-list-grid');
 
 // NOTE: Testing Purposes
 const server1                = document.getElementById('temp-server-1-id');
-let messageUsername;
 
 // Grids
 let   friendsListGrid        = document.getElementById('friends-list-grid');
@@ -363,7 +362,6 @@ function switchChannel(room) {
 		}
 	}
 }
-
 
 // TODO: Password Validation
 function validatePassword (registerAccount) {
