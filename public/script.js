@@ -59,7 +59,7 @@ let messageSearch            = document.getElementById('message-friends-search')
 
 // Containers
 const incorrectText          = document.getElementById('incorrect-text');
-const chatContainer          = document.getElementById('chat-container');
+
 //const channelList            = document.getElementById('channel-list');
 const userListGrid           = document.getElementById('user-list-grid');
 const sendChatForm           = document.getElementById('send-chat-form');
@@ -354,11 +354,11 @@ function switchChannel(room) {
 			// Hides other channels.
 			console.log("False")
 			channelPages[i].classList.add('hide');
-			//socket.emit('leave-room', channels[i]);
+			socket.emit('leave-room', channelText[i]);
 		} else {
 			console.log("True")
 			channelPages[i].classList.remove('hide');
-			//socket.emit('join-room', room);
+			socket.emit('join-room', room);
 		}
 	}
 }
@@ -477,6 +477,16 @@ function appendMessage (message) {
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
 	let username = profileUsername.innerText;
+
+
+	// TODO: Append the text to the channel the user is clicked into.
+	let testText  = channelListGrid.innerText;
+	testText= testText.split(/\r?\n/);
+
+	for (let i = 0; i < testText.length; i++) {
+		let CHAN = document.getElementById('chan-'+ i);
+		console.log(CHAN);
+	}
 
 	if (message == false) {
 		messageElement.innerText = `${username} has connected.`
