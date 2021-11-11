@@ -72,6 +72,7 @@ const channelListGrid        = document.getElementById('channel-list-grid');
 
 // NOTE: Testing Purposes
 const server1                = document.getElementById('temp-server-1-id');
+let currentChannel;
 
 // Grids
 let   friendsListGrid        = document.getElementById('friends-list-grid');
@@ -163,7 +164,7 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 		case 11: // TODO: Send Message
 			if (chatBarInput.value != '') {
 				// TODO: Also have submitting via enter key. (e.keycode = 13)
-				//socket.emit('send-chat-message', chatBarInput.value);
+				socket.emit('send-chat-message', chatBarInput.value);
 				appendMessage(chatBarInput.value);
 				chatBarInput.value = null;
 			}
@@ -453,39 +454,32 @@ function switchChannel(room) {
 	let channelText  = channelListGrid.innerText;
 	let channelPages = channelContainer.getElementsByClassName('chat-containers');
 	channelText      = channelText.split(/\r?\n/);
-	let currentChannel;
 
 	for (let i = 0; i < channelText.length; i++) {
 		if (room != channelText[i]) {
 			// Hides other channels.
 			console.log("False")
 			channelPages[i].classList.add('hide');
-			//socket.emit('leave-room', channelText[i]);
+			socket.emit('leave-room', channelText[i]);
 		} else {
 			console.log("True")
 			channelPages[i].classList.remove('hide');
-			//socket.emit('join-room', room);
+			socket.emit('join-room', room);
 			currentChannel = channelPages[i];
-			return currentChannel;
 		}
 	}
-
-	let test = currentChannel;
-	console.log("TEST: ", test);
-	//return currentChannel;
 }
 
 // Appends messages to the chat.
 function appendMessage (message) {
-	// TODO: When a message is sent it appends their profile picture to their text.
+	// TODO: Append profile picture to message.
 	// const chatMessage = document.createElement('div');
 	// chatMessage.classList.add('chat-message');
 
 	const messageElement = document.createElement('p');
+	let   username       = profileUsername.innerText;
+	let   chatContainer  = currentChannel;
 	messageElement.classList.add('text');
-	let username = profileUsername.innerText;
-	let chatContainer = switchChannel();
-	console.log("Chat Container: ", chatContainer)
 
 	if (message == false) {
 		messageElement.innerText = `${username} has connected.`
@@ -496,13 +490,13 @@ function appendMessage (message) {
 	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 }
 
-// TODO: Assigns all usernames to the right.
+// TODO: Assigns usernames to userlist.
 function appendUsername (username) {
-	const usernameElement = document.createElement('p');
+	const usernameElement = document.createElement('h3');
 	usernameElement.classList.add('text');
 	usernameElement.innerText = username;
 
-	userList.insertBefore(usernameElement, userList.firstChild);
+	userListGrid.insertBefore(usernameElement, userListGrid.firstChild);
 }
 
 // TODO: Server Creation
@@ -644,8 +638,8 @@ socket.on('saved-servers', (serverListArray) => {
 */
 
 // TODO: Adds the text to the chat container.
-socket.on('chat-message', (username, message) => {
-	appendMessage(username, message);
+socket.on('chat-message', (message) => {
+	appendMessage(message);
 });
 
 // TODO: Displays who leaves and removes their name from the user-list.

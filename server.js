@@ -13,6 +13,7 @@ const bcrypt = require('bcrypt');
 
 const fs = require('fs');
 
+
 /*———————————————————————————————————————*/
 /* SECTION: IO's & Sockets               */
 /*———————————————————————————————————————*/
@@ -28,6 +29,7 @@ server.listen(port, function () {
 // Server
 io.on('connection', function(socket) {
 	let username;
+	let channel;
 	console.log('user connected');
 
 	function uniqueID() {
@@ -44,8 +46,6 @@ io.on('connection', function(socket) {
 				try {
 					const data = JSON.parse(jsonString);
 					username = data[email].username;
-					
-
 				} catch (err) {
 					console.log('Error parsing JSON: ', err);
 				}
@@ -55,8 +55,7 @@ io.on('connection', function(socket) {
 
 	// TODO: User Connection
 	socket.on('new-user', username => {
-		socket.emit('user-list', users); // Sends a full list of current users to the client when they join. (Minus their own.)
-		socket.broadcast.emit('user-connected', username);
+		socket.broadcast.emit('user-list', username); // Sends a full list of current users to the client when they join. (Minus their own.)
 	});
 
 	// TODO: Account Login
@@ -232,18 +231,19 @@ io.on('connection', function(socket) {
 	// TODO: Switches Channel
 	socket.on('join-room', (room) => {
 		socket.join(room);
-		console.log("User joined room.")
+		channel = room; // Used in 'send-chat-message'.
+		//console.log(`User joined ${room}.`)
 	});
 
 	// TODO: Leaves Channel
 	socket.on('leave-room', (room) => {
 		socket.leave(room);
-		console.log("User left room.")
+		//console.log(`User left ${room}.`)
 	});
 
 	// TODO: Sends message to front with username and adds it to log.
 	socket.on('send-chat-message', (message) => {
-		socket.broadcast.emit('chat-message', message); // Sends to everyone BUT yourself, for lag purposes.
+		socket.to(channel).emit('chat-message', message); // Sends to everyone BUT yourself, for lag purposes.
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {
