@@ -717,6 +717,7 @@ html, body {
 	transform: translateX(-50%);
 	bottom: 5em;
 	font-family: var(--font-family-2);
+	color: var(--text-color-1);
 	overflow-y: scroll;
 	overflow-x: hidden;
 	display: flex;

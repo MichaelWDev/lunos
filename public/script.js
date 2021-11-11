@@ -163,7 +163,7 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 		case 11: // TODO: Send Message
 			if (chatBarInput.value != '') {
 				// TODO: Also have submitting via enter key. (e.keycode = 13)
-				socket.emit('send-chat-message', chatBarInput.value);
+				//socket.emit('send-chat-message', chatBarInput.value);
 				appendMessage(chatBarInput.value);
 				chatBarInput.value = null;
 			}
@@ -343,26 +343,6 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 	}
 }
 
-// Switching Channels
-function switchChannel(room) {
-	let channelText  = channelListGrid.innerText;
-	let channelPages = channelContainer.getElementsByClassName('chat-containers');
-	channelText      = channelText.split(/\r?\n/);
-
-	for (let i = 0; i < channelText.length; i++) {
-		if (room != channelText[i]) {
-			// Hides other channels.
-			console.log("False")
-			channelPages[i].classList.add('hide');
-			socket.emit('leave-room', channelText[i]);
-		} else {
-			console.log("True")
-			channelPages[i].classList.remove('hide');
-			socket.emit('join-room', room);
-		}
-	}
-}
-
 // TODO: Password Validation
 function validatePassword (registerAccount) {
 	let upperCase     = /[A-Z]/g;
@@ -468,6 +448,33 @@ function validatePassword (registerAccount) {
 	}
 }
 
+// Switching Channels
+function switchChannel(room) {
+	let channelText  = channelListGrid.innerText;
+	let channelPages = channelContainer.getElementsByClassName('chat-containers');
+	channelText      = channelText.split(/\r?\n/);
+	let currentChannel;
+
+	for (let i = 0; i < channelText.length; i++) {
+		if (room != channelText[i]) {
+			// Hides other channels.
+			console.log("False")
+			channelPages[i].classList.add('hide');
+			//socket.emit('leave-room', channelText[i]);
+		} else {
+			console.log("True")
+			channelPages[i].classList.remove('hide');
+			//socket.emit('join-room', room);
+			currentChannel = channelPages[i];
+			return currentChannel;
+		}
+	}
+
+	let test = currentChannel;
+	console.log("TEST: ", test);
+	//return currentChannel;
+}
+
 // Appends messages to the chat.
 function appendMessage (message) {
 	// TODO: When a message is sent it appends their profile picture to their text.
@@ -477,16 +484,8 @@ function appendMessage (message) {
 	const messageElement = document.createElement('p');
 	messageElement.classList.add('text');
 	let username = profileUsername.innerText;
-
-
-	// TODO: Append the text to the channel the user is clicked into.
-	let testText  = channelListGrid.innerText;
-	testText= testText.split(/\r?\n/);
-
-	for (let i = 0; i < testText.length; i++) {
-		let CHAN = document.getElementById('chan-'+ i);
-		console.log(CHAN);
-	}
+	let chatContainer = switchChannel();
+	console.log("Chat Container: ", chatContainer)
 
 	if (message == false) {
 		messageElement.innerText = `${username} has connected.`
