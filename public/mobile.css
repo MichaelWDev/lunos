@@ -97,7 +97,8 @@
 
 	#title {
 		position:      absolute;
-		left:          1em;
+		left:          50%;
+		transform: translateX(-50%);
 		width:         15em;
 		height:        4.5em;
 		top:           1em;
@@ -143,13 +144,13 @@
 
 	#top-nav {
 		position: absolute;
-		top: 1.5em;
+		top: 6em;
 		left: 50%;
 		transform: translate(-50%);
-		min-width: 30.5em;
-		height: 4em;
+		width: 12em;
+		height: auto;
 		z-index: 1;
-		animation: 2s top-to-bottom;
+		animation: 2s fadeIn;
 		user-select: none;
 	}
 
@@ -157,13 +158,9 @@
 	/* SECTION Home Page                     */
 	/*———————————————————————————————————————*/
 
-	#home-page {
-		top: 10em;
-	}
-
 	#home-page-background {
 		position: absolute;
-		top: 4em;
+		top: 0;
 		left: 50%;
 		transform: translateX(-50%);
 		height: 70em;
@@ -177,9 +174,9 @@
 	#home-title {
 		position: absolute;
 		left: 50%;
-		width: 18em;
+		width: 20em;
 		transform: translateX(-50%);
-		top: 5em;
+		top: 2em;
 		animation: 2s fadeIn;
 	}
 
@@ -858,7 +855,8 @@
 
 	.pages {
 		position: absolute;
-		width: 80%;
+		top: 24em !important;
+		width: 100%;
 		height: 100%;
 		font-family: var(--font-family-1);
 		color: var(--text-color-1);
@@ -971,8 +969,9 @@
 	}
 
 	.nav-btns {
-		width: 8em;
-		font-size: 1.25em;
+		width: 6em;
+		height: 3em;
+		font-size: 1.5em;
 		padding: 1em;
 		transition: 0.25s;
 		text-align: center;
@@ -1099,105 +1098,5 @@
 /* TODO: Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {}
 
-/* TODO: Large devices (laptops/desktops, 992px and up)
-@media only screen and (max-width: 992px) {
-
-	#home-page-background {
-		top: 4em;
-	}
-	
-	#home-title {
-		top: 5em;
-	}
-
-	#encryption-about-card {
-		left: 0;
-	}
-	
-	#privacy-about-card {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-	
-	#safety-about-card {
-		right: 0;
-	}
-
-	#about-card-container h3 {
-		top: 22em;
-	}
-
-	.nav-btns {
-		height: 1em;
-	}
-
-	.cards {
-		width: 16em;
-		height: 24em;
-	}
-
-	.card-images-container {
-		position: relative;
-		width: 10em;
-		height: 10em;
-		top: 2em;
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	.card-image {
-		position: absolute;
-		left: 0;
-		width: 10em;
-		height: 10em;
-	}
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up)
-@media only screen and (max-width: 1200px) {
-	#home-title {
-		top: 11em;
-	}
-
-	#home-page-background {
-		top: 10em;
-	}
-
-	#about-title {
-		top: 6em;
-	}
-
-	#about-card-container {
-		top: 10em;
-	}
-	
-	#encryption-about-card {
-		left: 0;
-	}
-	
-	#privacy-about-card {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-	
-	#safety-about-card {
-		right: 0;
-	}
-
-	#about-card-container h3 {
-		top: 21em;
-	}
-
-	.cards {
-		width: 16em;
-		height: 24em;
-	}
-
-	.card-image {
-		position: absolute;
-		left: 0;
-		width: 10em;
-		height: 10em;
-	}
-}
-*/
+/* TODO: Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {}
