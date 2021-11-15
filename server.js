@@ -55,7 +55,8 @@ io.on('connection', function(socket) {
 
 	// TODO: User Connection
 	socket.on('new-user', username => {
-		socket.broadcast.emit('user-list', username); // Sends a full list of current users to the client when they join. (Minus their own.)
+		socket.emit('user-list', username);
+		// NOTE: socket.to(channel).emit('chat-message', message);
 	});
 
 	// TODO: Account Login

@@ -72,6 +72,7 @@ const channelListGrid        = document.getElementById('channel-list-grid');
 
 // NOTE: Testing Purposes
 const server1                = document.getElementById('temp-server-1-id');
+let username;
 let currentChannel;
 
 // Grids
@@ -460,12 +461,14 @@ function switchChannel(room) {
 			// Hides other channels.
 			console.log("False")
 			channelPages[i].classList.add('hide');
+			channelPages[i].classList.remove('active-btn');
 			socket.emit('leave-room', channelText[i]);
 		} else {
 			console.log("True")
 			channelPages[i].classList.remove('hide');
-			socket.emit('join-room', room);
+			channelPages[i].classList.remove('active-btn');
 			currentChannel = channelPages[i];
+			socket.emit('join-room', room);
 		}
 	}
 }
@@ -477,8 +480,7 @@ function appendMessage (message) {
 	// chatMessage.classList.add('chat-message');
 
 	const messageElement = document.createElement('p');
-	let   username       = profileUsername.innerText;
-	let   chatContainer  = currentChannel;
+	let chatContainer = currentChannel;
 	messageElement.classList.add('text');
 
 	if (message == false) {
@@ -487,16 +489,21 @@ function appendMessage (message) {
 		messageElement.innerText = `${username}: ${message}`;
 	}
 
-	chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+	if (chatContainer) {
+		chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+	} else {
+		chatContainer = channelContainer.firstElementChild;
+		chatContainer.appendChild(messageElement);
+	}
 }
 
-// TODO: Assigns usernames to userlist.
+// TODO: Adds usernames to user-list.
 function appendUsername (username) {
 	const usernameElement = document.createElement('h3');
 	usernameElement.classList.add('text');
 	usernameElement.innerText = username;
 
-	userListGrid.insertBefore(usernameElement, userListGrid.firstChild);
+	userListGrid.insertBefore(usernameElement, userListGrid.firstElementChild);
 }
 
 // TODO: Server Creation
@@ -592,7 +599,9 @@ socket.on('login-successful', (username) => {
 	userHomeTitle.innerText = `Welcome back, ${username}.`;
 
 	// Sockets
+	socket.emit('new-user', username); // TODO
 	socket.emit('saved-servers-list', username);
+
 	// NOTE: Sends username back to server to grab user information.
 });
 
@@ -631,24 +640,26 @@ socket.on('saved-servers', (serverListArray) => {
 	createServerList(serverListArray);
 });
 
-/* TODO: When the user joins/creates a server.
-	profileUsername.innerText = username;
-	appendUsername(username);
-	appendMessage(username, false);
-*/
-
 // TODO: Adds the text to the chat container.
 socket.on('chat-message', (message) => {
 	appendMessage(message);
 });
 
-// TODO: Displays who leaves and removes their name from the user-list.
+// TODO: Displays who leaves and remove their name from the user-list.
 socket.on('user-disconnected', username => {
 	// appendMessage(username + ' has disconnected.');
-	document.getElementById('user-list-' + username).remove();
+	//document.getElementById('user-list-' + username).remove();
 });
 
 // TODO: Adds whoever joins to the user-list.
 socket.on('user-list', users => {
+	username = users;
 	appendUsername(users);
+	appendMessage(false);
 });
+
+/* TODO: When the user joins/creates a server.
+	profileUsername.innerText = username;
+	appendUsername(username);
+	appendMessage(username, false);
+*/
