@@ -698,6 +698,7 @@ html, body {
 	right: 1em;
 	overflow: hidden;
 	overflow-y: scroll;
+	z-index: 0;
 }
 
 #users-btn {
@@ -729,6 +730,7 @@ html, body {
 	grid-template-columns: auto;
 	width: 16em;
 	height: auto;
+	z-index: 0;
 }
 
 #profile-container {
@@ -794,7 +796,7 @@ html, body {
 
 #chat-bar-input {
 	width: 46em;
-	height: 2em;
+	height: 2.25em;
 	position: absolute;
 	left: 3em;
 	background: none;
@@ -833,6 +835,7 @@ html, body {
 	font-size: 1em;
 	border: var(--border-5);
 	border-radius: 2em;
+	z-index: 1;
 }
 
 #chat-bar-btn:hover {

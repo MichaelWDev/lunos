@@ -51,25 +51,20 @@
 	--border-6:  0.1em solid rgb(0, 170, 0);
 }
 
-/*———————————————————————————————————————*/
-/* SECTION Media Queries                 */
-/*———————————————————————————————————————*/
+/* TODO: Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
 
-/* TODO: Extra small devices (phones, 600px and down) */
-@media screen and (max-width: 600px) {
+/* TODO: Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
 	/*———————————————————————————————————————*/
 	/* SECTION Elements                      */
 	/*———————————————————————————————————————*/
+
 	html, body {
 		background-color: var(--background-color-1);
-		margin:   0;
-		width:    100%;
-		height:   100%;
-		overflow: hidden;
-	}
-
-	body {
-		position: fixed;
+		margin: 0;
+		width: 100%;
+		height: 100%;
 		overflow: hidden;
 	}
 
@@ -99,8 +94,7 @@
 
 	#title {
 		position:      absolute;
-		left:          50%;
-		transform: translateX(-50%);
+		left:          1em;
 		width:         15em;
 		height:        4.5em;
 		top:           1em;
@@ -146,13 +140,13 @@
 
 	#top-nav {
 		position: absolute;
-		top: 6em;
+		top: 1.5em;
 		left: 50%;
 		transform: translate(-50%);
-		width: 12em;
-		height: auto;
+		width: 30.5em;
+		height: 4em;
 		z-index: 1;
-		animation: 2s fadeIn;
+		animation: 2s top-to-bottom;
 		user-select: none;
 	}
 
@@ -160,13 +154,17 @@
 	/* SECTION Home Page                     */
 	/*———————————————————————————————————————*/
 
+	#home-page {
+		top: 4.5em;
+	}
+
 	#home-page-background {
 		position: absolute;
-		top: 0;
 		left: 50%;
+		top: 4em;
 		transform: translateX(-50%);
-		height: 70em;
-		width: 70em;
+		height: 100em;
+		width: 100em;
 		/*border-top: var(--border-2);*/
 		border-radius: 50%;
 		box-shadow: 0px -15px 25px rgba(255, 255, 255, 0.25);
@@ -176,9 +174,8 @@
 	#home-title {
 		position: absolute;
 		left: 50%;
-		width: 20em;
 		transform: translateX(-50%);
-		top: 2em;
+		top: 5em;
 		animation: 2s fadeIn;
 	}
 
@@ -706,6 +703,7 @@
 		right: 1em;
 		overflow: hidden;
 		overflow-y: scroll;
+		z-index: 0;
 	}
 
 	#users-btn {
@@ -737,6 +735,7 @@
 		grid-template-columns: auto;
 		width: 16em;
 		height: auto;
+		z-index: 0;
 	}
 
 	#profile-container {
@@ -797,12 +796,12 @@
 		height: 3em;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom: 2.5%;
+		bottom: 1em;
 	}
 
 	#chat-bar-input {
 		width: 46em;
-		height: 2em;
+		height: 2.25em;
 		position: absolute;
 		left: 3em;
 		background: none;
@@ -841,6 +840,7 @@
 		font-size: 1em;
 		border: var(--border-5);
 		border-radius: 2em;
+		z-index: 1;
 	}
 
 	#chat-bar-btn:hover {
@@ -857,7 +857,6 @@
 
 	.pages {
 		position: absolute;
-		top: 24em !important;
 		width: 100%;
 		height: 100%;
 		font-family: var(--font-family-1);
@@ -971,9 +970,8 @@
 	}
 
 	.nav-btns {
-		width: 6em;
-		height: 3em;
-		font-size: 1.5em;
+		width: 8em;
+		font-size: 1.25em;
 		padding: 1em;
 		transition: 0.25s;
 		text-align: center;
@@ -1093,6 +1091,3 @@
 		100% {top: 1.5em}
 	}
 }
-
-/* TODO: Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
