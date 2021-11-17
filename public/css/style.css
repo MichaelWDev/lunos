@@ -593,7 +593,7 @@ html, body {
 
 .server-title {
 	position: absolute;
-	top: -0.5em;
+	top: -3.5em;
 	max-height: 5em;
 	width: 100%;
 	overflow-y: hidden;
@@ -658,7 +658,7 @@ html, body {
 
 #channels-btn {
 	position: absolute;
-	left: 0.5em;
+	left: 50%;
 	top: 4.75em;
 	font-size: 2em;
 	transition: 0.25s;
@@ -787,7 +787,7 @@ html, body {
 
 #chat-bar {
 	position: absolute;
-	width: 70em;
+	width: 65em;
 	height: 3em;
 	left: 50%;
 	transform: translateX(-50%);
@@ -798,7 +798,6 @@ html, body {
 	width: 46em;
 	height: 2.25em;
 	position: absolute;
-	left: 3em;
 	background: none;
 	border: none;
 	font-size: 1.25em;
@@ -828,7 +827,7 @@ html, body {
 
 #chat-bar-btn {
 	position: absolute;
-	right: 2em;
+	right: 0;
 	padding: 0.5em;
 	width: 5em;
 	height: 3em;
@@ -1059,6 +1058,15 @@ html, body {
 
 .users h3 {
 	position: relative;
+}
+
+.servers {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-family: var(--font-family-1);
+	color: var(--text-color-1);
+	animation: 1s fadeIn;
 }
 
 /*———————————————————————————————————————*/
