@@ -1,27 +1,11 @@
 class Buttons {
 	constructor() {
-		// Other Elements
-		this.satelliteImg           = document.getElementById('satellite-img');
-		this.titleContainer         = document.getElementById('title');
-		this.topNav                 = document.getElementById('top-nav');
-		this.savedServersList       = document.getElementById('saved-servers-list');
-		this.friends                = document.getElementsByClassName('friends');
-
-		this.profileImage           = document.getElementById('profile-image');
-		this.profileUsername        = document.getElementById('profile-username');
-		this.createTitleH1          = document.getElementById('create-title-h1');
-		this.createTitleH2          = document.getElementById('create-title-h2');
-		this.userHomeTitle          = document.getElementById('user-home-title');
-
 		// Buttons
 		this.logBtn                 = document.getElementById('log-btn');
 		this.regBtn                 = document.getElementById('reg-btn');
 		this.homeBtn                = document.getElementById('home-btn');
 		this.aboutBtn               = document.getElementById('about-btn');
 		this.contactBtn             = document.getElementById('contact-btn');
-		this.loginBtn               = document.getElementById('login-btn');
-		this.registerBtn            = document.getElementById('register-btn');
-		this.accountRegisterBtn     = document.getElementById('account-register-btn');
 		this.joinServerBtn          = document.getElementById('join-server-btn');
 		this.createServerBtn        = document.getElementById('create-server-btn');
 		this.joinBtn                = document.getElementById('join-btn');
@@ -40,10 +24,7 @@ class Buttons {
 		this.supportPage            = document.getElementById('support-page');
 		this.loginRegisterPage      = document.getElementById('login-register-page');
 		this.registerPage           = document.getElementById('register-page');
-		this.servers                = document.getElementsByClassName('servers');
 		this.btnBox                 = document.getElementById('btn-box');
-		this.createJoinServerPage   = document.getElementById('create-join-server-page');
-		this.userHomePage           = document.getElementById('user-home-page');
 
 		// Inputs
 		this.chatBarInput           = document.getElementById('chat-bar-input');
@@ -52,33 +33,13 @@ class Buttons {
 		this.passwordInput          = document.getElementById('password-input');
 		this.joinServerInput        = document.getElementById('join-server-input');
 		this.createServerInput      = document.getElementById('create-server-input');
-		this.friendSearch           = document.getElementById('friends-search');
-		this.messageSearch          = document.getElementById('message-friends-search');
 
 		// Containers
-		this.incorrectText          = document.getElementById('incorrect-text');
-
-		//this.channelList            = document.getElementById('channel-list');
-		this.userListGrid           = document.getElementById('user-list-grid');
-		this.sendChatForm           = document.getElementById('send-chat-form');
-		this.friendsDirect          = document.getElementById('friends-direct-btn-container');
-		this.friendsList            = document.getElementById('friends-list');
-		this.messageFriends         = document.getElementById('message-friends');
 		this.userContainer          = document.getElementById('user-container');
 		this.channelContainer       = document.getElementById('channel-container');
-		this.channelListGrid        = document.getElementById('channel-list-grid');
 
 		// NOTE: Testing Purposes
 		this.server1                = document.getElementById('temp-server-1-id');
-		this.username;
-		this.currentChannel;
-
-		// Grids
-		this.friendsListGrid        = document.getElementById('friends-list-grid');
-		this.messageFriendsListGrid = document.getElementById('message-friends-list-grid');
-
-		// Regex
-		this.emailRegex 			= /^\S+@\S+\.\S+$/;
 
 		// Socket.io
 		this.socket = io();
@@ -331,7 +292,7 @@ class Buttons {
 				let lunosBtn   = document.getElementById('enter-lunos-btn');
 
 				lunosBtn.classList.add('hide');
-				this.friendsDirect.classList.add('hide');
+				// this.friendsDirect.classList.add('hide');
 				serverIcon.classList.add('active-server');
 				this.server1.classList.remove('hide');
 			break;
