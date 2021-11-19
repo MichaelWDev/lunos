@@ -1,20 +1,22 @@
 class Events {
 	constructor() {
+		// Variables
+
+
 		// Socket.io
 		this.socket = io();
+		this.socket.onAny(this.onEvent);
 	}
 
-	//———————————————————————————————————————//
-	// SECTION Sockets                       //
-	//———————————————————————————————————————//
+	// Event routing function.
+	onEvent(event, data) {if (this[event]) {this[event](data);}}
 
 	// Connection Error
-	socket.on("connect_error", (err) => {
-		console.log(`connect_error due to ${err.message}`);
-	});
+	connectError(data) {
+		console.log(`connect error due to ${err.message}`);
+	}
 
-	// TODO: Login Successful
-	socket.on('login-successful', (username) => {
+	loginSuccessful(data) {
 		// Hide Pages
 		logBtn.classList.add('hide');
 		regBtn.classList.add('hide');
@@ -35,17 +37,14 @@ class Events {
 		// Sockets
 		socket.emit('new-user', username); // TODO
 		socket.emit('saved-servers-list', username);
-
-		// NOTE: Sends username back to server to grab user information.
-	});
-
-	// TODO: Login Unsuccessful
-	socket.on('login-unsuccessful', () => {
+	}
+	
+	loginUnsuccessful() {
 		incorrectText.classList.remove('hide');
-	});
+	}
 
 	// TODO: Account Creation Unsuccessful
-	socket.on('account-successful', () => {
+	accountSuccessful (data) {
 		logBtn.classList.add('hide');
 		regBtn.classList.add('hide');
 		loginRegisterPage.classList.add('hide');
@@ -57,40 +56,40 @@ class Events {
 		createTitleH2.classList.add('hide');
 
 		createTitleH1.innerText = `Welcome to the universe of Lunos, ${username}.`;
-	});
+	}
 
 	// TODO: Server Creation
-	socket.on('server-creation-successful', (serverName) => {
+	serverCreationSuccessful (data) {
 		// createServerList(serverName);
-	});
+	}
 
 	// TODO: Generate Server Code
-	socket.on('server-code', (serverCode) => {
+	serverCode (data) {
 
-	});
+	}
 
 	// TODO: Users Saved Server List
-	socket.on('saved-servers', (serverListArray) => {
+	savedServers (serverListArray) {
 		createServerList(serverListArray);
-	});
+	}
 
 	// TODO: Adds the text to the chat container.
-	socket.on('chat-message', (message) => {
+	chatMessage (message) {
 		appendMessage(message);
-	});
+	}
 
 	// TODO: Displays who leaves and remove their name from the user-list.
-	socket.on('user-disconnected', username => {
+	userDisconnected (data) {
 		// appendMessage(username + ' has disconnected.');
 		//document.getElementById('user-list-' + username).remove();
-	});
+	}
 
 	// TODO: Adds whoever joins to the user-list.
-	socket.on('user-list', users => {
+	userList (users) {
 		username = users;
 		appendUsername(users);
 		appendMessage(false);
-	});
+	}
 
 	/* TODO: When the user joins/creates a server.
 		profileUsername.innerText = username;
