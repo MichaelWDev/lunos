@@ -1,12 +1,17 @@
 class Events {
-	constructor() {
+	constructor() { // TODO: Figure out which variables are/are not being used in js.
+					// TODO: Copy remaining variables from script.js
 		// Variables
-
+		this.server1 = document.getElementById('temp-server-1-id');
+		this.username;
+		this.currentChannel;
 
 		// Socket.io
 		this.socket = io();
 		this.socket.onAny(this.onEvent);
 	}
+
+	// These are all former socket.on's from script.js.
 
 	// Event routing function.
 	onEvent(event, data) {if (this[event]) {this[event](data);}}
@@ -29,14 +34,14 @@ class Events {
 		server1.classList.add('hide');
 		createJoinServerPage.classList.add('hide');
 		userHomePage.classList.remove('hide');
-		profileUsername.innerText = username;
+		profileUsername.innerText = this.username;
 
 		// User Home Page
-		userHomeTitle.innerText = `Welcome back, ${username}.`;
+		userHomeTitle.innerText = `Welcome back, ${this.username}.`;
 
 		// Sockets
-		socket.emit('new-user', username); // TODO
-		socket.emit('saved-servers-list', username);
+		socket.emit('new-user', this.username); // TODO
+		socket.emit('saved-servers-list', this.username);
 	}
 	
 	loginUnsuccessful() {
@@ -55,11 +60,11 @@ class Events {
 		chatApp.classList.add('hide');
 		createTitleH2.classList.add('hide');
 
-		createTitleH1.innerText = `Welcome to the universe of Lunos, ${username}.`;
+		createTitleH1.innerText = `Welcome to the universe of Lunos, ${this.username}.`;
 	}
 
 	// TODO: Server Creation
-	serverCreationSuccessful (data) {
+	createServer (data) {
 		// createServerList(serverName);
 	}
 

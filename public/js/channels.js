@@ -1,7 +1,5 @@
 class Channels {
-	constructor() {
-
-	}
+	constructor() {}
 
 	// Switching Channels
 	switchChannel(room) {

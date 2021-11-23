@@ -11,9 +11,13 @@
 	<link rel="shortcut icon" href="images/ringed-planet.png" />
 
 	<script defer src="/socket.io/socket.io.js"></script>
+	<!--
+	NOTE: Old script that holds everything.
 	<script defer src="js/script.js"></script>
+	-->
 	<script defer src="js/buttons.js"></script>
 	<script defer src="js/channels.js"></script>
+	<script defer src="js/events.js"></script>
 	<script defer src="js/script4.js"></script>
 	
 	<link defer rel="stylesheet" href="css/style.css">
@@ -21,7 +25,7 @@
 	<link defer rel="stylesheet" href="css/laptop.css">
 </head>
 <body>
-	<div class="hide"> <!--NOTE: Remove after done testing.-->
+	<div class=""> <!--NOTE: Remove after done testing.-->
 	<div id="title" onclick="button(13)">
 		<h1>Lunos</h1>
 		<img src="images/ringed-planet.png">
@@ -203,7 +207,7 @@
 	</div>
 </div> <!--NOTE: Remove after done testing.-->
 
-	<div id="temp-server-1-id" class="servers-1 servers">
+	<div id="temp-server-1-id" class="servers-1 servers hide">
 		<div id="admin-panel" class="hide">
 			<div id="admin-nav">
 				<button class="admin-nav-btns btns" onclick="button(26)">Dashboard</button>
