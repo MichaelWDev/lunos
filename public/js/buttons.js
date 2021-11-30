@@ -40,16 +40,13 @@ class Buttons {
 
 		// NOTE: Testing Purposes
 		this.server1                = document.getElementById('temp-server-1-id');
-
-		// Socket.io
-		this.socket = io();
 	}
 
 	// Handles every button.
 	button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 		switch(btn) {
 			case 1: // Login
-				this.socket.emit('login', this.emailInput.value, this.passwordInput.value);
+				events.socket.emit('login', this.emailInput.value, this.passwordInput.value);
 			break;
 
 			case 2: // Register
@@ -119,7 +116,7 @@ class Buttons {
 			case 11: // TODO: Send Message
 				if (this.chatBarInput.value != '') {
 					// TODO: Also have submitting via enter key. (e.keycode = 13)
-					this.socket.emit('send-chat-message', this.chatBarInput.value);
+					events.socket.emit('send-chat-message', this.chatBarInput.value);
 					appendMessage(this.chatBarInput.value);
 					this.chatBarInput.value = null;
 				}
@@ -213,11 +210,11 @@ class Buttons {
 			break;
 
 			case 18: // Join
-				this.socket.emit('join-server', joinServerInput.value);
+				events.socket.emit('join-server', joinServerInput.value);
 			break;
 
 			case 19: // Create
-				this.socket.emit('create-server', createServerInput.value);
+				events.socket.emit('create-server', createServerInput.value);
 			break;
 
 			case 20: // TODO: Server Icon
@@ -287,6 +284,10 @@ class Buttons {
 				this.adminPanel.classList.add('hide');
 			break;
 
+			case 800:
+				console.log("TESTING CLASSES")
+			break;
+
 			case 999: // NOTE: Enter Lunos
 				let serverIcon = document.getElementById('temp-server-id');
 				let lunosBtn   = document.getElementById('enter-lunos-btn');
@@ -299,7 +300,17 @@ class Buttons {
 		}
 	}
 
-		// TODO: Password Validation
+	// TODO: Password Validation
+	/* TODO: Fix:
+		• Have a single function: validate()
+		• Have arguments like: validate(optionID, toValidate) or something.
+		The first argument is the element or ID e.g. symbolSpan,
+		and the second is the thing you put in the if statement.
+		If toValidate is true, then get the optionID and turn it green.
+		Otherwise, red.
+		• Then you can do: validate(symbolSpan, blahblah.match(symbols));
+
+	*/
 	validatePassword (registerAccount) {
 		let upperCase     = /[A-Z]/g;
 		let lowerCase     = /[a-z]/g;
@@ -404,3 +415,5 @@ class Buttons {
 		}
 	}
 }
+
+let newButton = new Buttons();
