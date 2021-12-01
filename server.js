@@ -55,7 +55,7 @@ io.on('connection', function(socket) {
 
 	// TODO: User Connection
 	socket.on('new-user', username => {
-		socket.emit('user-list', username);
+		socket.emit('userList', username);
 		// NOTE: socket.to(channel).emit('chat-message', message);
 	});
 
@@ -76,9 +76,9 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
-							socket.emit('login-successful', username);
+							socket.emit('loginSuccessful', username);
 						} else {
-							socket.emit('login-unsuccessful');
+							socket.emit('loginUnsuccessful');
 						}
 					});
 				} catch (err) {
@@ -111,7 +111,7 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Account successfully added.');
-							socket.emit('account-succesful');
+							socket.emit('accountSuccesful');
 						}
 					});
 				} catch (err) {
@@ -161,7 +161,7 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Server successfully created.');
-							socket.emit('server-creation-succesful', serverName);
+							socket.emit('createServer', serverName);
 						}
 					});
 				} catch (err) {
@@ -175,7 +175,7 @@ io.on('connection', function(socket) {
 	socket.on('create-server-invite', () => {
 		let serverCode = uniqueID().substring(0, 6);
 		console.log(serverCode);
-		socket.emit('server-code', serverCode);
+		socket.emit('serverCode', serverCode);
 
 		fs.readFile('./server-list.json', 'utf-8', (err, jsonString) => {
 			if (err) {
@@ -190,7 +190,7 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Server invite successfully created.');
-							// socket.emit('invite-succesful');
+							// socket.emit('createInvite');
 						}
 					});
 				} catch (err) {
@@ -218,7 +218,7 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Server invite successfully created.');
-							socket.emit('saved-servers', testArray);
+							socket.emit('savedServers', testArray);
 						}
 					});
 				} catch (err) {

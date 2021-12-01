@@ -1,7 +1,7 @@
 //———————————————————————————————————————//
 // SECTION Global Variables              //
 //———————————————————————————————————————//
-
+// NOTE: Moved to OOP.
 // Other Elements
 const satelliteImg           = document.getElementById('satellite-img');
 const titleContainer         = document.getElementById('title');
@@ -91,6 +91,7 @@ const socket = io();
 
 // TODO: Admin panel.
 
+// NOTE: Moved to OOP.
 // Handles every button.
 function button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 	switch(btn) {
@@ -345,6 +346,7 @@ function button (btn) { // TODO: Re-arrange the buttons so they are organized to
 	}
 }
 
+// NOTE: Moved to OOP.
 // TODO: Password Validation
 function validatePassword (registerAccount) {
 	let upperCase     = /[A-Z]/g;
