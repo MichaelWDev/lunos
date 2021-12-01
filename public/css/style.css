@@ -189,26 +189,8 @@ html, body {
 	text-align: center;
 }
 
-#about-card-container {
-	position: relative;
-	top: 8em;
-}
-
 #about-card-container h1 {
 	color: var(--text-span-color-1);
-}
-
-#encryption-about-card {
-	left: 15em;
-}
-
-#privacy-about-card {
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-#safety-about-card {
-	right: 15em;
 }
 
 /*———————————————————————————————————————*/
@@ -224,22 +206,15 @@ html, body {
 	top: 1em;
 }
 
-#contact-card-container {
+.card-container {
+	display: inline-grid;
+	grid-column-gap: 2em;
+	grid-template-columns: auto auto auto;
 	position: relative;
-	top: 5em;
-}
-
-#email-contact-card {
-	left: 15em;
-}
-
-#social-contact-card {
+	top: 7em;
 	left: 50%;
 	transform: translateX(-50%);
-}
-
-#phone-contact-card {
-	right: 15em;
+	width: auto;
 }
 
 /*———————————————————————————————————————*/
@@ -865,7 +840,6 @@ html, body {
 }
 
 .cards {
-	position: absolute;
 	width: 20em;
 	height: 35em;
 	border: var(--border-5);
