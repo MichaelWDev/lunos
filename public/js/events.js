@@ -6,6 +6,9 @@ class Events {
 		this.username;
 		this.currentChannel;
 
+		this.topNav = document.getElementById('top-nav');
+		this.titleContainer = document.getElementById('title');
+
 		// Socket.io
 		this.socket = io();
 		this.socket.onAny(this.onEvent);
@@ -14,7 +17,10 @@ class Events {
 	// These are all former socket.on's from script.js.
 
 	// Event routing function.
-	onEvent(event, data) {if (this[event]) {this[event](data);}}
+	onEvent(event, data) { // TODO: Fix this. It's unable to route to the correct function for some reason.
+		console.log("onEvent: ", event)
+		console.log("onEvent Data: ", data)
+		if (this[event]) {this[event](data);}}
 
 	// Connection Error
 	connectError(data) {
@@ -23,25 +29,24 @@ class Events {
 
 	loginSuccessful(data) {
 		// Hide Pages
-		logBtn.classList.add('hide');
-		regBtn.classList.add('hide');
-		loginRegisterPage.classList.add('hide');
+		newButton.logBtn.classList.add('hide');
+		newButton.regBtn.classList.add('hide');
+		newButton.loginRegisterPage.classList.add('hide');
 		incorrectText.classList.add('hide');
-		topNav.classList.add('hide');
-		titleContainer.classList.add('hide');
-		loginRegisterPage.classList.add('hide');
+		this.topNav.classList.add('hide');
+		this.titleContainer.classList.add('hide');
 		
-		server1.classList.add('hide');
+		this.server1.classList.add('hide');
 		createJoinServerPage.classList.add('hide');
 		userHomePage.classList.remove('hide');
-		profileUsername.innerText = this.username;
+		profileUsername.innerText = data;
 
 		// User Home Page
-		userHomeTitle.innerText = `Welcome back, ${this.username}.`;
+		userHomeTitle.innerText = `Welcome back, ${data}.`;
 
 		// Sockets
-		socket.emit('new-user', this.username); // TODO
-		socket.emit('saved-servers-list', this.username);
+		socket.emit('new-user', data); // TODO
+		socket.emit('saved-servers-list', data);
 	}
 	
 	loginUnsuccessful() {
@@ -102,3 +107,5 @@ class Events {
 		appendMessage(username, false);
 	*/
 }
+
+let newEvent = new Events();

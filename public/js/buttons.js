@@ -46,7 +46,7 @@ class Buttons {
 	button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 		switch(btn) {
 			case 1: // Login
-				events.socket.emit('login', this.emailInput.value, this.passwordInput.value);
+				newEvent.socket.emit('login', this.emailInput.value, this.passwordInput.value);
 			break;
 
 			case 2: // Register
@@ -116,7 +116,7 @@ class Buttons {
 			case 11: // TODO: Send Message
 				if (this.chatBarInput.value != '') {
 					// TODO: Also have submitting via enter key. (e.keycode = 13)
-					events.socket.emit('send-chat-message', this.chatBarInput.value);
+					newEvent.socket.emit('send-chat-message', this.chatBarInput.value);
 					appendMessage(this.chatBarInput.value);
 					this.chatBarInput.value = null;
 				}
@@ -210,11 +210,11 @@ class Buttons {
 			break;
 
 			case 18: // Join
-				events.socket.emit('join-server', joinServerInput.value);
+				newEvent.socket.emit('join-server', joinServerInput.value);
 			break;
 
 			case 19: // Create
-				events.socket.emit('create-server', createServerInput.value);
+				newEvent.socket.emit('create-server', createServerInput.value);
 			break;
 
 			case 20: // TODO: Server Icon
@@ -312,12 +312,13 @@ class Buttons {
 
 	*/
 	validatePassword (registerAccount) {
-		let upperCase     = /[A-Z]/g;
-		let lowerCase     = /[a-z]/g;
-		let symbols       = /\W|_/g;
-		let numbers       = /[0-9]/g;
-		let emailMatch    = 0;
-		let passwordMatch = 0;
+		const upperCase     = /[A-Z]/g;
+		const lowerCase     = /[a-z]/g;
+		const symbols       = /\W|_/g;
+		const numbers       = /[0-9]/g;
+		const emailRegex    = /^\S+@\S+\.\S+$/;
+		let emailMatch      = 0;
+		let passwordMatch   = 0;
 
 		const securitySpan  = document.getElementById('security-span');
 		const characterSpan = document.getElementById('character-span');
@@ -411,7 +412,7 @@ class Buttons {
 
 		// NOTE: Create Account!
 		if (passwordMatch == 5 && emailMatch == 1 && registerAccount) {
-			socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value);
+			newEvent.socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value);
 		}
 	}
 }
