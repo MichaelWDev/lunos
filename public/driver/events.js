@@ -1,7 +1,9 @@
 class Events {
 	constructor() { // TODO: Figure out which variables are/are not being used in js.
-					// TODO: Copy remaining variables from script.js
-		// Variables
+		// TODO: Copy remaining variables from script.js
+
+		bindClass(this);
+
 		this.server1 = document.getElementById('temp-server-1-id');
 		this.username;
 		this.currentChannel;
@@ -11,27 +13,31 @@ class Events {
 
 		// Socket.io
 		this.socket = io();
+		// Routes every socket event to their correct function.
 		this.socket.onAny(this.onEvent);
 	}
 
-	// These are all former socket.on's from script.js.
-
 	// Event routing function.
-	onEvent(event, data) { // TODO: Fix this. It's unable to route to the correct function for some reason.
-		console.log("onEvent: ", event)
-		console.log("onEvent Data: ", data)
-		if (this[event]) {this[event](data);}}
+	// TODO: Fix this. It's unable to route to the correct function for some reason.
+	onEvent(event, data) {
+		console.log("Event: ", event);
+		console.log("Data: ", data)
+		if (this[event]) {
+			console.log("Event Data: ", this[event]);
+			this[event](data);
+		}
+	}
 
 	// Connection Error
 	connectError(data) {
-		console.log(`connect error due to ${err.message}`);
+		console.log(`connect error due to ${data}`);
 	}
 
 	loginSuccessful(data) {
 		// Hide Pages
-		newButton.logBtn.classList.add('hide');
-		newButton.regBtn.classList.add('hide');
-		newButton.loginRegisterPage.classList.add('hide');
+		buttons.logBtn.classList.add('hide');
+		buttons.regBtn.classList.add('hide');
+		buttons.loginRegisterPage.classList.add('hide');
 		incorrectText.classList.add('hide');
 		this.topNav.classList.add('hide');
 		this.titleContainer.classList.add('hide');
@@ -54,7 +60,7 @@ class Events {
 	}
 
 	// TODO: Account Creation Unsuccessful
-	accountSuccessful (data) {
+	accountSuccessful () {
 		logBtn.classList.add('hide');
 		regBtn.classList.add('hide');
 		loginRegisterPage.classList.add('hide');
@@ -68,6 +74,30 @@ class Events {
 		createTitleH1.innerText = `Welcome to the universe of Lunos, ${this.username}.`;
 	}
 
+	// Appends messages to the chat.
+	appendMessage (data) {
+		// TODO: Append profile picture to message.
+		// const chatMessage = document.createElement('div');
+		// chatMessage.classList.add('chat-message');
+
+		const messageElement = document.createElement('p');
+		let chatContainer = currentChannel;
+		messageElement.classList.add('text');
+
+		if (data == false) {
+			messageElement.innerText = `${username} has connected.`
+		} else {
+			messageElement.innerText = `${username}: ${data}`;
+		}
+
+		if (chatContainer) {
+			chatContainer.insertBefore(messageElement, chatContainer.firstChild);
+		} else {
+			chatContainer = channelContainer.firstElementChild;
+			chatContainer.appendChild(messageElement);
+		}
+	}
+
 	// TODO: Server Creation
 	createServer (data) {
 		// createServerList(serverName);
@@ -79,13 +109,13 @@ class Events {
 	}
 
 	// TODO: Users Saved Server List
-	savedServers (serverListArray) {
-		createServerList(serverListArray);
+	savedServers (data) {
+		createServerList(data);
 	}
 
 	// TODO: Adds the text to the chat container.
-	chatMessage (message) {
-		appendMessage(message);
+	chatMessage (data) {
+		appendMessage(data);
 	}
 
 	// TODO: Displays who leaves and remove their name from the user-list.
@@ -95,10 +125,10 @@ class Events {
 	}
 
 	// TODO: Adds whoever joins to the user-list.
-	userList (users) {
-		username = users;
-		appendUsername(users);
-		appendMessage(false);
+	userList (data) {
+		username = data;
+		appendUsername(data);
+		appendMessage(false); // Sends 
 	}
 
 	/* TODO: When the user joins/creates a server.
@@ -107,5 +137,3 @@ class Events {
 		appendMessage(username, false);
 	*/
 }
-
-let newEvent = new Events();

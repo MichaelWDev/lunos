@@ -46,7 +46,8 @@ class Buttons {
 	button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 		switch(btn) {
 			case 1: // Login
-				newEvent.socket.emit('login', this.emailInput.value, this.passwordInput.value);
+			console.log(this.emailInput.value)
+				events.socket.emit('login', this.emailInput.value, this.passwordInput.value);
 			break;
 
 			case 2: // Register
@@ -116,8 +117,8 @@ class Buttons {
 			case 11: // TODO: Send Message
 				if (this.chatBarInput.value != '') {
 					// TODO: Also have submitting via enter key. (e.keycode = 13)
-					newEvent.socket.emit('send-chat-message', this.chatBarInput.value);
-					appendMessage(this.chatBarInput.value);
+					events.socket.emit('send-chat-message', this.chatBarInput.value);
+					events.appendMessage(this.chatBarInput.value);
 					this.chatBarInput.value = null;
 				}
 			break;
@@ -303,11 +304,13 @@ class Buttons {
 	// TODO: Password Validation
 	/* TODO: Fix:
 		• Have a single function: validate()
+
 		• Have arguments like: validate(optionID, toValidate) or something.
-		The first argument is the element or ID e.g. symbolSpan,
-		and the second is the thing you put in the if statement.
-		If toValidate is true, then get the optionID and turn it green.
-		Otherwise, red.
+		  The first argument is the element or ID e.g. symbolSpan,
+		  and the second is the thing you put in the if statement.
+	  	  If toValidate is true, then get the optionID and turn it green.
+	  	  Otherwise, red.
+			
 		• Then you can do: validate(symbolSpan, blahblah.match(symbols));
 
 	*/
@@ -417,4 +420,12 @@ class Buttons {
 	}
 }
 
-let newButton = new Buttons();
+//———————————————————————————————————————————————————————————————————————//
+// SECTION Drivers
+//———————————————————————————————————————————————————————————————————————//
+
+// Load in all relevant drivers.
+const buttons = new Buttons();
+const events = new Events(); // TODO: Fix this.
+
+// !SECTION —————————————————————————————————————————————————————————————//

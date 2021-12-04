@@ -1,6 +1,16 @@
-/*———————————————————————————————————————*/
-/* SECTION: Global Variables	         */
-/*———————————————————————————————————————*/
+//———————————————————————————————————————————————————————————————————————//
+// SECTION Information
+/*———————————————————————————————————————————————————————————————————————//
+
+Author:      Michael Woodyard
+Email:       michaelwdev@outlook.com
+Description: Handles server code.
+
+// !SECTION —————————————————————————————————————————————————————————————*/
+
+//———————————————————————————————————————————————————————————————————————//
+// SECTION: Global Variables
+//———————————————————————————————————————————————————————————————————————//
 
 const express = require('express');
 const app     = express();
@@ -10,13 +20,28 @@ const io      = require('socket.io')(server);
 
 // NOTE: Password Encryption
 const bcrypt = require('bcrypt');
-
 const fs = require('fs');
 
+//———————————————————————————————————————————————————————————————————————//
+// SECTION Global Functions
+//———————————————————————————————————————————————————————————————————————//
 
-/*———————————————————————————————————————*/
-/* SECTION: IO's & Sockets               */
-/*———————————————————————————————————————*/
+/* NOTE: Leave commented out for now.
+// Binds all methods to their parent class.
+globalThis.bindClass = function(toBind) { // (object)
+	// Get all defined class methods.
+	const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(toBind));
+
+	// Bind all methods.
+	methods.filter(method => (method !== "constructor")).forEach((method) => {if (toBind[method] && typeof(toBind[method]) === "function") {toBind[method] = toBind[method].bind(toBind);}});
+}
+
+//globalThis.Events = require("./public/driver/events"); // TODO: Fix this, it's breaking your servercode.
+*/
+
+//———————————————————————————————————————————————————————————————————————//
+// SECTION: IO's & Sockets
+//———————————————————————————————————————————————————————————————————————//
 
 // Serve the static website files.
 app.use(express.static('public'));

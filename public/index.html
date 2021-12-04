@@ -11,13 +11,14 @@
 	<link rel="shortcut icon" href="images/ringed-planet.png" />
 
 	<script defer src="/socket.io/socket.io.js"></script>
+
 	<!--
 	NOTE: Old script that holds everything.
 	<script defer src="js/script.js"></script>
 	-->
-	<script defer src="js/events.js"></script>
-	<script defer src="js/buttons.js"></script>
-	<script defer src="js/channels.js"></script>
+	<script defer src="driver/buttons.js"></script>
+	<script defer src="driver/events.js"></script>
+	<script defer src="driver/channels.js"></script>
 	
 	<link defer rel="stylesheet" href="css/style.css">
 	<link defer rel="stylesheet" href="css/mobile.css">
@@ -25,20 +26,20 @@
 </head>
 <body>
 	<div class=""> <!--NOTE: Remove after done testing.-->
-	<div id="title" onclick="newButton.button(13)">
+	<div id="title" onclick="buttons.button(13)">
 		<h1>Lunos</h1>
 		<img src="images/ringed-planet.png">
 	</div>
 
 	<div id="log-reg-btn-container" class="">
-		<button id="log-btn" class="btns" onclick="newButton.button(12)">Login</button>
-		<button id="reg-btn" class="btns" onclick="newButton.button(2)">Register</button>
+		<button id="log-btn" class="btns" onclick="buttons.button(12)">Login</button>
+		<button id="reg-btn" class="btns" onclick="buttons.button(2)">Register</button>
 	</div>
 
 	<div id="top-nav" class="">
-		<button id="home-btn" class="nav-btns btns" onclick="newButton.button(13)">Home</button>
-		<button id="about-btn" class="nav-btns btns" onclick="newButton.button(14)">About</button>
-		<button id="contact-btn" class="nav-btns btns" onclick="newButton.button(15)">Support</button>
+		<button id="home-btn" class="nav-btns btns" onclick="buttons.button(13)">Home</button>
+		<button id="about-btn" class="nav-btns btns" onclick="buttons.button(14)">About</button>
+		<button id="contact-btn" class="nav-btns btns" onclick="buttons.button(15)">Support</button>
 	</div>
 
 	<div id="home-page" class="pages">
@@ -114,23 +115,23 @@
 
 				<input id="username-input" class="hide" type="username" placeholder="Username" required>
 
-				<input id="password-input" type="password" placeholder="Password" onkeyup="newButton.validatePassword()">
-				<img id="toggle-password-btn" class="btns" title="Show Password" src="images/sight-disabled.png" onclick="newButton.button(5)">
+				<input id="password-input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
+				<img id="toggle-password-btn" class="btns" title="Show Password" src="images/sight-disabled.png" onclick="buttons.button(5)">
 
 				<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 
 				<div id="btn-box">
-					<button id="login-btn" class="btns" type="button" onclick="newButton.button(1)">Log In</button>
-					<button id="register-btn" class="btns" type="button" onclick="newButton.button(2)">Register</button>	
+					<button id="login-btn" class="btns" type="button" onclick="buttons.button(1)">Log In</button>
+					<button id="register-btn" class="btns" type="button" onclick="buttons.button(2)">Register</button>	
 				</div>
 			</div>
 
 			<div id="register-page" class="hide">
-				<img src="images/swipe-left.png" title="Back" onclick="newButton.button(4)">
+				<img src="images/swipe-left.png" title="Back" onclick="buttons.button(4)">
 		
 				<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
 
-				<button id="account-register-btn" class="btns" type="button" onclick="newButton.button(3)">Create Account</button>	
+				<button id="account-register-btn" class="btns" type="button" onclick="buttons.button(3)">Create Account</button>	
 			</div>
 		</form>
 	</div>
@@ -140,8 +141,8 @@
 		<h2 id="create-title-h2" class="titles">You can create or join a server below.</h2>
 
 		<div id="create-join-btn-container">
-			<button id="join-server-btn" class="btns" onclick="newButton.button(16)">Join Server</button>
-			<button id="create-server-btn" class="btns" onclick="newButton.button(17)">Create Server</button>	
+			<button id="join-server-btn" class="btns" onclick="buttons.button(16)">Join Server</button>
+			<button id="create-server-btn" class="btns" onclick="buttons.button(17)">Create Server</button>	
 		</div>
 
 		<form>
@@ -167,17 +168,17 @@
 		</div>
 
 		<div id="friends-direct-btn-container" class="hide">
-			<button id="friends-list-btn" class="btns" onclick="newButton.button(21)">Friends List</button>
-			<button id="messages-btn" class="btns" onclick="newButton.button(23)">Messages</button>
+			<button id="friends-list-btn" class="btns" onclick="buttons.button(21)">Friends List</button>
+			<button id="messages-btn" class="btns" onclick="buttons.button(23)">Messages</button>
 		</div>
 
-		<button id="enter-lunos-btn" class="btns" onclick="newButton.button(999)">Enter Lunos</button>
+		<button id="enter-lunos-btn" class="btns" onclick="buttons.button(999)">Enter Lunos</button>
 
 		<div id="friends-list" class="hide">
 			<input id="friends-search" placeholder="Search Name" onkeyup="filterFriends(1)"></input>
 
 			<div id="friends-list-grid">
-				<div class="friends-1 friends" onclick="newButton.button(22)">
+				<div class="friends-1 friends" onclick="buttons.button(22)">
 					<h3>James</h3>
 					<div class="friend-1-info friend-info">
 
@@ -195,7 +196,7 @@
 			<input id="message-friends-search" placeholder="Search Name" onkeyup="filterFriends(2)">
 
 			<div id="message-friends-list-grid">
-				<div class="friends-1 friends" onclick="newButton.button(24)"><h3>James</h3></div>
+				<div class="friends-1 friends" onclick="buttons.button(24)"><h3>James</h3></div>
 				<div class="friends-2 friends"><h3>Adam</h3></div>
 				<div class="friends-3 friends"><h3>Scott</h3></div>
 				<div class="friends-4 friends"><h3>Michael</h3></div>
@@ -209,11 +210,11 @@
 	<div id="temp-server-1-id" class="servers-1 servers hide">
 		<div id="admin-panel" class="hide">
 			<div id="admin-nav">
-				<button class="admin-nav-btns btns" onclick="newButton.button(26)">Dashboard</button>
-				<button class="admin-nav-btns btns" onclick="newButton.button(27)">Statistics</button>
-				<button class="admin-nav-btns btns" onclick="newButton.button(28)">Ban/Unban User</button>
-				<button class="admin-nav-btns btns" onclick="newButton.button(29)">Log</button>
-				<button class="admin-nav-btns btns" onclick="newButton.button(30)">Exit</button>
+				<button class="admin-nav-btns btns" onclick="buttons.button(26)">Dashboard</button>
+				<button class="admin-nav-btns btns" onclick="buttons.button(27)">Statistics</button>
+				<button class="admin-nav-btns btns" onclick="buttons.button(28)">Ban/Unban User</button>
+				<button class="admin-nav-btns btns" onclick="buttons.button(29)">Log</button>
+				<button class="admin-nav-btns btns" onclick="buttons.button(30)">Exit</button>
 			</div>
 			<div id="admin-dashboard" class="hide">
 				<h1 class="admin-title">Dashboard</h1>
@@ -236,12 +237,12 @@
 			</div>
 		</div>
 		
-		<button id="channels-btn" class="btns" onclick="newButton.button(6)">Channels</button>
+		<button id="channels-btn" class="btns" onclick="buttons.button(6)">Channels</button>
 
 		<div id="channel-btns">
 			<h1 class="server-title">Temporary Server</h1>
 
-			<button id="create-channel-btn" class="btns hide" onclick="newButton.button()">Create Channel</button>
+			<button id="create-channel-btn" class="btns hide" onclick="buttons.button()">Create Channel</button>
 		
 			<div id="channel-list-grid">
 				<button class="chan-btn-0 channels btns" onclick="switchChannel(this.innerText)">[0] Introduction</button>
@@ -267,20 +268,20 @@
 		</div>
 
 		<div id="profile-container">
-			<img id="profile-image" onclick="newButton.button(9)">
-			<h3 id="profile-username" class="btns" onclick="newButton.button(8)">Username Here</h3>
-			<img id="profile-settings" src="" onclick="newButton.button(10)">
+			<img id="profile-image" onclick="buttons.button(9)">
+			<h3 id="profile-username" class="btns" onclick="buttons.button(8)">Username Here</h3>
+			<img id="profile-settings" src="" onclick="buttons.button(10)">
 		</div>
 
 		<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
 			<div id="chat-bar">
 				<img class="hide" src="" onclick="" id="add-file-icon">
 				<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
-				<button id="chat-bar-btn" class="btns" type="button" onclick="newButton.button(11)">Send</button>
+				<button id="chat-bar-btn" class="btns" type="button" onclick="buttons.button(11)">Send</button>
 			</div>
 		</form>
 
-		<button id="users-btn" class="btns" onclick="newButton.button(7)">Users</button>
+		<button id="users-btn" class="btns" onclick="buttons.button(7)">Users</button>
 
 		<div id="user-container" class="">
 			<div id="user-list-grid"></div>
