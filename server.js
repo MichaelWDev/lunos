@@ -40,7 +40,7 @@ globalThis.bindClass = function(toBind) { // (object)
 */
 
 //———————————————————————————————————————————————————————————————————————//
-// SECTION: IO's & Sockets
+// SECTION: Server
 //———————————————————————————————————————————————————————————————————————//
 
 // Serve the static website files.
@@ -269,7 +269,7 @@ io.on('connection', function(socket) {
 
 	// TODO: Sends message to front with username and adds it to log.
 	socket.on('send-chat-message', (message) => {
-		socket.to(channel).emit('chat-message', message); // Sends to everyone BUT yourself, for lag purposes.
+		socket.to(channel).emit('chatMessage', message); // Sends to everyone BUT yourself, for lag purposes.
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {
@@ -286,3 +286,5 @@ io.on('connection', function(socket) {
 		socket.broadcast.emit('user-disconnected', username);
 	});
 });
+
+// !SECTION —————————————————————————————————————————————————————————————*/

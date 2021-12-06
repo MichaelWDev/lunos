@@ -1,15 +1,36 @@
+//———————————————————————————————————————————————————————————————————————//
+// SECTION Information
+/*———————————————————————————————————————————————————————————————————————//
+
+Author:      Michael Woodyard
+Email:       michaelwdev@outlook.com
+Description: Handles server events.
+
+// !SECTION —————————————————————————————————————————————————————————————*/
+
+//———————————————————————————————————————————————————————————————————————//
+// SECTION Classes
+//———————————————————————————————————————————————————————————————————————//
+
 class Events {
 	constructor() { // TODO: Figure out which variables are/are not being used in js.
 		// TODO: Copy remaining variables from script.js
-
 		bindClass(this);
 
-		this.server1 = document.getElementById('temp-server-1-id');
+		// TODO: Organize these variables later.
 		this.username;
 		this.currentChannel;
 
-		this.topNav = document.getElementById('top-nav');
-		this.titleContainer = document.getElementById('title');
+		this.server1              = document.getElementById('temp-server-1-id');
+		this.topNav               = document.getElementById('top-nav');
+		this.titleContainer       = document.getElementById('title');
+		this.incorrectText        = document.getElementById('incorrect-text');
+		this.profileUsername      = document.getElementById('profile-username');
+		this.userHomeTitle        = document.getElementById('user-home-title');
+		this.createJoinServerPage = document.getElementById('create-join-server-page');
+		this.userHomePage         = document.getElementById('user-home-page');
+		this.createTitleH1        = document.getElementById('create-title-h1');
+		this.createTitleH2        = document.getElementById('create-title-h2');
 
 		// Socket.io
 		this.socket = io();
@@ -17,13 +38,11 @@ class Events {
 		this.socket.onAny(this.onEvent);
 	}
 
-	// Event routing function.
+	// Routes server socket events to proper function.
 	// TODO: Fix this. It's unable to route to the correct function for some reason.
 	onEvent(event, data) {
-		console.log("Event: ", event);
-		console.log("Data: ", data)
 		if (this[event]) {
-			console.log("Event Data: ", this[event]);
+			//console.log("Event Data: ", this[event]); Logs server data being received.
 			this[event](data);
 		}
 	}
@@ -38,64 +57,38 @@ class Events {
 		buttons.logBtn.classList.add('hide');
 		buttons.regBtn.classList.add('hide');
 		buttons.loginRegisterPage.classList.add('hide');
-		incorrectText.classList.add('hide');
+
+		this.incorrectText.classList.add('hide');
 		this.topNav.classList.add('hide');
 		this.titleContainer.classList.add('hide');
-		
 		this.server1.classList.add('hide');
-		createJoinServerPage.classList.add('hide');
-		userHomePage.classList.remove('hide');
-		profileUsername.innerText = data;
+		this.createJoinServerPage.classList.add('hide');
+		this.userHomePage.classList.remove('hide');
+		this.profileUsername.innerText = data;
 
 		// User Home Page
-		userHomeTitle.innerText = `Welcome back, ${data}.`;
+		this.userHomeTitle.innerText = `Welcome back, ${data}.`;
 
 		// Sockets
-		socket.emit('new-user', data); // TODO
-		socket.emit('saved-servers-list', data);
+		this.socket.emit('new-user', data); // TODO
+		this.socket.emit('saved-servers-list', data);
 	}
 	
 	loginUnsuccessful() {
-		incorrectText.classList.remove('hide');
+		this.IncorrectText.classList.remove('hide');
 	}
 
 	// TODO: Account Creation Unsuccessful
 	accountSuccessful () {
-		logBtn.classList.add('hide');
-		regBtn.classList.add('hide');
-		loginRegisterPage.classList.add('hide');
-		incorrectText.classList.add('hide');
-		topNav.classList.add('hide');
-		titleContainer.classList.add('hide');
-		loginRegisterPage.classList.add('hide');
-		chatApp.classList.add('hide');
-		createTitleH2.classList.add('hide');
+		buttons.logBtn.classList.add('hide');
+		buttons.regBtn.classList.add('hide');
+		buttons.loginRegisterPage.classList.add('hide');
+		this.IncorrectText.classList.add('hide');
+		this.topNav.classList.add('hide');
+		this.titleContainer.classList.add('hide');
+		this.createTitleH2.classList.add('hide');
 
-		createTitleH1.innerText = `Welcome to the universe of Lunos, ${this.username}.`;
-	}
-
-	// Appends messages to the chat.
-	appendMessage (data) {
-		// TODO: Append profile picture to message.
-		// const chatMessage = document.createElement('div');
-		// chatMessage.classList.add('chat-message');
-
-		const messageElement = document.createElement('p');
-		let chatContainer = currentChannel;
-		messageElement.classList.add('text');
-
-		if (data == false) {
-			messageElement.innerText = `${username} has connected.`
-		} else {
-			messageElement.innerText = `${username}: ${data}`;
-		}
-
-		if (chatContainer) {
-			chatContainer.insertBefore(messageElement, chatContainer.firstChild);
-		} else {
-			chatContainer = channelContainer.firstElementChild;
-			chatContainer.appendChild(messageElement);
-		}
+		this.createTitleH1.innerText = `Welcome to the universe of Lunos, ${this.username}.`;
 	}
 
 	// TODO: Server Creation
@@ -115,7 +108,7 @@ class Events {
 
 	// TODO: Adds the text to the chat container.
 	chatMessage (data) {
-		appendMessage(data);
+		client.appendMessage(data);
 	}
 
 	// TODO: Displays who leaves and remove their name from the user-list.
@@ -126,9 +119,9 @@ class Events {
 
 	// TODO: Adds whoever joins to the user-list.
 	userList (data) {
-		username = data;
-		appendUsername(data);
-		appendMessage(false); // Sends 
+		this.username = data;
+		client.appendUsername(data);
+		client.appendMessage(false); // Sends 
 	}
 
 	/* TODO: When the user joins/creates a server.
@@ -137,3 +130,14 @@ class Events {
 		appendMessage(username, false);
 	*/
 }
+
+// !SECTION —————————————————————————————————————————————————————————————*/
+
+//———————————————————————————————————————————————————————————————————————//
+// SECTION Drivers
+//———————————————————————————————————————————————————————————————————————//
+
+// Load in all relevant drivers.
+const client = new Client();
+
+// !SECTION —————————————————————————————————————————————————————————————*/

@@ -621,7 +621,6 @@ socket.on('account-successful', () => {
 	topNav.classList.add('hide');
 	titleContainer.classList.add('hide');
 	loginRegisterPage.classList.add('hide');
-	chatApp.classList.add('hide');
 	createTitleH2.classList.add('hide');
 
 	createTitleH1.innerText = `Welcome to the universe of Lunos, ${username}.`;

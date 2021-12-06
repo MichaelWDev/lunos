@@ -46,7 +46,6 @@ class Buttons {
 	button (btn) { // TODO: Re-arrange the buttons so they are organized top to bottom.
 		switch(btn) {
 			case 1: // Login
-			console.log(this.emailInput.value)
 				events.socket.emit('login', this.emailInput.value, this.passwordInput.value);
 			break;
 
@@ -118,7 +117,7 @@ class Buttons {
 				if (this.chatBarInput.value != '') {
 					// TODO: Also have submitting via enter key. (e.keycode = 13)
 					events.socket.emit('send-chat-message', this.chatBarInput.value);
-					events.appendMessage(this.chatBarInput.value);
+					client.appendMessage(this.chatBarInput.value);
 					this.chatBarInput.value = null;
 				}
 			break;
@@ -283,10 +282,6 @@ class Buttons {
 
 			case 30: // Admin Exit
 				this.adminPanel.classList.add('hide');
-			break;
-
-			case 800:
-				console.log("TESTING CLASSES")
 			break;
 
 			case 999: // NOTE: Enter Lunos

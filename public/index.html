@@ -16,8 +16,9 @@
 	NOTE: Old script that holds everything.
 	<script defer src="js/script.js"></script>
 	-->
-	<script defer src="driver/buttons.js"></script>
+	<script defer src="driver/client.js"></script>
 	<script defer src="driver/events.js"></script>
+	<script defer src="driver/buttons.js"></script>
 	<script defer src="driver/channels.js"></script>
 	
 	<link defer rel="stylesheet" href="css/style.css">
@@ -245,14 +246,14 @@
 			<button id="create-channel-btn" class="btns hide" onclick="buttons.button()">Create Channel</button>
 		
 			<div id="channel-list-grid">
-				<button class="chan-btn-0 channels btns" onclick="switchChannel(this.innerText)">[0] Introduction</button>
-				<button class="chan-btn-1 channels btns" onclick="switchChannel(this.innerText)">[1] General</button>
-				<button class="chan-btn-2 channels btns" onclick="switchChannel(this.innerText)">[2] General</button>
-				<button class="chan-btn-3 channels btns" onclick="switchChannel(this.innerText)">[3] General</button>
-				<button class="chan-btn-4 channels btns" onclick="switchChannel(this.innerText)">[4] General</button>
-				<button class="chan-btn-5 channels btns" onclick="switchChannel(this.innerText)">[5] General</button>
-				<button class="chan-btn-6 channels btns" onclick="switchChannel(this.innerText)">[6] General</button>
-				<button class="chan-btn-7 channels btns" onclick="switchChannel(this.innerText)">[7] Admin</button>
+				<button class="chan-btn-0 channels btns" onclick="client.switchChannel(this.innerText)">[0] Introduction</button>
+				<button class="chan-btn-1 channels btns" onclick="client.switchChannel(this.innerText)">[1] General</button>
+				<button class="chan-btn-2 channels btns" onclick="client.switchChannel(this.innerText)">[2] General</button>
+				<button class="chan-btn-3 channels btns" onclick="client.switchChannel(this.innerText)">[3] General</button>
+				<button class="chan-btn-4 channels btns" onclick="client.switchChannel(this.innerText)">[4] General</button>
+				<button class="chan-btn-5 channels btns" onclick="client.switchChannel(this.innerText)">[5] General</button>
+				<button class="chan-btn-6 channels btns" onclick="client.switchChannel(this.innerText)">[6] General</button>
+				<button class="chan-btn-7 channels btns" onclick="client.switchChannel(this.innerText)">[7] Admin</button>
 			</div>
 		</div>
 
