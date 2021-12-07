@@ -9,8 +9,8 @@ Inspiration stems from both the sci-fi and futuristic genre.
 
 Users will be able to:
 
-💠 Create/log-in their accounts.
-💠 Talk on the public Lunos server.
+- 💠 Create/log-in their accounts.
+- 💠 Talk on the public Lunos server.
 💠 Create chat servers.
 💠 Create voice channels.
 💠 Create text channels.
