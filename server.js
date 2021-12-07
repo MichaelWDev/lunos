@@ -70,7 +70,7 @@ io.on('connection', function(socket) {
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
-					username = data[email].username;
+					//username = data[email].username;
 				} catch (err) {
 					console.log('Error parsing JSON: ', err);
 				}
@@ -270,6 +270,7 @@ io.on('connection', function(socket) {
 	// TODO: Sends message to front with username and adds it to log.
 	socket.on('send-chat-message', (message) => {
 		socket.to(channel).emit('chatMessage', message); // Sends to everyone BUT yourself, for lag purposes.
+		console.log("Server message: ", message)
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {

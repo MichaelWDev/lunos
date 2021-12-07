@@ -39,7 +39,6 @@ class Events {
 	}
 
 	// Routes server socket events to proper function.
-	// TODO: Fix this. It's unable to route to the correct function for some reason.
 	onEvent(event, data) {
 		if (this[event]) {
 			//console.log("Event Data: ", this[event]); Logs server data being received.
@@ -52,6 +51,7 @@ class Events {
 		console.log(`connect error due to ${data}`);
 	}
 
+	// Successful Login
 	loginSuccessful(data) {
 		// Hide Pages
 		buttons.logBtn.classList.add('hide');
@@ -107,8 +107,9 @@ class Events {
 	}
 
 	// TODO: Adds the text to the chat container.
-	chatMessage (data) {
-		client.appendMessage(data);
+	chatMessage (message) {
+		console.log("chatMessage: ", this.username, message)
+		client.appendMessage(message);
 	}
 
 	// TODO: Displays who leaves and remove their name from the user-list.
@@ -118,10 +119,11 @@ class Events {
 	}
 
 	// TODO: Adds whoever joins to the user-list.
-	userList (data) {
-		this.username = data;
-		client.appendUsername(data);
-		client.appendMessage(false); // Sends 
+	userList (username) {
+		this.username = username;
+		console.log("Events Username: ", this.username);
+		client.appendUsername(username);
+		client.appendMessage(false);
 	}
 
 	/* TODO: When the user joins/creates a server.

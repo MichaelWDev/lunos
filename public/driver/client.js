@@ -52,11 +52,14 @@ class Client {
 	}
 
 	appendMessage (message) {
+		console.log("appendMessage: ", message)
 		// TODO: Append profile picture to message.
 		// const chatMessage = document.createElement('div');
 		// chatMessage.classList.add('chat-message');
+		//console.log("Username: ", username);
+		//console.log("message", message)
 	
-		const messageElement = document.createElement('p');
+		let messageElement = document.createElement('p');
 		let chatContainer = this.currentChannel;
 		messageElement.classList.add('text');
 	
