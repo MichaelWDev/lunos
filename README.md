@@ -9,13 +9,13 @@ Inspiration stems from both the sci-fi and futuristic genre.
 
 Users will be able to:
 
-- 💠 Create/log-in their accounts.
-- 💠 Talk on the public Lunos server.
-- 💠 Create chat servers.
-- 💠 Create voice channels.
-- 💠 Create text channels.
-- 💠 Create custom server roles.
-- 💠 Create server permissions for roles.
-- 💠 Kick users.
-- 💠 Ban users.
-- 💠 Unban users.
+- Create/log-in their accounts.
+- Talk on the public Lunos server.
+- Create chat servers.
+- Create voice channels.
+- Create text channels.
+- Create custom server roles.
+- Create server permissions for roles.
+- Kick users.
+- Ban users.
+- Unban users.
