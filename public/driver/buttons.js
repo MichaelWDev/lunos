@@ -117,7 +117,9 @@ class Buttons {
 				if (this.chatBarInput.value != '') {
 					// TODO: Also have submitting via enter key. (e.keycode = 13)
 					events.socket.emit('send-chat-message', this.chatBarInput.value);
-					client.appendMessage(this.chatBarInput.value);
+					let username = document.getElementById('profile-username').innerText; // NOTE: Temporary
+					//console.log("button.js: ", username, this.chatBarInput.value);
+					client.appendMessage(username, this.chatBarInput.value);
 					this.chatBarInput.value = null;
 				}
 			break;

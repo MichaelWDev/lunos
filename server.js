@@ -12,15 +12,16 @@ Description: Handles server code.
 // SECTION: Global Variables
 //———————————————————————————————————————————————————————————————————————//
 
-const express = require('express');
-const app     = express();
-const server  = require('http').Server(app);
-const port    = 1500;
-const io      = require('socket.io')(server);
+const express     = require('express');
+const app         = express();
+const server      = require('http').Server(app);
+const port        = 1500;
+const io          = require('socket.io')(server);
+const compression = require("compression");
 
 // NOTE: Password Encryption
 const bcrypt = require('bcrypt');
-const fs = require('fs');
+const fs     = require('fs');
 
 //———————————————————————————————————————————————————————————————————————//
 // SECTION Global Functions
@@ -42,6 +43,9 @@ globalThis.bindClass = function(toBind) { // (object)
 //———————————————————————————————————————————————————————————————————————//
 // SECTION: Server
 //———————————————————————————————————————————————————————————————————————//
+
+// Compress client-server communications.
+app.use(compression());
 
 // Serve the static website files.
 app.use(express.static('public'));
@@ -269,8 +273,8 @@ io.on('connection', function(socket) {
 
 	// TODO: Sends message to front with username and adds it to log.
 	socket.on('send-chat-message', (message) => {
-		socket.to(channel).emit('chatMessage', message); // Sends to everyone BUT yourself, for lag purposes.
-		console.log("Server message: ", message)
+		socket.to(channel).emit('chatMessage', {username: username, message:message}); // Sends to everyone BUT yourself, for lag purposes.
+		//console.log("Server message: ", {username: username, message: message}); // this prints correctly
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {

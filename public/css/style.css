@@ -75,7 +75,6 @@ html, body {
 	border-radius: 2em;
 	animation: 2s infinite changeColor;
 	user-select: none;
-	
 }
 
 @keyframes changeColor {

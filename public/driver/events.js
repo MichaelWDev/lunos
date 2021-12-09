@@ -18,7 +18,6 @@ class Events {
 		bindClass(this);
 
 		// TODO: Organize these variables later.
-		this.username;
 		this.currentChannel;
 
 		this.server1              = document.getElementById('temp-server-1-id');
@@ -34,6 +33,7 @@ class Events {
 
 		// Socket.io
 		this.socket = io();
+		
 		// Routes every socket event to their correct function.
 		this.socket.onAny(this.onEvent);
 	}
@@ -47,12 +47,12 @@ class Events {
 	}
 
 	// Connection Error
-	connectError(data) {
-		console.log(`connect error due to ${data}`);
+	connectError(err) {
+		console.log(`connect error due to ${err}`);
 	}
 
 	// Successful Login
-	loginSuccessful(data) {
+	loginSuccessful(username) {
 		// Hide Pages
 		buttons.logBtn.classList.add('hide');
 		buttons.regBtn.classList.add('hide');
@@ -64,14 +64,14 @@ class Events {
 		this.server1.classList.add('hide');
 		this.createJoinServerPage.classList.add('hide');
 		this.userHomePage.classList.remove('hide');
-		this.profileUsername.innerText = data;
+		this.profileUsername.innerText = username;
 
 		// User Home Page
-		this.userHomeTitle.innerText = `Welcome back, ${data}.`;
+		this.userHomeTitle.innerText = `Welcome back, ${username}.`;
 
 		// Sockets
-		this.socket.emit('new-user', data); // TODO
-		this.socket.emit('saved-servers-list', data);
+		this.socket.emit('new-user', username); // TODO
+		this.socket.emit('saved-servers-list', username);
 	}
 	
 	loginUnsuccessful() {
@@ -107,9 +107,9 @@ class Events {
 	}
 
 	// TODO: Adds the text to the chat container.
-	chatMessage (message) {
-		console.log("chatMessage: ", this.username, message)
-		client.appendMessage(message);
+	chatMessage (data) {
+		//console.log("chatMessage: ", data.username, data.message)
+		client.appendMessage(data.username, data.message);
 	}
 
 	// TODO: Displays who leaves and remove their name from the user-list.
@@ -120,10 +120,8 @@ class Events {
 
 	// TODO: Adds whoever joins to the user-list.
 	userList (username) {
-		this.username = username;
-		console.log("Events Username: ", this.username);
+		//console.log("Events Username: ", username);
 		client.appendUsername(username);
-		client.appendMessage(false);
 	}
 
 	/* TODO: When the user joins/creates a server.
