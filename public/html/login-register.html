@@ -1,0 +1,31 @@
+<!--———————————————————————————————————————-->
+<!-- SECTION LOGIN / REGISTER              -->
+<!--———————————————————————————————————————-->
+
+<div id="login-register-page" class="hide pages">
+	<form>
+		<div id="login-page">
+			<input id="email-input" type="email" placeholder="Email" required autofocus>
+
+			<input id="username-input" class="hide" type="username" placeholder="Username" required>
+
+			<input id="password-input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
+			<img id="toggle-password-btn" class="btns" title="Show Password" src="images/sight-disabled.png" onclick="buttons.button(5)">
+
+			<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
+
+			<div id="btn-box">
+				<button id="login-btn" class="btns" type="button" onclick="buttons.button(1)">Log In</button>
+				<button id="register-btn" class="btns" type="button" onclick="buttons.button(2)">Register</button>	
+			</div>
+		</div>
+
+		<div id="register-page" class="hide">
+			<img src="images/swipe-left.png" title="Back" onclick="buttons.button(4)">
+	
+			<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
+
+			<button id="account-register-btn" class="btns" type="button" onclick="buttons.button(3)">Create Account</button>	
+		</div>
+	</form>
+</div>
