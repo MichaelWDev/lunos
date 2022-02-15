@@ -1,3 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!--———————————————————————————————————————-->
+<!-- SECTION SCRIPTS                       -->
+<!--———————————————————————————————————————-->
+
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
+	<script defer src="../driver/buttons.js"></script>
+	<script defer src="../driver/channels.js"></script>
+	
+	<link defer rel="stylesheet" href="../css/main.css">
+	<link defer rel="stylesheet" href="../css/mobile.css">
+	<link defer rel="stylesheet" href="../css/laptop.css">
+</head>
+
 <!--———————————————————————————————————————-->
 <!-- SECTION LOGIN / REGISTER              -->
 <!--———————————————————————————————————————-->
@@ -10,7 +35,7 @@
 			<input id="username-input" class="hide" type="username" placeholder="Username" required>
 
 			<input id="password-input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
-			<img id="toggle-password-btn" class="btns" title="Show Password" src="images/sight-disabled.png" onclick="buttons.button(5)">
+			<img id="toggle-password-btn" class="btns" title="Show Password" src="../images/sight-disabled.png" onclick="buttons.button(5)">
 
 			<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 
@@ -21,7 +46,7 @@
 		</div>
 
 		<div id="register-page" class="hide">
-			<img src="images/swipe-left.png" title="Back" onclick="buttons.button(4)">
+			<img src="../images/swipe-left.png" title="Back" onclick="buttons.button(4)">
 	
 			<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
 
@@ -29,3 +54,5 @@
 		</div>
 	</form>
 </div>
+
+</html>
