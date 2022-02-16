@@ -1,3 +1,14 @@
+//—————————————————————————————————————————————————————————————————————————//
+//—— SECTION INFORMATION
+//—————————————————————————————————————————————————————————————————————————//
+
+// This class handles all button operations.
+// TODO: This class needs to be remade to work with the new iframes.
+
+//—————————————————————————————————————————————————————————————————————————//
+//—— SECTION SRIPTS
+//—————————————————————————————————————————————————————————————————————————//
+
 class Buttons {
 	constructor() {
 		// Buttons
@@ -19,10 +30,10 @@ class Buttons {
 		this.adminLog               = document.getElementById('admin-log');
 
 		// Pages
-		this.homePage               = document.getElementById('home-page');
-		this.aboutPage              = document.getElementById('about-page');
-		this.supportPage            = document.getElementById('support-page');
-		this.loginRegisterPage      = document.getElementById('login-register-page');
+		this.homeIframe             = document.getElementById('home-iframe');
+		this.aboutIframe            = document.getElementById('about-iframe');
+		this.supportIframe          = document.getElementById('support-iframe');
+		this.loginRegisterIframe    = document.getElementById('login-register-iframe');
 		this.registerPage           = document.getElementById('register-page');
 		this.btnBox                 = document.getElementById('btn-box');
 
@@ -421,8 +432,7 @@ class Buttons {
 // SECTION Drivers
 //———————————————————————————————————————————————————————————————————————//
 
-// Load in all relevant drivers.
 const buttons = new Buttons();
-const events = new Events(); // TODO: Fix this.
+//const events = new Events(); // TODO: Fix this.
 
 // !SECTION —————————————————————————————————————————————————————————————//

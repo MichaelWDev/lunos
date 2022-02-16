@@ -1,34 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<title>Lunos</title>
 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" href="images/ringed-planet.png" />
 
-	<!--———————————————————————————————————————-->
-	<!-- SECTION BODY                          -->
-	<!--———————————————————————————————————————-->
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION SRIPTS
+<!————————————————————————————————————————————————————————————————————————-->
 
-	<body>
-		<!-- SECTION: NAVBAR -->
-		<div id="top-nav" class="">
-			<button id="home-btn" class="nav-btns btns" onclick="buttons.button(13)">Home</button>
-			<button id="about-btn" class="nav-btns btns" onclick="buttons.button(14)">About</button>
-			<button id="contact-btn" class="nav-btns btns" onclick="buttons.button(15)">Support</button>
-		</div>
+	<script defer src="/socket.io/socket.io.js"></script>
+	<!--NOTE: Old script that holds everything. <script defer src="js/script.js"></script>-->
+	<script defer src="./driver/events.js"></script>
+	<script defer src="./driver/buttons.js"></script>
+	
+	<link defer rel="stylesheet" href="./css/main.css">
+	<link defer rel="stylesheet" href="./css/mobile.css">
+	<link defer rel="stylesheet" href="./css/laptop.css">
+</head>
 
-		<!-- SECTION: HOME IFRAME -->
-		<iframe src="./html/home.html" id="" class="iframe hide" title="Landing Page" height="100%" width="100%" frameborder="0"></iframe>
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION BODY
+<!————————————————————————————————————————————————————————————————————————-->
 
-		<!-- SECTION: ABOUT IFRAME -->
-		<iframe src="./html/about.html" id="" class="iframe" title="About Page" height="100%" width="100%" frameborder="0"></iframe>
+<body>
+	<!-- SECTION: NAVBAR -->
+	<div id="top-nav" class="">
+		<button id="home-btn" class="nav-btns btns" onclick="buttons.button(13)">Home</button>
+		<button id="about-btn" class="nav-btns btns" onclick="buttons.button(14)">About</button>
+		<button id="contact-btn" class="nav-btns btns" onclick="buttons.button(15)">Support</button>
+	</div>
 
-		<!-- SECTION: SUPPORT IFRAME -->
-		<iframe src="./html/support.html" id="" class="iframe" title="Support Page" height="100%" width="100%" frameborder="0"></iframe>
+	<!-- SECTION: HOME IFRAME -->
+	<iframe src="./html/home.html" id="home-iframe" class="iframe" title="Landing Page" height="100%" width="100%" frameborder="0"></iframe>
 
-		<!-- SECTION: LOGIN / REGISTER IFRAME -->
-		<iframe src="./html/login-register.html" id="" class="iframe" title="Login / Register Page" height="100%" width="100%" frameborder="0"></iframe>
+	<!-- SECTION: ABOUT IFRAME -->
+	<iframe src="./html/about.html" id="about-iframe" class="iframe" title="About Page" height="100%" width="100%" frameborder="0"></iframe>
 
-		<!-- SECTION: SERVER IFRAME -->
-		<iframe src="./html/server.html" id="" class="iframe" title="Server Page" height="100%" width="100%" frameborder="0"></iframe>
+	<!-- SECTION: SUPPORT IFRAME -->
+	<iframe src="./html/support.html" id="support-iframe" class="iframe" title="Support Page" height="100%" width="100%" frameborder="0"></iframe>
 
-		<!-- SECTION: CREATE / JOIN SERVER IFRAME -->
-		<iframe src="./html/create-join-server.html" id="" class="iframe" title="Create / Join Server Page" height="100%" width="100%" frameborder="0"></iframe>
-	</body>
+	<!-- SECTION: LOGIN / REGISTER IFRAME -->
+	<iframe src="./html/login-register.html" id="login-register-iframe" class="iframe" title="Login / Register Page" height="100%" width="100%" frameborder="0"></iframe>
+
+	<!-- SECTION: SERVER IFRAME -->
+	<iframe src="./html/server.html" id="server-iframe" class="iframe" title="Server Page" height="100%" width="100%" frameborder="0"></iframe>
+
+	<!-- SECTION: CREATE / JOIN SERVER IFRAME -->
+	<iframe src="./html/create-join-server.html" id="create-join-server-iframe" class="iframe" title="Create / Join Server Page" height="100%" width="100%" frameborder="0"></iframe>
+</body>
 	
 </html>
