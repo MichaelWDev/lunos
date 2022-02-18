@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION SRIPTS
+<!————————————————————————————————————————————————————————————————————————-->
+
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
+	
+	<link defer rel="stylesheet" href="../css/main.css">
+	<link defer rel="stylesheet" href="../css/mobile.css">
+	<link defer rel="stylesheet" href="../css/laptop.css">
+</head>
+
+<!-- !SECTION ————————————————————————————————————————————————————————————-->
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION ABOUT
+<!————————————————————————————————————————————————————————————————————————-->
+
+<div id="about-page" class="pages">
+	<h3 id="about-title">Our mission is to provide a <span class="green">safe</span> communication space.</h3>
+	
+	<div id="about-card-container" class="card-container">
+		<div id="encryption-about-card" class="cards">
+			<h1 class="cards-title">Encryption</h1>
+			<p>Advanced Encryption Standard (AES) 256 is used to encrypt your data.</p>
+			<p>AES 256 is used on a government level for security. <span class="green">So we thought: If governments can use it, why can't we?</span></p>
+			<div class="card-images-container">
+				<img class="white-image card-image" src="../images/computing.png">
+				<img class="black-image card-image" src="../images/computing-black.png">	
+			</div>
+		</div>
+
+		<div id="privacy-about-card" class="cards">
+			<h1 class="cards-title">Privacy</h1>
+			<p>Most applications store your information and sell it. We are never going to do that.</p>
+			<p>The only thing we obtain and save from our users are bug reports.</p>
+			<div class="card-images-container">
+				<img class="white-image card-image" src="../images/locked-door.png">
+				<img class="black-image card-image" src="../images/locked-door-black.png">	
+			</div>
+		</div>
+
+		<div id="safety-about-card" class="cards">
+			<h1 class="cards-title">Safety</h1>
+			<p>Danger resides in many forms: People, links, malware, and more.</p>
+			<p>We are dedicated to scanning all forms of danger and preventing it from reaching you.</p>
+			<div class="card-images-container">
+				<img class="white-image card-image" src="../images/shield-reflect.png">
+				<img class="black-image card-image" src="../images/shield-reflect-black.png">	
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

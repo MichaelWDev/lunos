@@ -849,6 +849,11 @@ html, body {
 /* SECTION Classes                       */
 /*———————————————————————————————————————*/
 
+.iframe {
+	outline: none !important;
+	overflow: hidden !important;
+}
+
 .hide {
 	display: none;
 }

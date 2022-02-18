@@ -4,47 +4,37 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-	<title>Lunos</title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link rel="shortcut icon" href="images/ringed-planet.png" />
 
 <!--————————————————————————————————————————————————————————————————————————>
 <!—— SECTION SRIPTS
 <!————————————————————————————————————————————————————————————————————————-->
 
 	<script defer src="/socket.io/socket.io.js"></script>
-	<!--NOTE: Old script that holds everything. <script defer src="js/script.js"></script>-->
-	<script defer src="./driver/events.js"></script>
-	<script defer src="./driver/buttons.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
 	
-	<link defer rel="stylesheet" href="./css/main.css">
-	<link defer rel="stylesheet" href="./css/mobile.css">
-	<link defer rel="stylesheet" href="./css/laptop.css">
+	<link defer rel="stylesheet" href="../css/main.css">
+	<link defer rel="stylesheet" href="../css/mobile.css">
+	<link defer rel="stylesheet" href="../css/laptop.css">
 </head>
 
 <!--————————————————————————————————————————————————————————————————————————>
-<!—— SECTION BODY
+<!—— SECTION LOGIN / REGISTER
 <!————————————————————————————————————————————————————————————————————————-->
 
-<body>
-	<!-- SECTION: NAVBAR -->
-	<div id="top-nav" class="">
-		<a href="#home"><button id="home-btn" class="nav-btns btns">Home</button></a>
-		<a href="#about"><button id="about-btn" class="nav-btns btns">About</button></a>
-		<a href="#support"><button id="contact-btn" class="nav-btns btns">Support</button></a>
-	</div>
-
-	<!-- SECTION: LOGIN / REGISTER -->
-	<div id="log-reg-btn-container" class="">
-		<a href="#login"><button id="log-btn" class="btns">Login</button></a>
-		<a href="#register"><button id="reg-btn" class="btns">Register</button></a>
-	</div>
-
-	<!-- SECTION: MAIN IFRAME -->
-	<iframe id="main-iframe" class="iframe" title="Landing Page" height="100%" width="100%" frameborder="0"></iframe>
-
-</body>
+<div id="login-register-page" class="pages">
+	<form>
+		<div id="register-page" class="hide">
+			<img src="../images/swipe-left.png" title="Back" onclick="buttons.button(4)">
 	
+			<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
+
+			<button id="account-register-btn" class="btns" type="button" onclick="buttons.button(3)">Create Account</button>	
+		</div>
+	</form>
+</div>
+
 </html>

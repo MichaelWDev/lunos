@@ -4,47 +4,41 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-	<title>Lunos</title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link rel="shortcut icon" href="images/ringed-planet.png" />
 
 <!--————————————————————————————————————————————————————————————————————————>
 <!—— SECTION SRIPTS
 <!————————————————————————————————————————————————————————————————————————-->
 
 	<script defer src="/socket.io/socket.io.js"></script>
-	<!--NOTE: Old script that holds everything. <script defer src="js/script.js"></script>-->
-	<script defer src="./driver/events.js"></script>
-	<script defer src="./driver/buttons.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
 	
-	<link defer rel="stylesheet" href="./css/main.css">
-	<link defer rel="stylesheet" href="./css/mobile.css">
-	<link defer rel="stylesheet" href="./css/laptop.css">
+	<link defer rel="stylesheet" href="../css/main.css">
+	<link defer rel="stylesheet" href="../css/mobile.css">
+	<link defer rel="stylesheet" href="../css/laptop.css">
 </head>
 
 <!--————————————————————————————————————————————————————————————————————————>
-<!—— SECTION BODY
+<!—— SECTION LOGIN
 <!————————————————————————————————————————————————————————————————————————-->
 
-<body>
-	<!-- SECTION: NAVBAR -->
-	<div id="top-nav" class="">
-		<a href="#home"><button id="home-btn" class="nav-btns btns">Home</button></a>
-		<a href="#about"><button id="about-btn" class="nav-btns btns">About</button></a>
-		<a href="#support"><button id="contact-btn" class="nav-btns btns">Support</button></a>
+<div id="login-page">
+	<input id="email-input" type="email" placeholder="Email" required autofocus>
+
+	<input id="username-input" class="hide" type="username" placeholder="Username" required>
+
+	<input id="password-input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
+	<img id="toggle-password-btn" class="btns" title="Show Password" src="../images/sight-disabled.png" onclick="buttons.button(5)">
+
+	<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
+
+	<div id="btn-box">
+		<button id="login-btn" class="btns" type="button" onclick="buttons.button(1)">Log In</button>
+		<button id="register-btn" class="btns" type="button" onclick="buttons.button(2)">Register</button>	
 	</div>
+</div>
 
-	<!-- SECTION: LOGIN / REGISTER -->
-	<div id="log-reg-btn-container" class="">
-		<a href="#login"><button id="log-btn" class="btns">Login</button></a>
-		<a href="#register"><button id="reg-btn" class="btns">Register</button></a>
-	</div>
-
-	<!-- SECTION: MAIN IFRAME -->
-	<iframe id="main-iframe" class="iframe" title="Landing Page" height="100%" width="100%" frameborder="0"></iframe>
-
-</body>
-	
 </html>

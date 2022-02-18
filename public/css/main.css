@@ -1,0 +1,124 @@
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: INFORMATION
+/*—————————————————————————————————————————————————————————————————————————*/
+
+/* SECTION: MAIN.CSS
+/* This handles the entirety of Lunos.chat's stylization.
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: IMPORTS
+/*—————————————————————————————————————————————————————————————————————————*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: VARIABLES
+/*—————————————————————————————————————————————————————————————————————————*/
+
+/* NOTE: Don't forget to uncomment the animations when the website is released. */
+
+:root {
+	/* NOTE: Font Families */
+	--font-family-1: 'Poiret One', cursive;
+	--font-family-2: 'Baloo Da 2', cursive;
+
+	/* NOTE: Text Colors */
+	--text-color-1: rgb(255, 255, 255);
+	--text-color-2: rgba(255, 255, 255, 0.5);
+	--text-color-3: rgb(0, 44, 82);
+	--text-color-4: rgb(0, 0, 0);
+
+	--text-span-color-1: rgb(0, 170, 0);
+	--text-span-color-2: rgb(170, 0, 0);
+
+	--hover-text-color-1: rgb(0, 170, 0);
+	--hover-text-color-2: rgb(0, 0, 0);
+	--hover-background-color-1: rgb(0, 170, 0);
+	--hover-border-color-1: 0.1em solid rgb(0, 170, 0);
+	
+	--active-text-color-1: rgb(0, 170, 0);
+	--active-background-color-1: rgb(0, 0, 0);
+	--active-background-color-2: rgb(0, 170, 0);
+	--active-border-color-1: 0.1em solid rgb(0, 170, 0);
+
+	/* NOTE: Background Colors */
+	--background-color-1: rgb(0, 0, 0);
+	--background-color-2: rgba(0, 44, 82, 0.1);
+	--background-color-3: rgb(0, 44, 82);
+	--background-color-4: rgb(0, 170, 0);
+
+	/* NOTE: Borders */
+	--border-1: 0.25em solid rgb(0, 44, 82);
+	--border-2:  0.1em solid rgb(255, 255, 255);
+	--border-3:  0.1em solid rgb(0, 44, 82);
+	--border-4: 0.25em solid rgb(255, 255, 255);
+	--border-5:  0.1em solid rgb(0, 0, 0);
+	--border-6:  0.1em solid rgb(0, 170, 0);
+}
+
+/*———————————————————————————————————————*/
+/* SECTION Elements
+/*———————————————————————————————————————*/
+
+html, body {
+	background-color: var(--background-color-1);
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#under-construction {
+	position: absolute;
+	width: 10em;
+	font-size: 1.5em;
+	top: 29em;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 0.75em;
+	border: var(--border-2);
+	border-radius: 2em;
+	animation: 2s infinite changeColor;
+	user-select: none;
+}
+
+@keyframes changeColor {
+	0% {
+		color: white;
+		border: var(--border-2);
+	}
+	50% {
+		color: green;
+		border: var(--border-6);
+	}
+	100% {
+		color: white;
+		border: var(--border-2);
+	}
+}
+
+/* width */
+::-webkit-scrollbar {
+	display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(253, 0, 0);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(26, 161, 214);
+}
+
+/*———————————————————————————————————————*/
+/* SECTION Id's
+/*———————————————————————————————————————*/

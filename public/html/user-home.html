@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION SRIPTS
+<!————————————————————————————————————————————————————————————————————————-->
+
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="driver/client.js"></script>
+	<script defer src="driver/events.js"></script>
+	
+	<link defer rel="stylesheet" href="../css/main.css">
+	<link defer rel="stylesheet" href="../css/mobile.css">
+	<link defer rel="stylesheet" href="../css/laptop.css">
+</head>
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION USER HOME
+<!————————————————————————————————————————————————————————————————————————-->
+
+<div id="user-home-page" class="pages">
+	<h1 id="user-home-title" class="titles">Welcome back, user.</h1>
+	
+	<div id="saved-servers-list" class="hide">
+		<div id="temp-server-id" class="server-1-icon servers-icon"></div>
+	</div>
+
+	<div id="friends-direct-btn-container" class="hide">
+		<button id="friends-list-btn" class="btns" onclick="buttons.button(21)">Friends List</button>
+		<button id="messages-btn" class="btns" onclick="buttons.button(23)">Messages</button>
+	</div>
+
+	<button id="enter-lunos-btn" class="btns" onclick="buttons.button(999)">Enter Lunos</button>
+
+	<div id="friends-list" class="hide">
+		<input id="friends-search" placeholder="Search Name" onkeyup="filterFriends(1)"></input>
+
+		<div id="friends-list-grid">
+			<div class="friends-1 friends" onclick="buttons.button(22)">
+				<h3>James</h3>
+				<div class="friend-1-info friend-info">
+
+				</div>
+			</div>
+			<div class="friends-2 friends"><h3>Adam</h3></div>
+			<div class="friends-3 friends"><h3>Scott</h3></div>
+			<div class="friends-4 friends"><h3>Michael</h3></div>
+			<div class="friends-5 friends"><h3>Amber</h3></div>
+			<div class="friends-6 friends"><h3>Darlene</h3></div>
+		</div>
+	</div>
+
+	<div id="message-friends" class="hide">
+		<input id="message-friends-search" placeholder="Search Name" onkeyup="filterFriends(2)">
+
+		<div id="message-friends-list-grid">
+			<div class="friends-1 friends" onclick="buttons.button(24)"><h3>James</h3></div>
+			<div class="friends-2 friends"><h3>Adam</h3></div>
+			<div class="friends-3 friends"><h3>Scott</h3></div>
+			<div class="friends-4 friends"><h3>Michael</h3></div>
+			<div class="friends-5 friends"><h3>Amber</h3></div>
+			<div class="friends-6 friends"><h3>Darlene</h3></div>
+		</div>
+	</div>
+</div>
+
+</html>
