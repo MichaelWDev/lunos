@@ -15,6 +15,7 @@
 	<script defer src="/socket.io/socket.io.js"></script>
 	<script defer src="../driver/client.js"></script>
 	<script defer src="../driver/events.js"></script>
+	<script defer src="../driver/login.js"></script>
 	
 	<link defer rel="stylesheet" href="../css/main.css">
 	<link defer rel="stylesheet" href="../css/mobile.css">
@@ -26,19 +27,17 @@
 <!————————————————————————————————————————————————————————————————————————-->
 
 <div id="login-page">
-	<input id="email-input" type="email" placeholder="Email" required autofocus>
+	<input id="email-input" class="input" type="email" placeholder="Email" required autofocus>
 
-	<input id="username-input" class="hide" type="username" placeholder="Username" required>
-
-	<input id="password-input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
-	<img id="toggle-password-btn" class="btns" title="Show Password" src="../images/sight-disabled.png" onclick="buttons.button(5)">
+	<input id="password-input" class="input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
+	
+	<img id="toggle-password-btn" class="btns" title="Show Password" src="../images/sight-disabled.png" onclick="showPasword()">
 
 	<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 
-	<div id="btn-box">
-		<button id="login-btn" class="btns" type="button" onclick="buttons.button(1)">Log In</button>
-		<button id="register-btn" class="btns" type="button" onclick="buttons.button(2)">Register</button>	
-	</div>
+	<button id="login-btn" class="btns" type="button" onclick="login()">LOGIN</button>
+	<button id="reset-password-btn" class="btns" type="button" onclick="">RESET PASSWORD</button>
+	<!--<button id="register-btn" class="btns" type="button" onclick="">REGISTER</button>-->
 </div>
 
 </html>

@@ -81,6 +81,40 @@
 	font-family: var(--font-family-3);
 }
 
+.btns {
+	transition:    0.25s;
+	outline:       none;
+	background:    none;
+	border:        none;
+	cursor:        pointer;
+	color:         var(--text-color-1);
+	font-family:   var(--font-family-3);
+	border-bottom: var(--border-5);
+}
+
+.btns:hover {
+	color:         var(--hover-text-color-1);
+	border-bottom: var(--active-border-color-1);
+}
+
+.input {
+	height:        1.5em;
+	font-size:     1.5em;
+	font-weight:   600;
+	margin-bottom: 1em;
+	width:         12em;
+	padding:       0.5em;
+	transition:    0.25s;
+	border:        none;
+	background:    none;
+	outline:       none;
+	text-align:    left;
+	z-index:       1;
+	border-bottom: var(--border-2);
+	color:         var(--text-color-1);
+	font-family:   var(--font-family-1);
+}
+
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
@@ -209,22 +243,6 @@ html, body {
 	margin:      0.5em;
 }
 
-.btns {
-	transition:    0.25s;
-	outline:       none;
-	background:    none;
-	border:        none;
-	cursor:        pointer;
-	color:         var(--text-color-1);
-	font-family:   var(--font-family-3);
-	border-bottom: var(--border-5);
-}
-
-.btns:hover {
-	color:         var(--hover-text-color-1);
-	border-bottom: var(--active-border-color-1);
-}
-
 /*—— SECTION: LOGIN / REGISTER */
 #log-reg-btn-container {
 	position:    absolute;
@@ -261,12 +279,13 @@ html, body {
 
 /*—— SECTION: HOME */
 #home-title {
-	position:   absolute;
-	text-align: center;
-	left:       50%;
-	top:        30%;
-	animation:  2s fadeIn;
-	transform:  translateX(-50%);
+	position:    absolute;
+	text-align:  center;
+	left:        50%;
+	top:         30%;
+	animation:   2s fadeIn;
+	transform:   translateX(-50%);
+	user-select: none;
 }
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
@@ -275,7 +294,34 @@ html, body {
 /*—— SECTION: LOGIN
 /*—————————————————————————————————————————————————————————————————————————*/
 
+#login-page {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 25em;
+	height: 25em;
+	z-index: 1;
+}
 
+#toggle-password-btn {
+	position: absolute;
+	width: 1.5em;
+	height: 1.5em;
+	right: -1em;
+	top: 6em;
+	padding: 0.5em;
+	border: var(--border-2);
+}
+
+#toggle-password-btn:hover {
+	border: var(--hover-border-color-1);
+}
+
+#login-btn, #reset-password-btn {
+	font-size: 1.25em;
+	padding: 0.5em
+}
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
@@ -291,7 +337,16 @@ html, body {
 /*—— SECTION: ABOUT
 /*—————————————————————————————————————————————————————————————————————————*/
 
+#about-title {
+	position: absolute;
+	top: 1em;
+	width: 100%;
+	text-align: center;
+}
 
+#about-card-container h1 {
+	color: var(--text-span-color-1);
+}
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
