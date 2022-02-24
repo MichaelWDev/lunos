@@ -64,6 +64,8 @@
 	--active-background-color-1: rgb(0, 0, 0);
 	--active-background-color-2: rgb(0, 170, 0);
 	--active-border-color-1:     0.1em solid rgb(0, 170, 0);
+
+	--filter-1: invert(33%) sepia(97%) saturate(1250%) hue-rotate(92deg) brightness(93%) contrast(105%);
 }
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
@@ -71,6 +73,10 @@
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: GLOBAL CLASSES
 /*—————————————————————————————————————————————————————————————————————————*/
+
+.hide {
+	display: none;
+}
 
 .pages {
 	position:    absolute;
@@ -113,6 +119,26 @@
 	border-bottom: var(--border-2);
 	color:         var(--text-color-1);
 	font-family:   var(--font-family-1);
+}
+
+.show-password-btn {
+	position:   absolute;
+	width:      1.5em;
+	height:     1.5em;
+	right:      1em;
+	top:        6em;
+	padding:    0.5em;
+	border:     var(--border-2);
+	transition: 0.25s;
+}
+
+.show-password-btn:hover {
+	border: var(--hover-border-color-1);
+	filter: var(--filter-1);
+}
+
+.span-green {
+	color: rgb(0, 170, 0);
 }
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
@@ -177,13 +203,13 @@ html, body {
 /*—— SECTION: INDEX
 /*—————————————————————————————————————————————————————————————————————————*/
 
-/*—— SECTION: TITLE */
+/*—— ANCHOR: TITLE */
 #title {
 	position:      absolute;
 	left:          1em;
 	width:         15em;
-	height:        4.5em;
-	top:           1em;
+	height:        4em;
+	top:           0.5em;
 	text-align:    left;
 	animation:     3s fadeIn;
 	cursor:        pointer;
@@ -194,25 +220,23 @@ html, body {
 
 #title h1 {
 	position:      absolute;
-	font-weight:   600;
 	font-size:     3em;
-	top:           -0.5em;
 	user-select:   none;
-	left:          2em;
+	left:          1.5em;
 	transition:    0.25s;
 	color:         var(--text-color-1);
-	font-family:   var(--font-family-1);
+	font-family:   var(--font-family-3);
+	margin:        0;
 }
 
 #title img {
 	position: absolute;
-	left:     1em;
 	top:      0.5em;
 	width:    4em;
 	height:   4em;
 }
 
-/*—— SECTION: TOP NAV */
+/*—— ANCHOR: TOP NAV */
 #top-nav {
 	position:        absolute;
 	top:             1.5em;
@@ -243,7 +267,7 @@ html, body {
 	margin:      0.5em;
 }
 
-/*—— SECTION: LOGIN / REGISTER */
+/*—— ANCHOR: LOGIN / REGISTER */
 #log-reg-btn-container {
 	position:    absolute;
 	right:       2em;
@@ -258,13 +282,13 @@ html, body {
 	padding:    0.5em;
 }
 
-/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: HOME
 /*—————————————————————————————————————————————————————————————————————————*/
 
-/*—— SECTION: HOME BACKGROUND */
+/*—— ANCHOR: HOME BACKGROUND */
 #home-page-background {
 	position:      absolute;
 	left:          50%;
@@ -277,7 +301,7 @@ html, body {
 	transform:     translateX(-50%);
 }
 
-/*—— SECTION: HOME */
+/*—— ANCHOR: HOME */
 #home-title {
 	position:    absolute;
 	text-align:  center;
@@ -288,48 +312,71 @@ html, body {
 	user-select: none;
 }
 
-/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: LOGIN
 /*—————————————————————————————————————————————————————————————————————————*/
 
 #login-page {
-	position: absolute;
-	left: 50%;
-	top: 50%;
+	position:  absolute;
+	left:      50%;
+	top:       50%;
 	transform: translate(-50%, -50%);
-	width: 25em;
-	height: 25em;
-	z-index: 1;
+	width:     25em;
+	height:    25em;
+	z-index:   1;
 }
 
-#toggle-password-btn {
+#login-incorrect-text {
+	font-family: var(--font-family-3);
 	position: absolute;
-	width: 1.5em;
-	height: 1.5em;
-	right: -1em;
-	top: 6em;
-	padding: 0.5em;
-	border: var(--border-2);
-}
-
-#toggle-password-btn:hover {
-	border: var(--hover-border-color-1);
+	top:      9em;
+	left:     0;
 }
 
 #login-btn, #reset-password-btn {
+	position:  absolute;
+	top:       8em;
 	font-size: 1.25em;
-	padding: 0.5em
+	padding:   0.5em;
 }
 
-/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+/* TODO: in JS, if email/password isn't right then display #login-incorrect-text and bump #login-btn and #reset-password-btn down to 10em. */
+
+#login-btn {
+	left: 0;
+}
+
+#reset-password-btn {
+	left: 6em;
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: REGISTER
 /*—————————————————————————————————————————————————————————————————————————*/
 
+#register-page {
+	position:  absolute;
+	left:      50%;
+	top:       50%;
+	transform: translate(-50%, -50%);
+	width:     25em;
+	height:    25em;
+	z-index:   1;
+}
 
+#account-register-btn {
+	font-size: 1.25em;
+	padding:   0.5em;
+}
+
+.register-rules {
+	color: var(--text-color-1);
+	font-family: var(--font-family-3);
+}
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
@@ -338,17 +385,66 @@ html, body {
 /*—————————————————————————————————————————————————————————————————————————*/
 
 #about-title {
-	position: absolute;
-	top: 1em;
-	width: 100%;
-	text-align: center;
+	position:    absolute;
+	top:         8em;
+	width:       100%;
+	text-align:  center;
+	font-family: var(--font-family-3);
 }
 
 #about-card-container h1 {
 	color: var(--text-span-color-1);
 }
 
-/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+#about-card-container {
+	padding-bottom: 1em;
+	border-bottom:  var(--border-2);
+}
+
+.card-container {
+	position:              relative;
+	display:               inline-grid;
+	grid-column-gap:       2em;
+	grid-template-columns: auto auto auto;
+	top:                   25%;
+	left:                  50%;
+	transform:             translateX(-50%);
+	width:                 auto;
+}
+
+.cards {
+	width:       20em;
+	height:      auto;
+	border:      var(--border-5);
+	transition:  0.25s;
+	text-align:  left;
+	font-family: var(--font-family-3);
+}
+
+.cards-title {
+	text-align: center;
+}
+
+.cards p {
+	padding: 0.5em;
+}
+
+.cards:hover {
+	border: var(--active-border-color-1);
+}
+
+.cards:hover .cards-title {
+	color: var(--hover-text-color-1);
+}
+
+.card-image {
+	position: relative;
+	bottom:   0;
+	width:    12em;
+	height:   12em;
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: SUPPORT
@@ -356,7 +452,7 @@ html, body {
 
 
 
-/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: KEYFRAMES
@@ -399,4 +495,4 @@ html, body {
 	100% {top: 1.5em}
 }
 
-/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/

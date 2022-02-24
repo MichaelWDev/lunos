@@ -15,6 +15,8 @@
 	<script defer src="/socket.io/socket.io.js"></script>
 	<script defer src="../driver/client.js"></script>
 	<script defer src="../driver/events.js"></script>
+	<script defer src="../driver/login.js"></script>
+	<script defer src="../driver/register.js"></script>
 	
 	<link defer rel="stylesheet" href="../css/main.css">
 	<link defer rel="stylesheet" href="../css/mobile.css">
@@ -28,20 +30,19 @@
 <!————————————————————————————————————————————————————————————————————————-->
 
 <div id="register-page" class="">
-	<input id="email-input" type="email" placeholder="Email" required autofocus>
+	<input id="register-email-input" class="input" type="email" minlength="5" pattern="/^\S+@\S+\.\S+$/" placeholder="Email" required>
 	
-	<input id="username-input" class="hide" type="username" placeholder="Username" required>
+	<input id="register-username-input" class="input" type="username" minlength="5" placeholder="Username" required>
 	
-	<input id="password-input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
+	<input id="register-password-input" class="input" type="password" minlength="6" maxlength="54" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required placeholder="Password">
 
-	<img id="toggle-password-btn" class="btns" title="Show Password" src="../images/sight-disabled.png" onclick="buttons.button(5)">
-	<p id="incorrect-text" class="hide"><span class="red">Please try again.</span></p>
+	<img class="show-password-btn title="Show Password" src="../images/sight-disabled.png" onclick="">
 
-	<img src="../images/swipe-left.png" title="Back" onclick="buttons.button(4)">
-
-	<h3><span id="security-span" class="register-spans red">For security purposes:</span> your password must include at least <span id="character-span" class="register-spans red">8 characters</span>, 1 <span id="uppercase-span" class="register-spans red">uppercase letter</span>, <span id="lowercase-span" class="register-spans red">lowercase letter</span>, <span id="symbol-span" class="register-spans red">symbol</span>, and <span id="number-span" class="register-spans red">number</span>.</h3>
-
-	<button id="account-register-btn" class="btns" type="button" onclick="buttons.button(3)">Create Account</button>	
+	<p id="register-email-minimum" class="register-rules hide"><span class="span-green">Email:</span> Minimum 5 characters.</p>
+	<p id="register-username-minimum" class="register-rules hide"><span class="span-green">Username:</span> Minimum 5 characters.</p>
+	<p id="register-password-minimum" class="register-rules hide"><span class="span-green">Password:</span> Minimum 6 characters, at least one letter, one number and one special character</p>
+	
+	<button id="account-register-btn" class="btns" type="button" onclick="createAccount()">Create Account</button>	
 </div>
 
 </html>
