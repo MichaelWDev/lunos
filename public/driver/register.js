@@ -2,13 +2,24 @@
 //—— SECTION: INFORMATION
 //—————————————————————————————————————————————————————————————————————————//
 
-// This script handles all HTML onclick operations within JAVASCRIPT.HTML.
+// This script handles all HTML onclick operations within REGISTER.HTML.
 
 //——— !SECTION —————————————————————————————————————————————————————————————//
 
 //—————————————————————————————————————————————————————————————————————————//
 //—— SECTION: FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
+
+// ANCHOR: SHOW REGISTER PASSWORD
+function showPassword() {
+	let passwordInput = document.getElementById('register-password-input');
+
+	if (passwordInput.type === 'password') {
+		passwordInput.type = 'text';
+	} else {
+		passwordInput.type = 'password';
+	}
+}
 
 // ANCHOR: VALIDATE REGISTER
 function validatePassword() {

@@ -36,7 +36,8 @@
 	
 	<input id="register-password-input" class="input" type="password" minlength="6" maxlength="54" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required placeholder="Password">
 
-	<img class="show-password-btn title="Show Password" src="../images/sight-disabled.png" onclick="">
+	<!--TODO: Switch to BTN-->
+	<button id="show-register-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
 
 	<p id="register-email-minimum" class="register-rules hide"><span class="span-green">Email:</span> Minimum 5 characters.</p>
 	<p id="register-username-minimum" class="register-rules hide"><span class="span-green">Username:</span> Minimum 5 characters.</p>

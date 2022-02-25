@@ -29,9 +29,9 @@
 <div id="login-page">
 	<input id="email-input" class="input" type="email" placeholder="Email" required autofocus>
 
-	<input id="password-input" class="input" type="password" placeholder="Password" onkeyup="buttons.validatePassword()">
+	<input id="password-input" class="input" type="password" placeholder="Password" onkeyup="">
 	
-	<img class="show-password-btn" title="Show Password" src="../images/sight-disabled.png" onclick="showPasword()">
+	<button id="show-login-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
 
 	<p id="login-incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 

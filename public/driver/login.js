@@ -1,13 +1,13 @@
 //—————————————————————————————————————————————————————————————————————————//
-//—— SECTION INFORMATION
+//—— SECTION: INFORMATION
 //—————————————————————————————————————————————————————————————————————————//
 
-// This script handles all HTML onclick operations within JAVASCRIPT.HTML.
+// This script handles all HTML onclick operations within LOGIN.HTML.
 
 //——— !SECTION —————————————————————————————————————————————————————————————//
 
 //—————————————————————————————————————————————————————————————————————————//
-//—— SECTION FUNCTIONS
+//—— SECTION: FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
 
 // ANCHOR: LOGIN
@@ -18,7 +18,7 @@ function login() {
 	socket.emit('login', emailInput.value, passwordInput.value);
 }
 
-// ANCHOR: SHOW PASSWORD
+// ANCHOR: SHOW LOGIN PASSWORD
 function showPassword() {
 	let passwordInput = document.getElementById('password-input');
 
