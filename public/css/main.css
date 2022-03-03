@@ -5,13 +5,19 @@
 /* SECTION: MAIN.CSS
 /* This handles the entirety of Lunos.chat's stylization.
 
+/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+
 /*—————————————————————————————————————————————————————————————————————————*/
-/*—— SECTION: IMPORTS
+/*—— SECTION: FONT IMPORTS
 /*—————————————————————————————————————————————————————————————————————————*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+
+/*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: VARIABLES
@@ -20,84 +26,158 @@
 /* NOTE: Don't forget to uncomment the animations when the website is released. */
 
 :root {
-	/* NOTE: Font Families */
-	--font-family-1: 'Poiret One', cursive;
-	--font-family-2: 'Baloo Da 2', cursive;
+	/* SECTION: FONT FAMILIES */
+	--font-family-1:              'Poiret One', cursive;
+	--font-family-2:              'Baloo Da 2', cursive;
+	--font-family-3:              'Zen Kaku Gothic Antique', sans-serif;
 
-	/* NOTE: Text Colors */
-	--text-color-1: rgb(255, 255, 255);
-	--text-color-2: rgba(255, 255, 255, 0.5);
-	--text-color-3: rgb(0, 44, 82);
-	--text-color-4: rgb(0, 0, 0);
+	/* SECTION: TEXT COLORS */
+	--text-color-1:              rgb(255, 255, 255);
+	--text-color-2:              rgba(255, 255, 255, 0.5);
+	--text-color-3:              rgb(0, 44, 82);
+	--text-color-4:              rgb(0, 0, 0);
+	--text-color-5:              rgb(0, 170, 0);
 
-	--text-span-color-1: rgb(0, 170, 0);
-	--text-span-color-2: rgb(170, 0, 0);
+	/* SECTION: BACKGROUND COLORS */
+	--background-color-1:        rgb(0, 0, 0);
+	--background-color-2:        rgba(0, 44, 82, 0.1);
+	--background-color-3:        rgb(0, 44, 82);
+	--background-color-4:        rgb(0, 170, 0);
 
-	--hover-text-color-1: rgb(0, 170, 0);
-	--hover-text-color-2: rgb(0, 0, 0);
-	--hover-background-color-1: rgb(0, 170, 0);
-	--hover-border-color-1: 0.1em solid rgb(0, 170, 0);
+	/* SECTION: BORDERS */
+	--border-1:                   0.25em solid rgb(0, 44, 82);
+	--border-2:                   0.1em  solid rgb(255, 255, 255);
+	--border-3:                   0.1em  solid rgb(0, 44, 82);
+	--border-4:                   0.25em solid rgb(255, 255, 255);
+	--border-5:                   0.1em  solid rgb(0, 0, 0);
+	--border-6:                   0.1em  solid rgb(0, 170, 0);
+
+	/* SECTION: EXTRAS FOR SPAN / HOVERING / ACTIVE */
+	--text-span-color-1:         rgb(0, 170, 0);
+	--text-span-color-2:         rgb(170, 0, 0);
+
+	--hover-text-color-1:        rgb(0, 170, 0);
+	--hover-text-color-2:        rgb(0, 0, 0);
+	--hover-background-color-1:  rgb(0, 170, 0);
+	--hover-border-color-1:      0.1em solid rgb(0, 170, 0);
 	
-	--active-text-color-1: rgb(0, 170, 0);
+	--active-text-color-1:       rgb(0, 170, 0);
 	--active-background-color-1: rgb(0, 0, 0);
 	--active-background-color-2: rgb(0, 170, 0);
-	--active-border-color-1: 0.1em solid rgb(0, 170, 0);
+	--active-border-color-1:     0.1em solid rgb(0, 170, 0);
 
-	/* NOTE: Background Colors */
-	--background-color-1: rgb(0, 0, 0);
-	--background-color-2: rgba(0, 44, 82, 0.1);
-	--background-color-3: rgb(0, 44, 82);
-	--background-color-4: rgb(0, 170, 0);
-
-	/* NOTE: Borders */
-	--border-1: 0.25em solid rgb(0, 44, 82);
-	--border-2:  0.1em solid rgb(255, 255, 255);
-	--border-3:  0.1em solid rgb(0, 44, 82);
-	--border-4: 0.25em solid rgb(255, 255, 255);
-	--border-5:  0.1em solid rgb(0, 0, 0);
-	--border-6:  0.1em solid rgb(0, 170, 0);
+	--filter-1: invert(33%) sepia(97%) saturate(1250%) hue-rotate(92deg) brightness(93%) contrast(105%);
 }
 
-/*———————————————————————————————————————*/
-/* SECTION Elements
-/*———————————————————————————————————————*/
+/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: GLOBAL CLASSES
+/*—————————————————————————————————————————————————————————————————————————*/
+
+.hide {
+	display: none;
+}
+
+.pages {
+	position:    absolute;
+	width:       100%;
+	height:      100%;
+	animation:   1s fadeIn;
+	color:       var(--text-color-1);
+	font-family: var(--font-family-3);
+}
+
+.btns {
+	transition:    0.25s;
+	outline:       none;
+	background:    none;
+	border:        none;
+	cursor:        pointer;
+	color:         var(--text-color-1);
+	font-family:   var(--font-family-3);
+	border-bottom: var(--border-5);
+}
+
+.btns:hover {
+	color:         var(--hover-text-color-1);
+	border-bottom: var(--active-border-color-1);
+}
+
+.input {
+	height:        1.5em;
+	font-size:     1.5em;
+	margin-bottom: 1em;
+	width:         12em;
+	padding:       0.5em;
+	transition:    0.25s;
+	border:        none;
+	background:    none;
+	outline:       none;
+	text-align:    left;
+	z-index:       1;
+	border-bottom: var(--border-2);
+	color:         var(--text-color-1);
+	font-family:   var(--font-family-3);
+}
+
+/* TODO: Figure out why background image isn't showing on the show-password-btn */
+.show-password-btn {
+	position:        absolute;
+	cursor:          pointer;
+	width:           3em;
+	height:          3em;
+	padding:         0.5em;
+	border:          var(--border-2);
+	transition:      0.25s;
+	background:      url('../images/sight-disabled.png') 50% 50% no-repeat;
+	background-size: 2em;
+}
+
+.show-password-btn:hover {
+	border: var(--hover-border-color-1);
+	filter: var(--filter-1);
+}
+
+.span-green {
+	color: var(--text-color-5);
+}
+
+/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: BODY
+/*—————————————————————————————————————————————————————————————————————————*/
 
 html, body {
+	margin:           0;
+	width:            100%;
+	height:           100%;
+	overflow:         hidden;
 	background-color: var(--background-color-1);
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
 }
 
 #under-construction {
-	position: absolute;
-	width: 10em;
-	font-size: 1.5em;
-	top: 29em;
-	left: 50%;
-	transform: translateX(-50%);
-	padding: 0.75em;
-	border: var(--border-2);
+	position:      absolute;
+	width:         auto;
+	font-size:     1em;
+	bottom:        0;
+	left:          50%;
+	padding:       0.75em;
 	border-radius: 2em;
-	animation: 2s infinite changeColor;
-	user-select: none;
+	user-select:   none;
+	text-align:    center;
+	border:        var(--border-2);
+	transform:     translateX(-50%);
+	font-family:   var(--font-family-3);
+	animation:     3s infinite changeColor;
 }
 
-@keyframes changeColor {
-	0% {
-		color: white;
-		border: var(--border-2);
-	}
-	50% {
-		color: green;
-		border: var(--border-6);
-	}
-	100% {
-		color: white;
-		border: var(--border-2);
-	}
-}
+/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: SCROLLBAR
+/*—————————————————————————————————————————————————————————————————————————*/
 
 /* width */
 ::-webkit-scrollbar {
@@ -119,6 +199,348 @@ html, body {
 	background: rgb(26, 161, 214);
 }
 
-/*———————————————————————————————————————*/
-/* SECTION Id's
-/*———————————————————————————————————————*/
+/*——— SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: INDEX
+/*—————————————————————————————————————————————————————————————————————————*/
+
+/*—— ANCHOR: TITLE */
+#title {
+	position:      absolute;
+	left:          1em;
+	width:         15em;
+	height:        4em;
+	top:           0.5em;
+	text-align:    left;
+	animation:     3s fadeIn;
+	cursor:        pointer;
+	border-bottom: var(--border-5);
+	transition:    0.25s;
+	z-index:       1;
+}
+
+#title h1 {
+	position:      absolute;
+	font-size:     3em;
+	user-select:   none;
+	left:          1.5em;
+	transition:    0.25s;
+	color:         var(--text-color-1);
+	font-family:   var(--font-family-3);
+	margin:        0;
+}
+
+#title img {
+	position: absolute;
+	top:      0.5em;
+	width:    4em;
+	height:   4em;
+}
+
+/*—— ANCHOR: TOP NAV */
+#top-nav {
+	position:        absolute;
+	top:             1.5em;
+	left:            50%;
+	width:           50%;
+	height:          auto;
+	z-index:         1;
+	user-select:     none;
+	animation:       2s top-to-bottom;
+	transform:       translate(-50%);
+	border-width:    4px;
+	border-style:    solid;
+	border-top:      none;
+	border-left:     none;
+	border-right:    none;
+	border-image:    linear-gradient(to right, black, rgba(255, 255, 255, 0.25), black) 1;
+	display:         flex;
+	justify-content: center;
+}
+
+.nav-btns {
+	width:       6em;
+	font-size:   1.25em;
+	padding:     1em;
+	transition:  0.25s;
+	text-align:  center;
+	user-select: none;
+	margin:      0.5em;
+}
+
+/*—— ANCHOR: LOGIN / REGISTER */
+#log-reg-btn-container {
+	position:    absolute;
+	right:       2em;
+	top:         1em;
+	animation:   4s fadeIn;
+	user-select: none;
+	z-index:     1;
+}
+
+#log-btn, #reg-btn {
+	font-size:  1em;
+	padding:    0.5em;
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: HOME
+/*—————————————————————————————————————————————————————————————————————————*/
+
+/*—— ANCHOR: HOME BACKGROUND */
+#home-page-background {
+	position:      absolute;
+	left:          50%;
+	top:           25%;
+	height:        100em;
+	width:         100em;
+	border-radius: 50%;
+	animation:     8s fadeIn;
+	box-shadow:    0px -10px 25px rgba(255, 255, 255, 0.25);
+	transform:     translateX(-50%);
+}
+
+/*—— ANCHOR: HOME */
+#home-title {
+	position:    absolute;
+	text-align:  center;
+	left:        50%;
+	top:         30%;
+	animation:   2s fadeIn;
+	transform:   translateX(-50%);
+	user-select: none;
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: LOGIN
+/*—————————————————————————————————————————————————————————————————————————*/
+
+#login-page {
+	position:  absolute;
+	left:      50%;
+	top:       50%;
+	transform: translate(-50%, -50%);
+	width:     25em;
+	height:    25em;
+	z-index:   1;
+}
+
+#show-login-password-btn {
+	right: 2em;
+}
+
+#login-incorrect-text {
+	font-family: var(--font-family-3);
+	position: absolute;
+	top:      9em;
+	left:     0;
+}
+
+#login-btn, #reset-password-btn {
+	position:  absolute;
+	top:       8em;
+	font-size: 1.25em;
+	padding:   0.5em;
+}
+
+/* TODO: in JS, if email/password isn't right then display #login-incorrect-text and bump #login-btn and #reset-password-btn down to 10em. */
+
+#login-btn {
+	left: 0;
+}
+
+#reset-password-btn {
+	left: 6em;
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: REGISTER
+/*—————————————————————————————————————————————————————————————————————————*/
+
+#register-page {
+	position:  absolute;
+	left:      50%;
+	top:       50%;
+	transform: translate(-50%, -50%);
+	width:     25em;
+	height:    25em;
+	z-index:   1;
+}
+
+#show-register-password-btn {
+	right: 2em;
+}
+
+#account-register-btn {
+	font-size: 1.25em;
+	padding:   0.5em;
+}
+
+.register-rules {
+	color: var(--text-color-1);
+	font-family: var(--font-family-3);
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: ABOUT
+/*—————————————————————————————————————————————————————————————————————————*/
+
+#about-lunos-container {
+	position:      absolute;
+	left:          50%;
+	top:           15%;
+	text-align:    center;
+	width:         auto;
+	transform:     translateX(-50%);
+	border-bottom: var(--border-2);
+	font-family:   var(--font-family-3);
+}
+
+#about-title {
+	width:       100%;
+	text-align:  center;
+	font-family: var(--font-family-3);
+}
+
+#about-card-container {
+	position: absolute;
+	top:      50%;
+	width:    auto;
+}
+
+#about-card-title {
+	position:    absolute;
+	bottom:      11em;
+	width:       100%;
+	text-align:  center;
+	font-family: var(--font-family-3);
+}
+
+#about-card-container {
+	padding-bottom: 1em;
+	border-bottom:  var(--border-2);
+}
+
+#and-sign {
+	font-size:   7em;
+	font-family: var(--font-family-3);
+	color:     rgba(0, 170, 0, 0.5);
+}
+
+.card-container {
+	position:              relative;
+	display:               inline-grid;
+	grid-column-gap:       2em;
+	grid-template-columns: auto auto auto;
+	top:                   25%;
+	left:                  50%;
+	transform:             translateX(-50%);
+	width:                 auto;
+}
+
+.cards {
+	width:       26em;
+	height:      auto;
+	border:      var(--border-5);
+	transition:  0.25s;
+	text-align:  left;
+	font-family: var(--font-family-3);
+}
+
+.cards-title {
+	text-align: center;
+	color: var(--text-span-color-1);
+}
+
+.cards p {
+	padding: 0.5em;
+}
+
+.cards:hover {
+	border: var(--active-border-color-1);
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: SUPPORT
+/*—————————————————————————————————————————————————————————————————————————*/
+
+#contact-card-container {
+	position:  absolute;
+	left:      50%;
+	transform: translateX(-50%);
+	top:       30%;
+}
+
+#email {
+	text-decoration: none;
+	font-size:       1.25em;
+	text-align:      center;
+	width:           100%;
+	padding:         0;
+	font-family:     var(--font-family-3);
+}
+
+#email a {
+	color:      var(--text-color-1);
+	transition: 0.25s;
+}
+
+#email a:hover {
+	color: var(--text-color-5);
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: KEYFRAMES
+/*—————————————————————————————————————————————————————————————————————————*/
+
+@keyframes changeColor {
+	0% {
+		color: white;
+		border: var(--border-2);
+	}
+	50% {
+		color: green;
+		border: var(--border-6);
+	}
+	100% {
+		color: white;
+		border: var(--border-2);
+	}
+}
+
+
+@keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+@keyframes fadeInOut {
+	0% {opacity: 0;}
+	50% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+@keyframes top-to-bottom {
+	0% {top: -10em}
+	100% {top: 1.5em}
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/

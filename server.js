@@ -118,7 +118,7 @@ io.on('connection', function(socket) {
 	});
 
 	// TODO: Account Register
-	socket.on('register', async (email, username, password) => {
+	socket.on('register', async (email, username, password, callback) => {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
@@ -140,7 +140,9 @@ io.on('connection', function(socket) {
 							console.log(err)
 						} else {
 							console.log('Account successfully added.');
-							socket.emit('accountSuccesful');
+							callback(true);
+							
+							// TODO: callback(false) use this for failed validation (check if account already exists)
 						}
 					});
 				} catch (err) {

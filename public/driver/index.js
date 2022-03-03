@@ -2,7 +2,7 @@
 //—— SECTION INFORMATION
 //—————————————————————————————————————————————————————————————————————————//
 
-// This class handles all button operations.
+// This script handles all HTML onclick operations within INDEX.HTML.
 
 //——— SECTION —————————————————————————————————————————————————————————————//
 
@@ -10,12 +10,10 @@
 //—— SECTION FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
 
-// Sets the page.
+// SECTION: CHANGE PAGES
 function setPage(newHash = "#home") { // Default iframe
-	console.log(newHash)
 	let docContent = document.getElementById("main-iframe");
 	docContent.src = `./html/${newHash.substring(1)}.html`;
-	console.log(docContent)
 
 	let getLinks = document.getElementById("top-nav").getElementsByTagName("a");
 	let pageLink = document.getElementById("top-nav").querySelectorAll(`a[href="${newHash}"]`);
@@ -27,7 +25,7 @@ function setPage(newHash = "#home") { // Default iframe
 	if (pageLink[0]) {pageLink[0].classList.remove("btn-active");}
 }
 
-// Checks the hash at the end of the URL.
+// SECTION: PAGE URL
 window.onload = function() {
 	setPage(window.location.hash);
 
