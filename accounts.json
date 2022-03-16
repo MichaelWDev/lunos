@@ -50,5 +50,12 @@
     "password": "$2b$10$JQJxaEBt2CJQoSpcP3Xxie24.Ew9gMUgXkOakXyLcDATjbA4Q2dbK",
     "savedServers": null,
     "serversBannedFrom": null
+  },
+  "mbwoodyard@hotmail.com": {
+    "email": "mbwoodyard@hotmail.com",
+    "username": "DigitalNative",
+    "password": "$2b$10$KBJe90uSCbn7PPLoZ2szCuIj5MKq0.DApB3t7rE1M8tWbCwcxLMLO",
+    "savedServers": null,
+    "serversBannedFrom": null
   }
 }

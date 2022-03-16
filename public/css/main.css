@@ -157,22 +157,6 @@ html, body {
 	background-color: var(--background-color-1);
 }
 
-#under-construction {
-	position:      absolute;
-	width:         auto;
-	font-size:     1em;
-	bottom:        0;
-	left:          50%;
-	padding:       0.75em;
-	border-radius: 2em;
-	user-select:   none;
-	text-align:    center;
-	border:        var(--border-2);
-	transform:     translateX(-50%);
-	font-family:   var(--font-family-3);
-	animation:     3s infinite changeColor;
-}
-
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
@@ -326,8 +310,7 @@ html, body {
 	top:       50%;
 	transform: translate(-50%, -50%);
 	width:     25em;
-	height:    25em;
-	z-index:   1;
+	height:    15em;
 }
 
 #show-login-password-btn {
@@ -370,8 +353,7 @@ html, body {
 	top:       50%;
 	transform: translate(-50%, -50%);
 	width:     25em;
-	height:    25em;
-	z-index:   1;
+	height:    15em;
 }
 
 #show-register-password-btn {
@@ -505,22 +487,6 @@ html, body {
 /*—————————————————————————————————————————————————————————————————————————*/
 /*—— SECTION: KEYFRAMES
 /*—————————————————————————————————————————————————————————————————————————*/
-
-@keyframes changeColor {
-	0% {
-		color: white;
-		border: var(--border-2);
-	}
-	50% {
-		color: green;
-		border: var(--border-6);
-	}
-	100% {
-		color: white;
-		border: var(--border-2);
-	}
-}
-
 
 @keyframes fadeIn {
 	0% {opacity: 0;}

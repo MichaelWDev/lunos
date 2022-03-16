@@ -2,9 +2,9 @@
 //—— SECTION: INFORMATION
 //—————————————————————————————————————————————————————————————————————————//
 
-// This script handles all HTML onclick operations within LOGIN.HTML.
+// Handles every HTML onclick in LOGIN.HTML.
 
-//——— !SECTION —————————————————————————————————————————————————————————————//
+//——— !SECTION ————————————————————————————————————————————————————————————//
 
 //—————————————————————————————————————————————————————————————————————————//
 //—— SECTION: FUNCTIONS
@@ -15,7 +15,7 @@ function login() {
 	let emailInput    = document.getElementById('email-input');
 	let passwordInput = document.getElementById('password-input');
 
-	socket.emit('login', emailInput.value, passwordInput.value);
+	events.socket.emit('login', emailInput.value, passwordInput.value);
 }
 
 // ANCHOR: SHOW LOGIN PASSWORD
@@ -28,5 +28,13 @@ function showPassword() {
 		passwordInput.type = 'password';
 	}
 }
+
+//——— !SECTION —————————————————————————————————————————————————————————————//
+
+//——————————————————————————————————————————————————————————————————————————//
+//—— SECTION: DRIVERS
+//——————————————————————————————————————————————————————————————————————————//
+
+const events = new Events();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//
