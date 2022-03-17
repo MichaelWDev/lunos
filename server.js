@@ -46,7 +46,7 @@ io.on('connection', function(socket) {
 	let channel;
 	console.log('user connected');
 
-	// ANCHOR: USER UNIQUE ID
+	// ANCHOR: UNIQUE ID
 	function uniqueID() {
 		let uniqueNumbers = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
 		return uniqueNumbers = uniqueNumbers.toString();

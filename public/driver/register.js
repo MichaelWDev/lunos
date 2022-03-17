@@ -48,7 +48,8 @@ function createAccount() {
 	events.socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value, (res) => {
 		// Success
 		if (res) {
-			console.log("Result received.");
+			console.log("Result received. ", res);
+			client.accountSuccessful();
 		} else { // Failure
 			console.log("Result NOT received.");
 		}

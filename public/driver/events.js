@@ -15,7 +15,6 @@ class Events {
 		bindClass(this);
 
 		// ANCHOR: VARIABLES
-		this.iframe = document.getElementById('main-iframe');
 		this.incorrectText = document.getElementById('incorrect-text');
 	
 		// ANCHOR: SOCKET.IO
@@ -40,6 +39,7 @@ class Events {
 
 	// ANCHOR: LOGIN
 	loginSuccessful(username) {
+		client.accountSuccessful();
 
 		// Sockets
 		this.socket.emit('new-user', username); // TODO
@@ -48,12 +48,6 @@ class Events {
 	
 	loginUnsuccessful() {
 		this.IncorrectText.classList.remove('hide');
-	}
-
-	// ANCHOR: CREATE ACCOUNT
-	// TODO: Figure out if you need this.
-	accountSuccessful () {
-		this.iframe.src = './html/chat.html'
 	}
 
 	// ANCHOR: CREATE SERVER

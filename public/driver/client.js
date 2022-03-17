@@ -27,11 +27,23 @@ globalThis.bindClass = function(toBind) { // (object)
 
 class Client {
 	constructor() {
-		this.userListGrid     = document.getElementById('user-list-grid');
-		this.channelContainer = document.getElementById('channel-container');
-		this.channelListGrid  = document.getElementById('channel-list-grid');
-		this.channelPages     = document.getElementsByClassName('chat-containers');
-		this.currentChannel;
+		bindClass(this);
+
+		// ANCHOR: VARIABLES
+		this.iframe = document.getElementById('main-iframe');
+		//this.userListGrid     = document.getElementById('user-list-grid');
+		//this.channelContainer = document.getElementById('channel-container');
+		//this.channelListGrid  = document.getElementById('channel-list-grid');
+		//this.channelPages     = document.getElementsByClassName('chat-containers');
+		//this.currentChannel;
+	}
+
+	// ANCHOR: CREATE ACCOUNT
+	// TODO: Figure out if you need this.
+	accountSuccessful () {
+		// TODO: Uncaught TypeError: Cannot set property 'src' of null (CLIENT: 45)
+		this.iframe.src = '../html/chat.html';
+		// ../html/chat.html
 	}
 
 	// Adds usernames to user-list.
