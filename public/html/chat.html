@@ -22,89 +22,109 @@
 </head>
 
 <!--————————————————————————————————————————————————————————————————————————>
-<!—— SECTION SERVER
+<!—— SECTION CHAT
 <!————————————————————————————————————————————————————————————————————————-->
+<div id="chat-page">
+	<!-- TODO: Server Creation
 
-<div id="temp-server-1-id" class="servers-1 servers">
-	<div id="admin-panel" class="hide">
-		<div id="admin-nav">
-			<button class="admin-nav-btns btns" onclick="buttons.button(26)">Dashboard</button>
-			<button class="admin-nav-btns btns" onclick="buttons.button(27)">Statistics</button>
-			<button class="admin-nav-btns btns" onclick="buttons.button(28)">Ban/Unban User</button>
-			<button class="admin-nav-btns btns" onclick="buttons.button(29)">Log</button>
-			<button class="admin-nav-btns btns" onclick="buttons.button(30)">Exit</button>
-		</div>
-		<div id="admin-dashboard" class="hide">
-			<h1 class="admin-title">Dashboard</h1>
-
-		</div>
-
-		<div id="admin-statistics" class="hide">
-			<h1 class="admin-title">Statistics</h1>
-
-		</div>
-
-		<div id="admin-ban-unban-user" class="hide">
-			<h1 class="admin-title">Ban/Unban User</h1>
-
-		</div>
-
-		<div id="admin-log" class="hide">
-			<h1 class="admin-title">Log</h1>
-
-		</div>
-	</div>
-	
-	<button id="channels-btn" class="btns" onclick="buttons.button(6)">Channels</button>
-
-	<div id="channel-btns">
-		<h1 class="server-title">Temporary Server</h1>
-
-		<button id="create-channel-btn" class="btns hide" onclick="buttons.button()">Create Channel</button>
-	
-		<div id="channel-list-grid">
-			<button class="chan-btn-0 channels btns" onclick="client.switchChannel(this.innerText)">[0] Introduction</button>
-			<button class="chan-btn-1 channels btns" onclick="client.switchChannel(this.innerText)">[1] General</button>
-			<button class="chan-btn-2 channels btns" onclick="client.switchChannel(this.innerText)">[2] General</button>
-			<button class="chan-btn-3 channels btns" onclick="client.switchChannel(this.innerText)">[3] General</button>
-			<button class="chan-btn-4 channels btns" onclick="client.switchChannel(this.innerText)">[4] General</button>
-			<button class="chan-btn-5 channels btns" onclick="client.switchChannel(this.innerText)">[5] General</button>
-			<button class="chan-btn-6 channels btns" onclick="client.switchChannel(this.innerText)">[6] General</button>
-			<button class="chan-btn-7 channels btns" onclick="client.switchChannel(this.innerText)">[7] Admin</button>
-		</div>
-	</div>
-
-	<div id="channel-container">
-		<div id="chan-0" class="chat-containers hide"></div>
-		<div id="chan-1" class="chat-containers hide"></div>
-		<div id="chan-2" class="chat-containers hide"></div>
-		<div id="chan-3" class="chat-containers hide"></div>
-		<div id="chan-4" class="chat-containers hide"></div>
-		<div id="chan-5" class="chat-containers hide"></div>
-		<div id="chan-6" class="chat-containers hide"></div>
-		<div id="chan-7" class="chat-containers hide"></div>
-	</div>
-
-	<div id="profile-container">
-		<img id="profile-image" onclick="buttons.button(9)">
-		<h3 id="profile-username" class="btns" onclick="buttons.button(8)">Username Here</h3>
-		<img id="profile-settings" src="" onclick="buttons.button(10)">
-	</div>
-
-	<!-- NOTE: return was breaking everything.
-	<form id="send-chat-form" onkeydown="return event.key != 'Enter'">
-		<div id="chat-bar">
-			<img class="hide" src="" onclick="" id="add-file-icon">
-			<input id="chat-bar-input" type="text" placeholder="Begin typing..." autocomplete="off">
-			<button id="chat-bar-btn" class="btns" type="button" onclick="buttons.button(11)">Send</button>
-		</div>
-	</form>
+		- Generate HTML & CSS for each server the user has.
+			> background-image: url();
 	-->
+	<!-- ANCHOR: SERVER LIST -->
+	<div class="server-list">
+		<div class="server-icon home-icon">
+			<div class="hide server-icon-title">
+				<p>Home</p>
+			</div>
+		</div>
 
-	<button id="users-btn" class="btns" onclick="buttons.button(7)">Users</button>
+		<hr>
 
-	<div id="user-container" class="">
-		<div id="user-list-grid"></div>
+		<div id="lunos-server" class="server-icon">
+			<div class="hide server-icon-title">
+				<p>Lunos</p>
+			</div>
+		</div>
+
+		<div id="" class="server-icon">
+			<div class="hide server-icon-title">
+				<p>Other</p>
+			</div>
+		</div>
+
+		<div id="" class="server-icon">
+			<div class="hide server-icon-title">
+				<p>Other</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- ANCHOR: CHAT SERVER -->
+	<div id="" class="servers">
+		<h1 class="server-title">Lunos</h1>
+		<!-- TODO: ADMIN PANNEL
+		<div id="admin-panel" class="hide">
+			<div id="admin-nav">
+				<button class="admin-nav-btns btns" onclick="">Dashboard</button>
+				<button class="admin-nav-btns btns" onclick="">Statistics</button>
+				<button class="admin-nav-btns btns" onclick="">Ban/Unban User</button>
+				<button class="admin-nav-btns btns" onclick="">Log</button>
+				<button class="admin-nav-btns btns" onclick="">Exit</button>
+			</div>
+			<div id="admin-dashboard" class="hide">
+				<h1 class="admin-title">Dashboard</h1>
+			</div>
+
+			<div id="admin-statistics" class="hide">
+				<h1 class="admin-title">Statistics</h1>
+			</div>
+
+			<div id="admin-ban-unban-user" class="hide">
+				<h1 class="admin-title">Ban/Unban User</h1>
+			</div>
+
+			<div id="admin-log" class="hide">
+				<h1 class="admin-title">Log</h1>
+			</div>
+		</div>
+		-->
+
+		<!-- ANCHOR: CHANNEL TITLE -->
+		<div class="channel-title">
+			<h1>Channel Name Here</h1>
+		</div>
+
+		<!-- ANCHOR: CHANNEL BUTTONS -->
+		<div class="channels">
+			<button class="chan-btn btns" onclick="">Introduction</button>
+			<button class="chan-btn btns" onclick="">General</button>
+			<button class="chan-btn btns" onclick="">General</button>
+			<button class="chan-btn btns" onclick="">General</button>
+		</div>
+
+		<!-- ANCHOR: CHANNEL PAGES -->
+		<div class="channel-pages">
+			<div id="chan-0" class="chat-containers hide"></div>
+			<div id="chan-1" class="chat-containers hide"></div>
+			<div id="chan-2" class="chat-containers hide"></div>
+			<div id="chan-3" class="chat-containers hide"></div>
+			<div id="chan-4" class="chat-containers hide"></div>
+			<div id="chan-5" class="chat-containers hide"></div>
+			<div id="chan-6" class="chat-containers hide"></div>
+			<div id="chan-7" class="chat-containers hide"></div>
+		</div>
+
+		<!-- ANCHOR: PROFILE -->
+		<div class="profile">
+			<div class="profile-icon" onclick=""></div>
+			<p class="profile-name" class="btns" onclick="">Username Here</p>
+			<p class="profile-status">Profile Status Here</p>
+		</div>
+
+		<!-- ANCHOR: CHATBAR -->
+		<div class="chat-bar">
+			<input class="chat-input" placeholder="Begin typing..."></input>
+		</div>
 	</div>
 </div>
 

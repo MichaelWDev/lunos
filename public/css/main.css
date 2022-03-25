@@ -43,6 +43,7 @@
 	--background-color-2:        rgba(0, 44, 82, 0.1);
 	--background-color-3:        rgb(0, 44, 82);
 	--background-color-4:        rgb(0, 170, 0);
+	--background-color-5:        rgb(5, 5, 5);
 
 	/* SECTION: BORDERS */
 	--border-1:                   0.25em solid rgb(0, 44, 82);
@@ -51,8 +52,11 @@
 	--border-4:                   0.25em solid rgb(255, 255, 255);
 	--border-5:                   0.1em  solid rgb(0, 0, 0);
 	--border-6:                   0.1em  solid rgb(0, 170, 0);
+	--border-7:                   0.1em solid rgb(5, 5, 5);
 
 	/* SECTION: EXTRAS FOR SPAN / HOVERING / ACTIVE */
+	--transition-1:              0.25s;
+
 	--text-span-color-1:         rgb(0, 170, 0);
 	--text-span-color-2:         rgb(170, 0, 0);
 
@@ -480,6 +484,185 @@ html, body {
 
 #email a:hover {
 	color: var(--text-color-5);
+}
+
+/*——— !SECTION —————————————————————————————————————————————————————————————————————*/
+
+/*—————————————————————————————————————————————————————————————————————————*/
+/*—— SECTION: CHAT
+/*—————————————————————————————————————————————————————————————————————————*/
+
+/*—— ANCHOR: SERVER LIST */
+.server-list {
+	position:         absolute;
+	width:            3.5%;
+	height:           100%;
+	overflow:         scroll;
+	background-color: var(--background-color-5);
+}
+
+.server-list hr {
+	position:      relative;
+	top:           0.25em;
+	width:         50%;
+	border:        none;
+	border-bottom: 0.1em solid rgba(255, 255, 255, 0.25);
+}
+
+.server-icon {
+	position:         relative;
+	left:             50%;
+	width:            2.5em;
+	height:           2.5em;
+	margin-top:       1em;
+	border-radius:    50%;
+	cursor:           pointer;
+	transform:        translateX(-50%);
+	border:           var(--border-2);
+	background-color: var(--background-color-1);
+}
+
+.server-icon-title {
+	position:    relative;
+	height:      3em;
+	width:       15em;
+	z-index:     5;
+	user-select: none;
+	font-family: var(--font-family-2);
+	color:       var(--text-color-1);
+}
+
+.server-icon:hover .server-icon-title {
+	display: block;
+}
+
+/*—— ANCHOR: SERVERS */
+.servers {
+	position: absolute;
+	top:      0;
+	right:    0;
+	height:   100%;
+	width:    95%;
+	z-index:  0;
+}
+
+.server-title {
+	position:       relative;
+	width:          5em;
+	left:           1em;
+	padding-bottom: 0.25em;
+	text-align:     center;
+	color:          var(--text-color-1);
+	font-family:    var(--font-family-3);
+	border-bottom:  var(--border-2);
+}
+
+/*—— ANCHOR: CHANNELS */
+/*—— TODO: Fix alignment of .chan-btn & .channel-pages. */
+.channels {
+	position:         absolute;
+	top:              6em;
+	width:            14em;
+	height:           46.75em;
+	background-color: rgb(109, 40, 109);
+}
+
+.chan-btn {
+	position:       relative;
+	text-align:     left;
+	left:           1em;
+	width:          80%;
+	margin-top:     1em;
+	padding-bottom: 0.5em;
+	font-size:      1em;
+	overflow:       hidden;
+}
+
+.chan-btn:hover {
+	color: var(--text-color-1);
+	background-color: rgba(0, 128, 0, 0.1);
+}
+
+.channel-pages {
+	position:           relative;
+	left:               50%;
+	bottom:             4em;
+	height:             46.75em;
+	width:              84em;
+	transform:          translateX(-50%);
+	background-color: rgb(15, 31, 15);
+}
+
+/*—— ANCHOR: PROFILE */
+.profile {
+	position: absolute;
+	width:    13.5em;
+	height:   3.5em;
+	bottom:   1em;
+	background-color: var(--background-color-5);
+}
+
+.profile p {
+	margin: 0;
+}
+
+.profile-icon {
+	position:      absolute;
+	top:           50%;
+	width:         2.5em;
+	height:        2.5em;
+	left:          0.25em;
+	border-radius: 50%;
+	transform:     translateY(-50%);
+	border:        var(--border-2);
+}
+
+.profile-name {
+	position:    relative;
+	font-size:   1.25em;
+	width:       8em;
+	left:        2.75em;
+	overflow-x:  hidden;
+	color:       var(--text-color-1);
+	font-family: var(--font-family-2);
+}
+
+.profile-status {
+	position:    relative;
+	font-size:   1em;
+	width:       10em;
+	left:        3.5em;
+	bottom:      0.5em;
+	overflow-x:  hidden;
+	color:       var(--text-color-1);
+	font-family: var(--font-family-2);
+}
+
+/*—— ANCHOR: CHATBAR */
+.chat-bar {
+	position: absolute;
+	bottom:   1.25em;
+	height:   3.25em;
+	width:    83em;
+	left:     14em;
+}
+
+.chat-input {
+	border:           none;
+	outline:          none;
+	background:       none;
+	height:           100%;
+	width:            100%;
+	padding-left:     1em;
+	font-size:        1em;
+	color:            var(--text-color-1);
+	transition:       var(--transition-1);
+	border-bottom:    var(--border-5);
+	background-color: var(--background-color-5);
+}
+
+.chat-input:focus {
+	border-bottom: var(--border-2);
 }
 
 /*——— !SECTION —————————————————————————————————————————————————————————————————————*/
