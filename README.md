@@ -1,13 +1,14 @@
-# 🌌 LUNOS.CHAT 🌌
+<h1 align="center">🌌 LUNOS.CHAT 🌌</h1>
 
-## ABOUT
-Lunos.chat is a web application for people to communicate on.
+<h2 align="center">ABOUT</h2>
 
-The goal of this application is to offer complete security to its users. Private information is encrypted, and will not be sold off (unlike what other platforms do).
+<p align="center">Lunos.chat is a web application for people to communicate on.</p>
 
-Inspiration stems from both the sci-fi and futuristic genre.
+<p align="center">The goal of this application is to put my skills of full-stack development to the test, with no outside help.</p>
 
-## TO-DO
+<p align="center">The design is inspired by the sci-fi genre ( my favorite! 🤠 ).</p>
+  
+<h2 align="center">TO-DO</h2>
 
 - ✔ ~Starting-page CSS~
 - ✔ ~Create/log-in to accounts.~
