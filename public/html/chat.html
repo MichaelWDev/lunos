@@ -32,62 +32,40 @@
 	-->
 	<!-- ANCHOR: SERVER LIST -->
 	<div class="server-list">
-		<div class="server-icon home-icon">
-			<div class="hide server-icon-title">
-				<p>Home</p>
+		<div class="icon-list">
+			<div class="server-icon home-icon">
+				<div class="server-icon-title">
+					<p>Home</p>
+				</div>
 			</div>
-		</div>
 
-		<hr>
+			<hr>
 
-		<div id="lunos-server" class="server-icon">
-			<div class="hide server-icon-title">
-				<p>Lunos</p>
+			<div id="lunos-server" class="server-icon">
+				<div class="server-icon-title">
+					<p>Lunos</p>
+				</div>
 			</div>
-		</div>
 
-		<div id="" class="server-icon">
-			<div class="hide server-icon-title">
-				<p>Other</p>
+			<div id="" class="server-icon">
+				<div class="server-icon-title">
+					<p>Other</p>
+				</div>
 			</div>
-		</div>
 
-		<div id="" class="server-icon">
-			<div class="hide server-icon-title">
-				<p>Other</p>
+			<div id="" class="server-icon">
+				<div class="server-icon-title">
+					<p>Other</p>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- ANCHOR: CHAT SERVER -->
 	<div id="" class="servers">
-		<h1 class="server-title">Lunos</h1>
-		<!-- TODO: ADMIN PANNEL
-		<div id="admin-panel" class="hide">
-			<div id="admin-nav">
-				<button class="admin-nav-btns btns" onclick="">Dashboard</button>
-				<button class="admin-nav-btns btns" onclick="">Statistics</button>
-				<button class="admin-nav-btns btns" onclick="">Ban/Unban User</button>
-				<button class="admin-nav-btns btns" onclick="">Log</button>
-				<button class="admin-nav-btns btns" onclick="">Exit</button>
-			</div>
-			<div id="admin-dashboard" class="hide">
-				<h1 class="admin-title">Dashboard</h1>
-			</div>
-
-			<div id="admin-statistics" class="hide">
-				<h1 class="admin-title">Statistics</h1>
-			</div>
-
-			<div id="admin-ban-unban-user" class="hide">
-				<h1 class="admin-title">Ban/Unban User</h1>
-			</div>
-
-			<div id="admin-log" class="hide">
-				<h1 class="admin-title">Log</h1>
-			</div>
+		<div class="server-title">
+			<h1>Lunos</h1>
 		</div>
-		-->
 
 		<!-- ANCHOR: CHANNEL TITLE -->
 		<div class="channel-title">
@@ -96,10 +74,8 @@
 
 		<!-- ANCHOR: CHANNEL BUTTONS -->
 		<div class="channels">
-			<button class="chan-btn btns" onclick="">Introduction</button>
-			<button class="chan-btn btns" onclick="">General</button>
-			<button class="chan-btn btns" onclick="">General</button>
-			<button class="chan-btn btns" onclick="">General</button>
+			<button class="chan-btn" onclick="">introduction</button>
+			<button class="chan-btn" onclick="">general</button>
 		</div>
 
 		<!-- ANCHOR: CHANNEL PAGES -->
@@ -112,6 +88,30 @@
 			<div id="chan-5" class="chat-containers hide"></div>
 			<div id="chan-6" class="chat-containers hide"></div>
 			<div id="chan-7" class="chat-containers hide"></div>
+		</div>
+
+		<!-- ANCHOR: USERS -->
+		<div class="users">
+			<div class="online-title">
+				<h1>Online - [NUM]</h1>
+			</div>
+
+			<!-- TODO
+				1. ONLINE/OFFLINE User count
+				2. 
+			-->
+			<div class="online-user-list">
+				<!-- NOTE: This is how a user will be created in JS: With CSS classes. -->
+				<div class="user"><p>USERNAME HERE</p></div>
+			</div>
+
+			<div class="offline-title">
+				<h1>Offline - [NUM]</h1>
+			</div>
+
+			<div class="offline-user-list">
+				<div class="user"><p>USERNAME HERE</p></div>
+			</div>
 		</div>
 
 		<!-- ANCHOR: PROFILE -->
