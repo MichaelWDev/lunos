@@ -15,7 +15,7 @@ class Events {
 		bindClass(this);
 
 		// ANCHOR: VARIABLES
-		this.incorrectText = document.getElementById('incorrect-text');
+		this.incorrectText = document.getElementById('login-incorrect-text');
 	
 		// ANCHOR: SOCKET.IO
 		this.socket = io();
@@ -27,7 +27,7 @@ class Events {
 	// ANCHOR: SOCKET ROUTING
 	onEvent(event, data) {
 		if (this[event]) {
-			//console.log("Event Data: ", this[event]); Logs server data being received.
+			// console.log("Event Data: ", this[event]); // Logs server data being received.
 			this[event](data);
 		}
 	}
@@ -39,7 +39,7 @@ class Events {
 
 	// ANCHOR: LOGIN
 	loginSuccessful(username) {
-		client.accountSuccessful();
+		this.socket.emit('accountSuccessful');
 
 		// Sockets
 		this.socket.emit('new-user', username); // TODO
@@ -72,7 +72,7 @@ class Events {
 	// TODO: Displays who leaves and remove their name from the user-list.
 	userDisconnected (data) {
 		// appendMessage(username + ' has disconnected.');
-		//document.getElementById('user-list-' + username).remove();
+		// document.getElementById('user-list-' + username).remove();
 	}
 
 	// TODO: Adds whoever joins to the user-list.

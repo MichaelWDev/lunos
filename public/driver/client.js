@@ -30,7 +30,11 @@ class Client {
 		bindClass(this);
 
 		// ANCHOR: VARIABLES
-		this.iframe = document.getElementById('main-iframe');
+		// TODO: Fix this: Returns null
+		//this.iframe = parent.frames.frames.document.activeElement.getElementsByTagName('iframe');
+		//this.iframe = document.getElementById('main-iframe');
+		// frames.window.document.activeElement;
+		
 		//this.userListGrid     = document.getElementById('user-list-grid');
 		//this.channelContainer = document.getElementById('channel-container');
 		//this.channelListGrid  = document.getElementById('channel-list-grid');
@@ -38,22 +42,14 @@ class Client {
 		//this.currentChannel;
 	}
 
-	// ANCHOR: CREATE ACCOUNT
-	// TODO: Figure out if you need this.
-	accountSuccessful () {
-		// TODO: Uncaught TypeError: Cannot set property 'src' of null (CLIENT: 45)
-		this.iframe.src = '../html/chat.html';
-		// ../html/chat.html
-	}
-
-	// Adds usernames to user-list.
+	// ANCHOR: USERNAME TO USERLIST
 	appendUsername (username) {
 		console.log("USER: ", username);
 
 		/* NOTE: OLD CODE
 		let usernameElement = document.createElement('h3');
 		let messageElement  = document.createElement('p');
-		//let chatContainer   = this.currentChannel;
+		//let chatContainer = this.currentChannel;
 		
 		// Sets username to display text.
 		usernameElement.classList.add('text');
@@ -123,3 +119,5 @@ class Client {
 		}
 	}
 }
+
+// !SECTION ————————————————————————————————————————————————————————————————//

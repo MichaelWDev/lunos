@@ -15,7 +15,6 @@
 <!————————————————————————————————————————————————————————————————————————-->
 
 	<script defer src="/socket.io/socket.io.js"></script>
-	<!--NOTE: Old script that holds everything. <script defer src="js/script.js"></script>-->
 	<script defer src="./driver/client.js"></script>
 	<script defer src="./driver/events.js"></script>
 	<script defer src="./driver/index.js"></script>
@@ -31,7 +30,7 @@
 
 <body>
 	<!-- SECTION: TITLE -->
-	<div id="title" onclick="buttons.button(13)">
+	<div id="title" onclick="setPage('#home')">
 		<h1>LUNOS</h1>
 		<img src="./images/ringed-planet.png">
 	</div>

@@ -2,7 +2,7 @@
 //—— SECTION INFORMATION
 //—————————————————————————————————————————————————————————————————————————//
 
-// This script handles all HTML onclick operations within INDEX.HTML.
+// This script handles every HTML onclick operation in INDEX.HTML.
 
 //——— !SECTION ————————————————————————————————————————————————————————————//
 
@@ -11,9 +11,11 @@
 //—————————————————————————————————————————————————————————————————————————//
 
 // ANCHOR: CHANGE PAGES
-function setPage(newHash = "#home") { // Default iframe
-	let docContent = document.getElementById("main-iframe");
+function setPage(newHash = '#home') { // Default iframe
+	let docContent = document.getElementById('main-iframe');
+	console.log("IFRAME: ", docContent)
 	docContent.src = `./html/${newHash.substring(1)}.html`;
+	console.log("IFRAME SRC: ", docContent.src);
 
 	let getLinks = document.getElementById("top-nav").getElementsByTagName("a");
 	let pageLink = document.getElementById("top-nav").querySelectorAll(`a[href="${newHash}"]`);
@@ -22,7 +24,9 @@ function setPage(newHash = "#home") { // Default iframe
 		getLinks[i].classList.add("btn-active");
 	}
 
-	if (pageLink[0]) {pageLink[0].classList.remove("btn-active");}
+	if (pageLink[0]) {
+		pageLink[0].classList.remove("btn-active");
+	}
 }
 
 // ANCHOR: PAGE URL
@@ -46,3 +50,15 @@ window.onload = function() {
 }
 
 //——— !SECTION ————————————————————————————————————————————————————————————//
+
+const events = new Events();
+/*
+events.socket.on('accountSuccessful') => {
+	console.log("SETTING PAGE TO CHAT")
+	setPage('#chat')
+});
+*/
+// TODO: Fix this. Doesn't work for some reason.
+events.socket.on('accountSuccessful', async () => {
+	console.log("SETTING PAGE TO CHAT")
+});
