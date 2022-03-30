@@ -524,13 +524,8 @@ html, body {
 .server-list {
 	position:         absolute;
 	height:           100%;
-	width:            14em;
+	width:            5em;
 	overflow:         scroll;
-	z-index:          2;
-}
-
-.icon-list {
-	width: 3.5em;
 	background-color: var(--background-color-5);
 }
 
@@ -551,17 +546,23 @@ html, body {
 	border-radius:    50%;
 	cursor:           pointer;
 	transform:        translateX(-50%);
+	transition:       var(--transition-1);
 	border:           var(--border-2);
 	background-color: var(--background-color-1);
 }
 
+.server-icon:hover {
+	border-radius: 0.75em;
+	border:        var(--border-6);
+}
+
+/* TODO: Fix indexing. It keeps showing up behind channel btns.
 .server-icon-title {
-	position:    absolute;
+	position:    relative;
 	height:      1em;
 	width:       auto;
-	left:        2em;
+	left:        0;
 	user-select: none;
-	z-index:     3;
 	font-size:   1.5em;
 	top:         50%;
 	padding:     0.25em;
@@ -576,14 +577,11 @@ html, body {
 	margin: 0;
 }
 
-.server-icon:hover {
-	border-radius: 2em;
-}
-
 .server-icon:hover .server-icon-title {
 	opacity:          1;
 	background-color: var(--background-color-1);
 }
+*/
 
 /* TODO: Fix Z-INDEX for .server-list and everything else in this area.
 
@@ -596,12 +594,11 @@ html, body {
 	right:    0;
 	height:   100%;
 	width:    95%;
-	z-index:  1;
 }
 
 .server-title {
 	position:    relative;
-	width:       12em;
+	width:       12.5em;
 	top:         1em;
 	color:       var(--text-color-1);
 	font-family: var(--font-family-4);
@@ -621,9 +618,9 @@ html, body {
 /*—— ANCHOR: CHANNELS */
 .channel-title {
 	position:         relative;
-	left:             14em;
+	left:             15em;
 	bottom:           3em;
-	width:            84em;
+	width:            82em;
 	color:            var(--text-color-1);
 	font-family:      var(--font-family-4);
 }
@@ -637,11 +634,11 @@ html, body {
 }
 
 .channels {
-	position: absolute;
-	top:      5.95em;
-	width:    13em;
-	height:   46em;
-	background-color: green;
+	position:         absolute;
+	top:              5.95em;
+	width:            13.5em;
+	height:           46em;
+	background-color: var(--background-color-5);
 }
 
 .chan-btn {
@@ -656,7 +653,6 @@ html, body {
 	background:     none;
 	border:         none;
 	cursor:         pointer;
-	z-index:        10;
 	border-bottom:  var(--border-5);
 	transition:     var(--transition-1);
 	color:          var(--text-color-1);
@@ -664,8 +660,8 @@ html, body {
 }
 
 .chan-btn:hover {
-	color:              var(--hover-text-color-3);
-	border-bottom:      var(--hover-border-2);
+	color:         var(--hover-text-color-3);
+	border-bottom: var(--hover-border-2);
 }
 
 .chan-btn:active {
@@ -673,13 +669,16 @@ html, body {
 }
 
 .channel-pages {
-	position:  absolute;
-	left:      14em;
-	background-color: red;
-	top:       5.95em;
-	height:    46em;
-	width:     84em;
-	z-index:   0;
+	position: absolute;
+	left:     14em;
+	top:      5.95em;
+	height:   46em;
+	width:    84em;
+}
+
+.chat-containers {
+	height: 100%;
+	width:  100%;
 }
 
 /*————— !ANCHOR —————*/
@@ -703,7 +702,9 @@ html, body {
 	position:    relative;
 	font-size:   1.25em;
 	padding:     0;
+	width:       100%;
 	margin:      0%;
+	text-align:  center;
 	color:       var(--text-color-1);
 	font-family: var(--font-family-4);
 }
@@ -721,7 +722,8 @@ html, body {
 }
 
 .user p {
-	padding-left: 0.75em;
+	width: 100%;
+	text-align: center;
 }
 
 /*————— !ANCHOR —————*/
@@ -747,7 +749,13 @@ html, body {
 	left:          0.25em;
 	border-radius: 50%;
 	transform:     translateY(-50%);
+	transition:    var(--transition-1);
 	border:        var(--border-2);
+}
+
+.profile-icon:hover {
+	border-radius: 0.75em;
+	border:        var(--border-6);
 }
 
 .profile-name {
