@@ -1,15 +1,15 @@
 //———————————————————————————————————————————————————————————————————————//
-// SECTION Information
-/*———————————————————————————————————————————————————————————————————————//
+// SECTION: INFORMATION
+//———————————————————————————————————————————————————————————————————————//
 
-Author:      Michael Woodyard
-Email:       michaelwdev@outlook.com
-Description: Handles server code.
+// Author:      Michael Woodyard
+// Email:       michaelwdev@outlook.com
+// Description: Handles server code.
 
-// !SECTION —————————————————————————————————————————————————————————————*/
+//—— !SECTION ———————————————————————————————————————————————————————————//
 
 //———————————————————————————————————————————————————————————————————————//
-// SECTION: Global Variables
+// SECTION: VARIABLES
 //———————————————————————————————————————————————————————————————————————//
 
 const express     = require('express');
@@ -19,29 +19,14 @@ const port        = 3000;
 const io          = require('socket.io')(server);
 const compression = require("compression");
 
-// NOTE: Password Encryption
+// ANCHOR: PASSWORD ENCRYPTION
 const bcrypt = require('bcrypt');
 const fs     = require('fs');
 
-//———————————————————————————————————————————————————————————————————————//
-// SECTION Global Functions
-//———————————————————————————————————————————————————————————————————————//
-
-/* NOTE: Leave commented out for now.
-// Binds all methods to their parent class.
-globalThis.bindClass = function(toBind) { // (object)
-	// Get all defined class methods.
-	const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(toBind));
-
-	// Bind all methods.
-	methods.filter(method => (method !== "constructor")).forEach((method) => {if (toBind[method] && typeof(toBind[method]) === "function") {toBind[method] = toBind[method].bind(toBind);}});
-}
-
-//globalThis.Events = require("./public/driver/events"); // TODO: Fix this, it's breaking your servercode.
-*/
+//—— !SECTION ———————————————————————————————————————————————————————————//
 
 //———————————————————————————————————————————————————————————————————————//
-// SECTION: Server
+// SECTION: SERVER
 //———————————————————————————————————————————————————————————————————————//
 
 // Compress client-server communications.
@@ -55,17 +40,19 @@ server.listen(port, function () {
 	console.log('Server is running on port ' + port);
 });
 
-// Server
+// ANCHOR: SERVER
 io.on('connection', function(socket) {
 	let username;
 	let channel;
 	console.log('user connected');
 
+	// ANCHOR: UNIQUE ID
 	function uniqueID() {
 		let uniqueNumbers = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
 		return uniqueNumbers = uniqueNumbers.toString();
 	}
 
+	// ANCHOR: USER DATA
 	// TODO: Check if the user is banned from the server they are connecting to.
 	function checkUserData(serversBannedFrom) {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
@@ -82,21 +69,21 @@ io.on('connection', function(socket) {
 		});
 	}
 
-	// TODO: User Connection
+	// ANCHOR: USER LIST
 	socket.on('new-user', username => {
 		socket.emit('userList', username);
 		// NOTE: socket.to(channel).emit('chat-message', message);
 	});
 
-	// TODO: Account Login
+	// ANCHOR: LOGIN
 	socket.on('login', async (email, password) => {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
 				console.log(err);
 			} else {
 				try {
-					const data = JSON.parse(jsonString);
-					username = data[email].username;
+					const data          = JSON.parse(jsonString);
+					username            = data[email].username;
 					let accountPassword = data[email].password;
 
 					bcrypt.compare(password, accountPassword, function(err, result) {
@@ -117,7 +104,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// TODO: Account Register
+	// ANCHOR: REGISTER ACCOUNT
 	socket.on('register', async (email, username, password, callback) => {
 		const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -127,12 +114,14 @@ io.on('connection', function(socket) {
 			} else {
 				try {
 					const data = JSON.parse(jsonString);
+					let uuid   = uniqueID().substring(0, 12);
 					data[email] = {
 						email: email,
 						username: username,
 						password: hashedPassword,
 						savedServers: null,
-						serversBannedFrom: null
+						serversBannedFrom: null,
+						uuid: uuid
 					};
 
 					fs.writeFile('./accounts.json', JSON.stringify(data, null, 2), err => {
@@ -152,7 +141,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// TODO: Joins user to server.
+	// ANCHOR: USER JOINS SERVER
 	socket.on('join-server', (serverCode) => {
 		// let savedServers = null;
 		let serversBannedFrom = data[email].serversBannedFrom;
@@ -165,7 +154,7 @@ io.on('connection', function(socket) {
 		*/
 	});
 
-	// TODO: Creates server for user.
+	// ANCHOR: CREATE SERVER
 	socket.on('create-server', (serverName) => {
 		// NOTE: Servers can have the same name. Community servers can not.
 		let serverID = uniqueID().substring(0, 11);
@@ -176,7 +165,7 @@ io.on('connection', function(socket) {
 				console.log(err);
 			} else {
 				try { // TODO: Fix all this shit.
-					const data = JSON.parse(jsonString);
+					const data = JSON.parse(jsonString);					
 					data[serverName] = {
 						serverID: serverID,
 						community: false,
@@ -202,7 +191,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// TODO: Creates unique invite code for user.
+	// ANCHOR: UNIQUE INVITE ID
 	socket.on('create-server-invite', () => {
 		let serverCode = uniqueID().substring(0, 6);
 		console.log(serverCode);
@@ -231,7 +220,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// TODO: Saved Servers
+	// ANCHOR: USER'S SERVERS
 	/*
 	socket.on('saved-servers-list', (username) => {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
@@ -260,20 +249,20 @@ io.on('connection', function(socket) {
 	});
 	*/
 
-	// TODO: Switches Channel
+	// ANCHOR: SWITCH CHANNEL
 	socket.on('join-room', (room) => {
 		socket.join(room);
 		channel = room; // Used in 'send-chat-message'.
 		//console.log(`User joined ${room}.`)
 	});
 
-	// TODO: Leaves Channel
+	// ANCHOR: LEAVE CHANNEL
 	socket.on('leave-room', (room) => {
 		socket.leave(room);
 		//console.log(`User left ${room}.`)
 	});
 
-	// TODO: Sends message to front with username and adds it to log.
+	// ANCHOR: SEND MESSAGE / LOG MESSAGE
 	socket.on('send-chat-message', (message) => {
 		socket.to(channel).emit('chatMessage', {username: username, message:message}); // Sends to everyone BUT yourself, for lag purposes.
 		//console.log("Server message: ", {username: username, message: message}); // this prints correctly
@@ -287,11 +276,11 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// User disconnects
+	// ANCHOR: USER DISCONNECTS
 	socket.on('disconnect', () => {
 		console.log('user disconnected');
 		socket.broadcast.emit('user-disconnected', username);
 	});
 });
 
-// !SECTION —————————————————————————————————————————————————————————————*/
+//—— !SECTION ———————————————————————————————————————————————————————————//

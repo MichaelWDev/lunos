@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='viewport' content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION SRIPTS
+<!————————————————————————————————————————————————————————————————————————-->
+
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
+	
+	<link defer rel="stylesheet" href="../css/main.css">
+	<link defer rel="stylesheet" href="../css/mobile.css">
+	<link defer rel="stylesheet" href="../css/laptop.css">
+</head>
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION CHAT
+<!————————————————————————————————————————————————————————————————————————-->
+<div id="chat-page">
+	<!-- TODO: Server Creation
+
+		- Generate HTML & CSS for each server the user has.
+			> background-image: url();
+	-->
+	<!-- ANCHOR: SERVER LIST -->
+	<div class="server-list">
+		<div class="server-icon home-icon">
+		<!-- TODO: Refer to CSS TODO.
+			<div class="server-icon-title">
+				<p>Home</p>
+			</div>
+		-->
+		</div>
+
+		<hr>
+
+		<div id="lunos-server" class="server-icon"></div>
+
+		<div id="" class="server-icon"></div>
+
+		<div id="" class="server-icon"></div>
+	</div>
+
+	<!-- ANCHOR: CHAT SERVER -->
+	<div id="" class="servers">
+		<div class="server-title">
+			<h1>Lunos</h1>
+		</div>
+
+		<!-- ANCHOR: CHANNEL TITLE -->
+		<div class="channel-title">
+			<h1>Channel Name Here</h1>
+		</div>
+
+		<!-- ANCHOR: CHANNEL BUTTONS -->
+		<div class="channels">
+			<button class="chan-btn" onclick="">introduction</button>
+			<button class="chan-btn" onclick="">general</button>
+		</div>
+
+		<!-- ANCHOR: CHANNEL PAGES -->
+		<div class="channel-pages">
+			<div id="chan-0" class="chat-containers hide"></div>
+			<div id="chan-1" class="chat-containers hide"></div>
+			<div id="chan-2" class="chat-containers hide"></div>
+			<div id="chan-3" class="chat-containers hide"></div>
+			<div id="chan-4" class="chat-containers hide"></div>
+			<div id="chan-5" class="chat-containers hide"></div>
+			<div id="chan-6" class="chat-containers hide"></div>
+			<div id="chan-7" class="chat-containers hide"></div>
+		</div>
+
+		<!-- ANCHOR: USERS -->
+		<div class="users">
+			<div class="online-title">
+				<h1>Online - [NUM]</h1>
+			</div>
+
+			<!-- TODO
+				1. ONLINE/OFFLINE User count
+				2. 
+			-->
+			<div class="online-user-list">
+				<!-- NOTE: This is how a user will be created in JS: With CSS classes. -->
+				<div class="user"><p>USERNAME HERE</p></div>
+			</div>
+
+			<div class="offline-title">
+				<h1>Offline - [NUM]</h1>
+			</div>
+
+			<div class="offline-user-list">
+				<div class="user"><p>USERNAME HERE</p></div>
+			</div>
+		</div>
+
+		<!-- ANCHOR: PROFILE -->
+		<div class="profile">
+			<div class="profile-icon" onclick=""></div>
+			<p class="profile-name" class="btns" onclick="">Username Here</p>
+			<p class="profile-status">Profile Status Here</p>
+		</div>
+
+		<!-- ANCHOR: CHATBAR -->
+		<div class="chat-bar">
+			<input class="chat-input" placeholder="Begin typing..."></input>
+		</div>
+	</div>
+</div>
+
+</html>

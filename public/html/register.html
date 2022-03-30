@@ -15,7 +15,6 @@
 	<script defer src="/socket.io/socket.io.js"></script>
 	<script defer src="../driver/client.js"></script>
 	<script defer src="../driver/events.js"></script>
-	<script defer src="../driver/login.js"></script>
 	<script defer src="../driver/register.js"></script>
 	
 	<link defer rel="stylesheet" href="../css/main.css">
@@ -36,7 +35,6 @@
 	
 	<input id="register-password-input" class="input" type="password" minlength="6" maxlength="54" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required placeholder="Password">
 
-	<!--TODO: Switch to BTN-->
 	<button id="show-register-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
 
 	<p id="register-email-minimum" class="register-rules hide"><span class="span-green">Email:</span> Minimum 5 characters.</p>

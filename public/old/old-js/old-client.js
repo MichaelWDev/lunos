@@ -1,14 +1,21 @@
 //——————————————————————————————————————————————————————————————————————————//
-//—— SECTION: INFORMATION
-//——————————————————————————————————————————————————————————————————————————//
+//—— SECTION INFORMATION
+/*——————————————————————————————————————————————————————————————————————————//
 
 // Handles all client operations once they connect to the chat sever.
 
-// !SECTION ————————————————————————————————————————————————————————————————//
+// !SECTION ————————————————————————————————————————————————————————————————*/
 
 //——————————————————————————————————————————————————————————————————————————//
-//—— SECTION: GLOBAL FUNCTIONS
+//—— SECTION Global Functions
 //——————————————————————————————————————————————————————————————————————————//
+
+"use strict";
+
+// Returns a random number between min and max.
+Math.randomNumber = function(min, max) { // (number, number)
+	return Math.floor(Math.random() * ((max + 1) - min) + min);
+}
 
 // Binds all methods to their parent class.
 globalThis.bindClass = function(toBind) { // (object)
@@ -19,38 +26,24 @@ globalThis.bindClass = function(toBind) { // (object)
 	methods.filter(method => (method !== 'constructor')).forEach((method) => {if (toBind[method]) {toBind[method] = toBind[method].bind(toBind);}});
 }
 
-// !SECTION ————————————————————————————————————————————————————————————————//
+// !SECTION ————————————————————————————————————————————————————————————————*/
 
 //——————————————————————————————————————————————————————————————————————————//
-//—— SECTION: CLASSES
+//—— SECTION Classes
 //——————————————————————————————————————————————————————————————————————————//
 
 class Client {
 	constructor() {
-		bindClass(this);
+		this.userListGrid     = document.getElementById('user-list-grid');
+		this.channelContainer = document.getElementById('channel-container');
+		this.channelListGrid  = document.getElementById('channel-list-grid');
+		this.channelPages     = document.getElementsByClassName('chat-containers');
+		this.currentChannel;
 
-		// ANCHOR: VARIABLES
-		this.iframe = document.getElementById('main-iframe');
-		//this.userListGrid     = document.getElementById('user-list-grid');
-		//this.channelContainer = document.getElementById('channel-container');
-		//this.channelListGrid  = document.getElementById('channel-list-grid');
-		//this.channelPages     = document.getElementsByClassName('chat-containers');
-		//this.currentChannel;
-	}
-
-	// ANCHOR: CREATE ACCOUNT
-	// TODO: Figure out if you need this.
-	accountSuccessful () {
-		// TODO: Uncaught TypeError: Cannot set property 'src' of null (CLIENT: 45)
-		this.iframe.src = '../html/chat.html';
-		// ../html/chat.html
 	}
 
 	// Adds usernames to user-list.
 	appendUsername (username) {
-		console.log("USER: ", username);
-
-		/* NOTE: OLD CODE
 		let usernameElement = document.createElement('h3');
 		let messageElement  = document.createElement('p');
 		//let chatContainer   = this.currentChannel;
@@ -76,7 +69,6 @@ class Client {
 
 		// Adds user to display on right.
 		this.userListGrid.insertBefore(usernameElement, this.userListGrid.firstElementChild);
-		*/
 	}
 
 	appendMessage (username, message) {
@@ -123,3 +115,14 @@ class Client {
 		}
 	}
 }
+
+// !SECTION ———————————————————————————————————————————————————————————————*/
+
+//—————————————————————————————————————————————————————————————————————————//
+// SECTION Drivers
+//—————————————————————————————————————————————————————————————————————————//
+
+// Load in all relevant drivers.
+//const events = new Events();
+
+// !SECTION ———————————————————————————————————————————————————————————————//

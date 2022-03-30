@@ -40,14 +40,28 @@ function validatePassword() {
 
 // ANCHOR: CREATE ACCOUNT
 function createAccount() {
-	newEvent.socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value, (res) => {
+	let emailInput    = document.getElementById('register-email-input');
+	let usernameInput = document.getElementById('register-username-input');
+	let passwordInput = document.getElementById('register-password-input');
+
+	// NOTE: Sends data to server using events.js.
+	events.socket.emit('register', emailInput.value, usernameInput.value, passwordInput.value, (res) => {
 		// Success
 		if (res) {
-
+			console.log("Result received. ", res);
+			client.accountSuccessful();
 		} else { // Failure
-			
+			console.log("Result NOT received.");
 		}
 	});
 }
+
+//——— !SECTION —————————————————————————————————————————————————————————————//
+
+//——————————————————————————————————————————————————————————————————————————//
+//—— SECTION: DRIVERS
+//——————————————————————————————————————————————————————————————————————————//
+
+const events = new Events();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//

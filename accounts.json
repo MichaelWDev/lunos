@@ -37,18 +37,20 @@
       }
     ]
   },
-  "michael@test.com": {
-    "email": "michael@test.com",
-    "username": "Michael (DEV)",
-    "password": "$2b$10$/EgKqriJy0nMV3jSHpJVcuh19mj1Z94y4UKcvIXFAHodssDVOB866",
+  "mbwoodyard@hotmail.com": {
+    "email": "mbwoodyard@hotmail.com",
+    "username": "DigitalNative",
+    "password": "$2b$10$P1gjf2Lo9Eg21mK.MqZhvuQn9uVu957xC1aDtj1dQBimb6azSaY2a",
     "savedServers": null,
-    "serversBannedFrom": null
+    "serversBannedFrom": null,
+    "uuid": "155755968287"
   },
-  "james@test.com": {
-    "email": "james@test.com",
-    "username": "James (ALPHA TESTER)",
-    "password": "$2b$10$JQJxaEBt2CJQoSpcP3Xxie24.Ew9gMUgXkOakXyLcDATjbA4Q2dbK",
+  "fake@email.com": {
+    "email": "fake@email.com",
+    "username": "bear",
+    "password": "$2b$10$CVmECnRWa33zdYgW6OGPn.bI.35jvORtiASn6fC14.IWNGk99gcxq",
     "savedServers": null,
-    "serversBannedFrom": null
+    "serversBannedFrom": null,
+    "uuid": "348043468007"
   }
 }

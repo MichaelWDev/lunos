@@ -4,13 +4,13 @@
 
 // This script handles all HTML onclick operations within INDEX.HTML.
 
-//——— SECTION —————————————————————————————————————————————————————————————//
+//——— !SECTION ————————————————————————————————————————————————————————————//
 
 //—————————————————————————————————————————————————————————————————————————//
 //—— SECTION FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
 
-// SECTION: CHANGE PAGES
+// ANCHOR: CHANGE PAGES
 function setPage(newHash = "#home") { // Default iframe
 	let docContent = document.getElementById("main-iframe");
 	docContent.src = `./html/${newHash.substring(1)}.html`;
@@ -25,7 +25,7 @@ function setPage(newHash = "#home") { // Default iframe
 	if (pageLink[0]) {pageLink[0].classList.remove("btn-active");}
 }
 
-// SECTION: PAGE URL
+// ANCHOR: PAGE URL
 window.onload = function() {
 	setPage(window.location.hash);
 
@@ -45,4 +45,4 @@ window.onload = function() {
 	}
 }
 
-//——— SECTION —————————————————————————————————————————————————————————————//
+//——— !SECTION ————————————————————————————————————————————————————————————//
