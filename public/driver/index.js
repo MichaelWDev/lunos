@@ -52,13 +52,9 @@ window.onload = function() {
 //——— !SECTION ————————————————————————————————————————————————————————————//
 
 const events = new Events();
-/*
-events.socket.on('accountSuccessful') => {
+
+// TODO: Fix this. Doesn't work for some reason.
+events.socket.on('testSuccess', () => {
 	console.log("SETTING PAGE TO CHAT")
 	setPage('#chat')
-});
-*/
-// TODO: Fix this. Doesn't work for some reason.
-events.socket.on('accountSuccessful', async () => {
-	console.log("SETTING PAGE TO CHAT")
 });

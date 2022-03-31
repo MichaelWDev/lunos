@@ -42,6 +42,12 @@ class Client {
 		//this.currentChannel;
 	}
 
+	// ANCHOR: LOGIN
+	login() {
+		console.log("login()")
+		//setPage('#chat') TODO: This doesn't work, because including the index script in the html breaks.
+	}
+
 	// ANCHOR: USERNAME TO USERLIST
 	appendUsername (username) {
 		console.log("USER: ", username);

@@ -39,7 +39,9 @@ class Events {
 
 	// ANCHOR: LOGIN
 	loginSuccessful(username) {
-		this.socket.emit('accountSuccessful');
+		// this.socket.emit('accountSuccessful');
+		client.login();
+		console.log("events works")
 
 		// Sockets
 		this.socket.emit('new-user', username); // TODO
