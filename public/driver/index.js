@@ -10,6 +10,7 @@
 //—— SECTION FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
 
+// NOTE: Should I move these to client.js, since they technically operate stuff on the client-side of things.
 // ANCHOR: CHANGE PAGES
 function setPage(newHash = '#home') { // Default iframe
 	let docContent = document.getElementById('main-iframe');
@@ -51,10 +52,15 @@ window.onload = function() {
 
 //——— !SECTION ————————————————————————————————————————————————————————————//
 
-const events = new Events();
+// NOTE: Export doesn't work either.
+// export {setPage};
+// const events = new Events();
+// const client = new Client();
 
-// TODO: Fix this. Doesn't work for some reason.
-events.socket.on('testSuccess', () => {
+/* TODO: Fix this. Doesn't work for some reason.
+// NOTE: I wouldn't be stuck in [client] login() if this just worked, but it doesn't.
+events.socket.on('accountSuccessful', () => {
 	console.log("SETTING PAGE TO CHAT")
-	setPage('#chat')
+	//setPage('#chat')
 });
+*/

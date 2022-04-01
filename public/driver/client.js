@@ -28,7 +28,11 @@ globalThis.bindClass = function(toBind) { // (object)
 class Client {
 	constructor() {
 		bindClass(this);
-
+		/* NOTE: This is where import breaks. No matter where you put it.
+		import { setPage } from "./index";
+		this.setPage = setPage;
+		*/
+		
 		// ANCHOR: VARIABLES
 		// TODO: Fix this: Returns null
 		//this.iframe = parent.frames.frames.document.activeElement.getElementsByTagName('iframe');
@@ -41,16 +45,19 @@ class Client {
 		//this.channelPages     = document.getElementsByClassName('chat-containers');
 		//this.currentChannel;
 	}
-
+	
 	// ANCHOR: LOGIN
 	login() {
-		console.log("login()")
-		//setPage('#chat') TODO: This doesn't work, because including the index script in the html breaks.
+		// NOTE: Stuck... here... What do I do after this?
+		// I can't introduce index.js into the HTML at any point because it breaks everything else.
+		console.log("[client] login()")
+		// NOTE: Tried using export & import for setPage().
+		//setPage('#chat')
 	}
 
 	// ANCHOR: USERNAME TO USERLIST
 	appendUsername (username) {
-		console.log("USER: ", username);
+		console.log("[client] appendUsername(): ", username);
 
 		/* NOTE: OLD CODE
 		let usernameElement = document.createElement('h3');

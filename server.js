@@ -93,7 +93,6 @@ io.on('connection', function(socket) {
 
 						if (result && data[email]) {
 							socket.emit('loginSuccessful', username);
-							// events.socket.emit('accountSuccessful');
 						} else {
 							socket.emit('loginUnsuccessful');
 						}
@@ -103,12 +102,6 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
-	});
-
-	// ANCHOR: LOGIN 2
-	socket.on('accountSuccessful', () => {
-		console.log('Account successful on server.')
-		socket.emit('testSuccess');
 	});
 
 	// ANCHOR: REGISTER ACCOUNT

@@ -39,9 +39,11 @@ class Events {
 
 	// ANCHOR: LOGIN
 	loginSuccessful(username) {
-		// this.socket.emit('accountSuccessful');
-		client.login();
-		console.log("events works")
+		// NOTE: Doesn't work.
+		// import { setPage } from './index';
+		
+		setPage();
+		console.log("[events] loginSuccessful()")
 
 		// Sockets
 		this.socket.emit('new-user', username); // TODO
