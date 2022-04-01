@@ -2,7 +2,7 @@
 //—— SECTION: INFORMATION
 //——————————————————————————————————————————————————————————————————————————//
 
-// Handles all client operations once they connect to the chat sever.
+// Handles everything on the client's side.
 
 // !SECTION ————————————————————————————————————————————————————————————————//
 
@@ -32,6 +32,7 @@ class Client {
 		import { setPage } from "./index";
 		this.setPage = setPage;
 		*/
+		this.newEvents = new Events();
 		
 		// ANCHOR: VARIABLES
 		// TODO: Fix this: Returns null
@@ -45,19 +46,32 @@ class Client {
 		//this.channelPages     = document.getElementsByClassName('chat-containers');
 		//this.currentChannel;
 	}
-	
+
+	// ANCHOR: CHANGE PAGES
+	setPage(newHash = '#home') { // Default iframe
+		let docContent = document.getElementById('main-iframe');
+		docContent.src = `./html/${newHash.substring(1)}.html`;
+
+		let getLinks = document.getElementById("top-nav").getElementsByTagName("a");
+		let pageLink = document.getElementById("top-nav").querySelectorAll(`a[href="${newHash}"]`);
+
+		for (let i = 0; i < getLinks.length; ++i) {
+			getLinks[i].classList.add("btn-active");
+		}
+
+		if (pageLink[0]) {
+			pageLink[0].classList.remove("btn-active");
+		}
+	}
+
 	// ANCHOR: LOGIN
-	login() {
-		// NOTE: Stuck... here... What do I do after this?
-		// I can't introduce index.js into the HTML at any point because it breaks everything else.
-		console.log("[client] login()")
-		// NOTE: Tried using export & import for setPage().
-		//setPage('#chat')
+	login(email, password) {
+		this.newEvents.socket.emit('login', email, password);
 	}
 
 	// ANCHOR: USERNAME TO USERLIST
 	appendUsername (username) {
-		console.log("[client] appendUsername(): ", username);
+		// console.log("[client] appendUsername(): ", username);
 
 		/* NOTE: OLD CODE
 		let usernameElement = document.createElement('h3');
@@ -134,3 +148,4 @@ class Client {
 }
 
 // !SECTION ————————————————————————————————————————————————————————————————//
+

@@ -39,15 +39,12 @@ class Events {
 
 	// ANCHOR: LOGIN
 	loginSuccessful(username) {
-		// NOTE: Doesn't work.
-		// import { setPage } from './index';
-		
-		setPage();
-		console.log("[events] loginSuccessful()")
+		// Changes window to chat.html.
+		location.replace('/chat');
 
 		// Sockets
-		this.socket.emit('new-user', username); // TODO
-		this.socket.emit('saved-servers-list', username);
+		// this.socket.emit('new-user', username); // TODO
+		// this.socket.emit('saved-servers-list', username);
 	}
 	
 	loginUnsuccessful() {

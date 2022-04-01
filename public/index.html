@@ -30,7 +30,7 @@
 
 <body>
 	<!-- SECTION: TITLE -->
-	<div id="title" onclick="setPage('#home')">
+	<div id="title" onclick="home()">
 		<h1>LUNOS</h1>
 		<img src="./images/ringed-planet.png">
 	</div>
@@ -40,16 +40,16 @@
 		<a href="#home"><button id="home-btn" class="nav-btns btns">HOME</button></a>
 		<a href="#about"><button id="about-btn" class="nav-btns btns">ABOUT</button></a>
 		<a href="#support"><button id="contact-btn" class="nav-btns btns">SUPPORT</button></a>
-	</div>
+	</div>1
 
 	<!-- SECTION: LOGIN / REGISTER -->
 	<div id="log-reg-btn-container" class="">
-		<a href="#login"><button id="log-btn" class="btns">LOGIN</button></a>
-		<a href="#register"><button id="reg-btn" class="btns">REGISTER</button></a>
+		<a href="/login"><button id="log-btn" class="btns">LOGIN</button></a>
+		<a href="/register"><button id="reg-btn" class="btns">REGISTER</button></a>
 	</div>
 
 	<!-- SECTION: MAIN IFRAME -->
-	<iframe id="main-iframe" class="iframe" title="Landing Page" height="100%" width="100%" frameborder="0"></iframe>
+	<iframe id="main-iframe" class="iframe" title="Landing Page" height="100%" width="100%" frameborder="0" src="/public/html/home.html"></iframe>
 </body>
 
 </html>

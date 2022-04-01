@@ -9,33 +9,35 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 
 <!--————————————————————————————————————————————————————————————————————————>
-<!—— SECTION SRIPTS
+<!—— SECTION: SRIPTS
 <!————————————————————————————————————————————————————————————————————————-->
+
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
 	<script defer src="../driver/login.js"></script>
-	
-	<!-- NOTE: This breaks, saying: index.js:18 Uncaught TypeError: Cannot set property 'src' of null. -->
-	<script defer src="../driver/index.js"></script>
-	
+
 	<link defer rel="stylesheet" href="../css/main.css">
 	<link defer rel="stylesheet" href="../css/mobile.css">
 	<link defer rel="stylesheet" href="../css/laptop.css">
 </head>
 
 <!--————————————————————————————————————————————————————————————————————————>
-<!—— SECTION LOGIN
+<!—— SECTION: LOGIN
 <!————————————————————————————————————————————————————————————————————————-->
 
 <div id="login-page">
 	<input id="email-input" class="input" type="email" placeholder="Email" required>
 
-	<input id="password-input" class="input" type="password" placeholder="Password" onkeyup="">
+	<input id="password-input" class="input" type="password" placeholder="Password">
 	
 	<button id="show-login-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
 
 	<p id="login-incorrect-text" class="hide"><span class="red">Please try again.</span></p>
 
+	<a href="/"><button id="login-back-btn" class="btns" type="button">BACK</button></a>
 	<button id="login-btn" class="btns" type="button" onclick="login()">LOGIN</button>
-	<button id="reset-password-btn" class="btns" type="button" onclick="">RESET PASSWORD</button>
+	<!--<button id="reset-password-btn" class="btns" type="button" onclick="">RESET PASSWORD</button>-->
 	<!--<button id="register-btn" class="btns" type="button" onclick="">REGISTER</button>-->
 </div>
 

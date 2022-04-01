@@ -15,7 +15,7 @@ function login() {
 	let emailInput    = document.getElementById('email-input');
 	let passwordInput = document.getElementById('password-input');
 
-	events.socket.emit('login', emailInput.value, passwordInput.value);
+	newClient.login(emailInput.value, passwordInput.value);
 }
 
 // ANCHOR: SHOW LOGIN PASSWORD
@@ -29,12 +29,17 @@ function showPassword() {
 	}
 }
 
+// ANCHOR: BACK
+function back() {
+	newClient.setPage('#home');
+}
+
 //——— !SECTION —————————————————————————————————————————————————————————————//
 
 //——————————————————————————————————————————————————————————————————————————//
 //—— SECTION: DRIVERS
 //——————————————————————————————————————————————————————————————————————————//
 
-const events = new Events();
+const newClient = new Client();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//

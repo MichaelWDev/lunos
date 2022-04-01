@@ -12,6 +12,9 @@
 <!—— SECTION SRIPTS
 <!————————————————————————————————————————————————————————————————————————-->
 
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
 	<script defer src="../driver/register.js"></script>
 	
 	<link defer rel="stylesheet" href="../css/main.css">
@@ -38,7 +41,8 @@
 	<p id="register-username-minimum" class="register-rules hide"><span class="span-green">Username:</span> Minimum 5 characters.</p>
 	<p id="register-password-minimum" class="register-rules hide"><span class="span-green">Password:</span> Minimum 6 characters, at least one letter, one number and one special character</p>
 	
-	<button id="account-register-btn" class="btns" type="button" onclick="createAccount()">Create Account</button>	
+	<a href="/"><button id="register-back-btn" class="btns" type="button">BACK</button></a>
+	<button id="account-register-btn" class="btns" type="button" onclick="createAccount()">CREATE ACCOUNT</button>	
 </div>
 
 </html>

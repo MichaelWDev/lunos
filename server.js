@@ -35,6 +35,21 @@ app.use(compression());
 // Serve the static website files.
 app.use(express.static('public'));
 
+// LOGIN
+app.get("/login",   (req, res) => {
+	res.sendFile(__dirname + "/public/html/login.html");
+});
+
+// REGISTER
+app.get("/register",   (req, res) => {
+	res.sendFile(__dirname + "/public/html/register.html");
+});
+
+// chat
+app.get("/chat",   (req, res) => {
+	res.sendFile(__dirname + "/public/html/chat.html");
+});
+
 // Starts the server.
 server.listen(port, function () {
 	console.log('Server is running on port ' + port);
@@ -71,8 +86,8 @@ io.on('connection', function(socket) {
 
 	// ANCHOR: USER LIST
 	socket.on('new-user', username => {
-		socket.emit('userList', username);
-		// NOTE: socket.to(channel).emit('chat-message', message);
+		socket.broadcast.emit('userList', username);
+		socket.to(channel).emit('chat-message', message);
 	});
 
 	// ANCHOR: LOGIN

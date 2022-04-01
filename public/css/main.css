@@ -81,7 +81,7 @@
 
 	--active-border-1:     0.1em solid rgb(0, 247, 255);
 
-	--filter-1: invert(33%) sepia(97%) saturate(1250%) hue-rotate(92deg) brightness(93%) contrast(105%);
+	--filter-1: invert(52%) sepia(86%) saturate(1897%) hue-rotate(157deg) brightness(89%) contrast(101%);
 }
 
 /*——— !SECTION —————————————————————————————————————————————————————————————————————*/
@@ -162,8 +162,8 @@
 	filter: var(--filter-1);
 }
 
-.span-green {
-	color: var(--text-color-5);
+.span-color {
+	color: var(--text-color-6);
 }
 
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
@@ -363,17 +363,19 @@ html, body {
 	font-family: var(--font-family-3);
 }
 
-#login-btn, #reset-password-btn {
+#login-btn, #login-back-btn, #reset-password-btn {
 	position:  absolute;
 	top:       8em;
 	font-size: 1.25em;
 	padding:   0.5em;
 }
 
-/* TODO: in JS, if email/password isn't right then display #login-incorrect-text and bump #login-btn and #reset-password-btn down to 10em. */
+#login-back-btn {
+	left: 2em;
+}
 
 #login-btn {
-	left: 0;
+	right: 6em;
 }
 
 #reset-password-btn {
@@ -399,13 +401,24 @@ html, body {
 	right: 2em;
 }
 
+#register-back-btn {
+	position: absolute;
+	left: 0;
+}
+
 #account-register-btn {
+	position: absolute;
+	right: 4em;
+}
+
+#account-register-btn, #register-back-btn {
+	top:       12.5em;
 	font-size: 1.25em;
 	padding:   0.5em;
 }
 
 .register-rules {
-	color: var(--text-color-1);
+	color:       var(--text-color-1);
 	font-family: var(--font-family-3);
 }
 
@@ -455,7 +468,7 @@ html, body {
 	user-select: none;
 	font-size:   7em;
 	font-family: var(--font-family-3);
-	color:     rgba(0, 170, 0, 0.5);
+	color:     rgba(0, 145, 170, 0.5);
 }
 
 .card-container {
@@ -480,7 +493,7 @@ html, body {
 
 .cards-title {
 	text-align: center;
-	color: var(--text-span-color-1);
+	color: var(--text-color-6);
 }
 
 .cards p {

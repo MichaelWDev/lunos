@@ -16,7 +16,6 @@
     "dotenv": "^10.0.0"
   },
   "scripts": {
-    "test": "npm test",
     "start": "node server.js"
   },
   "repository": {
