@@ -47,7 +47,7 @@ class Client {
 		//this.currentChannel;
 	}
 
-	// ANCHOR: CHANGE PAGES
+	// ANCHOR: SET PAGE
 	setPage(newHash = '#home') { // Default iframe
 		let docContent = document.getElementById('main-iframe');
 		docContent.src = `./html/${newHash.substring(1)}.html`;

@@ -10,13 +10,14 @@
 //—— SECTION FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
 
+// ANCHOR: HOME BUTTON (LUNOS)
 function home() {
 	client.setPage('#home');
 }
 
 // ANCHOR: PAGE URL
 window.onload = function() {
-	client.setPage(window.location.hash);
+	setTimeout(client.setPage(window.location.hash), 1000);
 
 	if ("onhashchange" in window) { // On hash change event supported.
 		window.onhashchange = function () {
@@ -35,5 +36,3 @@ window.onload = function() {
 }
 
 //——— !SECTION ————————————————————————————————————————————————————————————//
-
-// let client = new Client();
