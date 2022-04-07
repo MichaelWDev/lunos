@@ -108,7 +108,7 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
-							socket.emit('loginSuccessful');
+							socket.emit('loginSuccessful', username);
 						} else {
 							socket.emit('loginUnsuccessful');
 						}

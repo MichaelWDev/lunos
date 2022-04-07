@@ -19,8 +19,11 @@ document.addEventListener("keyup", function(event) {
 
 // ANCHOR: USER JOINED
 window.onload = function() {
-	console.log("[chat.js] window.onload")
-	client.userJoined();
+	console.log("[chat.js] window.onload");
+	
+	// Gets the username saved in the username variable in [server.js].
+	let username = client.getUsername();
+	// TODO: Figure out how to append your username to the right.
 	
 	/* Route:
 		[chat.js]   client.userJoined() >
@@ -28,6 +31,11 @@ window.onload = function() {
 		[events.js] socket is used by client >
 		[server.js] socket.on('user-joined') gets username
 	*/
+}
+
+// ANCHOR: SEND CHAT
+function sendChat(message) {
+
 }
 
 // ANCHOR: CHANGE CHANNELS

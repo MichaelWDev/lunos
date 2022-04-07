@@ -28,10 +28,7 @@ globalThis.bindClass = function(toBind) { // (object)
 class Client {
 	constructor() {
 		bindClass(this);
-		/* NOTE: This is where import breaks. No matter where you put it.
-		import { setPage } from "./index";
-		this.setPage = setPage;
-		*/
+		// Events Class
 		this.newEvents = new Events();
 		
 		// ANCHOR: VARIABLES
@@ -40,7 +37,10 @@ class Client {
 		//this.iframe = document.getElementById('main-iframe');
 		// frames.window.document.activeElement;
 		
-		//this.userListGrid     = document.getElementById('user-list-grid');
+		this.onlineUserList  = document.getElementsByClassName('online-user-list')[0];
+		// this.offlineUserList = document.getElementsByClassName('offline-user-list');
+		
+		// NOTE: Old variables.
 		//this.channelContainer = document.getElementById('channel-container');
 		//this.channelListGrid  = document.getElementById('channel-list-grid');
 		//this.channelPages     = document.getElementsByClassName('chat-containers');
@@ -72,12 +72,11 @@ class Client {
 	// ANCHOR: USER JOINED
 	userJoined() {
 		console.log('[client.js] userJoined()')
-		this.newEvents.socket.emit('user-joined');
-	}
+		// Adds it to user's screen.
+		// appendUsername();
 
-	// ANCHOR: ADD USER TO LIST
-	addUserToList(username) {
-		console.log('[client.js] addUserToList(username)', username)
+		// Sends it to everyone else connected.
+		this.newEvents.socket.emit('user-joined');
 	}
 
 	// ANCHOR: CHANGE CHANNEL
@@ -94,23 +93,32 @@ class Client {
 		}
 	}
 
-	// ANCHOR: USERNAME TO USERLIST
+	// ANCHOR: ADD USER TO LIST
 	appendUsername (username) {
-		console.log("[client] appendUsername(): ", username);
+		// Creates elements.
+		let userDiv = document.createElement('div');
+		let userP   = document.createElement('p');
 
-		/* NOTE: OLD CODE
-		let usernameElement = document.createElement('h3');
-		let messageElement  = document.createElement('p');
-		//let chatContainer = this.currentChannel;
-		
-		// Sets username to display text.
-		usernameElement.classList.add('text');
-		usernameElement.innerText = username;
-		
-		// Sets username as message text.
-		messageElement.classList.add('text');
-		messageElement.innerText = `${username} has connected.`;
+		// Adds class to div.
+		userDiv.classList.add('user');
 
+		// Adds p element to div.
+		userDiv.appendChild(userP);
+		
+		// Sets p text to username.
+		userP.innerText = username;
+
+		// Adds user to the online-user-list div w/ class.
+		this.onlineUserList.appendChild(userDiv);
+		
+		// Counts amount of users online AFTER they've been added.
+		let onlineUserCount       = document.getElementsByClassName('online-title')[0];
+		let userCount             = this.onlineUserList.childElementCount;
+		onlineUserCount.innerHTML = '<h1> Online - [' + userCount + ']</h1>';
+
+
+
+		/* TODO: Announcing a user has joined in a text channel.
 		// Adds announcement to first channel.
 		this.currentChannel = this.channelPages[0];
 		this.currentChannel.appendChild(messageElement);
@@ -121,9 +129,6 @@ class Client {
 			this.currentChannel = this.channelContainer.firstElementChild;
 			this.currentChannel.appendChild(messageElement);
 		}
-
-		// Adds user to display on right.
-		this.userListGrid.insertBefore(usernameElement, this.userListGrid.firstElementChild);
 		*/
 	}
 
