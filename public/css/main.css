@@ -167,6 +167,11 @@
 	color: var(--text-color-6);
 }
 
+.active-channel {
+	color: var(--text-color-6) !important;
+	border-bottom: var(--border-6) !important;
+}
+
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/

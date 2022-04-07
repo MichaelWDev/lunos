@@ -69,9 +69,34 @@ class Client {
 		this.newEvents.socket.emit('login', email, password);
 	}
 
+	// ANCHOR: USER JOINED
+	userJoined() {
+		console.log('[client.js] userJoined()')
+		this.newEvents.socket.emit('user-joined');
+	}
+
+	// ANCHOR: ADD USER TO LIST
+	addUserToList(username) {
+		console.log('[client.js] addUserToList(username)', username)
+	}
+
+	// ANCHOR: CHANGE CHANNEL
+	changeChannel(chanBtn) {
+		let channelList = document.getElementsByClassName('chan-btn');
+		let channelName = document.getElementsByClassName('channel-title')[0];
+		
+		for (let i = 0; i < channelList.length; i++) {
+			if (chanBtn != channelList[i] && chanBtn.classList.contains('active-channel') == false) {
+				channelName.innerHTML = '<h1>' + chanBtn.innerText + '</h1>';
+				chanBtn.classList.add('active-channel');
+				channelList[i].classList.remove('active-channel');
+			}
+		}
+	}
+
 	// ANCHOR: USERNAME TO USERLIST
 	appendUsername (username) {
-		// console.log("[client] appendUsername(): ", username);
+		console.log("[client] appendUsername(): ", username);
 
 		/* NOTE: OLD CODE
 		let usernameElement = document.createElement('h3');
@@ -102,6 +127,7 @@ class Client {
 		*/
 	}
 
+	// ANCHOR: APPEND MESSAGE TO CHAT
 	appendMessage (username, message) {
 		console.log("appendMessage(username, message): ", username, message)
 		// TODO: Append profile picture to message.
@@ -122,7 +148,7 @@ class Client {
 		}
 	}
 
-	// Switching Channels
+	// ANCHOR: SWITCHING CHANNEL
 	switchChannel(room) {
 		let channelBtns  = this.channelListGrid.getElementsByClassName('channels');
 		let channelText  = this.channelListGrid.innerText;

@@ -85,9 +85,10 @@ io.on('connection', function(socket) {
 	}
 
 	// ANCHOR: USER LIST
-	socket.on('new-user', username => {
-		socket.broadcast.emit('userList', username);
-		socket.to(channel).emit('chat-message', message);
+	socket.on('new-user', async (username) => {
+		console.log('[server.js] socket.on new-user()')
+		//socket.broadcast.emit('userList', username);
+		//socket.to(channel).emit('chat-message', message);
 	});
 
 	// ANCHOR: LOGIN
@@ -107,7 +108,7 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
-							socket.emit('loginSuccessful', username);
+							socket.emit('loginSuccessful');
 						} else {
 							socket.emit('loginUnsuccessful');
 						}
@@ -117,6 +118,11 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
+	});
+
+	// ANCHOR: USER JOINED
+	socket.on('user-joined', async () => {
+		socket.broadcast.emit('addUserToList', username);
 	});
 
 	// ANCHOR: REGISTER ACCOUNT

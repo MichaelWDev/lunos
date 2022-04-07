@@ -11,6 +11,9 @@
 <!--————————————————————————————————————————————————————————————————————————>
 <!—— SECTION SRIPTS
 <!————————————————————————————————————————————————————————————————————————-->
+	<script defer src="/socket.io/socket.io.js"></script>
+	<script defer src="../driver/client.js"></script>
+	<script defer src="../driver/events.js"></script>
 	<script defer src="../driver/chat.js"></script>
 	
 	<link defer rel="stylesheet" href="../css/main.css">
@@ -55,13 +58,13 @@
 
 		<!-- ANCHOR: CHANNEL TITLE -->
 		<div class="channel-title">
-			<h1>Channel Name Here</h1>
+			<h1>Click a channel.</h1>
 		</div>
 
 		<!-- ANCHOR: CHANNEL BUTTONS -->
 		<div class="channels">
-			<button class="chan-btn" onclick="">introduction</button>
-			<button class="chan-btn" onclick="">general</button>
+			<button class="chan-btn" onclick="changeChannel(this)">introduction</button>
+			<button class="chan-btn" onclick="changeChannel(this)">general</button>
 		</div>
 
 		<!-- ANCHOR: CHANNEL PAGES -->
@@ -116,3 +119,16 @@
 </div>
 
 </html>
+
+<!-- 
+	TODO LIST
+	0.   JS Styling when chan-btn is clicked. (EGG)
+	1.   User logs in/creates account, their usename is added to online-user-list.
+	2.   Have users select between online and offline through a toggle btn.
+	3.   Adding users who are offline to offline-user-list.
+	3.5. Channels: Clicking channel changes to it, changes 'Channel Name Here'.
+	4.   Sending chat messages to the server.
+	5.   Giving out roles/permissions to people. A permissions system.
+	6.   Moderating chat messages. Admin role, etc.
+	7.   Kicking/Banning
+-->

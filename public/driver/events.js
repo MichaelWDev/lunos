@@ -37,18 +37,23 @@ class Events {
 		console.log(`connect error due to ${err}`);
 	}
 
-	// ANCHOR: LOGIN
-	loginSuccessful(username) {
+	// ANCHOR: LOGIN SUCCESSFUL
+	loginSuccessful() {
 		// Changes window to chat.html.
 		location.replace('/chat');
-
-		// Sockets
-		// this.socket.emit('new-user', username); // TODO
-		// this.socket.emit('saved-servers-list', username);
 	}
 	
+	// ANCHOR: LOGIN UNSUCCESSFUL
 	loginUnsuccessful() {
 		this.IncorrectText.classList.remove('hide');
+	}
+
+	// SECTION: CHAT APPLICATION
+
+	// ANCHOR: ADD USER TO LIST
+	addUserToList(username) {
+		console.log('[events.js] addUserToList()')
+		client.addUserToList(username);
 	}
 
 	// ANCHOR: CREATE SERVER
@@ -76,10 +81,10 @@ class Events {
 		// document.getElementById('user-list-' + username).remove();
 	}
 
-	// TODO: Adds whoever joins to the user-list.
+	// TODO: Adds everyone who joins to the user-list.
 	userList (username) {
-		//console.log("Events Username: ", username);
-		client.appendUsername(username);
+		console.log("[events] userList(): ", username);
+		//client.appendUsername(username);
 	}
 
 	/* TODO: When the user joins/creates a server.
