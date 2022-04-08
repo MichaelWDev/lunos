@@ -29,7 +29,7 @@ class Client {
 	constructor() {
 		bindClass(this);
 		// Events Class
-		this.newEvents = new Events();
+		this.events = new Events();
 		
 		// ANCHOR: VARIABLES
 		// TODO: Fix this: Returns null
@@ -76,19 +76,37 @@ class Client {
 		// appendUsername();
 
 		// Sends it to everyone else connected.
-		this.newEvents.socket.emit('user-joined');
+		this.events.socket.emit('user-joined');
 	}
 
 	// ANCHOR: CHANGE CHANNEL
 	changeChannel(chanBtn) {
+		// CSS
 		let channelList = document.getElementsByClassName('chan-btn');
 		let channelName = document.getElementsByClassName('channel-title')[0];
-		
+
+		// HTML
+		let channelPage = document.getElementsByClassName('chat-containers');
+		let pageIndex   = Array.prototype.indexOf.call(channelList, chanBtn);
+
 		for (let i = 0; i < channelList.length; i++) {
 			if (chanBtn != channelList[i] && chanBtn.classList.contains('active-channel') == false) {
+				// CSS
 				channelName.innerHTML = '<h1>' + chanBtn.innerText + '</h1>';
 				chanBtn.classList.add('active-channel');
 				channelList[i].classList.remove('active-channel');
+				
+				// Channel
+				// console.log("Hiding: ", channelPage[i])
+				// console.log("Showing: ", channelPage[pageIndex])
+
+				// Leaves the room, hides the chat container.
+				this.events.socket.emit('leave-room', channelList[i]);
+				channelPage[i].style.display = 'none';
+
+				// Joins the room, shows the chat container.
+				this.events.socket.emit('join-room', channelPage[pageIndex]);
+				channelPage[pageIndex].style.display = 'block';
 			}
 		}
 	}
@@ -141,40 +159,23 @@ class Client {
 		//console.log("Username: ", username);
 		//console.log("message", message)
 	
+		// NOTE: Change chatContainer to the proper container.
 		let messageElement = document.createElement('p');
 		let chatContainer = this.currentChannel;
-		messageElement.classList.add('text');
+		// messageElement.classList.add('text');
 		messageElement.innerText = `${username}: ${message}`;
 	
 		if (chatContainer) {
 			chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 		} else {
+			// TODO: Fix this, it'll keep showing even when a channel is clicked.
 			alert('No channel selected. Please select one!');
 		}
 	}
 
-	// ANCHOR: SWITCHING CHANNEL
-	switchChannel(room) {
-		let channelBtns  = this.channelListGrid.getElementsByClassName('channels');
-		let channelText  = this.channelListGrid.innerText;
-		channelText      = channelText.split(/\r?\n/);
-
-		for (let i = 0; i < channelText.length; i++) {
-			if (room != channelText[i]) {
-				// Hides other channels.
-				//console.log("Incorrect Rooms: ", this.channelPages[i])
-				this.channelPages[i].classList.add('hide');
-				channelBtns[i].classList.remove('active-btn');
-				events.socket.emit('leave-room', channelText[i]);
-			} else {
-				// Shows correct channel.
-				//console.log("Correct Room: ", this.currentChannel)
-				this.channelPages[i].classList.remove('hide');
-				channelBtns[i].classList.add('active-btn');
-				this.currentChannel = this.channelPages[i];
-				events.socket.emit('join-room', room);
-			}
-		}
+	// ANCHOR: MESSAGE EVERYONE
+	sendMessage(username, message) {
+		this.events.socket.emit('sendMessage', username, message);
 	}
 }
 

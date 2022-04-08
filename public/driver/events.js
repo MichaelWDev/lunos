@@ -61,6 +61,11 @@ class Events {
 		client.appendUsername(username);
 	}
 
+	// ANCHOR: MESSAGE RECEIVED
+	messageReceived(username, message) {
+		client.appendMessage(username, message);
+	}
+
 	// ANCHOR: CREATE SERVER
 	createServer (data) {
 		// createServerList(serverName);

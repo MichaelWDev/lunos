@@ -10,6 +10,8 @@
 //—— SECTION: FUNCTIONS
 //——————————————————————————————————————————————————————————————————————————//
 
+let username;
+
 // TODO: Enter key is pressed to send chat.
 document.addEventListener("keyup", function(event) {
 	if (event.key === 13) {
@@ -22,7 +24,7 @@ window.onload = function() {
 	console.log("[chat.js] window.onload");
 	
 	// Gets the username saved in the username variable in [server.js].
-	let username = client.getUsername();
+	// username = client.getUsername();
 	// TODO: Figure out how to append your username to the right.
 	
 	/* Route:
@@ -33,14 +35,24 @@ window.onload = function() {
 	*/
 }
 
-// ANCHOR: SEND CHAT
-function sendChat(message) {
-
-}
-
 // ANCHOR: CHANGE CHANNELS
 function changeChannel(chanBtn) {
 	client.changeChannel(chanBtn);
+}
+
+// ANCHOR: SEND CHAT
+function sendMessage() {
+	//let chatBar = document.getElementsByClassName('chat-input')[0]
+	let message = document.getElementsByClassName('chat-input')[0].value;
+	
+	// Refuses sending empty messages to server.
+	if (message) {
+		// Appends the message for the client.
+		client.appendMessage(username = 'test', message);
+
+		// Sends the message to the everyone else.
+		//client.sendMessage(username, message);
+	}
 }
 
 // !SECTION ————————————————————————————————————————————————————————————————//

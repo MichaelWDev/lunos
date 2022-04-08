@@ -270,17 +270,17 @@ io.on('connection', function(socket) {
 	});
 	*/
 
+	// ANCHOR: LEAVE CHANNEL
+	socket.on('leave-room', (room) => {
+		socket.leave(room);
+		console.log(`User left ${room}.`)
+	});
+
 	// ANCHOR: SWITCH CHANNEL
 	socket.on('join-room', (room) => {
 		socket.join(room);
 		channel = room; // Used in 'send-chat-message'.
-		//console.log(`User joined ${room}.`)
-	});
-
-	// ANCHOR: LEAVE CHANNEL
-	socket.on('leave-room', (room) => {
-		socket.leave(room);
-		//console.log(`User left ${room}.`)
+		console.log(`User joined ${room}.`)
 	});
 
 	// ANCHOR: SEND MESSAGE / LOG MESSAGE
