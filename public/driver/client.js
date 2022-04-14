@@ -66,7 +66,7 @@ class Client {
 
 	// ANCHOR: LOGIN
 	login(email, password) {
-		this.newEvents.socket.emit('login', email, password);
+		this.events.socket.emit('login', email, password);
 	}
 
 	// ANCHOR: USER JOINED
@@ -76,6 +76,7 @@ class Client {
 		// appendUsername();
 
 		// Sends it to everyone else connected.
+		// NOTE: maybe need to use broadcast.emit
 		this.events.socket.emit('user-joined');
 	}
 

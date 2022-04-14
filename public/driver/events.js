@@ -41,11 +41,6 @@ class Events {
 	loginSuccessful(username) {
 		// Changes window to chat.html.
 		location.replace('/chat');
-
-		// TODO: Figure out how to appeend your username to the right.
-		window.onchange = function() {
-			client.appendUsername(username);
-		}
 	}
 	
 	// ANCHOR: LOGIN UNSUCCESSFUL
@@ -57,7 +52,7 @@ class Events {
 
 	// ANCHOR: ADD USER TO LIST
 	addUserToList(username) {
-		console.log('[events.js] addUserToList()')
+		console.log('[events.js] addUserToList()', username) // this is null?
 		client.appendUsername(username);
 	}
 
