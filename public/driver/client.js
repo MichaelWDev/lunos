@@ -28,11 +28,8 @@ globalThis.bindClass = function(toBind) { // (object)
 class Client {
 	constructor() {
 		bindClass(this);
-		/* NOTE: This is where import breaks. No matter where you put it.
-		import { setPage } from "./index";
-		this.setPage = setPage;
-		*/
-		this.newEvents = new Events();
+		// Events Class
+		this.events = new Events();
 		
 		// ANCHOR: VARIABLES
 		// TODO: Fix this: Returns null
@@ -40,7 +37,9 @@ class Client {
 		//this.iframe = document.getElementById('main-iframe');
 		// frames.window.document.activeElement;
 		
-		//this.userListGrid     = document.getElementById('user-list-grid');
+		// this.offlineUserList = document.getElementsByClassName('offline-user-list');
+		
+		// NOTE: Old variables.
 		//this.channelContainer = document.getElementById('channel-container');
 		//this.channelListGrid  = document.getElementById('channel-list-grid');
 		//this.channelPages     = document.getElementsByClassName('chat-containers');
@@ -66,26 +65,90 @@ class Client {
 
 	// ANCHOR: LOGIN
 	login(email, password) {
-		this.newEvents.socket.emit('login', email, password);
+		this.events.socket.emit('login', email, password);
 	}
 
-	// ANCHOR: USERNAME TO USERLIST
-	appendUsername (username) {
-		// console.log("[client] appendUsername(): ", username);
+	// ANCHOR: SHOW CHAT
+	showChat() {
+		let loginPage    = document.getElementById('login-page');
+		let registerPage = document.getElementById('register-page');
+		let chatPage     = document.getElementById('chat-page');
 
-		/* NOTE: OLD CODE
-		let usernameElement = document.createElement('h3');
-		let messageElement  = document.createElement('p');
-		//let chatContainer = this.currentChannel;
-		
-		// Sets username to display text.
-		usernameElement.classList.add('text');
-		usernameElement.innerText = username;
-		
-		// Sets username as message text.
-		messageElement.classList.add('text');
-		messageElement.innerText = `${username} has connected.`;
+		loginPage.classList.add('hide');
+		registerPage.classList.add('hide');
 
+		chatPage.classList.remove('hide');
+	}
+
+	// ANCHOR: CHANGE CHANNEL
+	changeChannel(chanBtn) {
+		// CSS
+		let channelList = document.getElementsByClassName('chan-btn');
+		let channelName = document.getElementsByClassName('channel-title')[0];
+
+		// HTML
+		let channelPage = document.getElementsByClassName('chat-containers');
+		let pageIndex   = Array.prototype.indexOf.call(channelList, chanBtn);
+
+		for (let i = 0; i < channelList.length; i++) {
+			if (chanBtn != channelList[i] && chanBtn.classList.contains('active-channel') == false) {
+				// CSS
+				channelName.innerHTML = '<h1>' + chanBtn.innerText + '</h1>';
+				chanBtn.classList.add('active-channel');
+				channelList[i].classList.remove('active-channel');
+				
+				// Channel
+				// console.log("Hiding: ", channelPage[i])
+				// console.log("Showing: ", channelPage[pageIndex])
+
+				// Leaves the room, hides the chat container.
+				this.events.socket.emit('leave-room', channelList[i]);
+				channelPage[i].style.display = 'none';
+
+				// Joins the room, shows the chat container.
+				this.events.socket.emit('join-room', channelPage[pageIndex]);
+				channelPage[pageIndex].style.display = 'block';
+			}
+		}
+	}
+
+	// ANCHOR: ADD USER TO LIST
+	// NOTE: BUG! Appends each username twice.
+	appendUsername(onlineOrOffline, username) {
+		console.log('[client.js] appendUsername: ', onlineOrOffline, ' AND ', username)
+		// Online
+		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
+		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
+		
+		// Offline
+		let offlineUserList  = document.getElementsByClassName('offline-user-list')[0];
+		let offlineUserCount = document.getElementsByClassName('offline-title')[0];
+
+		// Creates elements.
+		let userDiv          = document.createElement('div');
+		let userP            = document.createElement('p');
+
+		// Adds class to div.
+		userDiv.classList.add('user');
+
+		// Adds p element to div.
+		userDiv.appendChild(userP);
+		
+		// Sets p text to username.
+		userP.innerText = username;
+
+		// Adds user to the online-user-list div w/ class.
+		if (onlineOrOffline == true) {
+			onlineUserList.appendChild(userDiv);
+			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+		} else {
+			offlineUserList.appendChild(userDiv);
+			offlineUserCount.innerHTML = `<h1> Offline - [${onlineUserList.childElementCount}]</h1>`;
+		}
+
+		// Counts amount of users online AFTER they've been added.
+
+		/* TODO: Announcing a user has joined in a text channel.
 		// Adds announcement to first channel.
 		this.currentChannel = this.channelPages[0];
 		this.currentChannel.appendChild(messageElement);
@@ -96,12 +159,10 @@ class Client {
 			this.currentChannel = this.channelContainer.firstElementChild;
 			this.currentChannel.appendChild(messageElement);
 		}
-
-		// Adds user to display on right.
-		this.userListGrid.insertBefore(usernameElement, this.userListGrid.firstElementChild);
 		*/
 	}
 
+	// ANCHOR: APPEND MESSAGE TO CHAT
 	appendMessage (username, message) {
 		console.log("appendMessage(username, message): ", username, message)
 		// TODO: Append profile picture to message.
@@ -110,40 +171,23 @@ class Client {
 		//console.log("Username: ", username);
 		//console.log("message", message)
 	
+		// NOTE: Change chatContainer to the proper container.
 		let messageElement = document.createElement('p');
 		let chatContainer = this.currentChannel;
-		messageElement.classList.add('text');
+		// messageElement.classList.add('text');
 		messageElement.innerText = `${username}: ${message}`;
 	
 		if (chatContainer) {
 			chatContainer.insertBefore(messageElement, chatContainer.firstChild);
 		} else {
+			// TODO: Fix this, it'll keep showing even when a channel is clicked.
 			alert('No channel selected. Please select one!');
 		}
 	}
 
-	// Switching Channels
-	switchChannel(room) {
-		let channelBtns  = this.channelListGrid.getElementsByClassName('channels');
-		let channelText  = this.channelListGrid.innerText;
-		channelText      = channelText.split(/\r?\n/);
-
-		for (let i = 0; i < channelText.length; i++) {
-			if (room != channelText[i]) {
-				// Hides other channels.
-				//console.log("Incorrect Rooms: ", this.channelPages[i])
-				this.channelPages[i].classList.add('hide');
-				channelBtns[i].classList.remove('active-btn');
-				events.socket.emit('leave-room', channelText[i]);
-			} else {
-				// Shows correct channel.
-				//console.log("Correct Room: ", this.currentChannel)
-				this.channelPages[i].classList.remove('hide');
-				channelBtns[i].classList.add('active-btn');
-				this.currentChannel = this.channelPages[i];
-				events.socket.emit('join-room', room);
-			}
-		}
+	// ANCHOR: MESSAGE EVERYONE
+	sendMessage(username, message) {
+		this.events.socket.emit('sendMessage', username, message);
 	}
 }
 

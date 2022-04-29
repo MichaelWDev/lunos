@@ -52,5 +52,13 @@
     "savedServers": null,
     "serversBannedFrom": null,
     "uuid": "348043468007"
+  },
+  "test@email.com": {
+    "email": "test@email.com",
+    "username": "test",
+    "password": "$2b$10$jXmrMIJVn3rZ0pJEMaWQXuQU9dak1U6kGyituPlcIgoRGuch.D3ly",
+    "savedServers": null,
+    "serversBannedFrom": null,
+    "uuid": "624703443968"
   }
 }

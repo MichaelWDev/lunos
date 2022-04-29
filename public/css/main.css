@@ -167,6 +167,11 @@
 	color: var(--text-color-6);
 }
 
+.active-channel {
+	color: var(--text-color-6) !important;
+	border-bottom: var(--border-6) !important;
+}
+
 /*——— SECTION —————————————————————————————————————————————————————————————————————*/
 
 /*—————————————————————————————————————————————————————————————————————————*/
@@ -364,7 +369,7 @@ html, body {
 	font-family: var(--font-family-3);
 }
 
-#login-btn, #login-back-btn, #reset-password-btn {
+#login-btn, #login-back-btn, #reset-password-btn, #register-btn {
 	position:  absolute;
 	top:       8em;
 	font-size: 1.25em;
@@ -372,11 +377,15 @@ html, body {
 }
 
 #login-back-btn {
-	left: 2em;
+	left: 0;
 }
 
 #login-btn {
-	right: 6em;
+	right: 4em;
+}
+
+#register-btn {
+	left: 5.25em;
 }
 
 #reset-password-btn {
@@ -651,7 +660,7 @@ html, body {
 	position:         absolute;
 	top:              5.95em;
 	width:            13.5em;
-	height:           48.5em;
+	height:           46.5em;
 	background-color: var(--background-color-5);
 }
 
@@ -691,8 +700,16 @@ html, body {
 }
 
 .chat-containers {
-	height: 100%;
-	width:  100%;
+	height: 46.5em;
+	width:  84em;
+}
+
+.chat-containers:nth-child(1) {
+	background-color: rgba(255, 0, 0, 0.25);
+}
+
+.chat-containers:nth-child(2) {
+	background-color: rgba(0, 0, 255, 0.25);
 }
 
 /*————— !ANCHOR —————*/
@@ -807,7 +824,7 @@ html, body {
 	position: absolute;
 	bottom:   1em;
 	height:   3.5em;
-	width:    83em;
+	width:    84em;
 	left:     14em;
 	background-color: var(--background-color-5);
 }

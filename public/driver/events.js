@@ -37,49 +37,68 @@ class Events {
 		console.log(`connect error due to ${err}`);
 	}
 
-	// ANCHOR: LOGIN
+	// ANCHOR: LOGIN SUCCESSFUL
 	loginSuccessful(username) {
-		// Changes window to chat.html.
-		location.replace('/chat');
-
-		// Sockets
-		// this.socket.emit('new-user', username); // TODO
-		// this.socket.emit('saved-servers-list', username);
+		client.showChat();
+		client.appendUsername(true, username);
 	}
 	
-	loginUnsuccessful() {
-		this.IncorrectText.classList.remove('hide');
+	// ANCHOR: LOGIN UNSUCCESSFUL
+	loginUnsuccessful() { // TODO
+		// this.IncorrectText.classList.remove('hide');
+		console.log('Login Unsuccessful')
+	}
+
+	// ANCHOR: ADD USER TO LIST (broadcast)
+	addUserToList(username) {
+		client.appendUsername(true, username);
+	}
+
+	// SECTION: CHAT APPLICATION
+
+	// ANCHOR: MESSAGE RECEIVED
+	messageReceived(username, message) {
+		client.appendMessage(username, message);
 	}
 
 	// ANCHOR: CREATE SERVER
-	createServer (data) {
+	createServer(data) {
 		// createServerList(serverName);
 	}
 
 	// ANCHOR: CREATE SERVER CODE
-	serverCode (data) {}
+	serverCode(data) {}
 
 	// ANCHOR: USERS IN SERVER
-	savedServers (data) {
+	savedServers(data) {
 		createServerList(data);
 	}
 
 	// TODO: Adds the text to the chat container.
-	chatMessage (data) {
+	chatMessage(data) {
 		//console.log("chatMessage: ", data.username, data.message)
 		client.appendMessage(data.username, data.message);
 	}
 
-	// TODO: Displays who leaves and remove their name from the user-list.
-	userDisconnected (data) {
+	// ANCHOR: OFFLINE
+	// Does this matter? This is locally changing the way it looks.
+	// But the user WONT see their name offline if they disconnetc from the server..
+	// Maybe in the future when users can change their status but still talk (like discord), this will be used.
+	offline(username) {
+		client.appendUsername(false, username);
+	}
+
+	// ANCHOR: USER DISCONNECTED (broadcast)
+	userDisconnected(username) {
+		client.appendUsername(false, username);
 		// appendMessage(username + ' has disconnected.');
 		// document.getElementById('user-list-' + username).remove();
 	}
 
-	// TODO: Adds whoever joins to the user-list.
-	userList (username) {
-		//console.log("Events Username: ", username);
-		client.appendUsername(username);
+	// TODO: Adds everyone who joins to the user-list.
+	userList(username) {
+		console.log("[events] userList(): ", username);
+		//client.appendUsername(username);
 	}
 
 	/* TODO: When the user joins/creates a server.

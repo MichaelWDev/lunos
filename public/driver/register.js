@@ -10,17 +10,6 @@
 //—— SECTION: FUNCTIONS
 //—————————————————————————————————————————————————————————————————————————//
 
-// ANCHOR: SHOW REGISTER PASSWORD
-function showPassword() {
-	let passwordInput = document.getElementById('register-password-input');
-
-	if (passwordInput.type === 'password') {
-		passwordInput.type = 'text';
-	} else {
-		passwordInput.type = 'password';
-	}
-}
-
 // ANCHOR: VALIDATE REGISTER
 function validatePassword() {
 	let idList = ['register-email-input', 'register-username-input', 'register-password-input'];
@@ -57,8 +46,12 @@ function createAccount() {
 }
 
 // ANCHOR: BACK
-function back() {
-	newClient.setPage('#home');
+function registerBack() {
+	let loginPage = document.getElementById('login-page');
+	let registerPage = document.getElementById('register-page');
+
+	registerPage.classList.add('hide');
+	loginPage.classList.remove('hide');
 }
 
 //——— !SECTION —————————————————————————————————————————————————————————————//
@@ -68,6 +61,5 @@ function back() {
 //——————————————————————————————————————————————————————————————————————————//
 
 const events = new Events();
-const newClient = new Client();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//

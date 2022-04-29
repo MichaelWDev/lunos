@@ -57,8 +57,8 @@ server.listen(port, function () {
 
 // ANCHOR: SERVER
 io.on('connection', function(socket) {
-	let username;
-	let channel;
+	var username;
+	var channel;
 	console.log('user connected');
 
 	// ANCHOR: UNIQUE ID
@@ -67,7 +67,7 @@ io.on('connection', function(socket) {
 		return uniqueNumbers = uniqueNumbers.toString();
 	}
 
-	// ANCHOR: USER DATA
+	/* ANCHOR: USER DATA
 	// TODO: Check if the user is banned from the server they are connecting to.
 	function checkUserData(serversBannedFrom) {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
@@ -82,13 +82,14 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
-	}
+	}*/
 
-	// ANCHOR: USER LIST
-	socket.on('new-user', username => {
-		socket.broadcast.emit('userList', username);
-		socket.to(channel).emit('chat-message', message);
-	});
+	/* ANCHOR: USER LIST
+	socket.on('new-user', async (username) => {
+		console.log('[server.js] socket.on new-user()')
+		//socket.broadcast.emit('userList', username);
+		//socket.to(channel).emit('chat-message', message);
+	});*/
 
 	// ANCHOR: LOGIN
 	socket.on('login', async (email, password) => {
@@ -107,9 +108,11 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
+							console.log('username: ', username);
 							socket.emit('loginSuccessful', username);
+							socket.broadcast.emit('addUserToList', username); // THIS WORKS!
 						} else {
-							socket.emit('loginUnsuccessful');
+							socket.emit('loginUnsuccessful'); // TODO
 						}
 					});
 				} catch (err) {
@@ -128,8 +131,8 @@ io.on('connection', function(socket) {
 				console.log(err);
 			} else {
 				try {
-					const data = JSON.parse(jsonString);
-					let uuid   = uniqueID().substring(0, 12);
+					const data  = JSON.parse(jsonString);
+					let uuid    = uniqueID().substring(0, 12);
 					data[email] = {
 						email: email,
 						username: username,
@@ -156,7 +159,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	// ANCHOR: USER JOINS SERVER
+	/* ANCHOR: USER JOINS SERVER
 	socket.on('join-server', (serverCode) => {
 		// let savedServers = null;
 		let serversBannedFrom = data[email].serversBannedFrom;
@@ -166,10 +169,10 @@ io.on('connection', function(socket) {
 			Later: server-list for correct invite code.
 			server-list permissions if server is/is not private.
 			server-list bannedUsers if they were banned.
-		*/
-	});
+		
+	});*/
 
-	// ANCHOR: CREATE SERVER
+	/* ANCHOR: CREATE SERVER
 	socket.on('create-server', (serverName) => {
 		// NOTE: Servers can have the same name. Community servers can not.
 		let serverID = uniqueID().substring(0, 11);
@@ -204,9 +207,9 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
-	});
+	});*/
 
-	// ANCHOR: UNIQUE INVITE ID
+	/* ANCHOR: UNIQUE INVITE ID
 	socket.on('create-server-invite', () => {
 		let serverCode = uniqueID().substring(0, 6);
 		console.log(serverCode);
@@ -233,10 +236,9 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
-	});
+	});*/
 
-	// ANCHOR: USER'S SERVERS
-	/*
+	/* ANCHOR: USER'S SERVERS
 	socket.on('saved-servers-list', (username) => {
 		fs.readFile('./accounts.json', 'utf-8', (err, jsonString) => {
 			if (err) {
@@ -264,17 +266,17 @@ io.on('connection', function(socket) {
 	});
 	*/
 
+	// ANCHOR: LEAVE CHANNEL
+	socket.on('leave-room', (room) => {
+		socket.leave(room);
+		console.log(`User left ${room}.`)
+	});
+
 	// ANCHOR: SWITCH CHANNEL
 	socket.on('join-room', (room) => {
 		socket.join(room);
 		channel = room; // Used in 'send-chat-message'.
-		//console.log(`User joined ${room}.`)
-	});
-
-	// ANCHOR: LEAVE CHANNEL
-	socket.on('leave-room', (room) => {
-		socket.leave(room);
-		//console.log(`User left ${room}.`)
+		console.log(`User joined ${room}.`)
 	});
 
 	// ANCHOR: SEND MESSAGE / LOG MESSAGE
@@ -294,7 +296,10 @@ io.on('connection', function(socket) {
 	// ANCHOR: USER DISCONNECTS
 	socket.on('disconnect', () => {
 		console.log('user disconnected');
-		socket.broadcast.emit('user-disconnected', username);
+		socket.emit('offline', username);
+
+		// userDisconnected, used in [events.js]
+		socket.broadcast.emit('userDisconnected', username);
 	});
 });
 
