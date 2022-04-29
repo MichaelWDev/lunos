@@ -15,16 +15,66 @@
 	<script defer src="../driver/client.js"></script>
 	<script defer src="../driver/events.js"></script>
 	<script defer src="../driver/chat.js"></script>
+	<script defer src="../driver/login.js"></script>
+	<script defer src="../driver/register.js"></script>
 	
 	<link defer rel="stylesheet" href="../css/main.css">
 	<link defer rel="stylesheet" href="../css/mobile.css">
 	<link defer rel="stylesheet" href="../css/laptop.css">
 </head>
 
+<!-- !SECTION —————————————————————————————————————————————————————————————-->
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION: LOGIN
+<!————————————————————————————————————————————————————————————————————————-->
+
+<div id="login-page">
+	<input id="email-input" class="input" type="email" placeholder="Email" required>
+
+	<input id="password-input" class="input" type="password" placeholder="Password">
+	
+	<button id="show-login-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
+
+	<p id="login-incorrect-text" class="hide"><span class="red">Please try again.</span></p>
+
+	<a href="/"><button id="login-back-btn" class="btns" type="button">BACK</button></a>
+	<button id="register-btn" class="btns" type="button" onclick="register()">REGISTER</button>
+	<button id="login-btn" class="btns" type="button" onclick="login()">LOGIN</button>
+	<!--<button id="reset-password-btn" class="btns" type="button" onclick="">RESET PASSWORD</button>-->
+	<!--<button id="register-btn" class="btns" type="button" onclick="">REGISTER</button>-->
+</div>
+
+<!-- !SECTION —————————————————————————————————————————————————————————————-->
+
+<!--————————————————————————————————————————————————————————————————————————>
+<!—— SECTION REGISTER
+<!————————————————————————————————————————————————————————————————————————-->
+
+<div id="register-page" class="hide">
+	<input id="register-email-input" class="input" type="email" minlength="5" pattern="/^\S+@\S+\.\S+$/" placeholder="Email" required>
+	
+	<input id="register-username-input" class="input" type="username" minlength="5" placeholder="Username" required>
+	
+	<input id="register-password-input" class="input" type="password" minlength="6" maxlength="54" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required placeholder="Password">
+
+	<button id="show-register-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
+
+	<p id="register-email-minimum" class="register-rules hide"><span class="span-green">Email:</span> Minimum 5 characters.</p>
+	<p id="register-username-minimum" class="register-rules hide"><span class="span-green">Username:</span> Minimum 5 characters.</p>
+	<p id="register-password-minimum" class="register-rules hide"><span class="span-green">Password:</span> Minimum 6 characters, at least one letter, one number and one special character</p>
+	
+	<a><button id="register-back-btn" class="btns" type="button" onclick="registerBack()">BACK</button></a>
+	<button id="account-register-btn" class="btns" type="button" onclick="createAccount()">CREATE ACCOUNT</button>	
+</div>
+
+<!-- !SECTION —————————————————————————————————————————————————————————————-->
+
 <!--————————————————————————————————————————————————————————————————————————>
 <!—— SECTION CHAT
 <!————————————————————————————————————————————————————————————————————————-->
-<div id="chat-page">
+
+<div id="chat-page" class="hide">
 	<!-- TODO: Server Creation
 		- Server channels.
 		- Texting in server channels.
@@ -105,6 +155,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- !SECTION —————————————————————————————————————————————————————————————-->
 
 </html>
 

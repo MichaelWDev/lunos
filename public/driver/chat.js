@@ -19,22 +19,6 @@ document.addEventListener("keyup", function(event) {
 	}
 });
 
-/* ANCHOR: USER JOINED
-window.onload = function() {
-	console.log("[chat.js] window.onload");
-	client.userJoined();
-	// Gets the username saved in the username variable in [server.js].
-	// username = client.getUsername();
-	// TODO: Figure out how to append your username to the right.
-	
-	/* Route:
-		[chat.js]   client.userJoined() >
-		[client.js] events.socket.emit('user-joined') >
-		[events.js] socket is used by client >
-		[server.js] socket.on('user-joined') gets username
-	
-}*/
-
 // ANCHOR: CHANGE CHANNELS
 function changeChannel(chanBtn) {
 	client.changeChannel(chanBtn);
@@ -53,6 +37,19 @@ function sendMessage() {
 		// Sends the message to the everyone else.
 		//client.sendMessage(username, message);
 	}
+}
+
+// LOGIN
+
+
+// REGISTER
+
+function register() {
+	let loginPage    = document.getElementById('login-page');
+	let registerPage = document.getElementById('register-page');
+
+	loginPage.classList.add('hide');
+	registerPage.classList.remove('hide');
 }
 
 // !SECTION ————————————————————————————————————————————————————————————————//

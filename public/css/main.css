@@ -369,7 +369,7 @@ html, body {
 	font-family: var(--font-family-3);
 }
 
-#login-btn, #login-back-btn, #reset-password-btn {
+#login-btn, #login-back-btn, #reset-password-btn, #register-btn {
 	position:  absolute;
 	top:       8em;
 	font-size: 1.25em;
@@ -377,11 +377,15 @@ html, body {
 }
 
 #login-back-btn {
-	left: 2em;
+	left: 0;
 }
 
 #login-btn {
-	right: 6em;
+	right: 4em;
+}
+
+#register-btn {
+	left: 5.25em;
 }
 
 #reset-password-btn {

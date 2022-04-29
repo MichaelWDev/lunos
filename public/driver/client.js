@@ -37,7 +37,6 @@ class Client {
 		//this.iframe = document.getElementById('main-iframe');
 		// frames.window.document.activeElement;
 		
-		this.onlineUserList  = document.getElementsByClassName('online-user-list')[0];
 		// this.offlineUserList = document.getElementsByClassName('offline-user-list');
 		
 		// NOTE: Old variables.
@@ -69,15 +68,16 @@ class Client {
 		this.events.socket.emit('login', email, password);
 	}
 
-	// ANCHOR: USER JOINED
-	userJoined() {
-		console.log('[client.js] userJoined()')
-		// Adds it to user's screen.
-		// appendUsername();
+	// ANCHOR: SHOW CHAT
+	showChat() {
+		let loginPage    = document.getElementById('login-page');
+		let registerPage = document.getElementById('register-page');
+		let chatPage     = document.getElementById('chat-page');
 
-		// Sends it to everyone else connected.
-		// NOTE: maybe need to use broadcast.emit
-		this.events.socket.emit('user-joined');
+		loginPage.classList.add('hide');
+		registerPage.classList.add('hide');
+
+		chatPage.classList.remove('hide');
 	}
 
 	// ANCHOR: CHANGE CHANNEL
@@ -113,10 +113,20 @@ class Client {
 	}
 
 	// ANCHOR: ADD USER TO LIST
-	appendUsername (username) {
+	// NOTE: BUG! Appends each username twice.
+	appendUsername(onlineOrOffline, username) {
+		console.log('[client.js] appendUsername: ', onlineOrOffline, ' AND ', username)
+		// Online
+		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
+		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
+		
+		// Offline
+		let offlineUserList  = document.getElementsByClassName('offline-user-list')[0];
+		let offlineUserCount = document.getElementsByClassName('offline-title')[0];
+
 		// Creates elements.
-		let userDiv = document.createElement('div');
-		let userP   = document.createElement('p');
+		let userDiv          = document.createElement('div');
+		let userP            = document.createElement('p');
 
 		// Adds class to div.
 		userDiv.classList.add('user');
@@ -128,14 +138,15 @@ class Client {
 		userP.innerText = username;
 
 		// Adds user to the online-user-list div w/ class.
-		this.onlineUserList.appendChild(userDiv);
-		
+		if (onlineOrOffline == true) {
+			onlineUserList.appendChild(userDiv);
+			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+		} else {
+			offlineUserList.appendChild(userDiv);
+			offlineUserCount.innerHTML = `<h1> Offline - [${onlineUserList.childElementCount}]</h1>`;
+		}
+
 		// Counts amount of users online AFTER they've been added.
-		let onlineUserCount       = document.getElementsByClassName('online-title')[0];
-		let userCount             = this.onlineUserList.childElementCount;
-		onlineUserCount.innerHTML = '<h1> Online - [' + userCount + ']</h1>';
-
-
 
 		/* TODO: Announcing a user has joined in a text channel.
 		// Adds announcement to first channel.

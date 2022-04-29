@@ -15,7 +15,7 @@ function login() {
 	let emailInput    = document.getElementById('email-input');
 	let passwordInput = document.getElementById('password-input');
 
-	newClient.login(emailInput.value, passwordInput.value);
+	client.login(emailInput.value, passwordInput.value);
 }
 
 // ANCHOR: SHOW LOGIN PASSWORD
@@ -31,7 +31,7 @@ function showPassword() {
 
 // ANCHOR: BACK
 function back() {
-	newClient.setPage('#home');
+	client.setPage('#home');
 }
 
 //——— !SECTION —————————————————————————————————————————————————————————————//
@@ -40,6 +40,5 @@ function back() {
 //—— SECTION: DRIVERS
 //——————————————————————————————————————————————————————————————————————————//
 
-const newClient = new Client();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//

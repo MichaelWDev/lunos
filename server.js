@@ -108,11 +108,11 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
-							console.log('username: ', username)
+							console.log('username: ', username);
 							socket.emit('loginSuccessful', username);
 							socket.broadcast.emit('addUserToList', username); // THIS WORKS!
 						} else {
-							socket.emit('loginUnsuccessful');
+							socket.emit('loginUnsuccessful'); // TODO
 						}
 					});
 				} catch (err) {
@@ -120,13 +120,6 @@ io.on('connection', function(socket) {
 				}
 			}
 		});
-	});
-
-	// ANCHOR: USER JOINED
-	// TODO: What if I emitted addUserToList in login? ^^^^ (!!!WORKS!!!)
-	socket.on('user-joined', async () => {
-		console.log('[server.js] user-joined, sends ', username, ' to addUserToList')
-		socket.broadcast.emit('addUserToList', username); // THIS DOESN'T WORK
 	});
 
 	// ANCHOR: REGISTER ACCOUNT
@@ -303,7 +296,10 @@ io.on('connection', function(socket) {
 	// ANCHOR: USER DISCONNECTS
 	socket.on('disconnect', () => {
 		console.log('user disconnected');
-		socket.broadcast.emit('user-disconnected', username);
+		socket.emit('offline', username);
+
+		// userDisconnected, used in [events.js]
+		socket.broadcast.emit('userDisconnected', username);
 	});
 });
 
