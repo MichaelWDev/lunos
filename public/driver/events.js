@@ -38,9 +38,8 @@ class Events {
 	}
 
 	// ANCHOR: LOGIN SUCCESSFUL
-	loginSuccessful(username) {
+	loginSuccessful() {
 		client.showChat();
-		client.appendUsername(true, username);
 	}
 	
 	// ANCHOR: LOGIN UNSUCCESSFUL
@@ -49,12 +48,13 @@ class Events {
 		console.log('Login Unsuccessful')
 	}
 
-	// ANCHOR: ADD USER TO LIST (broadcast)
+	// SECTION: CHAT APPLICATION
+
+	// ANCHOR: ADD USER TO LIST (BROADCAST)
 	addUserToList(username) {
+		console.debug('Add user to list')
 		client.appendUsername(true, username);
 	}
-
-	// SECTION: CHAT APPLICATION
 
 	// ANCHOR: MESSAGE RECEIVED
 	messageReceived(username, message) {
@@ -77,7 +77,7 @@ class Events {
 	// TODO: Adds the text to the chat container.
 	chatMessage(data) {
 		//console.log("chatMessage: ", data.username, data.message)
-		client.appendMessage(data.username, data.message);
+		//client.appendMessage(data.username, data.message);
 	}
 
 	// ANCHOR: OFFLINE
@@ -111,7 +111,5 @@ class Events {
 //——————————————————————————————————————————————————————————————————————————//
 //—— SECTION: DRIVERS
 //——————————————————————————————————————————————————————————————————————————//
-
-const client = new Client();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//

@@ -28,8 +28,6 @@ globalThis.bindClass = function(toBind) { // (object)
 class Client {
 	constructor() {
 		bindClass(this);
-		// Events Class
-		this.events = new Events();
 		
 		// ANCHOR: VARIABLES
 		// TODO: Fix this: Returns null
@@ -65,7 +63,15 @@ class Client {
 
 	// ANCHOR: LOGIN
 	login(email, password) {
-		this.events.socket.emit('login', email, password);
+		events.socket.emit('login', email, password);
+	}
+
+	// ANCHOR: REGISTER
+	// TODO: When a user registers: Log them into the chat application.
+	accountSuccessful(username) {
+		// showChat();
+		// appendUsername(true, username);
+		// events.io.emit('addUserToList', username);
 	}
 
 	// ANCHOR: SHOW CHAT
@@ -102,11 +108,11 @@ class Client {
 				// console.log("Showing: ", channelPage[pageIndex])
 
 				// Leaves the room, hides the chat container.
-				this.events.socket.emit('leave-room', channelList[i]);
+				events.socket.emit('leave-room', channelList[i]);
 				channelPage[i].style.display = 'none';
 
 				// Joins the room, shows the chat container.
-				this.events.socket.emit('join-room', channelPage[pageIndex]);
+				events.socket.emit('join-room', channelPage[pageIndex]);
 				channelPage[pageIndex].style.display = 'block';
 			}
 		}
@@ -137,8 +143,13 @@ class Client {
 		// Sets p text to username.
 		userP.innerText = username;
 
+		//const onlineUser = document.getElementById(`online-${username}`);
+		//onlineUser.remove(); // Removes the div with the 'div-02' id
+		//onlineUser.setAttribute('id', `online-${username}`);
+
 		// Adds user to the online-user-list div w/ class.
-		if (onlineOrOffline == true) {
+		if (onlineOrOffline) { // true
+			//userDiv.setAttribute('id', `online-${username}`);
 			onlineUserList.appendChild(userDiv);
 			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
 		} else {
@@ -187,9 +198,17 @@ class Client {
 
 	// ANCHOR: MESSAGE EVERYONE
 	sendMessage(username, message) {
-		this.events.socket.emit('sendMessage', username, message);
+		events.socket.emit('sendMessage', username, message);
 	}
 }
 
 // !SECTION ————————————————————————————————————————————————————————————————//
 
+//——————————————————————————————————————————————————————————————————————————//
+//—— SECTION: DRIVERS
+//——————————————————————————————————————————————————————————————————————————//
+
+const events = new Events();
+const client = new Client();
+
+// !SECTION ————————————————————————————————————————————————————————————————//

@@ -59,6 +59,8 @@ server.listen(port, function () {
 io.on('connection', function(socket) {
 	var username;
 	var channel;
+	var onlineUserList  = [];
+	var offlineUserList = [];
 	console.log('user connected');
 
 	// ANCHOR: UNIQUE ID
@@ -99,7 +101,8 @@ io.on('connection', function(socket) {
 			} else {
 				try {
 					const data          = JSON.parse(jsonString);
-					username            = data[email].username;
+					let userID          = data[email].uuid.substring(0, 4);
+					username            = `${data[email].username}#${userID}`;
 					let accountPassword = data[email].password;
 
 					bcrypt.compare(password, accountPassword, function(err, result) {
@@ -108,9 +111,11 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
-							console.log('username: ', username);
-							socket.emit('loginSuccessful', username);
-							socket.broadcast.emit('addUserToList', username); // THIS WORKS!
+							onlineUserList.push(username);
+							delete offlineUserList[username];
+							socket.emit('loginSuccessful');
+							io.emit('addUserToList', username);
+							console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
 						} else {
 							socket.emit('loginUnsuccessful'); // TODO
 						}
@@ -295,7 +300,11 @@ io.on('connection', function(socket) {
 
 	// ANCHOR: USER DISCONNECTS
 	socket.on('disconnect', () => {
-		console.log('user disconnected');
+		console.log('user disconnected:', username);
+		offlineUserList.push(username);
+		delete onlineUserList[username];
+		console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
+
 		socket.emit('offline', username);
 
 		// userDisconnected, used in [events.js]

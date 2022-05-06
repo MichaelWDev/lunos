@@ -1,14 +1,4 @@
 {
-  "admin@admin.com": {
-    "email": "admin@admin.com",
-    "username": "admin",
-    "password": "$2b$10$ynlxXEoUN59G1.NMH8/ZEOuI3vkK9XcUWKJf.aomnk5oxBY7ooh5u"
-  },
-  "admin2@admin2.com": {
-    "email": "admin2@admin2.com",
-    "username": "admin2",
-    "password": "$2b$10$a/sljopEHY62Jzc4K4VjFeszhEvMoq5Pr1hVKXoS9KMDmDwfXYsXe"
-  },
   "NEW username@username.com": {
     "email": "username@username.com",
     "username": "username",
@@ -45,20 +35,12 @@
     "serversBannedFrom": null,
     "uuid": "155755968287"
   },
-  "fake@email.com": {
-    "email": "fake@email.com",
-    "username": "bear",
-    "password": "$2b$10$CVmECnRWa33zdYgW6OGPn.bI.35jvORtiASn6fC14.IWNGk99gcxq",
+  "admin@admin.com": {
+    "email": "admin@admin.com",
+    "username": "admin",
+    "password": "$2b$10$bPjlFG.CaH28/OSVP3kooOF2Ke6FMpBFZBZWG8jwjxNrwwV.QtT.S",
     "savedServers": null,
     "serversBannedFrom": null,
-    "uuid": "348043468007"
-  },
-  "test@email.com": {
-    "email": "test@email.com",
-    "username": "test",
-    "password": "$2b$10$jXmrMIJVn3rZ0pJEMaWQXuQU9dak1U6kGyituPlcIgoRGuch.D3ly",
-    "savedServers": null,
-    "serversBannedFrom": null,
-    "uuid": "624703443968"
+    "uuid": "959298212633"
   }
 }

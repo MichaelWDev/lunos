@@ -38,7 +38,7 @@ function createAccount() {
 		// Success
 		if (res) {
 			console.log("Result received. ", res);
-			client.accountSuccessful();
+			client.accountSuccessful(usernameInput.value);
 		} else { // Failure
 			console.log("Result NOT received.");
 		}
@@ -60,6 +60,5 @@ function registerBack() {
 //—— SECTION: DRIVERS
 //——————————————————————————————————————————————————————————————————————————//
 
-const events = new Events();
 
 //——— !SECTION —————————————————————————————————————————————————————————————//
