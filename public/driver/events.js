@@ -38,8 +38,10 @@ class Events {
 	}
 
 	// ANCHOR: LOGIN SUCCESSFUL
-	loginSuccessful() {
+	loginSuccessful(onlineUser, offlineUser) {
 		client.showChat();
+		console.log(`loginSuccessful(): ${onlineUser} AND ${offlineUser}`)
+		//client.updateUserList(onlineUser, offlineUser);
 	}
 	
 	// ANCHOR: LOGIN UNSUCCESSFUL
@@ -86,6 +88,11 @@ class Events {
 	// Maybe in the future when users can change their status but still talk (like discord), this will be used.
 	offline(username) {
 		client.appendUsername(false, username);
+	}
+
+	// ANCHOR: ONLINE OR OFFLINE USER LIST (BROADCAST)
+	onlineOrOffline(onlineList, offlineList) {
+		client.updateUserList(onlineList, offlineList);
 	}
 
 	// ANCHOR: USER DISCONNECTED (broadcast)

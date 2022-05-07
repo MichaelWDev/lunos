@@ -119,7 +119,6 @@ class Client {
 	}
 
 	// ANCHOR: ADD USER TO LIST
-	// NOTE: BUG! Appends each username twice.
 	appendUsername(onlineOrOffline, username) {
 		console.log('[client.js] appendUsername: ', onlineOrOffline, ' AND ', username)
 		// Online
@@ -199,6 +198,64 @@ class Client {
 	// ANCHOR: MESSAGE EVERYONE
 	sendMessage(username, message) {
 		events.socket.emit('sendMessage', username, message);
+	}
+
+	// ANCHOR: UPDATE / FETCH USER LIST
+	// TODO
+	updateUserList(onlineList, offlineList) {
+		// console.log(onlineList, offlineList)
+		// NOTE: Repeated code! Scroll up. Figure out modularity.
+		// Online
+		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
+		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
+		
+		// Offline
+		let offlineUserList  = document.getElementsByClassName('offline-user-list')[0];
+		let offlineUserCount = document.getElementsByClassName('offline-title')[0];
+
+		for (let i = 0; i < onlineList.length; i++) {
+			let onlineUserDiv = document.createElement('div');
+			let onlineUserP   = document.createElement('p');
+			onlineUserDiv.classList.add('user');
+			
+			onlineUserDiv.appendChild(onlineUserP);
+			onlineUserP.innerText = onlineList[i];
+			onlineUserList.appendChild(onlineUserDiv);
+			onlineUserCount.innerHTML = `<h1> Online - [${onlineList.length}]</h1>`;
+		}
+
+		if (offlineList != undefined) {
+			for (let x = 0; x < offlineList.length; x++) {
+				let offlineUserDiv = document.createElement('div');
+				let offlineUserP   = document.createElement('p');
+				offlineUserDiv.classList.add('user');
+
+				offlineUserDiv.appendChild(offlineUserP);
+				offlineUserP.innerText = offlineList[i];
+				offlineUserList.appendChild(offlineUserDiv);
+				offlineUserCount.innerHTML = `<h1> Offline - [${offlineList.length}]</h1>`;
+			}
+		}
+
+		// let userDiv          = document.createElement('div');
+		// let userP            = document.createElement('p');
+
+		// Adds class to div.
+		// userDiv.classList.add('user');
+
+		// Adds p element to div.
+		// userDiv.appendChild(userP);
+		
+		// Sets p text to username.
+		// userP.innerText = username;
+
+		// if (onlineOrOffline) { // true
+		// 	onlineUserList.appendChild(userDiv);
+		// 	onlineUserCount.innerHTML = `<h1> Online - [${onlineList.length}]</h1>`;
+		// } else {
+		// 	offlineUserList.appendChild(userDiv);
+		// 	offlineUserCount.innerHTML = `<h1> Offline - [${offlineList.length}]</h1>`;
+		// }
 	}
 }
 

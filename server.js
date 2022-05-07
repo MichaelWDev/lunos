@@ -56,11 +56,13 @@ server.listen(port, function () {
 });
 
 // ANCHOR: SERVER
+var userListIndex;
+var onlineUserList  = [];
+var offlineUserList = [];
+
 io.on('connection', function(socket) {
 	var username;
 	var channel;
-	var onlineUserList  = [];
-	var offlineUserList = [];
 	console.log('user connected');
 
 	// ANCHOR: UNIQUE ID
@@ -112,8 +114,10 @@ io.on('connection', function(socket) {
 
 						if (result && data[email]) {
 							onlineUserList.push(username);
-							delete offlineUserList[username];
-							socket.emit('loginSuccessful');
+							userListIndex = offlineUserList.indexOf(username);
+							offlineUserList.splice(userListIndex, 1);
+							
+							socket.emit('loginSuccessful', onlineUserList, offlineUserList);
 							io.emit('addUserToList', username);
 							console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
 						} else {
@@ -301,11 +305,15 @@ io.on('connection', function(socket) {
 	// ANCHOR: USER DISCONNECTS
 	socket.on('disconnect', () => {
 		console.log('user disconnected:', username);
-		offlineUserList.push(username);
-		delete onlineUserList[username];
-		console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
+		if (username != undefined) {
+			offlineUserList.push(username);
+			userListIndex = onlineUserList.indexOf(username);
+			onlineUserList.splice(userListIndex, 1);
+		}
+		console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`);
 
-		socket.emit('offline', username);
+		io.emit('onlineOrOffline', onlineUserList, offlineUserList);
+		// socket.emit('offline', username);
 
 		// userDisconnected, used in [events.js]
 		socket.broadcast.emit('userDisconnected', username);
