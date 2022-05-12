@@ -38,9 +38,13 @@ class Events {
 	}
 
 	// ANCHOR: LOGIN SUCCESSFUL
-	loginSuccessful(onlineUser, offlineUser) {
+	loginSuccessful(onlineUsers, offlineUsers) {
 		client.showChat();
-		console.log(`loginSuccessful(): ${onlineUser} AND ${offlineUser}`)
+		console.log(`ONLINE USERS: ${onlineUsers}\nOFFLINE USERS: ${offlineUsers}`)
+		// NOTE: offlineUsers = undefined
+		// client.appendUsername(true, onlineUsers);
+		// client.appendUsername(false, offlineUsers);
+		// console.log(`loginSuccessful(): ${onlineUsers} AND ${offlineUsers}`)
 		//client.updateUserList(onlineUser, offlineUser);
 	}
 	

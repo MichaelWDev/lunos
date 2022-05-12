@@ -133,8 +133,12 @@ class Client {
 		let userDiv          = document.createElement('div');
 		let userP            = document.createElement('p');
 
-		// Adds class to div.
+		// Adds class & id to div.
 		userDiv.classList.add('user');
+		userDiv.setAttribute('id', `username-${username}`);
+
+		// document.querySelector("[id='1box']");
+		// let offlineUser = offlineUserList.querySelector(`username-${username}`);
 
 		// Adds p element to div.
 		userDiv.appendChild(userP);
@@ -144,19 +148,27 @@ class Client {
 
 		//const onlineUser = document.getElementById(`online-${username}`);
 		//onlineUser.remove(); // Removes the div with the 'div-02' id
-		//onlineUser.setAttribute('id', `online-${username}`);
 
 		// Adds user to the online-user-list div w/ class.
 		if (onlineOrOffline) { // true
-			//userDiv.setAttribute('id', `online-${username}`);
 			onlineUserList.appendChild(userDiv);
+			let onlineUser  = document.getElementsByClassName('user').innerHTML;
+			console.log(`ONLINE: ${onlineUser}`);
+
 			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+			
+			// if (offlineUser != undefined) {
+			// 	offlineUser.remove();
+			// }
 		} else {
+			document.getElementById(`username-${username}`)[0].remove();
 			offlineUserList.appendChild(userDiv);
 			offlineUserCount.innerHTML = `<h1> Offline - [${onlineUserList.childElementCount}]</h1>`;
+		
+			// if (onlineUser != undefined) {
+			// 	onlineUser.remove();
+			// }
 		}
-
-		// Counts amount of users online AFTER they've been added.
 
 		/* TODO: Announcing a user has joined in a text channel.
 		// Adds announcement to first channel.
