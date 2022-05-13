@@ -120,6 +120,7 @@ io.on('connection', function(socket) {
 							// Send to login, login takes every username on the list and appends it to online and offline list.
 							socket.emit('loginSuccessful', onlineUserList, offlineUserList);
 							io.emit('addUserToList', username);
+
 							console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
 						} else {
 							socket.emit('loginUnsuccessful'); // TODO
@@ -309,11 +310,12 @@ io.on('connection', function(socket) {
 		if (username != undefined) {
 			offlineUserList.push(username);
 			userListIndex = onlineUserList.indexOf(username);
-			onlineUserList.splice(userListIndex, 1);
+			onlineUserList.splice(userListIndex, 1); // Removes username from online list.
 		}
 		console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`);
 
-		io.emit('onlineOrOffline', onlineUserList, offlineUserList);
+		// User that joins needs to get a list of who is online and offline.
+		socket.emit('onlineOrOffline', onlineUserList, offlineUserList);
 		// socket.emit('offline', username);
 
 		// userDisconnected, used in [events.js]

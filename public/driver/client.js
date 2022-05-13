@@ -120,7 +120,59 @@ class Client {
 
 	// ANCHOR: ADD USER TO LIST
 	appendUsername(onlineOrOffline, username) {
+		console.log(`Online? ${onlineOrOffline}\nUsername: ${username}`);
+
+		// ONLINE
+		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
+		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
+
+		// OFFLINE
+		let offlineUserList  = document.getElementsByClassName('offline-user-list')[0];
+		let offlineUserCount = document.getElementsByClassName('offline-title')[0];
+
+		// CREATE ELEMENTS
+		let userDiv          = document.createElement('div');
+		let userP            = document.createElement('p');
+
+		// ADD CLASS & ID TO DIV
+		userDiv.classList.add('user');
+
+		// ADDS P ELEMENT TO DIV
+		userDiv.appendChild(userP);
+		
+		// SETS P TEXT TO USERNAME
+		userP.innerText = username;
+
+		// ADDS USERS TO CORRECT DIV
+		if (onlineOrOffline) { // If user is online
+			userDiv.setAttribute('id', `online-${username}`);
+			let offlineUser = document.getElementById(`offline-${username}`);
+
+			if (offlineUser && offlineUserList.hasChildNodes()) {
+				console.log(`Username removed from OFFLINE list.`)
+				offlineUser.remove();
+			}
+
+			onlineUserList.appendChild(userDiv);
+			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+		} else {
+			userDiv.setAttribute('id', `offline-${username}`);
+			let onlineUser = document.getElementById(`online-${username}`);
+
+			if (onlineUser && onlineUserList.hasChildNodes()) {
+				console.log(`Username removed from ONLINE list.`)
+				onlineUser.remove();
+			}
+
+			offlineUserList.appendChild(userDiv);
+			offlineUserCount.innerHTML = `<h1> Offline - [${onlineUserList.childElementCount}]</h1>`;
+		}
+	}
+
+	/* NOTE: OLD
+	appendUsername(onlineOrOffline, username) {
 		console.log('[client.js] appendUsername: ', onlineOrOffline, ' AND ', username)
+
 		// Online
 		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
 		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
@@ -138,7 +190,6 @@ class Client {
 		userDiv.setAttribute('id', `username-${username}`);
 
 		// document.querySelector("[id='1box']");
-		// let offlineUser = offlineUserList.querySelector(`username-${username}`);
 
 		// Adds p element to div.
 		userDiv.appendChild(userP);
@@ -146,28 +197,25 @@ class Client {
 		// Sets p text to username.
 		userP.innerText = username;
 
-		//const onlineUser = document.getElementById(`online-${username}`);
-		//onlineUser.remove(); // Removes the div with the 'div-02' id
+		// let onlineUser;
+		// let offlineUser;
+		// offlineUser = offlineUserList.querySelector(`#username-${CSS.escape(username)}`).innerHTML;
+		// offlineUserList.removeChild(offlineUser);
 
 		// Adds user to the online-user-list div w/ class.
-		if (onlineOrOffline) { // true
+		if (onlineOrOffline) { // if user is online
 			onlineUserList.appendChild(userDiv);
-			let onlineUser  = document.getElementsByClassName('user').innerHTML;
-			console.log(`ONLINE: ${onlineUser}`);
-
-			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+			// NOTE: Trying to delete a person's username from the offline list if they log back in and become online
+			if (offlineUserList.hasChildNodes() && offlineUserList) {
+				console.log("HAS CHILD NODES!!!");
+				offlineUserList.removeChild(`username-${username}`);
+			}
 			
-			// if (offlineUser != undefined) {
-			// 	offlineUser.remove();
-			// }
-		} else {
-			document.getElementById(`username-${username}`)[0].remove();
+			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+		} else if (username && onlineOrOffline == false) {
 			offlineUserList.appendChild(userDiv);
+			onlineUserList.querySelector(`#username-${CSS.escape(username)}`).remove();
 			offlineUserCount.innerHTML = `<h1> Offline - [${onlineUserList.childElementCount}]</h1>`;
-		
-			// if (onlineUser != undefined) {
-			// 	onlineUser.remove();
-			// }
 		}
 
 		/* TODO: Announcing a user has joined in a text channel.
@@ -181,8 +229,9 @@ class Client {
 			this.currentChannel = this.channelContainer.firstElementChild;
 			this.currentChannel.appendChild(messageElement);
 		}
-		*/
+		
 	}
+	*/
 
 	// ANCHOR: APPEND MESSAGE TO CHAT
 	appendMessage (username, message) {
@@ -212,62 +261,15 @@ class Client {
 		events.socket.emit('sendMessage', username, message);
 	}
 
-	// ANCHOR: UPDATE / FETCH USER LIST
-	// TODO
+	// ANCHOR: UPDATE USER LIST
 	updateUserList(onlineList, offlineList) {
-		// console.log(onlineList, offlineList)
-		// NOTE: Repeated code! Scroll up. Figure out modularity.
-		// Online
-		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
-		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
+		console.log(`Update User List: ${onlineList}\nOFFLINE LIST: ${offlineList}`);
 		
-		// Offline
-		let offlineUserList  = document.getElementsByClassName('offline-user-list')[0];
-		let offlineUserCount = document.getElementsByClassName('offline-title')[0];
-
-		for (let i = 0; i < onlineList.length; i++) {
-			let onlineUserDiv = document.createElement('div');
-			let onlineUserP   = document.createElement('p');
-			onlineUserDiv.classList.add('user');
-			
-			onlineUserDiv.appendChild(onlineUserP);
-			onlineUserP.innerText = onlineList[i];
-			onlineUserList.appendChild(onlineUserDiv);
-			onlineUserCount.innerHTML = `<h1> Online - [${onlineList.length}]</h1>`;
-		}
-
-		if (offlineList != undefined) {
-			for (let x = 0; x < offlineList.length; x++) {
-				let offlineUserDiv = document.createElement('div');
-				let offlineUserP   = document.createElement('p');
-				offlineUserDiv.classList.add('user');
-
-				offlineUserDiv.appendChild(offlineUserP);
-				offlineUserP.innerText = offlineList[i];
-				offlineUserList.appendChild(offlineUserDiv);
-				offlineUserCount.innerHTML = `<h1> Offline - [${offlineList.length}]</h1>`;
-			}
-		}
-
-		// let userDiv          = document.createElement('div');
-		// let userP            = document.createElement('p');
-
-		// Adds class to div.
-		// userDiv.classList.add('user');
-
-		// Adds p element to div.
-		// userDiv.appendChild(userP);
+		this.appendUsername(true, onlineList);
 		
-		// Sets p text to username.
-		// userP.innerText = username;
-
-		// if (onlineOrOffline) { // true
-		// 	onlineUserList.appendChild(userDiv);
-		// 	onlineUserCount.innerHTML = `<h1> Online - [${onlineList.length}]</h1>`;
-		// } else {
-		// 	offlineUserList.appendChild(userDiv);
-		// 	offlineUserCount.innerHTML = `<h1> Offline - [${offlineList.length}]</h1>`;
-		// }
+		if (offlineList) {
+			this.appendUsername(false, offlineList);
+		}
 	}
 }
 
