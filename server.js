@@ -117,8 +117,7 @@ io.on('connection', function(socket) {
 							userListIndex = offlineUserList.indexOf(username);
 							offlineUserList.splice(userListIndex, 1);
 							
-							// Send to login, login takes every username on the list and appends it to online and offline list.
-							socket.emit('loginSuccessful', onlineUserList, offlineUserList);
+							socket.emit('loginSuccessful', username, onlineUserList, offlineUserList);
 							io.emit('addUserToList', username);
 
 							console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)

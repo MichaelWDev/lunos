@@ -38,15 +38,20 @@ class Events {
 	}
 
 	// ANCHOR: LOGIN SUCCESSFUL
-	loginSuccessful(onlineUsers, offlineUsers) {
+	loginSuccessful(username, onlineUserList, offlineUserList) {
 		client.showChat();
-		console.log(`ONLINE USERS: ${onlineUsers}\nOFFLINE USERS: ${offlineUsers}`)
-		// NOTE: offlineUsers = undefined
-		// client.appendUsername(true, onlineUsers);
-		// client.appendUsername(false, offlineUsers);
-		// console.log(`loginSuccessful(): ${onlineUsers} AND ${offlineUsers}`)
-		//client.updateUserList(onlineUser, offlineUser);
+		console.log(`USERNAME: ${username}\nONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`);
+		
+		// for (let i = 0; onlineUserList.length; i++) {
+		// 	client.appendUsername(true, onlineUserList[i]);
+		// }
+		
+		// if (offlineUserList) {
+		// 	for (let x = 0; offlineUserList.length; x++)
+		// 	client.appendUsername(false, offlineUserList[x]);
+		// }
 	}
+
 	
 	// ANCHOR: LOGIN UNSUCCESSFUL
 	loginUnsuccessful() { // TODO
@@ -58,7 +63,6 @@ class Events {
 
 	// ANCHOR: ADD USER TO LIST (BROADCAST)
 	addUserToList(username) {
-		console.debug('Add user to list')
 		client.appendUsername(true, username);
 	}
 
