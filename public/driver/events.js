@@ -38,20 +38,9 @@ class Events {
 	}
 
 	// ANCHOR: LOGIN SUCCESSFUL
-	loginSuccessful(username, onlineUserList, offlineUserList) {
+	loginSuccessful() {
 		client.showChat();
-		console.log(`USERNAME: ${username}\nONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`);
-		
-		// for (let i = 0; onlineUserList.length; i++) {
-		// 	client.appendUsername(true, onlineUserList[i]);
-		// }
-		
-		// if (offlineUserList) {
-		// 	for (let x = 0; offlineUserList.length; x++)
-		// 	client.appendUsername(false, offlineUserList[x]);
-		// }
 	}
-
 	
 	// ANCHOR: LOGIN UNSUCCESSFUL
 	loginUnsuccessful() { // TODO
@@ -62,8 +51,19 @@ class Events {
 	// SECTION: CHAT APPLICATION
 
 	// ANCHOR: ADD USER TO LIST (BROADCAST)
-	addUserToList(username) {
+	addUserToList(username, onlineUserList, offlineUserList) {
 		client.appendUsername(true, username);
+
+		console.log(`O/UL: ${onlineUserList}\nOFF/UL: ${offlineUserList}`)
+		if (onlineUserList) { // If usernames are in the online list.
+			for (let i = 0; i < onlineUserList.length; i++) {
+				client.appendUsername(true, onlineUserList[i]);
+			}
+		} else if (offlineUserList) {
+			for (let x = 0; x < offlineUserList.length; x++) {
+				client.appendUsername(false, offlineUserList[x]);
+			}
+		}
 	}
 
 	// ANCHOR: MESSAGE RECEIVED

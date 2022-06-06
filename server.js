@@ -117,8 +117,8 @@ io.on('connection', function(socket) {
 							userListIndex = offlineUserList.indexOf(username);
 							offlineUserList.splice(userListIndex, 1);
 							
-							socket.emit('loginSuccessful', username, onlineUserList, offlineUserList);
-							io.emit('addUserToList', username);
+							socket.emit('loginSuccessful');
+							io.emit('addUserToList', username, onlineUserList, offlineUserList);
 
 							console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
 						} else {
@@ -276,17 +276,17 @@ io.on('connection', function(socket) {
 	});
 	*/
 
-	// ANCHOR: LEAVE CHANNEL
-	socket.on('leave-room', (room) => {
-		socket.leave(room);
-		console.log(`User left ${room}.`)
-	});
-
-	// ANCHOR: SWITCH CHANNEL
+	// ANCHOR: JOIN CHANNEL
 	socket.on('join-room', (room) => {
 		socket.join(room);
 		channel = room; // Used in 'send-chat-message'.
 		console.log(`User joined ${room}.`)
+	});
+
+	// ANCHOR: LEAVE CHANNEL
+	socket.on('leave-room', (room) => {
+		socket.leave(room);
+		console.log(`User left ${room}.`)
 	});
 
 	// ANCHOR: SEND MESSAGE / LOG MESSAGE

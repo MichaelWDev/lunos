@@ -675,6 +675,7 @@ html, body {
 	overflow:       hidden;
 	background:     none;
 	border:         none;
+	outline:        none;
 	cursor:         pointer;
 	border-bottom:  var(--border-5);
 	transition:     var(--transition-1);
