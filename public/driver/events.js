@@ -4,6 +4,8 @@
 
 // Handles every server event.
 
+// NOTE: YOU CAN ONLY EMIT ONE VARIABLE TO EVENTS.JS, EMITTING TWO REQUIRES THEM TO BE IN AN OBJECT: {VAR1, VAR2}
+
 // !SECTION ————————————————————————————————————————————————————————————————*/
 
 //——————————————————————————————————————————————————————————————————————————//
@@ -13,9 +15,6 @@
 class Events {
 	constructor() {
 		bindClass(this);
-
-		// ANCHOR: VARIABLES
-		this.incorrectText = document.getElementById('login-incorrect-text');
 	
 		// ANCHOR: SOCKET.IO
 		this.socket = io();
@@ -38,32 +37,43 @@ class Events {
 	}
 
 	// ANCHOR: LOGIN SUCCESSFUL
-	loginSuccessful() {
+	loginSuccessful(username) {
+		client.username = username;
 		client.showChat();
+		client.setUserProfile(username);
+		client.appendUsername(true, username);
 	}
 	
 	// ANCHOR: LOGIN UNSUCCESSFUL
 	loginUnsuccessful() { // TODO
-		// this.IncorrectText.classList.remove('hide');
-		console.log('Login Unsuccessful')
+		let incorrectText = document.getElementById('login-incorrect-text');
+
+		incorrectText.classList.remove('hide');
+		console.log('Login Unsuccessful');
 	}
 
 	// SECTION: CHAT APPLICATION
 
-	// ANCHOR: ADD USER TO LIST (BROADCAST)
-	addUserToList(username, onlineUserList, offlineUserList) {
-		client.appendUsername(true, username);
+	// ANCHOR: ADD USER TO LIST
+	addUserToList(username) {
+		if (client.username) {
+			client.appendUsername(true, username);
+		}
+	}
 
-		console.log(`O/UL: ${onlineUserList}\nOFF/UL: ${offlineUserList}`)
-		if (onlineUserList) { // If usernames are in the online list.
-			for (let i = 0; i < onlineUserList.length; i++) {
-				client.appendUsername(true, onlineUserList[i]);
-			}
-		} else if (offlineUserList) {
-			for (let x = 0; x < offlineUserList.length; x++) {
-				client.appendUsername(false, offlineUserList[x]);
+	// ANCHOR: POPULATE LIST
+	populateList({userList, username}) {
+		for (const key in userList) {
+			if (key != username) {
+				client.appendUsername(userList[key], key);
 			}
 		}
+	}
+
+	// ANCHOR: USER DISCONNECTED (broadcast)
+	userDisconnected(username) {
+		console.log(`${username} DISCONNECTED.`)
+		client.appendUsername(false, username);
 	}
 
 	// ANCHOR: MESSAGE RECEIVED
@@ -86,28 +96,13 @@ class Events {
 
 	// TODO: Adds the text to the chat container.
 	chatMessage(data) {
-		//console.log("chatMessage: ", data.username, data.message)
-		//client.appendMessage(data.username, data.message);
-	}
-
-	// ANCHOR: OFFLINE
-	// Does this matter? This is locally changing the way it looks.
-	// But the user WONT see their name offline if they disconnetc from the server..
-	// Maybe in the future when users can change their status but still talk (like discord), this will be used.
-	offline(username) {
-		client.appendUsername(false, username);
+		// console.log(`[BROADCASTED] chatMessage: ${data.username}\n${data.message}\n${data.room}`)
+		client.appendMessage(data.username, data.message, data.room);
 	}
 
 	// ANCHOR: ONLINE OR OFFLINE USER LIST (BROADCAST)
 	onlineOrOffline(onlineList, offlineList) {
 		client.updateUserList(onlineList, offlineList);
-	}
-
-	// ANCHOR: USER DISCONNECTED (broadcast)
-	userDisconnected(username) {
-		client.appendUsername(false, username);
-		// appendMessage(username + ' has disconnected.');
-		// document.getElementById('user-list-' + username).remove();
 	}
 
 	// TODO: Adds everyone who joins to the user-list.

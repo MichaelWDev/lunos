@@ -56,9 +56,20 @@ server.listen(port, function () {
 });
 
 // ANCHOR: SERVER
-var userListIndex;
-var onlineUserList  = [];
-var offlineUserList = [];
+let userList = {}
+
+/*
+	{
+		username1: false,
+		username2: true
+	}
+
+	false = offline
+	true = online
+
+	set the value to determine which one they are
+	on the client, just appendUser in a for loop and pass the bool value in as the onlineOrOffline argument
+*/
 
 io.on('connection', function(socket) {
 	var username;
@@ -104,6 +115,11 @@ io.on('connection', function(socket) {
 				try {
 					const data          = JSON.parse(jsonString);
 					let userID          = data[email].uuid.substring(0, 4);
+					// TODO: userID keeps breaking if they enter a bad email, fix it. Returns undefined
+					if (userID == undefined) {
+						socket.emit(`loginUnsuccessful`);
+					}
+
 					username            = `${data[email].username}#${userID}`;
 					let accountPassword = data[email].password;
 
@@ -113,14 +129,13 @@ io.on('connection', function(socket) {
 						}
 
 						if (result && data[email]) {
-							onlineUserList.push(username);
-							userListIndex = offlineUserList.indexOf(username);
-							offlineUserList.splice(userListIndex, 1);
+							userList[username] = true; // Sets the user to online.
 							
-							socket.emit('loginSuccessful');
-							io.emit('addUserToList', username, onlineUserList, offlineUserList);
+							socket.emit('loginSuccessful', username); // Reveals the chat application and appends username locally.
+							socket.emit('populateList', {userList, username}); // Sends a list of online/offline users locally.
+							socket.broadcast.emit('addUserToList', username); // Broadcasts the user that joined.
 
-							console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`)
+							console.log(`userList: ${JSON.stringify(userList)}`)
 						} else {
 							socket.emit('loginUnsuccessful'); // TODO
 						}
@@ -278,21 +293,23 @@ io.on('connection', function(socket) {
 
 	// ANCHOR: JOIN CHANNEL
 	socket.on('join-room', (room) => {
+		// console.log(`JOIN Room: ${room}`) works
 		socket.join(room);
 		channel = room; // Used in 'send-chat-message'.
-		console.log(`User joined ${room}.`)
+		console.log(`User joined ${JSON.stringify(room)}.`);
 	});
 
 	// ANCHOR: LEAVE CHANNEL
 	socket.on('leave-room', (room) => {
+		// console.log(`LEAVE Room: ${room}`) works
 		socket.leave(room);
-		console.log(`User left ${room}.`)
+		console.log(`User left ${JSON.stringify(room)}.`);
 	});
 
 	// ANCHOR: SEND MESSAGE / LOG MESSAGE
 	socket.on('send-chat-message', (message) => {
-		socket.to(channel).emit('chatMessage', {username: username, message:message}); // Sends to everyone BUT yourself, for lag purposes.
-		//console.log("Server message: ", {username: username, message: message}); // this prints correctly
+		console.log(`ROOM (var channel): ${channel}\nUSERNAME: ${username}\nMESSAGE: ${message}`);
+		socket.to(channel).emit('chatMessage', {username: username, message: message, room: channel}); // Sends to everyone BUT yourself, for lag purposes.
 
 		fs.appendFile('messages.log', username + ": "+ message + "\n", err => {
 			if (err) {
@@ -305,17 +322,10 @@ io.on('connection', function(socket) {
 
 	// ANCHOR: USER DISCONNECTS
 	socket.on('disconnect', () => {
-		console.log('user disconnected:', username);
 		if (username != undefined) {
-			offlineUserList.push(username);
-			userListIndex = onlineUserList.indexOf(username);
-			onlineUserList.splice(userListIndex, 1); // Removes username from online list.
+			userList[username] = false; // Changes the user to offline.
+			console.log(`userList: ${JSON.stringify(userList)}`)
 		}
-		console.log(`ONLINE USERS: ${onlineUserList}\nOFFLINE USERS: ${offlineUserList}`);
-
-		// User that joins needs to get a list of who is online and offline.
-		socket.emit('onlineOrOffline', onlineUserList, offlineUserList);
-		// socket.emit('offline', username);
 
 		// userDisconnected, used in [events.js]
 		socket.broadcast.emit('userDisconnected', username);

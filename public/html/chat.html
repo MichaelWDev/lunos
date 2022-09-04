@@ -29,26 +29,29 @@
 <!—— SECTION: LOGIN
 <!————————————————————————————————————————————————————————————————————————-->
 
-<div id="login-page">
-	<input id="email-input" class="input" type="email" placeholder="Email" required>
+<!-- NOTE: Remove/add class HIDE back after done working on chat app. -->
+<div id="login-page" class="">
+	<form autocomplete="on">
+		<input id="email-input" class="input" type="email" placeholder="Email" required>
 
-	<input id="password-input" class="input" type="password" placeholder="Password">
-	
-	<button id="show-login-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
+		<input id="password-input" class="input" type="password" placeholder="Password">
+		
+		<button id="show-login-password-btn" class="show-password-btn" title="Show Password" onclick="showPassword()"></button>
 
-	<p id="login-incorrect-text" class="hide"><span class="red">Please try again.</span></p>
+		<p id="login-incorrect-text" class="hide"><span class="red">Incorrect email and/or password.</span></p>
 
-	<a href="/"><button id="login-back-btn" class="btns" type="button">BACK</button></a>
-	<button id="register-btn" class="btns" type="button" onclick="register()">REGISTER</button>
-	<button id="login-btn" class="btns" type="button" onclick="login()">LOGIN</button>
-	<!--<button id="reset-password-btn" class="btns" type="button" onclick="">RESET PASSWORD</button>-->
-	<!--<button id="register-btn" class="btns" type="button" onclick="">REGISTER</button>-->
+		<a href="/"><button id="login-back-btn" class="btns" type="button">BACK</button></a>
+		<button id="register-btn" class="btns" type="button" onclick="register()">REGISTER</button>
+		<button id="login-btn" class="btns" type="button" onclick="login()">LOGIN</button>
+		<!--<button id="reset-password-btn" class="btns" type="button" onclick="">RESET PASSWORD</button>-->
+		<!--<button id="register-btn" class="btns" type="button" onclick="">REGISTER</button>-->
+	</form>
 </div>
 
 <!-- !SECTION —————————————————————————————————————————————————————————————-->
 
 <!--————————————————————————————————————————————————————————————————————————>
-<!—— SECTION REGISTER
+<!—— SECTION: REGISTER
 <!————————————————————————————————————————————————————————————————————————-->
 
 <div id="register-page" class="hide">
@@ -74,7 +77,8 @@
 <!—— SECTION CHAT
 <!————————————————————————————————————————————————————————————————————————-->
 
-<div id="chat-page" class="hide">
+<!-- NOTE: Remove/add class HIDE back after done working on chat app. -->
+<div id="chat-page" class="chat-pages hide">
 	<!-- TODO: Server Creation
 		- Server channels.
 		- Texting in server channels.
@@ -83,7 +87,7 @@
 	-->
 	<!-- ANCHOR: SERVER LIST -->
 	<div class="server-list">
-		<div class="server-icon home-icon">
+		<div class="server-icon home-icon" title="Observatory">
 		<!-- TODO: Refer to CSS TODO.
 			<div class="server-icon-title">
 				<p>Home</p>
@@ -93,11 +97,9 @@
 
 		<hr>
 
-		<div id="lunos-server" class="server-icon"></div>
+		<div id="lunos-server" class="server-icon" title="Earth"></div>
 
-		<div id="" class="server-icon"></div>
-
-		<div id="" class="server-icon"></div>
+		<!--<div id="" class="server-icon"></div>-->
 	</div>
 
 	<!-- ANCHOR: CHAT SERVER -->
@@ -108,7 +110,7 @@
 
 		<!-- ANCHOR: CHANNEL TITLE -->
 		<div class="channel-title">
-			<h1>Click a channel.</h1>
+			<h1>Click any channel.</h1>
 		</div>
 
 		<!-- ANCHOR: CHANNEL BUTTONS -->
@@ -118,22 +120,31 @@
 		</div>
 
 		<!-- ANCHOR: CHANNEL PAGES -->
+		<!-- NOTE: Increment each channel by 1 so there will never be duplicates. -->
 		<div class="channel-pages">
-			<div id="chan-0" class="chat-containers hide"></div>
-			<div id="chan-1" class="chat-containers hide"></div>
+			<div id="introduction-0" class="chat-containers hide">
+				<h1 class="message-text intro-text">Welcome to <span class="intro-span">Lunos</span>!</h1>
+				<h2 class="message-text intro-text">Proceed to any channel you would like to begin talking with other people!</h2>
+				<h2 class="message-text intro-text">Right now the only available server is <span class="intro-span">Earth</span>. Server creation is in the works.</h2>
+				<h2 class="message-text intro-text"><a class="btns" href="https://github.com/MichaelWDev/lunos" target="_blank"><span class="intro-span">Lunos GitHub</span></a></h2>
+				<hr>
+				<h3 class="message-text intro-text">Developed in association with <span class="intro-span">Astris Solutions</span>.</h3>
+				<h3></h3>
+			</div>
+			<div id="general-1" class="chat-containers hide"></div>
 		</div>
 
 		<!-- ANCHOR: USERS -->
 		<div class="users">
 			<div class="online-title">
-				<h1>Online - []</h1>
+				<h1>Online - [0]</h1>
 			</div>
 
 			<!-- TODO: 1. ONLINE/OFFLINE User count -->
 			<div class="online-user-list"></div>
 
 			<div class="offline-title">
-				<h1>Offline - []</h1>
+				<h1>Offline - [0]</h1>
 			</div>
 
 			<div class="offline-user-list"></div>
@@ -141,9 +152,24 @@
 
 		<!-- ANCHOR: PROFILE -->
 		<div class="profile">
+			<!-- TODO: Setting your status. -->
+			<div class="set-status-selection hide">
+				<!-- TODO: Status color, round circle that displays color associated with profile status.
+					Green:   Online
+					Yellow:  Away
+					DND:     Red
+					Offline: Grey
+				-->
+				<div class="status-color hide"></div>
+				<button type="button" class="btns status-btns" onclick="setStatus('Online')">Online</button><br>
+				<button type="button" class="btns status-btns" onclick="setStatus('Away')">Away</button><br>
+				<button type="button" class="btns status-btns" onclick="setStatus('Do Not Disturb')">Do Not Disturb</button><br>
+				<button type="button" class="btns status-btns" onclick="setStatus('Offline')">Offline</button>
+			</div>
+
 			<div class="profile-icon" onclick=""></div>
 			<p class="profile-name" class="btns" onclick="">Username Here</p>
-			<p class="profile-status">Profile Status Here</p>
+			<p class="profile-status" onclick="showStatus()" class="btns hide">On/Away/DND/Off</p>
 		</div>
 
 		<!-- ANCHOR: CHATBAR -->
@@ -151,6 +177,11 @@
 			<input class="chat-input" placeholder="Begin typing..."></input>
 			<button type="submit" class="send-btn" onclick="sendMessage()">Send</button>
 		</div>
+
+		<!-- TODO: [RED] Error messages that display underneath the chatbar, letting the user know if there is an issue with anything.
+			ie. No internet connection, message couldn't be sent, etc,
+		-->
+		<div class="server-error "><p class="server-error-text"></p></div>
 	</div>
 </div>
 

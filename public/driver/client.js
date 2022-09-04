@@ -30,6 +30,8 @@ class Client {
 		bindClass(this);
 		
 		// ANCHOR: VARIABLES
+		this.username;
+		this.room;
 		// TODO: Fix this: Returns null
 		//this.iframe = parent.frames.frames.document.activeElement.getElementsByTagName('iframe');
 		//this.iframe = document.getElementById('main-iframe');
@@ -88,6 +90,12 @@ class Client {
 
 	// ANCHOR: CHANGE CHANNEL
 	changeChannel(chanBtn) {
+		// console.log(`ChanBtn: ${JSON.stringify(chanBtn.innerText)}`)
+		// let channelTitle = JSON.stringify(chanBtn.innerText);
+		// console.log(channelTitle)
+
+		this.room = chanBtn.innerText;
+
 		// CSS
 		let channelList = document.getElementsByClassName('chan-btn');
 		let channelName = document.getElementsByClassName('channel-title')[0];
@@ -108,11 +116,11 @@ class Client {
 				// console.log("Showing: ", channelPage[pageIndex])
 
 				// Leaves the room, hides the chat container.
-				events.socket.emit('leave-room', channelList[i]);
+				events.socket.emit('leave-room', channelList[i].id);
 				channelPage[i].style.display = 'none';
 
 				// Joins the room, shows the chat container.
-				events.socket.emit('join-room', channelPage[pageIndex]);
+				events.socket.emit('join-room', chanBtn.innerText);
 				channelPage[pageIndex].style.display = 'block';
 			}
 		}
@@ -121,16 +129,16 @@ class Client {
 	// ANCHOR: ADD USER TO LIST
 	appendUsername(onlineOrOffline, username) {
 		// ONLINE
-		let onlineUserList   = document.getElementsByClassName('online-user-list')[0];
-		let onlineUserCount  = document.getElementsByClassName('online-title')[0];
+		let onlineUserList       = document.getElementsByClassName('online-user-list')[0];
+		let onlineUserListCount  = document.getElementsByClassName('online-title')[0];
 
 		// OFFLINE
-		let offlineUserList  = document.getElementsByClassName('offline-user-list')[0];
-		let offlineUserCount = document.getElementsByClassName('offline-title')[0];
+		let offlineUserList      = document.getElementsByClassName('offline-user-list')[0];
+		let offlineUserListCount = document.getElementsByClassName('offline-title')[0];
 
 		// CREATE ELEMENTS
-		let userDiv          = document.createElement('div');
-		let userP            = document.createElement('p');
+		let userDiv              = document.createElement('div');
+		let userP                = document.createElement('p');
 
 		// ADD CLASS & ID TO DIV
 		userDiv.classList.add('user');
@@ -142,26 +150,29 @@ class Client {
 		userP.innerText = username;
 
 		// ADDS USERS TO CORRECT DIV
-		if (onlineOrOffline) { // If user is online
+		if (onlineOrOffline) { // If user is online (true)
 			userDiv.setAttribute('id', `online-${username}`);
 			let offlineUser = document.getElementById(`offline-${username}`);
 
-			if (offlineUser && offlineUserList.hasChildNodes()) {
+			if (offlineUserList.hasChildNodes()) { // If offline list isn't empty.
 				offlineUser.remove();
 			}
 
 			onlineUserList.appendChild(userDiv);
-			onlineUserCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
-		} else {
+			onlineUserListCount.innerHTML = `<h1> Online - [${onlineUserList.childElementCount}]</h1>`;
+
+		} else { // Offline user
 			userDiv.setAttribute('id', `offline-${username}`);
 			let onlineUser = document.getElementById(`online-${username}`);
 
-			if (onlineUser && onlineUserList.hasChildNodes()) {
+			if (onlineUser && onlineUserList.hasChildNodes()) { // Removes user from online list.
 				onlineUser.remove();
 			}
 
 			offlineUserList.appendChild(userDiv);
-			offlineUserCount.innerHTML = `<h1> Offline - [${onlineUserList.childElementCount}]</h1>`;
+			// NOTE: This isn't changing into the correct number when someone goes offline. Stays 1.
+			// $("#here").load(window.location.href + " #here" );
+			offlineUserListCount.innerHTML = `<h1> Offline - [${offlineUserList.childElementCount}]</h1>`;
 		}
 	}
 
@@ -181,31 +192,33 @@ class Client {
 	*/
 
 	// ANCHOR: APPEND MESSAGE TO CHAT
-	appendMessage (username, message) {
-		console.log("appendMessage(username, message): ", username, message)
-		// TODO: Append profile picture to message.
-		// const chatMessage = document.createElement('div');
-		// chatMessage.classList.add('chat-message');
-		//console.log("Username: ", username);
-		//console.log("message", message)
-	
-		// NOTE: Change chatContainer to the proper container.
+	appendMessage(username, message, room) {
 		let messageElement = document.createElement('p');
-		let chatContainer = this.currentChannel;
-		// messageElement.classList.add('text');
-		messageElement.innerText = `${username}: ${message}`;
-	
-		if (chatContainer) {
-			chatContainer.insertBefore(messageElement, chatContainer.firstChild);
-		} else {
-			// TODO: Fix this, it'll keep showing even when a channel is clicked.
-			alert('No channel selected. Please select one!');
+		// TODO: Append profile picture to message.
+		// let profilePicture = document.createElement('div');
+		let chatContainer  = document.getElementsByClassName('chat-containers');
+		// profilePicture.classList.add('message-profile-picture');
+		messageElement.style.margin       = 0;
+		messageElement.style.marginBottom = `1em`;
+
+		for (let i = 0; i < chatContainer.length; i++) {
+			if (chatContainer[i].id == `${room}-${i}`) {
+				messageElement.classList.add('message-text');
+				messageElement.innerText = `${username}: ${message}`;
+				chatContainer[i].insertBefore(messageElement, chatContainer.firstChild);
+			}
 		}
 	}
 
 	// ANCHOR: MESSAGE EVERYONE
-	sendMessage(username, message) {
-		events.socket.emit('sendMessage', username, message);
+	sendMessage(message) {
+		events.socket.emit('send-chat-message', message);
+	}
+
+	// ANCHOR: SET USER PROFILE
+	setUserProfile(username) {
+		let profileName       = document.getElementsByClassName('profile-name')[0];
+		profileName.innerText = username;
 	}
 }
 

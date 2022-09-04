@@ -45,7 +45,7 @@
 	/* ANCHOR: BACKGROUND COLORS */
 	--background-color-1:        rgb(0, 0, 0);
 	--background-color-2:        rgba(0, 44, 82, 0.1);
-	--background-color-3:        rgb(0, 44, 82);
+	--background-color-3:        rgb(8, 8, 8);
 	--background-color-4:        rgb(0, 170, 0);
 	--background-color-5:        rgb(5, 5, 5);
 
@@ -58,7 +58,7 @@
 	--border-6:                   0.1em  solid rgb(0, 247, 255);
 	--border-7:                   0.1em  solid rgb(5, 5, 5);
 
-	/* ANCHOR: EXTRAS FOR SPAN / HOVERING / ACTIVE */
+	/* ANCHOR: EXTRAS FOR SPAN / HOVERING / ACTIVE / ETC. */
 	--transition-1:              0.1s;
 
 	--text-span-color-1:         rgb(0, 170, 0);
@@ -83,6 +83,8 @@
 	--active-border-1:     0.1em solid rgb(0, 247, 255);
 
 	--filter-1: invert(52%) sepia(86%) saturate(1897%) hue-rotate(157deg) brightness(89%) contrast(101%);
+
+	--error-text-color-1:        rgb(255, 0, 0);
 }
 
 /*——— !SECTION —————————————————————————————————————————————————————————————————————*/
@@ -543,9 +545,21 @@ html, body {
 /*—— SECTION: CHAT
 /*—————————————————————————————————————————————————————————————————————————*/
 
+/*
+	Make everything static on the left and right side of the screen.
+	ONLY resize the CHATBOX (channel-pages and shit)
+	Just like how DISCORD does it.
+*/
+
+.chat-pages {
+	margin:  0;
+	width:   100%;
+	height:  100%;
+}
+
 /*—— ANCHOR: SERVER LIST */
 .server-list {
-	position:         absolute;
+	position:         fixed;
 	height:           100%;
 	width:            5em;
 	overflow:         scroll;
@@ -579,6 +593,13 @@ html, body {
 	border:        var(--border-6);
 }
 
+.home-icon {
+	background-image:    url('../images/observatory.png');
+	background-repeat:   no-repeat;
+	background-position: center;
+	background-size:     100%;
+}
+
 /* TODO: Fix indexing. It keeps showing up behind channel btns.
 .server-icon-title {
 	position:    relative;
@@ -606,32 +627,42 @@ html, body {
 }
 */
 
-/* TODO: Fix Z-INDEX for .server-list and everything else in this area.
+/* TODO: Fix Z-INDEX for .server-list and everything else in this area. */
+
+#lunos-server {
+	background-image:    url('../images/earth-rotating.gif');
+	background-repeat:   no-repeat;
+	background-position: center;
+	background-size:     100%;
+}
 
 /*————— !ANCHOR —————*/
 
 /*—— ANCHOR: SERVERS */
 .servers {
-	position: absolute;
+	position: fixed;
 	top:      0;
 	right:    0;
 	height:   100%;
-	width:    95%;
+	width:    100%;
 }
 
 .server-title {
-	position:    relative;
-	width:       12.5em;
+	position:    fixed;
 	top:         1em;
+	width:       13.5em;
+	left:        6em;
 	color:       var(--text-color-1);
 	font-family: var(--font-family-4);
 }
 
 .server-title h1 {
 	position:         relative;
+	margin:           0;
 	width:            100%;
 	text-align:       left;
-	padding-left:     0.5em;
+	font-weight:      1;
+	padding-bottom:   0.05em;
 	border-bottom:    var(--border-2);
 	background-color: var(--background-color-5);
 }
@@ -640,27 +671,30 @@ html, body {
 
 /*—— ANCHOR: CHANNELS */
 .channel-title {
-	position:         relative;
-	left:             15em;
-	bottom:           3em;
-	width:            82em;
+	position:         fixed;
+	top:              1em;
+	left:             20.5em;
+	min-width:        16em;
+	width:            calc(100% - 34.5em);
 	color:            var(--text-color-1);
 	font-family:      var(--font-family-4);
 }
 
 .channel-title h1 {
+	margin:           0;
 	width:            100%;
-	padding-left:     0.5em;
+	font-weight:      1;
 	padding-bottom:   0.05em;
 	border-bottom:    var(--border-2);
 	background-color: var(--background-color-5);
 }
 
 .channels {
-	position:         absolute;
-	top:              5.95em;
+	position:         fixed;
+	left:             6em;
+	top:              5em;
 	width:            13.5em;
-	height:           46.5em;
+	height:           calc(100% - 11em);
 	background-color: var(--background-color-5);
 }
 
@@ -677,7 +711,7 @@ html, body {
 	border:         none;
 	outline:        none;
 	cursor:         pointer;
-	border-bottom:  var(--border-5);
+	border-bottom:  var(--border-7);
 	transition:     var(--transition-1);
 	color:          var(--text-color-1);
 	font-family:    var(--font-family-4);
@@ -693,33 +727,42 @@ html, body {
 }
 
 .channel-pages {
-	position: absolute;
-	left:     14em;
-	top:      5.95em;
-	height:   46em;
-	width:    84em;
+	position:         fixed;
+	left:             20.5em;
+	top:              5em;
+	margin-bottom:    10em;
+	min-width:        16em;
+	min-height:       16em;
+	width:            calc(100% - 34.5em);
+	height:           calc(100% - 11em);
+	background-color: var(--background-color-5);
 }
 
 .chat-containers {
-	height: 46.5em;
-	width:  84em;
+	height: 100%;
+	width:  100%;
 }
 
-.chat-containers:nth-child(1) {
-	background-color: rgba(255, 0, 0, 0.25);
+.intro-text {
+	text-align: center;
 }
 
-.chat-containers:nth-child(2) {
-	background-color: rgba(0, 0, 255, 0.25);
+.intro-text a {
+	text-decoration: none;
+	font-family:     var(--font-family-4);
+}
+
+.intro-span {
+	color: var(--text-color-6);
 }
 
 /*————— !ANCHOR —————*/
 
 /*—— ANCHOR: USERS */
 .users {
-	position:         absolute;
+	position:         fixed;
 	right:            0;
-	top:              5.95em;
+	top:              1em;
 	width:            13em;
 	height:           100%;
 	overflow-y:       scroll;
@@ -737,6 +780,7 @@ html, body {
 	width:       100%;
 	margin:      0%;
 	text-align:  center;
+	font-weight: 1;
 	color:       var(--text-color-1);
 	font-family: var(--font-family-4);
 }
@@ -762,10 +806,11 @@ html, body {
 
 /*—— ANCHOR: PROFILE */
 .profile {
-	position:         absolute;
+	position:         fixed;
+	left:             6em;
 	width:            13.5em;
 	height:           3.5em;
-	bottom:           1em;
+	bottom:           1.5em;
 	background-color: var(--background-color-5);
 }
 
@@ -792,16 +837,17 @@ html, body {
 }
 
 .profile-name {
-	position:    relative;
-	top:         0.35em;
-	font-size:   1.25em;
-	width:       8em;
-	left:        2.75em;
-	overflow-x:  hidden;
-	cursor:      pointer;
-	transition:  var(--transition-1);
-	color:       var(--text-color-1);
-	font-family: var(--font-family-4);
+	position:      relative;
+	top:           0.35em;
+	font-size:     1.25em;
+	width:         8em;
+	left:          2.75em;
+	overflow-x:    hidden;
+	cursor:        pointer;
+	text-overflow: ellipsis;
+	transition:    var(--transition-1);
+	color:         var(--text-color-1);
+	font-family:   var(--font-family-4);
 }
 
 .profile-name:hover {
@@ -815,33 +861,76 @@ html, body {
 	width:       10em;
 	left:        3.5em;
 	bottom:      0.5em;
+	margin:      0;
 	overflow-x:  hidden;
+	cursor:      pointer;
 	color:       var(--text-color-1);
 	font-family: var(--font-family-4);
 }
 
+.profile-status:hover {
+	color: var(--hover-text-color-3);
+}
+
+.set-status-selection {
+	position:         absolute;
+	width:            13.5em;
+	bottom:           5em;
+	color:            var(--text-color-1);
+	background-color: var(--background-color-5);
+}
+
+.status-btns {
+	position:      relative;
+	left:          50%;
+	font-size:     1.25em;
+	margin:        0.25em;
+	transform:     translateX(-50%);
+	border-bottom: var(--border-7);
+	font-family:   var(--font-family-4);
+}
+
+/* .set-status-selection input {
+	position: relative;
+	left:     -0.5em;
+}
+
+.set-status-selection label {
+	position:  relative;
+	left:      0.25em;
+	padding:   0.5em;
+	font-size: 1.25em;
+}
+
+.set-status-selection input:checked {
+	accent-color: var(--text-color-6);
+} */
+
+/*————— !ANCHOR —————*/
+
 /*—— ANCHOR: CHATBAR */
 .chat-bar {
-	position: absolute;
-	bottom:   1em;
-	height:   3.5em;
-	width:    84em;
-	left:     14em;
+	position:         fixed;
+	bottom:           1.5em;
+	height:           3.5em;
+	min-width:        16em;
+	left:             20.5em;
+	width:            calc(100% - 34.5em);
 	background-color: var(--background-color-5);
 }
 
 .chat-input {
-	border:           none;
-	outline:          none;
-	background:       none;
-	height:           100%;
-	width:            77em;
-	padding-left:     1em;
-	font-size:        1em;
-	border-bottom:    var(--border-5);
-	color:            var(--text-color-1);
-	transition:       var(--transition-1);
-	font-family:      var(--font-family-4);
+	border:        none;
+	outline:       none;
+	background:    none;
+	height:        100%;
+	padding-left:  1em;
+	font-size:     1em;
+	width:         calc(100% - 5em);
+	border-bottom: var(--border-5);
+	color:         var(--text-color-1);
+	transition:    var(--transition-1);
+	font-family:   var(--font-family-4);
 }
 
 .chat-input:focus {
@@ -853,13 +942,13 @@ html, body {
 	right:         0;
 	top:           0;
 	width:         5em;
-	height:        3.5em;
+	height:        3.75em;
 	background:    none;
 	border:        none;
 	cursor:        pointer;
 	font-size:     1em;
 	color:         var(--text-color-2);
-	border-bottom: var(--border-7);
+	border-bottom: var(--border-5);
 	transition:    var(--transition-1);
 	font-family:   var(--font-family-4);
 }
@@ -872,6 +961,44 @@ html, body {
 .send-btn:active {
 	background-color: rgb(0, 247, 255, 0.25);
 }
+
+.message-profile-picture {
+	position:      absolute;
+	width:         2.5em;
+	height:        2.5em;
+	border-radius: 50%;
+	cursor:        pointer;
+	transition:    var(--transition-1);
+	border:        var(--border-2);
+}
+
+.message-text {
+	font-weight: 1;
+	color:       var(--text-color-1);
+	font-family: var(--font-family-4);
+}
+
+/*————— !ANCHOR —————*/
+
+/*—— ANCHOR: SERVER ERROR MESSAGE */
+/* TODO: Flashing error animation or just full red color when error pops up. */
+
+.server-error {
+	position: fixed;
+	bottom:   0.25em;
+	left:     20.5em;
+	height:   1em;
+	width:    calc(100% - 40em);
+}
+
+.server-error-text {
+	margin:      0;
+	width:       100%;
+	height:      100%;
+	color:       var(--error-text-color-1);
+	font-family: var(--font-family-4);
+}
+
 
 /*——— !SECTION —————————————————————————————————————————————————————————————————————*/
 
